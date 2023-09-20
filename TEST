@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>Welcome</title>
+<style type="text/css">
+th {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+td {
+	border: 1px solid black;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div>
+		<nav class="navbar navbar-expand navbar-dark bg-dark">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="./welcome.jsp">Home</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+
+
+
+	<%!String greeting = "Inhatc Shopping Mall";
+	String tagline = "Welcome to Web Market!";%><div class="jumbotron">
+		<div class="container">
+			<h1 class="display-3">
+				<%=greeting%>
+			</h1>
+			<div>
+				<%@ page import="java.util.Date"%>
+				Today is
+				<%=new Date()%>
+
+			</div>
+		</div>
+	</div>
+
+	<main role="main">
+		<div class="container">
+			<div class="text-center">
+				<h3>
+					<%=tagline%>
+				</h3>
+			</div>
+			<div>
+				<table style="border: 1px solid black;">
+					<tr>
+
+					</tr>
+					<tr>
+
+					</tr>
+
+
+				</table>
+
+
+			</div>
+		</div>
+	</main>
+	<footer class="container">
+		<p>&copy; WebMarket</p>
+	</footer>
+</body>
+</html>
