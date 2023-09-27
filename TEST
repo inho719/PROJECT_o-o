@@ -1,30 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<meta charset="UTF-8">
-<title>Welcome</title>
+<meta charset="EUC-KR">
 <style type="text/css">
-th {
-	border: 1px solid black;
-	padding: 10px;
-}
-
-td {
-	border: 1px solid black;
-	padding: 10px;
+.menubar1 {
+	border-style: none;
 }
 </style>
+<title>Insert title here</title>
 </head>
 <body>
 	<div>
 		<nav class="navbar navbar-expand navbar-dark bg-dark">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="./welcome.jsp">Home</a>
+					<table>
+						<tr>
+							<th class="menubar1"><a class="navbar-brand"
+								href="./welcome.jsp">Home</a></th>
+							<th class="menubar1"><a class="navbar-brand"
+								href="./welcome.jsp">Home</a></th>
+							<th class="menubar1"><a class="navbar-brand"
+								href="./welcome.jsp">Home</a></th>
+							<th class="menubar1"><a class="navbar-brand"
+								href="./welcome.jsp">Home</a></th>
+							<th class="menubar1"><a class="navbar-brand"
+								href="./welcome.jsp">Home</a></th>
+							<th class="menubar1"><a class="navbar-brand"
+								href="./welcome.jsp">Home</a></th>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</nav>
@@ -34,9 +41,11 @@ td {
 
 
 	<%!String greeting = "Inhatc Shopping Mall";
-	String tagline = "Welcome to Web Market!";%><div class="jumbotron">
+	String tagline = "Welcome to Web Market!";%>
+	<div class="jumbotron">
+
 		<div class="container">
-			<h1 class="display-3">
+			<h1 class="display-3" style="color: #077D6E;">
 				<%=greeting%>
 			</h1>
 			<div>
@@ -45,34 +54,28 @@ td {
 				<%=new Date()%>
 
 			</div>
+
+
 		</div>
+
 	</div>
 
-	<main role="main">
-		<div class="container">
-			<div class="text-center">
-				<h3>
-					<%=tagline%>
-				</h3>
-			</div>
+	<div>
+		<div class="" style="width: 100%;">
 			<div>
-				<table style="border: 1px solid black;">
-					<tr>
-
+				<table class="navbar navbar-expend"
+					style="border-bottom: 5px solid #212529; border-top: 5px solid #212529; padding: 5px; margin-left: auto; margin-right: auto;">
+					<tr style="margin-left: auto; margin-right: auto;">
+						<th><a class="navbar-brand" href="./welcome.jsp">Home</a></th>
+						<th><a class="navbar-brand" href="./welcome.jsp">Home</a></th>
+						<th><a class="navbar-brand" href="./welcome.jsp">Home</a></th>
+						<th><a class="navbar-brand" href="./welcome.jsp">Home</a></th>
+						<th><a class="navbar-brand" href="./welcome.jsp">Home</a></th>
+						<th><a class="navbar-brand" href="./welcome.jsp">Home</a></th>
 					</tr>
-					<tr>
-
-					</tr>
-
-
 				</table>
-
-
 			</div>
 		</div>
-	</main>
-	<footer class="container">
-		<p>&copy; WebMarket</p>
-	</footer>
+	</div>
 </body>
 </html>
