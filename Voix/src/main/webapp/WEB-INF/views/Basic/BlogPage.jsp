@@ -47,24 +47,29 @@
 								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
 						</div>
 						<div class="BlogText">
-							<div style="display: flex;">
-								<div style="margin-right: 200px;">작성자 1대1 채팅</div>
-								<div>찜하기</div>
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
+								<a>작성자 1대1 채팅</a> <a>찜하기</a>
 							</div>
-							<div class="BlogTitle" style="border: 1px solid black;">
-								<a>Blog제목</a>
+							<div class="BlogTitle">
+								<h2 class="card-title m-2">블로그제목</h2>
 							</div>
-							<div class="BlogContents" style="border: 1px solid black;">
-								<a>Blog내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</a>
+							<!-- 새로운 div 추가 -->
+							<div class="BlogContentsWrapper">
+								<div class="BlogContents  p-2">
+									<p class="card-text">블로그내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
+								</div>
 							</div>
-							<div class="card-body" style="text-align: -webkit-right;">
-									<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-									<a class="Views" style = "text-decoration-line: none; color: gray;">조회수</a>
+							<!-- 내용을 감싼 div에 스타일 적용 -->
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
+								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
+								<a class="Views"
+									style="text-decoration-line: none; color: gray;">조회수</a>
 							</div>
 						</div>
 					</div>
 				</div>
-
 				<div class="card mb-4">
 					<div class="BlogDiv" style="display: flex;">
 						<div class="BlogImg">
@@ -72,24 +77,29 @@
 								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
 						</div>
 						<div class="BlogText">
-							<div style="display: flex;">
-								<div style="margin-right: 200px;">작성자 1대1 채팅</div>
-								<div>찜하기</div>
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
+								<a>작성자 1대1 채팅</a> <a>찜하기</a>
 							</div>
-							<div class="BlogTitle" style="border: 1px solid black;">
-								<a>Blog제목</a>
+							<div class="BlogTitle">
+								<h2 class="card-title m-2">블로그제목</h2>
 							</div>
-							<div class="BlogContents" style="border: 1px solid black;">
-								<a>Blog내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</a>
+							<!-- 새로운 div 추가 -->
+							<div class="BlogContentsWrapper">
+								<div class="BlogContents  p-2">
+									<p class="card-text">블로그내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
+								</div>
 							</div>
-							<div class="card-body" style="text-align: -webkit-right;">
-									<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-									<a class="Views" style = "text-decoration-line: none; color: gray;">조회수</a>
+							<!-- 내용을 감싼 div에 스타일 적용 -->
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
+								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
+								<a class="Views"
+									style="text-decoration-line: none; color: gray;">조회수</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				
 				<div class="card mb-4">
 					<div class="BlogDiv" style="display: flex;">
 						<div class="BlogImg">
@@ -97,46 +107,35 @@
 								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
 						</div>
 						<div class="BlogText">
-							<div style="display: flex;">
-								<div style="margin-right: 200px;">작성자 1대1 채팅</div>
-								<div>찜하기</div>
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
+								<a>작성자 1대1 채팅</a> <a>찜하기</a>
 							</div>
-							<div class="BlogTitle" style="border: 1px solid black;">
-								<a>Blog제목</a>
+							<div class="BlogTitle">
+								<h2 class="card-title m-2">블로그제목</h2>
 							</div>
-							<div class="BlogContents" style="border: 1px solid black;">
-								<a>Blog내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</a>
+							<!-- 새로운 div 추가 -->
+							<div class="BlogContentsWrapper">
+								<div class="BlogContents  p-2">
+									<p class="card-text">블로그내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
+								</div>
 							</div>
-							<div class="card-body" style="text-align: -webkit-right;">
-									<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-									<a class="Views" style = "text-decoration-line: none; color: gray;">조회수</a>
+							<!-- 내용을 감싼 div에 스타일 적용 -->
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
+								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
+								<a class="Views"
+									style="text-decoration-line: none; color: gray;">조회수</a>
 							</div>
 						</div>
 					</div>
 				</div>
-								
-				
-				<ul class="pagination" style="place-content: center;">
-					<li><a href="?page=1">1</a></li>
-					<li><a href="?page=2">2</a></li>
-					<li><a href="?page=3">3</a></li>
-					<li><a href="?page=4">4</a></li>
-					<li><a href="?page=5">5</a></li>
-					<li><a href="?page=6">6</a></li>
-					<li><a href="?page=7">7</a></li>
-					<!-- 다른 페이지 번호들을 추가하세요 -->
-				</ul>
-
-
-
-
-
 			</div>
 			<!-- end Page content-->
 			<%@ include file="/WEB-INF/views/Includes/Side.jsp"%>
-
 		</div>
 	</div>
+
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">

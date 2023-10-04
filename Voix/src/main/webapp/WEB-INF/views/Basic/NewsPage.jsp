@@ -45,20 +45,21 @@
 							<a href="#뉴스코드"><img class=""
 								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
 						</div>
-						<div class="NewsText">
-							<div class="NewsTitle" style="border: 1px solid black;">
-								<a>뉴스제목</a>
+						<div class="NewsText" style="flex: 1;">
+							<div class="NewsTitle">
+								<h2 class="card-title m-2">뉴스제목</h2>
 							</div>
-							<div class="NewsContents" style="border: 1px solid black;">
-								<a>뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</a>
+							<div class="NewsContents p-2">
+								<p class="card-text">뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
 							</div>
-							<div class="card-body" style="text-align: -webkit-right;">
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
 								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views" style = "text-decoration-line: none; color: gray;">조회수</a>
+								<a class="Views"
+									style="text-decoration-line: none; color: gray;">조회수</a>
 							</div>
 						</div>
 					</div>
-
 				</div>
 				<div class="card mb-4">
 					<div class="NewsDiv" style="display: flex;">
@@ -66,40 +67,43 @@
 							<a href="#뉴스코드"><img class=""
 								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
 						</div>
-						<div class="NewsText">
-							<div class="NewsTitle" style="border: 1px solid black; ">
-								<a>뉴스제목</a>
+						<div class="NewsText" style="flex: 1;">
+							<div class="NewsTitle">
+								<h2 class="card-title m-2">뉴스제목</h2>
 							</div>
-							<div class="NewsContents" style="border: 1px solid black;">
-								<a>뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</a>
+							<div class="NewsContents p-2">
+								<p class="card-text">뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
 							</div>
-							<div class="card-body" style="text-align: -webkit-right;">
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
 								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views" style = "text-decoration-line: none; color: gray;">조회수</a>
+								<a class="Views"
+									style="text-decoration-line: none; color: gray;">조회수</a>
 							</div>
 						</div>
 					</div>
-
-				</div>				<div class="card mb-4">
+				</div>
+				<div class="card mb-4">
 					<div class="NewsDiv" style="display: flex;">
 						<div class="NewsImg">
 							<a href="#뉴스코드"><img class=""
 								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
 						</div>
-						<div class="NewsText">
-							<div class="NewsTitle" style="border: 1px solid black;">
-								<a>뉴스제목</a>
+						<div class="NewsText" style="flex: 1;">
+							<div class="NewsTitle">
+								<h2 class="card-title m-2">뉴스제목</h2>
 							</div>
-							<div class="NewsContents" style="border: 1px solid black;">
-								<a>뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</a>
+							<div class="NewsContents p-2">
+								<p class="card-text">뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
 							</div>
-							<div class="card-body" style="text-align: -webkit-right;">
+							<div class="small text-mute m-2"
+								style="display: flex; justify-content: space-between; align-items: flex-end;">
 								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views" style = "text-decoration-line: none; color: gray;">조회수</a>
+								<a class="Views"
+									style="text-decoration-line: none; color: gray;">조회수</a>
 							</div>
 						</div>
 					</div>
-
 				</div>
 				<ul class="pagination" style="place-content: center;">
 					<li><a href="?page=1">1</a></li>
@@ -111,11 +115,9 @@
 					<li><a href="?page=7">7</a></li>
 					<!-- 다른 페이지 번호들을 추가하세요 -->
 				</ul>
-
 			</div>
 			<!-- end Page content-->
 			<%@ include file="/WEB-INF/views/Includes/Side.jsp"%>
-
 		</div>
 	</div>
 	<!-- Footer-->
