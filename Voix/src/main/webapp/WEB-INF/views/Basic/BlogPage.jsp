@@ -28,6 +28,9 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
+.BlogDiv{
+	height:200px;
+}
 </style>
 
 </head>
@@ -61,7 +64,7 @@
 								</div>
 							</div>
 							<!-- 내용을 감싼 div에 스타일 적용 -->
-							<div class="small text-mute m-2"
+							<div class="small text-mute mx-2"
 								style="display: flex; justify-content: space-between; align-items: flex-end;">
 								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
 								<a class="Views"
@@ -91,7 +94,7 @@
 								</div>
 							</div>
 							<!-- 내용을 감싼 div에 스타일 적용 -->
-							<div class="small text-mute m-2"
+							<div class="small text-mute mx-2"
 								style="display: flex; justify-content: space-between; align-items: flex-end;">
 								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
 								<a class="Views"

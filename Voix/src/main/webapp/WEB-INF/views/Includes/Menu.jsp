@@ -4,16 +4,40 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <link href="resources/css/styles.css" rel="stylesheet" />
+<style>
+	.homePageLink{
+	font-size: 16px;
+    margin-right: 12px;
+    color: #ccc;
+    text-decoration: none;
+	
+	}
+	.navBarMain{
+	margin-left: 60px;
+    margin-right: 60px;
+	}
+
+.VoixImg{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+</style>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
 	<div class="container">
-		<a class="navbar-brand" href="https://www.melon.com/">멜론</a> <a
-			class="navbar-brand" href="#!">바이브</a> <a class="navbar-brand"
-			href="#!">벅스</a> <a class="navbar-brand" href="#!">지니</a> <a
-			class="navbar-brand" href="#!">빌보드</a> <a class="navbar-brand"
-			href="#!">예스24</a> <a class="navbar-brand" href="#!">인터파크</a> <a
-			class="navbar-brand" href="#!">알라딘</a> <a class="navbar-brand"
-			href="#!">교보문고</a> <a class="navbar-brand" href="#!">유튜브</a>
+		<a class="homePageLink" href="https://www.melon.com/">멜론</a> <a
+			class="homePageLink" href="https://vibe.naver.com/today">바이브</a> <a
+			class="homePageLink" href="https://music.bugs.co.kr/">벅스</a> <a
+			class="homePageLink" href="https://www.genie.co.kr/">지니</a> <a
+			class="homePageLink" href="https://www.billboard.com/charts/hot-100/">빌보드</a>
+		<a class="homePageLink" href="http://ticket.yes24.com/">예스24</a> <a
+			class="homePageLink" href="https://www.interpark.com/">인터파크</a> <a
+			class="homePageLink" href="https://www.aladin.co.kr/m/main.aspx">알라딘</a>
+		<a class="homePageLink"
+			href="https://product.kyobobook.co.kr/detail/S000001913217">교보문고</a>
+		<a class="homePageLink" href="https://www.youtube.com/">유튜브</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -22,22 +46,23 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">회원가입</a></li>
+				<li class="nav-item"><a class="nav-link" href="/LoginPage">로그인</a></li>
+				<li class="nav-item"><a class="nav-link" href="/JoinPage">회원가입</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 <!-- Page header with logo and tagline-->
-<header class="py-5 bg-light border-bottom mb-4">
+<header class="py-5 border-bottom mb-4" style="background-color: #D9F0DE;">
 	<div class="container">
-		<div class="text-center my-5">
+		<div class="text-center my-5 VoixImg">
+			
+			<img class="w-100" alt="" src="/resources/assets/VoixImg5.png">  
 			<h1 class="fw-bolder">VOIX</h1>
-			<p class="lead mb-0">A Bootstrap 5 starter layout for your next
-				blog homepage</p>
+			<p class="lead mb-0"></p>
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container">
+			<div class="container navBarMain">
 				<a class="navbar-brand" href="/NewsPage">뉴스</a> <a
 					class="navbar-brand" href="/BlogPage">블로그</a> <a
 					class="navbar-brand" href="/TicketPage">티켓</a> <a

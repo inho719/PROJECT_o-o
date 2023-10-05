@@ -14,7 +14,7 @@
 					해주세요!</div>
 				<div class="card-body">
 					<div class="input-group">
-						<a href="/memberLoginForm" class="btn btn-primary"
+						<a href="/LoginPage" class="btn btn-primary"
 							style="width: 100%;">로그인</a>
 					</div>
 				</div>
