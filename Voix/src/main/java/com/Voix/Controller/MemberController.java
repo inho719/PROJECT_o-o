@@ -54,4 +54,41 @@ public class MemberController {
 		mav.setViewName("/Member/MyInfoPage");
 		return mav;
 	}
+	@RequestMapping(value = "/memberIdCheck")
+	public @ResponseBody String memberIdcheck(String inputId) {
+		System.out.println("아이디 중복 확인 요청");
+		System.out.println("중복 확인 아이디" + inputId);
+		String checkResult = msvc.idCheck(inputId);
+
+		return checkResult;
+	}
+	
+	@RequestMapping(value ="/Join")
+	public ModelAndView Login(String Id, String RePw,String Name,String Address, String DetailAddress
+			,String memailId, String memailDomain, HttpSession session) {
+		System.out.println("회원가입처리");
+		ModelAndView mav = new ModelAndView();
+		Member mem = new Member();
+		mem.setMid(Id);
+		mem.setMpw(RePw);
+		mem.setMname(Name);
+		mem.setMaddr(Address+" "+DetailAddress);
+		mem.setMemail(memailId+"@"+memailDomain);
+		System.out.println(mem);
+		int Join = 0;
+		try {
+			Join = msvc.getinsertMemberJoin_comm(mem, session);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(Join > 0 ) {
+			System.out.println("성공");
+			mav.setViewName("/Member/LoginPage");
+		}else {
+			System.out.println("실패");
+			mav.setViewName("/Member/JoinPage");
+		}
+		
+		return mav;
+	}
 }
