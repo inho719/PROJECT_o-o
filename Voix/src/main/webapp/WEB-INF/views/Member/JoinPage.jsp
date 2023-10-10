@@ -135,9 +135,15 @@ input[name="Code"] {
 							<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디"> @ <input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인"> <select onchange="domainSelect(this)">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
-								<option value="google.com">gmail.com</option>
+								<option value="gmail.com">gmail.com</option>
 								<option value="daum.net">daum.net</option>
 							</select>
+							<script type="text/javascript">
+								function domainSelect(selObj){
+				        		document.getElementById("inputDomain").value = selObj.value;
+				        		/*document.querySelector("#inputDomain").value = selObj.value;*/
+				    			}
+							</script>
 							<button type="button" onclick="gomailCheck()">보내기</button>
 						</div>
 						<div>

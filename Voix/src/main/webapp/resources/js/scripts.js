@@ -54,6 +54,7 @@
 			success : function(data) {
 				console.log("data : " + data);
 				mid = data;
+      			document.querySelector( '.IdFind' ).innerText = mid;
 			}
 		}); // end ajax
 	}
