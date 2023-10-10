@@ -9,46 +9,23 @@
 		SELECT * FROM MEMBERS WHERE MID = #{inputId}
 	</select>
 
-	<select id="FindId">
-		SELECT MID FROM MEMBERS WHERE MEMAIL = #{email}
-	</select>
-
 	<insert id="getinsertMemberJoin_comm">
 		INSERT INTO MEMBERS(MID,MPW, MNAME, MADDR ,MEMAIL ,MSTATE)
 		VALUES(#{mid}, #{mpw} , #{mname}, #{maddr},#{memail},'YC')
 	</insert>
-	<select id="newsLikeList" resultType="hashmap">
-		SELECT *
-		FROM NEWS N
-		INNER JOIN LIKES L
-		ON N.NWCODE = L.LILIST
-		WHERE LIMID = #{loginId}
-	</select>
+	<select id="selectemailId">
+		SELECT * FROM MEMBERS
+		WHERE MID = #{inputId} AND MEMAIL = #{email}
 	
-	<select id="albumsLikeList" resultType="hashmap">
-		SELECT *
-		FROM ALBUMS A
-		INNER JOIN LIKES L
-		ON A.ALCODE = L.LILIST
-		WHERE LIMID = #{loginId}
 	</select>
+	<select id="FindId">
+		SELECT MID FROM MEMBERS WHERE MEMAIL = #{email}
+	</select>
+	<update id="updatePassword">
+		UPDATE MEMBERS SET MPW = #{mpw}
+		WHERE MID = #{mid}
+	</update>
 	
-	<select id="ticketsLikeList" resultType="hashmap">
-		SELECT *
-		FROM TICKETS T
-		INNER JOIN LIKES L
-		ON T.TKCODE = L.LILIST
-		WHERE LIMID = #{loginId}
-	</select>
-	
-	<select id="songsLikeList" resultType="hashmap">
-		SELECT *
-		FROM SONGS S
-		INNER JOIN LIKES L
-		ON S.SGCODE = L.LILIST
-		WHERE LIMID = #{loginId}
-	</select>
-
 	<select id="loginMember">
 		SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{inputPw}
 	</select>
@@ -60,4 +37,5 @@
 	<insert id="insertMember_kakao">
 		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, #{memail}, '1', #{mimg}, 'YK')
 	</insert>
+	
 </mapper>

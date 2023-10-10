@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Blog Home - Start Bootstrap Template</title>
@@ -117,26 +119,37 @@ input[name="Code"] {
 		<div class="card mb-4 mx-auto" style="width: 500px;">
 			<div class="card-body">
 				<div>회원가입</div>
-				<form action="${pageContext.request.contextPath}/Join" method="post" onsubmit="return formCheck(this)">
+				<form action="${pageContext.request.contextPath}/Join" method="post"
+					onsubmit="return formCheck(this)">
 					<div>
-						<input placeholder="아이디" class="formInput p-1" type="text" name="Id" id="inputId">
+						<input placeholder="아이디" class="formInput p-1" type="text"
+							name="Id" id="inputId">
 						<button type="button" class="IdCheck" onclick="checkId(this)">중복확인</button>
 						<p class="checkMsg mb-2" id="idMsg">중복확인</p>
-						<input placeholder="비밀번호" class="formInput p-1" type="text" name="RePw"> <input placeholder="비밀번호 확인" class="formInput p-1" type="text" name="CkPw"> <input placeholder="이름" class="formInput p-1" type="text" name="Name">
+						<input placeholder="비밀번호" class="formInput p-1" type="text"
+							name="RePw"> <input placeholder="비밀번호 확인"
+							class="formInput p-1" type="text" name="CkPw"> <input
+							placeholder="이름" class="formInput p-1" type="text" name="Name">
 					</div>
 					<div>
-						<input placeholder="주소" class="formInput p-1" type="text" name="Address">
+						<input placeholder="주소" class="formInput p-1" type="text"
+							name="Address">
 						<button type="button" class="mb-2">주소찾기</button>
-						<input placeholder="상세주소" class="formInput p-1" type="text" name="DetailAddress">
+						<input placeholder="상세주소" class="formInput p-1" type="text"
+							name="DetailAddress">
 					</div>
 					<div>
 
 						<div class="row m-1">
-							<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디"> @ <input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인"> <select onchange="domainSelect(this)">
+							<input type="text" name="memailId" id="inputEmailId"
+								placeholder="이메일아이디"> @ <input type="text"
+								name="memailDomain" id="inputDomain" placeholder="이메일도메인">
+							<select onchange="domainSelect(this)">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="daum.net">daum.net</option>
+								
 							</select>
 							<script type="text/javascript">
 								function domainSelect(selObj){
@@ -147,7 +160,8 @@ input[name="Code"] {
 							<button type="button" onclick="gomailCheck()">보내기</button>
 						</div>
 						<div>
-							<input type="text" name="Code" id="mail-check-input" placeholder="인증번호">
+							<input type="text" name="Code" id="mail-check-input"
+								placeholder="인증번호">
 							<button type="button" class="mb-2" onclick="mailCheck()">확인</button>
 							<span id="mail-check-warn"></span>
 						</div>
@@ -166,13 +180,16 @@ input[name="Code"] {
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
+				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="resources/js/scripts.js"></script>
 <script type="text/javascript">
@@ -262,6 +279,7 @@ input[name="Code"] {
 		}
 		return;
 	}
+
 
 </script>
 </html>

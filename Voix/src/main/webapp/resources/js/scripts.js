@@ -1,4 +1,4 @@
-	let code = null;
+let code = null;
 	let mid = null;
 	let email = null;
 	function gomailCheck() {
@@ -51,10 +51,12 @@
 			data : {
 				"email" : email
 			},
+			async: false,
 			success : function(data) {
 				console.log("data : " + data);
 				mid = data;
-      			document.querySelector( '.IdFind' ).innerText = mid;
+				document.querySelector( '.IdFind' ).innerText = mid;
+				
 			}
 		}); // end ajax
 	}
