@@ -88,4 +88,20 @@ public class MemberService {
 			System.out.println("SERVICE - FindId");
 			return mdao.FindId(email);
 		}
+//마이인포정보출력
+	public ArrayList<HashMap<String, String>> newsLike(String loginId) {
+		return mdao.newsLikeList(loginId);
+	}
+
+	public ArrayList<HashMap<String, String>> albumsLike(String loginId) {
+		return mdao.albumsLikeList(loginId);
+	}
+
+	public ArrayList<HashMap<String, String>> ticketsLike(String loginId) {
+		return mdao.ticketsLikeList(loginId);
+	}
+
+	public ArrayList<HashMap<String, String>> songsLike(String loginId) {
+		return mdao.songsLikeList(loginId);
+	}
 }
