@@ -8,4 +8,6 @@ public interface MemberDao {
 
 	int getinsertMemberJoin_comm(Member mem);
 
+	String FindId(String email);
+
 }

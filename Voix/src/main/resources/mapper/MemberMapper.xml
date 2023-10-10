@@ -9,8 +9,13 @@
 		SELECT * FROM MEMBERS WHERE MID = #{inputId}
 	</select>
 
+	<select id="FindId">
+		SELECT MID FROM MEMBERS WHERE MEMAIL = #{email}
+	</select>
+
 	<insert id="getinsertMemberJoin_comm">
 		INSERT INTO MEMBERS(MID,MPW, MNAME, MADDR ,MEMAIL ,MSTATE)
 		VALUES(#{mid}, #{mpw} , #{mname}, #{maddr},#{memail},'YC')
 	</insert>
+	
 </mapper>

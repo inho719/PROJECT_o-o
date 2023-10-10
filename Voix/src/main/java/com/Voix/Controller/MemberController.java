@@ -102,5 +102,18 @@ public class MemberController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("/mailCheck")
+	public @ResponseBody String mailCheck(String email){
+		System.out.println("이메일 인증 요청");
+		System.out.println(email);
+		return msvc.mailCheck(email);
+	}
+	@RequestMapping("/FindId")
+	public @ResponseBody String FindId(String email) {
+		System.out.println("id 찾기");
+		System.out.println(email);
+		return msvc.FindId(email);
+	}
 
 }

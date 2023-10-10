@@ -135,14 +135,15 @@ input[name="Code"] {
 							<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디"> @ <input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인"> <select onchange="domainSelect(this)">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
-								<option value="google.com">google.com</option>
+								<option value="google.com">gmail.com</option>
 								<option value="daum.net">daum.net</option>
 							</select>
-							<button type="button" onclick="mailCheck()">보내기</button>
+							<button type="button" onclick="gomailCheck()">보내기</button>
 						</div>
 						<div>
 							<input type="text" name="Code" id="mail-check-input" placeholder="인증번호">
-							<button class="mb-2">확인</button>
+							<button type="button" class="mb-2" onclick="mailCheck()">확인</button>
+							<span id="mail-check-warn"></span>
 						</div>
 
 						<button type="submit">회원가입하기</button>
@@ -255,25 +256,6 @@ input[name="Code"] {
 		}
 		return;
 	}
-	
-	function mailCheck(){
-		console.log('클릭');
-		$('#mail-Check-Btn').click(function() {
-			const email = $('#inputEmailId').val() +"@"+$('#inputDomain').val(); // 이메일 주소값 얻어오기!
-			console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
-			const checkInput = $('#mail-check-input') // 인증번호 입력하는곳 
-			
-			$.ajax({
-				type : 'get',
-				url : 'mailCheck?email='+email, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
-				success : function (data) {
-					console.log("data : " +  data);
-					checkInput.attr('disabled',false);
-					code =data;
-					alert('인증번호가 전송되었습니다.')
-				}			
-			}); // end ajax
-		}); // end send eamil
-	}
+
 </script>
 </html>
