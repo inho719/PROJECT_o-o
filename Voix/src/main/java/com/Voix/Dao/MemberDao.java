@@ -10,4 +10,12 @@ public interface MemberDao {
 
 	String FindId(String email);
 
+	ArrayList<HashMap<String, String>> newsLikeList(String loginId);
+
+	ArrayList<HashMap<String, String>> albumsLikeList(String loginId);
+
+	ArrayList<HashMap<String, String>> ticketsLikeList(String loginId);
+
+	ArrayList<HashMap<String, String>> songsLikeList(String loginId);
+
 }
