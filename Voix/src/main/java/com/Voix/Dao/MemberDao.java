@@ -10,6 +10,12 @@ public interface MemberDao {
 
 	String FindId(String email);
 
+	Member loginMember(@Param("mid") String inputId, @Param("inputPw") String inputPw);
+
+	Member selectMemberInfo(String id);
+
+	int insertMember_kakao(Member member);
+
 	ArrayList<HashMap<String, String>> newsLikeList(String loginId);
 
 	ArrayList<HashMap<String, String>> albumsLikeList(String loginId);
