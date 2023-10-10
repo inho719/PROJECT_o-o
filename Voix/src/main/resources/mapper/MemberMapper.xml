@@ -48,4 +48,16 @@
 		ON S.SGCODE = L.LILIST
 		WHERE LIMID = #{loginId}
 	</select>
+
+	<select id="loginMember">
+		SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{inputPw}
+	</select>
+
+	<select id="selectMemberInfo" resultType="com.Voix.Dto.Member">
+		SELECT * FROM MEMBERS WHERE MID = #{id}
+	</select>
+
+	<insert id="insertMember_kakao">
+		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, #{memail}, '1', #{mimg}, 'YK')
+	</insert>
 </mapper>
