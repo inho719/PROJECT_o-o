@@ -116,4 +116,28 @@ public class MemberController {
 		return msvc.FindId(email);
 	}
 
+	@RequestMapping(value = "/MyInfoPage")
+	public ModelAndView MyInfoPage(HttpSession session, RedirectAttributes ra) {
+		System.out.println("/MyInfoPage 요청");
+		ModelAndView mav = new ModelAndView();
+		String loginId = (String)session.getAttribute("loginId");
+		
+		Member memberInfo = msvc.memberInfo(loginId);
+		mav.addObject("mInfo", memberInfo);
+		
+		ArrayList<HashMap<String, String>> newsLike = msvc.newsLike(loginId);
+		mav.addObject("newsLikeList",newsLike);
+		
+		ArrayList<HashMap<String, String>> albumsLike = msvc.albumsLike(loginId);
+		mav.addObject("albumsLikeList",albumsLike);
+		
+		ArrayList<HashMap<String, String>> ticketsLike = msvc.ticketsLike(loginId);
+		mav.addObject("ticketsLikeList",ticketsLike);
+		
+		ArrayList<HashMap<String, String>> songsLike = msvc.songsLike(loginId);
+		mav.addObject("songsLikeList",songsLike);
+		
+		mav.setViewName("/Member/MyInfoPage");
+		return mav;
+
 }
