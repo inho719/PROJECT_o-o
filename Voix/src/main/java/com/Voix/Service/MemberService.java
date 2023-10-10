@@ -89,6 +89,10 @@ public class MemberService {
 			return mdao.FindId(email);
 		}
 //마이인포정보출력
+	public Member memberInfo(String loginId) {
+		Member memInfo = mdao.selectMemberInfo(loginId);
+		return memInfo;
+	}
 	public ArrayList<HashMap<String, String>> newsLike(String loginId) {
 		return mdao.newsLikeList(loginId);
 	}
@@ -103,5 +107,16 @@ public class MemberService {
 
 	public ArrayList<HashMap<String, String>> songsLike(String loginId) {
 		return mdao.songsLikeList(loginId);
+	}
+
+//카카오 로그인
+	public Member getLoginMemberInfo_kakao(String id) {
+		System.out.println("service - getLoginMemberInfo_kakao 호출");
+		return mdao.selectMemberInfo(id);
+	}
+
+	public int registMember_kakao(Member member) {
+		System.out.println("service - registMember_kakao 호출");
+		return mdao.insertMember_kakao(member);
 	}
 }
