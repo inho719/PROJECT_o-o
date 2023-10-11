@@ -167,6 +167,32 @@ public class MemberController {
 		mav.setViewName("/Member/MyInfoPage");
 		return mav;
 
-}
+	}
+
+	@RequestMapping(value = "/memberLogin")
+	public ModelAndView memberLogin(String mid, String mpw ,HttpSession session, RedirectAttributes ra) {
+		System.out.println("로그인 처리 요청-/memberLogin");
+		ModelAndView mav = new ModelAndView();
+		//1.로그인할 아이디, 비밀번호 파라메터 확인
+		System.out.println(mid);
+		System.out.println(mpw);
+		//2.SERVICE = 로그인 회원정보 조회 호출
+		Member loginMember = msvc.getLoginMemberInfo(mid, mpw);
+		if(loginMember == null) {
+			System.out.println("로그인 실패");
+			/*아이디 또는 비밀번호 일치하지 않습니다 출력
+			 * 로그인 페이지로 이동 */
+			ra.addFlashAttribute("msg", "아이디 또는 비밀번호 일치하지 않습니다.");
+			mav.setViewName("redirect:/LoginPage");
+		}else {
+			System.out.println("로그인 성공");
+			session.setAttribute("loginId", loginMember.getMid());
+			/*로그인 성공 출력
+			 * 메인 페이지로 이동 */
+			ra.addFlashAttribute("msg", "로그인 성공.");
+			mav.setViewName("redirect:/");
+		}
+		return mav;
+	}
 
 }
