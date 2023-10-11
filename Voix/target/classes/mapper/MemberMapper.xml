@@ -26,10 +26,6 @@
 		WHERE MID = #{mid}
 	</update>
 	
-	<select id="loginMember">
-		SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{inputPw}
-	</select>
-
 	<select id="selectMemberInfo" resultType="com.Voix.Dto.Member">
 		SELECT * FROM MEMBERS WHERE MID = #{id}
 	</select>
@@ -37,5 +33,45 @@
 	<insert id="insertMember_kakao">
 		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, #{memail}, '1', #{mimg}, 'YK')
 	</insert>
+	<select id="loginMember">
+		SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{inputPw}
+	</select>
+	<select id="newsLikeList" resultType="hashmap">
+		SELECT *
+		FROM NEWS N
+		INNER JOIN LIKES L
+		ON N.NWCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+	
+	<select id="albumsLikeList" resultType="hashmap">
+		SELECT *
+		FROM ALBUMS A
+		INNER JOIN LIKES L
+		ON A.ALCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+	
+	<select id="ticketsLikeList" resultType="hashmap">
+		SELECT *
+		FROM TICKETS T
+		INNER JOIN LIKES L
+		ON T.TKCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+	
+	<select id="songsLikeList" resultType="hashmap">
+		SELECT *
+		FROM SONGS S
+		INNER JOIN LIKES L
+		ON S.SGCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+
+	<update id="updateMemberInfo">
+	UPDATE MEMBERS SET MNAME = #{mname}, MADDR = #{maddr}, MEMAIL = #{memail}, MIMG = #{mimg} WHERE MID = #{mid}
+	</update>
+	
+	
 	
 </mapper>

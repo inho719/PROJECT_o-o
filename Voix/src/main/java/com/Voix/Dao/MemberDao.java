@@ -26,4 +26,10 @@ public interface MemberDao {
 	ArrayList<HashMap<String, String>> ticketsLikeList(String loginId);
 
 	ArrayList<HashMap<String, String>> songsLikeList(String loginId);
+	
+	public Member loginMember(@Param("mid") String inputId, @Param("inputPw") String inputPw);
+	
+	Member selectMemberInfo(String id);
+
+	int insertMember_kakao(Member member);
 }
