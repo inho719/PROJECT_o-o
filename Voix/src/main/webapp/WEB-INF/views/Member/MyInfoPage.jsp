@@ -44,7 +44,7 @@
 						<img alt="" src="${mInfo.mimg }" style="width: 170px; height: 150px;">
 
 
-						<div class="col">
+						<div class="col mb-2">
 							이름: <input type="text" name="joinName" value="${mInfo.mname}" disabled class="mb-1"> <br> 
 							이메일: <input type="text" name="joinName" value="${mInfo.memail}" disabled class="mb-1"> <br> 
 							주소: <input type="text" name="postcode" value="${mInfo.maddr}" disabled class="mb-2"> <br>
@@ -54,6 +54,7 @@
 
 					</div>
 
+					<hr>
 					<br>
 
 					<div class="row">
