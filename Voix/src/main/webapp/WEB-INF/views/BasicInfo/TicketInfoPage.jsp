@@ -37,12 +37,15 @@ button {
 			<div class="row">
 
 				<div class="card col-md-4 mb-4">
-					<img alt="공연포스터" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" style="width: 100%;" class="card-img-top">
+					<img alt="공연포스터" src="${tk.tkimg}" style="width: 100%;" class="card-img-top">
 				</div>
 				<div class="card col-md-8 mb-4">
-					<p>공연정보</p>
-					<p>asdf</p>
-					<p>asdf</p>
+					<p>${tk.tktitle}</p>
+					<p>${tk.tkartist}</p>
+					<p id="tkplace">${tk.tkplace}</p>
+					<p>${tk.tktime}</p>
+					<p>${tk.tkdate}</p>
+					<p>${tk.tkinfo}</p>
 				</div>
 
 
@@ -51,7 +54,9 @@ button {
 
 		<div>
 			<div class="row">
-				<div class="card col-md-8 mb-2">지도</div>
+				<div class="card col-md-8 mb-2" id="mapInfo">
+					<div id="map" style="width: 100%; height: 350px; margin-left: 5px; margin-top: 5px; border: 5px solid bisque; border-radius: 10px;"></div>
+				</div>
 				<div class="card col-md-4 mb-2 " style="display: inline-block;">
 					<div>
 						<button class="button mb-4 mt-4" onclick="location.href='공연페이지'">바로가기</button>
@@ -77,5 +82,38 @@ button {
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=18a5f71bbe7bc58965ce6ce689f1e211"></script>
+	<script type="text/javascript">
+		let tkplace = document.getElementById('tkplace').innerHTML;
+		$.ajax({
+			type : "get",
+			url : "getMapXY",
+			data : {
+				"tkplace" : tkplace
+			},
+			dataType : "json",
+			success : function(result) {
+				console.log(result);
+			}
+		});
+
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+			mapOption = {
+				center : new kakao.maps.LatLng(35.543002909765484, 129.2599315712139), // 지도의 중심좌표
+				level : 3
+			// 지도의 확대 레벨
+			};
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			//지도에 클릭 이벤트를 등록합니다
+			//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+				// 클릭한 위도, 경도 정보를 가져옵니다		
+				var latlng = mouseEvent.latLng;
+
+			});
+		마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+
+	</script>
 </body>
 </html>
