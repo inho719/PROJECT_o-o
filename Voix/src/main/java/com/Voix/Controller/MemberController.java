@@ -53,15 +53,6 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/MyInfoUpdate")
-	public ModelAndView MyInfoUpdate() {
-		System.out.println("/MyInfoUpdate 요청");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Member/MyInfoUpdate");
-		return mav;
-	}
-
-
 	@RequestMapping(value = "/memberIdCheck")
 	public @ResponseBody String memberIdcheck(String inputId) {
 		System.out.println("아이디 중복 확인 요청");
@@ -167,6 +158,110 @@ public class MemberController {
 		mav.setViewName("/Member/MyInfoPage");
 		return mav;
 
-}
+	}
+
+	//로그인
+	@RequestMapping(value = "/memberLogin")
+	public ModelAndView memberLogin(String mid, String mpw ,HttpSession session, RedirectAttributes ra) {
+		System.out.println("로그인 처리 요청-/memberLogin");
+		ModelAndView mav = new ModelAndView();
+		//1.로그인할 아이디, 비밀번호 파라메터 확인
+		System.out.println(mid);
+		System.out.println(mpw);
+		//2.SERVICE = 로그인 회원정보 조회 호출
+		Member loginMember = msvc.getLoginMemberInfo(mid, mpw);
+		if(loginMember == null) {
+			System.out.println("로그인 실패");
+			/*아이디 또는 비밀번호 일치하지 않습니다 출력
+			 * 로그인 페이지로 이동 */
+			ra.addFlashAttribute("msg", "아이디 또는 비밀번호 일치하지 않습니다.");
+			mav.setViewName("redirect:/LoginPage");
+		}else {
+			System.out.println("로그인 성공");
+			session.setAttribute("loginId", loginMember.getMid());
+			/*로그인 성공 출력
+			 * 메인 페이지로 이동 */
+			ra.addFlashAttribute("msg", "로그인 성공.");
+			mav.setViewName("redirect:/");
+		}
+		return mav;
+	}
+
+	//카카오로그인
+	@RequestMapping(value="/memberLogin_kakao")
+	//ajax = ReponseBody
+	public @ResponseBody String memberLogin_kakao(String id, HttpSession session) {
+		System.out.println("카카오 로그인 요청");
+		System.out.println("카카오 id: " + id);
+		//Member, MemberService, MemberDao
+		Member loginMember = msvc.getLoginMemberInfo_kakao(id);
+		if(loginMember == null) {
+			System.out.println("카카오 계정 정보 없음");
+			return "N";
+		}else {
+			System.out.println("카카오 계정 정보 있음");
+			System.out.println("로그인 처리");
+			session.setAttribute("loginId", loginMember.getMid());
+			session.setAttribute("loginName", loginMember.getMname());
+			session.setAttribute("loginProfile", loginMember.getMimg());
+			session.setAttribute("loginState", loginMember.getMstate());
+			return "Y";
+		}
+		
+	}
+	
+	@RequestMapping(value="/memberJoin_kakao")
+	public @ResponseBody String memberJoin_kakao(Member member){
+		System.out.println("카카오 계정 - 회원가입요청 - memberJoin_kakao");
+		System.out.println(member);
+		int result = msvc.registMember_kakao(member);
+		return result+"";
+		
+	}
+
+	@RequestMapping(value="/memberLogout")
+	public String memberLogout(HttpSession session, RedirectAttributes ra) {
+	session.invalidate();
+	ra.addFlashAttribute("msg","로그아웃 되었습니다.");
+	return "redirect:/";
+	}
+
+	//회원정보 수정
+	@RequestMapping(value = "/MyInfoUpdate")
+	public ModelAndView MyInfoUpdate(HttpSession session, RedirectAttributes ra) {
+		System.out.println("/MyInfoUpdate 요청");
+		ModelAndView mav = new ModelAndView();
+		String loginId = (String)session.getAttribute("loginId");
+		
+		Member memberInfo = msvc.memberInfo(loginId);
+		mav.addObject("mInfo", memberInfo);
+		mav.setViewName("/Member/MyInfoUpdate");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/memberModify")
+	public ModelAndView memberModify(Member member, String mid, String mpw, String mname, String address, String detailAddress, String memail, String mimg, String mstate, RedirectAttributes ra) {
+		System.out.println("회원정보수정요청");
+		ModelAndView mav = new ModelAndView();
+		Member mem = new Member();
+		mem.setMid(mid);
+		mem.setMpw(mpw);
+		mem.setMname(mname);
+		mem.setMaddr(address+" "+detailAddress);
+		mem.setMemail(memail);
+		mem.setMimg(mimg);
+		mem.setMstate(mstate);
+		System.out.println(mem);
+		int updateResult = msvc.modifyMemberInfo(mem);
+		if(updateResult > 0) {
+			System.out.println("회원정보 수정 성공");
+			ra.addFlashAttribute("msg","회원정보가 수정 되었습니다");
+		}else {
+			System.out.println("회원정보 수정 실패");
+			ra.addFlashAttribute("msg","회원정보가 수정을 실패했습니다");
+		}
+		mav.setViewName("redirect:/MyInfoPage");
+		return mav;
+	}
 
 }

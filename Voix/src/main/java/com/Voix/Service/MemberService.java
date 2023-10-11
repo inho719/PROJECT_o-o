@@ -51,7 +51,7 @@ public class MemberService {
 
 	public String mailCheck(String email) {
 		makeRandomNumber();
-		String setFrom = "mcinho@naver.com"; // email-config에 설정한 자신의 이메일 주소를 입력
+		String setFrom = "ih0625@naver.com"; // email-config에 설정한 자신의 이메일 주소를 입력
 		String toMail = email;
 		String title = "회원 가입 인증 이메일 입니다."; // 이메일 제목
 		String content = "홈페이지를 방문해주셔서 감사합니다." + // html 형식으로 작성 !
@@ -108,6 +108,8 @@ public class MemberService {
 	}
 
 	// 마이인포정보출력
+	
+	
 	public ArrayList<HashMap<String, String>> newsLike(String loginId) {
 		return mdao.newsLikeList(loginId);
 	}
@@ -125,8 +127,38 @@ public class MemberService {
 	}
 
 	public Member memberInfo(String loginId) {
-		// TODO Auto-generated method stub
-		return null;
+		Member memInfo = mdao.selectMemberInfo(loginId);
+		return memInfo;
+	}
+
+	//로그인
+	
+	public Member getLoginMemberInfo(String mid, String mpw) {
+		System.out.println("MemberService - getLoginMemberInfo()호출");
+		Member login = mdao.loginMember(mid, mpw);
+		return login;
+	}
+
+	//카카오로그인
+	public Member getLoginMemberInfo_kakao(String id) {
+		System.out.println("service - getLoginMemberInfo_kakao 호출");
+		return mdao.selectMemberInfo(id);
+	}
+
+	public int registMember_kakao(Member member) {
+		System.out.println("service - registMember_kakao 호출");
+		return mdao.insertMember_kakao(member);
+	}
+
+	//회원정보수정
+	public int modifyMemberInfo(Member member) {
+		int result = 0;
+		try {
+		result=mdao.updateMemberInfo(member);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
