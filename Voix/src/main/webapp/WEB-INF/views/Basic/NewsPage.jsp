@@ -39,87 +39,58 @@
 			<!-- Blog entries-->
 			<div class="col-lg-8">
 				<!-- Featured blog post-->
-				<div class="card mb-4">
-					<div class="NewsDiv" style="display: flex;">
-						<div class="NewsImg">
-							<a href="#뉴스코드"><img class=""
-								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="NewsText" style="flex: 1;">
-							<div class="NewsTitle">
-								<h2 class="card-title m-2">뉴스제목</h2>
-							</div>
-							<div class="NewsContents p-2">
-								<p class="card-text">뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
-							</div>
-							<div class="small text-mute m-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views"
-									style="text-decoration-line: none; color: gray;">조회수</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="NewsDiv" style="display: flex;">
-						<div class="NewsImg">
-							<a href="#뉴스코드"><img class=""
-								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="NewsText" style="flex: 1;">
-							<div class="NewsTitle">
-								<h2 class="card-title m-2">뉴스제목</h2>
-							</div>
-							<div class="NewsContents p-2">
-								<p class="card-text">뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
-							</div>
-							<div class="small text-mute m-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views"
-									style="text-decoration-line: none; color: gray;">조회수</a>
+				<c:forEach items="${NewsListMap}" var="NewsMap">
+					<div class="card mb-4">
+						<div class="NewsDiv" style="display: flex;">
+							<c:if test="${NewsMap.NWIMG != null }">
+								<div class="NewsImg">
+									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class="" src="${NewsMap.NWIMG}"
+										alt="..." /></a>
+								</div>
+							</c:if>
+							<c:if test="${NewsMap.NWIMG == null }">
+								<div class="NewsImg">
+									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class=""
+										src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg"
+										alt="..." /></a>
+								</div>
+							</c:if>
+							<div class="NewsText" style="flex: 1;">
+								<div class="NewsTitle">
+									<h2 class="card-title m-2">${NewsMap.NWTITLE}</h2>
+								</div>
+								<div class="NewsContents p-2">
+									<p class="card-text">${NewsMap.NWCINTENT}</p>
+								</div>
+								<div class="small text-mute m-2"
+									style="display: flex; justify-content: space-between; align-items: flex-end;">
+									<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
+									<a class="Views"
+										style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
+									<a class="Views"
+										style="text-decoration-line: none; color: gray;">${NewsMap.NWBIGHIT}</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="NewsDiv" style="display: flex;">
-						<div class="NewsImg">
-							<a href="#뉴스코드"><img class=""
-								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="NewsText" style="flex: 1;">
-							<div class="NewsTitle">
-								<h2 class="card-title m-2">뉴스제목</h2>
-							</div>
-							<div class="NewsContents p-2">
-								<p class="card-text">뉴스내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
-							</div>
-							<div class="small text-mute m-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views"
-									style="text-decoration-line: none; color: gray;">조회수</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<ul class="pagination" style="place-content: center;">
-					<li><a href="?page=1">1</a></li>
-					<li><a href="?page=2">2</a></li>
-					<li><a href="?page=3">3</a></li>
-					<li><a href="?page=4">4</a></li>
-					<li><a href="?page=5">5</a></li>
-					<li><a href="?page=6">6</a></li>
-					<li><a href="?page=7">7</a></li>
-					<!-- 다른 페이지 번호들을 추가하세요 -->
-				</ul>
+				</c:forEach>
+
+
 			</div>
 			<!-- end Page content-->
 			<%@ include file="/WEB-INF/views/Includes/Side.jsp"%>
 		</div>
 	</div>
+	<ul class="pagination" style="place-content: center;">
+		<li><a href="?page=1">1</a></li>
+		<li><a href="?page=2">2</a></li>
+		<li><a href="?page=3">3</a></li>
+		<li><a href="?page=4">4</a></li>
+		<li><a href="?page=5">5</a></li>
+		<li><a href="?page=6">6</a></li>
+		<li><a href="?page=7">7</a></li>
+		<!-- 다른 페이지 번호들을 추가하세요 -->
+	</ul>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
