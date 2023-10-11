@@ -8,4 +8,8 @@
 	<select id="selectTicket_map">
 		SELECT * FROM TICKETS ORDER BY TKDATE DESC
 	</select>
+	
+	<select id="getTkInfo">
+		SELECT * FROM TICKETS WHERE TKCODE = #{tkcode}
+	</select>
 </mapper>
