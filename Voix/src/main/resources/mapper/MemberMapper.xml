@@ -69,5 +69,8 @@
 		ON S.SGCODE = L.LILIST
 		WHERE LIMID = #{loginId}
 	</select>
-	
+
+	<update id="updateMemberInfo">
+	UPDATE MEMBERS SET MNAME = #{mname}, MADDR = #{maddr}, MEMAIL = #{memail}, MIMG = #{mimg} WHERE MID = #{mid}
+	</update>
 </mapper>
