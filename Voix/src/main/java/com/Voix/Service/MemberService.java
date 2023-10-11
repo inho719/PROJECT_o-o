@@ -150,4 +150,15 @@ public class MemberService {
 		return mdao.insertMember_kakao(member);
 	}
 
+	//회원정보수정
+	public int modifyMemberInfo(Member member) {
+		int result = 0;
+		try {
+		result=mdao.updateMemberInfo(member);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }
