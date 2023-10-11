@@ -53,15 +53,6 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/MyInfoUpdate")
-	public ModelAndView MyInfoUpdate() {
-		System.out.println("/MyInfoUpdate 요청");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Member/MyInfoUpdate");
-		return mav;
-	}
-
-
 	@RequestMapping(value = "/memberIdCheck")
 	public @ResponseBody String memberIdcheck(String inputId) {
 		System.out.println("아이디 중복 확인 요청");
@@ -233,6 +224,44 @@ public class MemberController {
 	session.invalidate();
 	ra.addFlashAttribute("msg","로그아웃 되었습니다.");
 	return "redirect:/";
+	}
+
+	//회원정보 수정
+	@RequestMapping(value = "/MyInfoUpdate")
+	public ModelAndView MyInfoUpdate(HttpSession session, RedirectAttributes ra) {
+		System.out.println("/MyInfoUpdate 요청");
+		ModelAndView mav = new ModelAndView();
+		String loginId = (String)session.getAttribute("loginId");
+		
+		Member memberInfo = msvc.memberInfo(loginId);
+		mav.addObject("mInfo", memberInfo);
+		mav.setViewName("/Member/MyInfoUpdate");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/memberModify")
+	public ModelAndView memberModify(Member member, String mid, String mpw, String mname, String address, String detailAddress, String memail, String mimg, String mstate, RedirectAttributes ra) {
+		System.out.println("회원정보수정요청");
+		ModelAndView mav = new ModelAndView();
+		Member mem = new Member();
+		mem.setMid(mid);
+		mem.setMpw(mpw);
+		mem.setMname(mname);
+		mem.setMaddr(address+" "+detailAddress);
+		mem.setMemail(memail);
+		mem.setMimg(mimg);
+		mem.setMstate(mstate);
+		System.out.println(mem);
+		int updateResult = msvc.modifyMemberInfo(mem);
+		if(updateResult > 0) {
+			System.out.println("회원정보 수정 성공");
+			ra.addFlashAttribute("msg","회원정보가 수정 되었습니다");
+		}else {
+			System.out.println("회원정보 수정 실패");
+			ra.addFlashAttribute("msg","회원정보가 수정을 실패했습니다");
+		}
+		mav.setViewName("redirect:/MyInfoPage");
+		return mav;
 	}
 
 }
