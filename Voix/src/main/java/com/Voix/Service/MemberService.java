@@ -108,6 +108,8 @@ public class MemberService {
 	}
 
 	// 마이인포정보출력
+	
+	
 	public ArrayList<HashMap<String, String>> newsLike(String loginId) {
 		return mdao.newsLikeList(loginId);
 	}
@@ -125,11 +127,12 @@ public class MemberService {
 	}
 
 	public Member memberInfo(String loginId) {
-		// TODO Auto-generated method stub
-		return null;
+		Member memInfo = mdao.selectMemberInfo(loginId);
+		return memInfo;
 	}
 
 	//로그인
+	
 	public Member getLoginMemberInfo(String mid, String mpw) {
 		System.out.println("MemberService - getLoginMemberInfo()호출");
 		Member login = mdao.loginMember(mid, mpw);
