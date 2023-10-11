@@ -136,4 +136,15 @@ public class MemberService {
 		return login;
 	}
 
+	//카카오로그인
+	public Member getLoginMemberInfo_kakao(String id) {
+		System.out.println("service - getLoginMemberInfo_kakao 호출");
+		return mdao.selectMemberInfo(id);
+	}
+
+	public int registMember_kakao(Member member) {
+		System.out.println("service - registMember_kakao 호출");
+		return mdao.insertMember_kakao(member);
+	}
+
 }
