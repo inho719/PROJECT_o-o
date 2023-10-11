@@ -32,4 +32,6 @@ public interface MemberDao {
 	Member selectMemberInfo(String id);
 
 	int insertMember_kakao(Member member);
+
+	int updateMemberInfo(Member member);
 }
