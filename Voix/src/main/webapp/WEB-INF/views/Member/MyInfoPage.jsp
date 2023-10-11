@@ -41,11 +41,14 @@
 
 					<div class="row">
 
-						<img alt="" src="${mInfo.mimg }" style="width: 150px; height: 130px;">
+						<img alt="" src="${mInfo.mimg }" style="width: 170px; height: 150px;">
 
 
 						<div class="col">
-							이름: <input type="text" name="joinName" value="${mInfo.mname}" disabled> <br> 이메일: <input type="text" name="joinName" value="${mInfo.memail}" disabled> <br> 주소: <input type="text" name="postcode" value="${mInfo.maddr}" disabled> <br> <br> <input type="button" onclick="/MyInfoUpdate()" value="내정보 변경하기 버튼">
+							이름: <input type="text" name="joinName" value="${mInfo.mname}" disabled class="mb-1"> <br> 
+							이메일: <input type="text" name="joinName" value="${mInfo.memail}" disabled class="mb-1"> <br> 
+							주소: <input type="text" name="postcode" value="${mInfo.maddr}" disabled class="mb-2"> <br>
+							<a class="btn btn-danger" href="/MyInfoUpdate">내정보변경하기</a>
 						</div>
 				
 
