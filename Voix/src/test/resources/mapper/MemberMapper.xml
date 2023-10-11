@@ -13,4 +13,29 @@
 		INSERT INTO MEMBERS(MID,MPW, MNAME, MADDR ,MEMAIL ,MSTATE)
 		VALUES(#{mid}, #{mpw} , #{mname}, #{maddr},#{memail},'YC')
 	</insert>
+	<select id="selectemailId">
+		SELECT * FROM MEMBERS
+		WHERE MID = #{inputId} AND MEMAIL = #{email}
+	
+	</select>
+	<select id="FindId">
+		SELECT MID FROM MEMBERS WHERE MEMAIL = #{email}
+	</select>
+	<update id="updatePassword">
+		UPDATE MEMBERS SET MPW = #{mpw}
+		WHERE MID = #{mid}
+	</update>
+	
+	<select id="loginMember">
+		SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{inputPw}
+	</select>
+
+	<select id="selectMemberInfo" resultType="com.Voix.Dto.Member">
+		SELECT * FROM MEMBERS WHERE MID = #{id}
+	</select>
+
+	<insert id="insertMember_kakao">
+		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, #{memail}, '1', #{mimg}, 'YK')
+	</insert>
+	
 </mapper>
