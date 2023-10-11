@@ -46,8 +46,17 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a class="nav-link" href="/LoginPage">로그인</a></li>
-				<li class="nav-item"><a class="nav-link" href="/JoinPage">회원가입</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.loginId == null}">
+						<li class="nav-item"><a class="nav-link" href="/LoginPage">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="/JoinPage">회원가입</a></li>
+					</c:when>
+
+					<c:otherwise>
+						<li class="nav-item"><a class="nav-link" href="/memberLogout">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link" href="/MyInfoPage">내정보</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</div>
