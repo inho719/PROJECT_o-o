@@ -45,9 +45,9 @@
 
 
 						<div class="col mb-2">
-							이름: <input type="text" name="joinName" value="${mInfo.mname}" disabled class="mb-1"> <br> 
-							이메일: <input type="text" name="joinName" value="${mInfo.memail}" disabled class="mb-1"> <br> 
-							주소: <input type="text" name="postcode" value="${mInfo.maddr}" disabled class="mb-2"> <br>
+							<p class="mb-1">이름: ${mInfo.mname}</p>
+							<p class="mb-1">이메일: ${mInfo.memail}</p>
+							<p class="mb-3">주소: ${mInfo.maddr}</p>
 							<a class="btn btn-danger" href="/MyInfoUpdate">내정보변경하기</a>
 						</div>
 				
