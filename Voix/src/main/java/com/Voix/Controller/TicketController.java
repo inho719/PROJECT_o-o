@@ -1,13 +1,16 @@
 package com.Voix.Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Voix.Dto.Ticket;
 import com.Voix.Service.TicketService;
 
 @Controller
@@ -28,12 +31,17 @@ public class TicketController {
 		
 	}
 	@RequestMapping(value ="/TicketInfoPage")
-	public ModelAndView TicketInfoPage() {
+	public ModelAndView TicketInfoPage(String tkcode) {
 		ModelAndView mav = new ModelAndView();
+		Ticket tk = tsvc.getTkInfo(tkcode);
+		mav.addObject("tk", tk);
 		mav.setViewName("BasicInfo/TicketInfoPage");
 		return mav;
-		
-		
+	}
+	@RequestMapping(value="/getMapXY")
+	public @ResponseBody String getMapXY(String tkplace) throws IOException {
+		System.out.println("지도 좌표불러오기");
+		return tsvc.getMapXY(tkplace);
 	}
 	
 }
