@@ -38,5 +38,36 @@
 		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, #{memail}, '1', #{mimg}, 'YK')
 	</insert>
 
+	<select id="newsLikeList" resultType="hashmap">
+		SELECT *
+		FROM NEWS N
+		INNER JOIN LIKES L
+		ON N.NWCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+	
+	<select id="albumsLikeList" resultType="hashmap">
+		SELECT *
+		FROM ALBUMS A
+		INNER JOIN LIKES L
+		ON A.ALCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+	
+	<select id="ticketsLikeList" resultType="hashmap">
+		SELECT *
+		FROM TICKETS T
+		INNER JOIN LIKES L
+		ON T.TKCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+	
+	<select id="songsLikeList" resultType="hashmap">
+		SELECT *
+		FROM SONGS S
+		INNER JOIN LIKES L
+		ON S.SGCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
 	
 </mapper>
