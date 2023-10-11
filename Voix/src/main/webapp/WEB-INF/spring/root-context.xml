@@ -26,6 +26,10 @@
 			value="classpath:/mybatis-config.xml"></property>
 	</bean>
 
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean> 
+
 	<mybatis-spring:scan base-package="com.Voix.Dao" />
 	<!-- navermail설정 -->
 
