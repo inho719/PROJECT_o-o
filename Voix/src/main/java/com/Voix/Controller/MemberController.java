@@ -228,4 +228,11 @@ public class MemberController {
 		
 	}
 
+	@RequestMapping(value="/memberLogout")
+	public String memberLogout(HttpSession session, RedirectAttributes ra) {
+	session.invalidate();
+	ra.addFlashAttribute("msg","로그아웃 되었습니다.");
+	return "redirect:/";
+	}
+
 }
