@@ -129,4 +129,11 @@ public class MemberService {
 		return null;
 	}
 
+	//로그인
+	public Member getLoginMemberInfo(String mid, String mpw) {
+		System.out.println("MemberService - getLoginMemberInfo()호출");
+		Member login = mdao.loginMember(mid, mpw);
+		return login;
+	}
+
 }
