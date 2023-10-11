@@ -37,5 +37,6 @@
 	<insert id="insertMember_kakao">
 		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, #{memail}, '1', #{mimg}, 'YK')
 	</insert>
+
 	
 </mapper>
