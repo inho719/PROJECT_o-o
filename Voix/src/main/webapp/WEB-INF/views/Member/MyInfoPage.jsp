@@ -58,7 +58,7 @@
 					<br>
 
 					<div class="row">
-						<div class="col" style="text-align: center;">구매내역(링크)</div>
+						<div class="col" style="text-align: center;"><a href="#">구매내역(링크)</a></div>
 						<div class="col" style="text-align: center;">찜목록</div>
 						<div class="col" style="text-align: center;">내가쓴 댓글</div>
 					</div>
