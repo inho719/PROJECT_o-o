@@ -35,7 +35,7 @@
 	</select>
 
 	<insert id="insertMember_kakao">
-		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, '1', #{memail}, #{mimg}, 'YK')
+		INSERT INTO MEMBERS(MID, MPW, MNAME, MADDR ,MEMAIL, MIMG, MSTATE) VALUES(#{mid}, 'kakaoAccount', #{mname}, '미입력', #{memail}, #{mimg}, 'YK')
 	</insert>
 
 	<select id="newsLikeList" resultType="hashmap">
