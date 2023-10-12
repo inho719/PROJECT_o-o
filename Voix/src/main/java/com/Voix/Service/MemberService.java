@@ -95,7 +95,7 @@ public class MemberService {
 		MultipartFile mfile = mem.getMfile();
 		String mprofile = ""; // 파일명 저장할 변수
 		String savePath = session.getServletContext().getRealPath("/resources/users/me"); // 파일을 저장할 경로
-		
+
 		System.out.println(savePath);
 		System.out.println(mfile);
 
@@ -180,7 +180,34 @@ public class MemberService {
 	}
 
 	// 회원정보수정
-	public int modifyMemberInfo(Member member) {
+	public int modifyMemberInfo(Member member, HttpSession session) throws IllegalStateException, IOException {
+		System.out.println("회원정보 수정 요청");
+
+		MultipartFile mfile = member.getMfile();
+		String mprofile = ""; // 파일명 저장할 변수
+		String savePath = session.getServletContext().getRealPath("/resources/users/me"); // 파일을 저장할 경로
+
+		System.out.println(savePath);
+		System.out.println(mfile);
+
+		// 첨부파일 유무 확인
+		if (!mfile.isEmpty()) {
+			System.out.println("첨부파일 있음");
+			UUID uuid = UUID.randomUUID();
+			String code = uuid.toString();
+
+			mprofile = code + "_" + mfile.getOriginalFilename();
+
+			// 저장할 경로 resources/boardUpload 폴더에 파일저장?
+			System.out.println("savePath: " + savePath);
+			File newFile = new File(savePath, mprofile);
+			mfile.transferTo(newFile);
+		}
+
+		System.out.println("파일이름: " + mprofile);
+		member.setMimg(mprofile);
+		System.out.println(member); // 제목, 내용, 작성자, 첨부파일명
+
 		int result = 0;
 		try {
 			result = mdao.updateMemberInfo(member);
