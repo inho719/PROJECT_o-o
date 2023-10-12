@@ -94,7 +94,7 @@ public class MemberService {
 
 		MultipartFile mfile = mem.getMfile();
 		String mprofile = ""; // 파일명 저장할 변수
-		String savePath = session.getServletContext().getRealPath("/resources/users/me"); // 파일을 저장할 경로
+		String savePath = session.getServletContext().getRealPath("/resources/users/memberProfile"); // 파일을 저장할 경로
 
 		System.out.println(savePath);
 		System.out.println(mfile);
@@ -185,7 +185,7 @@ public class MemberService {
 
 		MultipartFile mfile = member.getMfile();
 		String mprofile = ""; // 파일명 저장할 변수
-		String savePath = session.getServletContext().getRealPath("/resources/users/me"); // 파일을 저장할 경로
+		String savePath = session.getServletContext().getRealPath("/resources/users/memberProfile"); // 파일을 저장할 경로
 
 		System.out.println(savePath);
 		System.out.println(mfile);
