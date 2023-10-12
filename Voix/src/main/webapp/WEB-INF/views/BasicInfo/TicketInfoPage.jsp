@@ -26,6 +26,10 @@ button {
 	background-color: gray;
 	border: none;
 }
+
+.Disnone {
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -80,40 +84,95 @@ button {
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://kit.fontawesome.com/acc1ccb443.js" crossorigin="anonymous"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=18a5f71bbe7bc58965ce6ce689f1e211"></script>
 	<script type="text/javascript">
 		let tkplace = document.getElementById('tkplace').innerHTML;
+		let xMap = null;
+		let yMap = null;
 		$.ajax({
 			type : "get",
 			url : "getMapXY",
 			data : {
 				"tkplace" : tkplace
 			},
+			async : false,
 			dataType : "json",
 			success : function(result) {
-				console.log(result);
+				console.log('xy성공');
+				yMap = result.x;
+				xMap = result.y;
 			}
 		});
+		let tktitle = null;
+		$.ajax({
+			type : "get",
+			url : "getTkTitle",
+			data : {
+				"tkplace" : tkplace
+			},
+			async : false,
+			success : function(result) {
+				console.log(result);
+				tktitle = result;
+			}
+			
+		});
+		var mapContainer = document.getElementById('map'), mapCenter = new kakao.maps.LatLng(
+				xMap, yMap), mapOption = {
+			center : mapCenter,
+			level : 4
+		};
+		var map = new kakao.maps.Map(mapContainer, mapOption);
 
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-			mapOption = {
-				center : new kakao.maps.LatLng(35.543002909765484, 129.2599315712139), // 지도의 중심좌표
-				level : 3
-			// 지도의 확대 레벨
-			};
-			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-			//지도에 클릭 이벤트를 등록합니다
-			//지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-				// 클릭한 위도, 경도 정보를 가져옵니다		
-				var latlng = mouseEvent.latLng;
+		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+			var latlng = mouseEvent.latLng;
+		});
+		var mMarker = new kakao.maps.Marker({
+			position : mapCenter,
+			map : map
+		});
+		var iwContent = '<div style="max-width: 500px; width:auto; display: inline-block; white-space: nowrap;">'
+		    +'<div style="padding:5px; font-size:13px; display: flex;">  <span style="flex-grow: 1;">' + tkplace
+				+' </span> '+"  "+'<i onclick="clickPlus(this)" id="icon" class="fa-solid fa-plus fa-bounce fa-2xl" style="flex-shrink: 0; width: 10px; color: blue;"></i> </div>'
+				+' <div><div class="Disnone" id="consertview" style="background-color: white;"> ';
+				for(let t of tktitle){
+					iwContent += '<br><hr>'+t.tktitle;
+ 				}
+				iwContent += ' </div> </div></div>';
+		var mLabel = new kakao.maps.InfoWindow({
+			position : mapCenter,
+			content : iwContent
+		});
+		mLabel.open(map, mMarker);
+	</script>
 
-			});
-		마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-
+	<script type="text/javascript">
+	
+		function clickPlus(obj){
+			console.log('클릭');
+			let cvDiv = document.getElementById('consertview');
+			let icDiv = document.getElementById('icon');
+		  console.log(cvDiv.style.display);
+			if(cvDiv.classList.contains('Disnone')){
+				console.log('화면출력');
+				cvDiv.classList.remove('Disnone')
+				//cvDiv.style.display = 'block';
+			icDiv.removeAttribute('class');
+			icDiv.setAttribute('class','fa-solid fa-minus fa-beat fa-2xl');
+			icDiv.setAttribute('style','color: blue');
+		  }else{
+			console.log('화면숨기기');
+			//cvDiv.style.display = 'none';
+			cvDiv.classList.add('Disnone');
+			icDiv.removeAttribute('class');
+			icDiv.setAttribute('class','fa-solid fa-plus fa-bounce fa-2xl');
+			icDiv.setAttribute('style','color: blue');
+			}
+		}
 	</script>
 </body>
 </html>
