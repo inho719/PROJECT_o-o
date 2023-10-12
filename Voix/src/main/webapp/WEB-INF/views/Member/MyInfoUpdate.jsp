@@ -62,7 +62,7 @@
 		<div class="card mb-4 mx-auto" style="width: 700px;">
 			<div class="card-body">
 
-				<form action="${pageContext.request.contextPath}/memberModify" method="get">
+				<form action="${pageContext.request.contextPath}/memberModify" method="post" enctype="multipart/form-data">
 
 					<h4>[내정보 변경]</h4>
 					<div class="mb-2">
@@ -106,7 +106,7 @@
 												</c:otherwise>
 											</c:choose>
 
-											<input id="fileInput" class="formInput p-1" type="file" name="mimg">
+											<input id="fileInput" class="formInput p-1" type="file" name="mfile">
 										</div>
 
 									</div>
