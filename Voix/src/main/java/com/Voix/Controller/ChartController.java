@@ -1,28 +1,43 @@
 package com.Voix.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Voix.Dto.playL;
+import com.Voix.Service.ChartService;
 
 @Controller
 public class ChartController {
 
+	@Autowired
+	private ChartService csvc;
+	
 	@RequestMapping(value = "/ChartPage")
 	public ModelAndView ChartPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("Basic/ChartPage");
+		ArrayList<HashMap<String, String>> ChartList_map = csvc.getChartList_map();
 		session.setAttribute("sideState", "M");
+		System.out.println(ChartList_map);
+		mav.addObject("ChartListMap",ChartList_map);
+		mav.setViewName("Basic/ChartPage");
 		return mav;
 	}
-
+	
+	@RequestMapping(value ="/ChartInfoPage")
+	public ModelAndView ChartInfoPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("BasicInfo/ChartInfoPage");
+		return mav;
+	}
 	@RequestMapping(value="/PlayListAdd")
 	public @ResponseBody String PlayListAdd(HttpSession session,String sgcode){
 	    List<playL> playlist = new ArrayList<playL>();
@@ -34,6 +49,5 @@ public class ChartController {
 	    
 	    return "Song added to playlist successfully";
 	}
-
 	
 }

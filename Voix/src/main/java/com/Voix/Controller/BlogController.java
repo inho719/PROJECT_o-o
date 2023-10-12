@@ -11,11 +11,10 @@ public class BlogController {
 
 	@RequestMapping(value = "/BlogPage")
 	public ModelAndView Blog(HttpSession session){
-		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("Basic/BlogPage");
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "BL");
+		mav.setViewName("Basic/BlogPage");
 		return mav;
 		
 	}
