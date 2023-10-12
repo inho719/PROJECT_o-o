@@ -158,7 +158,7 @@ th {
 	<div class="container">
 		<div class="text-center my-5 VoixImg">
 			<!-- 이미지 클릭하면 메인페이지로 이동 -->
-			<a href="/MainPage" id="clickImg"> <img class="w-100" alt=""
+			<a href="/" id="clickImg"> <img class="w-100" alt=""
 				src="/resources/assets/VoixImg5.png">
 			</a>
 			<h1 class="fw-bolder">VOIX</h1>
