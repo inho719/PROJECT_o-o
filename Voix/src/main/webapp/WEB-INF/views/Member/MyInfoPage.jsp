@@ -41,20 +41,45 @@
 
 					<div class="row">
 
-						<img alt="" src="${mInfo.mimg }" style="width: 150px; height: 130px;">
+						<c:choose>
+							<c:when test="${sessionScope.loginState == 'YC'}">
+								<c:choose>
+									<c:when test="${sessionScope.loginProfile == null}">
+										<%-- 등록된 프로필이 없는 경우 --%>
+										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/images.png" alt="일반 프로필1">
+									</c:when>
+									<c:otherwise>
+										<%-- 등록된 프로필이 있는 경우 --%>
+										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/${sessionScope.loginProfile}" alt="일반 프로필2">
+									</c:otherwise>
+								</c:choose>
+							</c:when>
+
+							<c:otherwise>
+								<img style="width: 170px; height: 150px;" class="img-profile" src="${sessionScope.loginProfile}" alt="카카오 프로필">
+							</c:otherwise>
+						</c:choose>
+
+						<%-- <img alt="" src="${mInfo.mimg}" style="width: 170px; height: 150px;"> --%>
 
 
-						<div class="col">
-							이름: <input type="text" name="joinName" value="${mInfo.mname}" disabled> <br> 이메일: <input type="text" name="joinName" value="${mInfo.memail}" disabled> <br> 주소: <input type="text" name="postcode" value="${mInfo.maddr}" disabled> <br> <br> <input type="button" onclick="/MyInfoUpdate()" value="내정보 변경하기 버튼">
+						<div class="col mb-2">
+							<p class="mb-1">이름: ${mInfo.mname}</p>
+							<p class="mb-1">이메일: ${mInfo.memail}</p>
+							<p class="mb-3">주소: ${mInfo.maddr}</p>
+							<a class="btn btn-danger" href="/MyInfoUpdate">내정보변경하기</a>
 						</div>
-				
+
 
 					</div>
 
+					<hr>
 					<br>
 
 					<div class="row">
-						<div class="col" style="text-align: center;">구매내역(링크)</div>
+						<div class="col" style="text-align: center;">
+							<a href="#">구매내역(링크)</a>
+						</div>
 						<div class="col" style="text-align: center;">찜목록</div>
 						<div class="col" style="text-align: center;">내가쓴 댓글</div>
 					</div>
