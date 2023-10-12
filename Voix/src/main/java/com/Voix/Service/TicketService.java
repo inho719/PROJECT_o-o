@@ -68,5 +68,17 @@ public class TicketService {
 		String result = gson.toJson(xyjson);
 		return result;
 	}
+		public ArrayList<Ticket> getTkTitle(String tkplace) {
+		System.out.println("SERVICE getTkTitle");
+		System.out.println(tkplace);
+		ArrayList<Ticket> result = null;
+		try {
+			result = tdao.getTkTitle(tkplace);			
+		} catch (Exception e) {
+			
+		}
+		System.out.println(result);
+		return result;
+	}
 
 }
