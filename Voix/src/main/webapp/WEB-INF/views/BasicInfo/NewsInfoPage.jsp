@@ -38,21 +38,31 @@
 	<div class="container">
 
 		<div class="row">
-
-			<div class="newsTitle card col-md-12 mb-2">
-				<h3>뉴스제목</h3>
-			</div>
-			<div class="card col-md-12 mb-2">
-				<div class="row">
-					<div class="card col-md-2 my-md-2 mx-md-3">
-						<img alt="뉴스사진" src="">
-					</div>
-					<div class="card col-md-8 my-md-2 mx-md-3 ">
-						<p>작성일, 조회수</p>
-					</div>
+			<c:forEach items="${NewsInfoList}" var="NewsInfoList">
+				<div class="newsTitle card col-md-12 mb-2">
+					<h3>${NewsInfoList.nwtitle}</h3>
 				</div>
-				<span>뉴스내용</span>
-			</div>
+				<div class="card col-md-12 mb-2">
+					<div class="row">
+						<c:if test="${NewsInfoList.nwimg != null }">
+							<div class="NewsImg">
+								<img class="" src="${NewsInfoList.nwimg}" alt="..." />
+							</div>
+						</c:if>
+						<c:if test="${NewsInfoList.nwimg == null }">
+							<div class="NewsImg">
+								<img class=""
+									src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg"
+									alt="..." />
+							</div>
+						</c:if>
+						<div class="card col-md-8 my-md-2 mx-md-3 ">
+							<p>${NewsInfoList.nwdate},${NewsInfoList.nwbighit}</p>
+						</div>
+					</div>
+					<span>${NewsInfoList.nwcontent}</span>
+				</div>
+			</c:forEach>
 
 
 
@@ -96,7 +106,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+	<script src="/resources/js/scripts.js"></script>
 
 </body>
 

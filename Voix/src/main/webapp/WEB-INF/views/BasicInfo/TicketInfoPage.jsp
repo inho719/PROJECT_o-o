@@ -26,6 +26,10 @@ button {
 	background-color: gray;
 	border: none;
 }
+
+.Disnone {
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -37,12 +41,15 @@ button {
 			<div class="row">
 
 				<div class="card col-md-4 mb-4">
-					<img alt="공연포스터" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" style="width: 100%;" class="card-img-top">
+					<img alt="공연포스터" src="${tk.tkimg}" style="width: 100%;" class="card-img-top">
 				</div>
 				<div class="card col-md-8 mb-4">
-					<p>공연정보</p>
-					<p>asdf</p>
-					<p>asdf</p>
+					<p>${tk.tktitle}</p>
+					<p>${tk.tkartist}</p>
+					<p id="tkplace">${tk.tkplace}</p>
+					<p>${tk.tktime}</p>
+					<p>${tk.tkdate}</p>
+					<p>${tk.tkinfo}</p>
 				</div>
 
 
@@ -51,7 +58,9 @@ button {
 
 		<div>
 			<div class="row">
-				<div class="card col-md-8 mb-2">지도</div>
+				<div class="card col-md-8 mb-2" id="mapInfo">
+					<div id="map" style="width: 100%; height: 350px; margin-left: 5px; margin-top: 5px; border: 5px solid bisque; border-radius: 10px;"></div>
+				</div>
 				<div class="card col-md-4 mb-2 " style="display: inline-block;">
 					<div>
 						<button class="button mb-4 mt-4" onclick="location.href='공연페이지'">바로가기</button>
@@ -75,7 +84,95 @@ button {
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://kit.fontawesome.com/acc1ccb443.js" crossorigin="anonymous"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=18a5f71bbe7bc58965ce6ce689f1e211"></script>
+	<script type="text/javascript">
+		let tkplace = document.getElementById('tkplace').innerHTML;
+		let xMap = null;
+		let yMap = null;
+		$.ajax({
+			type : "get",
+			url : "getMapXY",
+			data : {
+				"tkplace" : tkplace
+			},
+			async : false,
+			dataType : "json",
+			success : function(result) {
+				console.log('xy성공');
+				yMap = result.x;
+				xMap = result.y;
+			}
+		});
+		let tktitle = null;
+		$.ajax({
+			type : "get",
+			url : "getTkTitle",
+			data : {
+				"tkplace" : tkplace
+			},
+			async : false,
+			success : function(result) {
+				console.log(result);
+				tktitle = result;
+			}
+			
+		});
+		var mapContainer = document.getElementById('map'), mapCenter = new kakao.maps.LatLng(
+				xMap, yMap), mapOption = {
+			center : mapCenter,
+			level : 4
+		};
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+			var latlng = mouseEvent.latLng;
+		});
+		var mMarker = new kakao.maps.Marker({
+			position : mapCenter,
+			map : map
+		});
+		var iwContent = '<div style="max-width: 500px; width:auto; display: inline-block; white-space: nowrap;">'
+		    +'<div style="padding:5px; font-size:13px; display: flex;">  <span style="flex-grow: 1;">' + tkplace
+				+' </span> '+"  "+'<i onclick="clickPlus(this)" id="icon" class="fa-solid fa-plus fa-bounce fa-2xl" style="flex-shrink: 0; width: 10px; color: blue;"></i> </div>'
+				+' <div><div class="Disnone" id="consertview" style="background-color: white;"> ';
+				for(let t of tktitle){
+					iwContent += '<br><hr>'+t.tktitle;
+ 				}
+				iwContent += ' </div> </div></div>';
+		var mLabel = new kakao.maps.InfoWindow({
+			position : mapCenter,
+			content : iwContent
+		});
+		mLabel.open(map, mMarker);
+	</script>
+
+	<script type="text/javascript">
+	
+		function clickPlus(obj){
+			console.log('클릭');
+			let cvDiv = document.getElementById('consertview');
+			let icDiv = document.getElementById('icon');
+		  console.log(cvDiv.style.display);
+			if(cvDiv.classList.contains('Disnone')){
+				console.log('화면출력');
+				cvDiv.classList.remove('Disnone')
+				//cvDiv.style.display = 'block';
+			icDiv.removeAttribute('class');
+			icDiv.setAttribute('class','fa-solid fa-minus fa-beat fa-2xl');
+			icDiv.setAttribute('style','color: blue');
+		  }else{
+			console.log('화면숨기기');
+			//cvDiv.style.display = 'none';
+			cvDiv.classList.add('Disnone');
+			icDiv.removeAttribute('class');
+			icDiv.setAttribute('class','fa-solid fa-plus fa-bounce fa-2xl');
+			icDiv.setAttribute('style','color: blue');
+			}
+		}
+	</script>
 </body>
 </html>

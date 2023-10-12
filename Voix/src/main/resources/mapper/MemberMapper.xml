@@ -10,22 +10,24 @@
 	</select>
 
 	<insert id="getinsertMemberJoin_comm">
-		INSERT INTO MEMBERS(MID,MPW, MNAME, MADDR ,MEMAIL ,MSTATE)
-		VALUES(#{mid}, #{mpw} , #{mname}, #{maddr},#{memail},'YC')
+		INSERT INTO MEMBERS
+		VALUES(#{mid}, #{mpw} , #{mname}, #{maddr}, #{memail}, #{mimg}, 'YC')
 	</insert>
+
 	<select id="selectemailId">
 		SELECT * FROM MEMBERS
 		WHERE MID = #{inputId} AND MEMAIL = #{email}
-	
 	</select>
+
 	<select id="FindId">
 		SELECT MID FROM MEMBERS WHERE MEMAIL = #{email}
 	</select>
+
 	<update id="updatePassword">
 		UPDATE MEMBERS SET MPW = #{mpw}
 		WHERE MID = #{mid}
 	</update>
-	
+
 	<select id="loginMember">
 		SELECT * FROM MEMBERS WHERE MID = #{mid} AND MPW = #{inputPw}
 	</select>
@@ -45,7 +47,7 @@
 		ON N.NWCODE = L.LILIST
 		WHERE LIMID = #{loginId}
 	</select>
-	
+
 	<select id="albumsLikeList" resultType="hashmap">
 		SELECT *
 		FROM ALBUMS A
@@ -53,7 +55,7 @@
 		ON A.ALCODE = L.LILIST
 		WHERE LIMID = #{loginId}
 	</select>
-	
+
 	<select id="ticketsLikeList" resultType="hashmap">
 		SELECT *
 		FROM TICKETS T
@@ -61,7 +63,7 @@
 		ON T.TKCODE = L.LILIST
 		WHERE LIMID = #{loginId}
 	</select>
-	
+
 	<select id="songsLikeList" resultType="hashmap">
 		SELECT *
 		FROM SONGS S
@@ -71,6 +73,6 @@
 	</select>
 
 	<update id="updateMemberInfo">
-	UPDATE MEMBERS SET MNAME = #{mname}, MADDR = #{maddr}, MEMAIL = #{memail}, MIMG = #{mimg} WHERE MID = #{mid}
+		UPDATE MEMBERS SET MNAME = #{mname}, MADDR = #{maddr}, MEMAIL = #{memail}, MIMG = #{mimg} WHERE MID = #{mid}
 	</update>
 </mapper>

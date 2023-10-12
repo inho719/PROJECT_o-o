@@ -62,7 +62,7 @@
 		<div class="card mb-4 mx-auto" style="width: 700px;">
 			<div class="card-body">
 
-				<form action="${pageContext.request.contextPath}/memberModify" method="get">
+				<form action="${pageContext.request.contextPath}/memberModify" method="post" enctype="multipart/form-data">
 
 					<h4>[내정보 변경]</h4>
 					<div class="mb-2">
@@ -85,8 +85,28 @@
 								<td>
 									<div class="tdcell mb-3">
 										<div>
-											<img id="preview" style="width: 70px; height: 70px;" alt="" src="${mInfo.mimg}">
-											<input id="fileInput" class="formInput p-1" type="file" name="mimg">
+											<%-- <img id="preview" style="width: 70px; height: 70px;" alt="" src="${mInfo.mimg}"> --%>
+
+											<c:choose>
+												<c:when test="${sessionScope.loginState == 'YC'}">
+													<c:choose>
+														<c:when test="${sessionScope.loginProfile == null}">
+															<%-- 등록된 프로필이 없는 경우 --%>
+															<img id="preview" style="width: 70px; height: 70px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/images.png" alt="일반 프로필1">
+														</c:when>
+														<c:otherwise>
+															<%-- 등록된 프로필이 있는 경우 --%>
+															<img id="preview" style="width: 70px; height: 70px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/${sessionScope.loginProfile}" alt="일반 프로필2">
+														</c:otherwise>
+													</c:choose>
+												</c:when>
+
+												<c:otherwise>
+													<img id="preview" style="width: 70px; height: 70px;" class="img-profile" src="${sessionScope.loginProfile}" alt="카카오 프로필">
+												</c:otherwise>
+											</c:choose>
+
+											<input id="fileInput" class="formInput p-1" type="file" name="mfile">
 										</div>
 
 									</div>
