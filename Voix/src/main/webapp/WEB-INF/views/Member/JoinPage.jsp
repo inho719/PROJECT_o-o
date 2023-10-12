@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Blog Home - Start Bootstrap Template</title>
@@ -119,49 +117,50 @@ input[name="Code"] {
 		<div class="card mb-4 mx-auto" style="width: 500px;">
 			<div class="card-body">
 				<div>회원가입</div>
-				<form action="${pageContext.request.contextPath}/Join" method="post"
-					onsubmit="return formCheck(this)">
+				<form action="${pageContext.request.contextPath}/Join" method="post" enctype="multipart/form-data" onsubmit="return formCheck(this)">
 					<div>
-						<input placeholder="아이디" class="formInput p-1" type="text"
-							name="Id" id="inputId">
+						<input placeholder="아이디" class="formInput p-1" type="text" name="Id" id="inputId">
 						<button type="button" class="IdCheck" onclick="checkId(this)">중복확인</button>
 						<p class="checkMsg mb-2" id="idMsg">중복확인</p>
-						<input placeholder="비밀번호" class="formInput p-1" type="text"
-							name="RePw"> <input placeholder="비밀번호 확인"
-							class="formInput p-1" type="text" name="CkPw"> <input
-							placeholder="이름" class="formInput p-1" type="text" name="Name">
+						<input placeholder="비밀번호" class="formInput p-1" type="text" name="RePw">
+						<input placeholder="비밀번호 확인" class="formInput p-1" type="text" name="CkPw">
 					</div>
+
 					<div>
-						<input placeholder="주소" class="formInput p-1" type="text"
-							name="Address">
-						<button type="button" class="mb-2">주소찾기</button>
-						<input placeholder="상세주소" class="formInput p-1" type="text"
-							name="DetailAddress">
+						<input placeholder="이름" class="formInput p-1" type="text" name="Name">
+						<img id="preview" style="width: 70px; height: 70px;" alt="">
+						<input id="fileInput" class="formInput p-1" type="file" name="mfile" placeholder="프로필 입력">
+					</div>
+
+
+					<div>
+						<input placeholder="주소" class="formInput p-1" type="text" id="Address" name="Address">
+						<button type="button" class="mb-2" onclick="PostCode()">주소찾기</button>
+						<input placeholder="상세주소" class="formInput p-1" type="text" id="DetailAddress" name="DetailAddress">
 					</div>
 					<div>
 
 						<div class="row m-1">
-							<input type="text" name="memailId" id="inputEmailId"
-								placeholder="이메일아이디"> @ <input type="text"
-								name="memailDomain" id="inputDomain" placeholder="이메일도메인">
+							<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디">
+							@
+							<input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인">
 							<select onchange="domainSelect(this)">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="daum.net">daum.net</option>
-								
+
 							</select>
 							<script type="text/javascript">
-								function domainSelect(selObj){
-				        		document.getElementById("inputDomain").value = selObj.value;
-				        		/*document.querySelector("#inputDomain").value = selObj.value;*/
-				    			}
+								function domainSelect(selObj) {
+									document.getElementById("inputDomain").value = selObj.value;
+									/*document.querySelector("#inputDomain").value = selObj.value;*/
+								}
 							</script>
 							<button type="button" onclick="gomailCheck()">보내기</button>
 						</div>
 						<div>
-							<input type="text" name="Code" id="mail-check-input"
-								placeholder="인증번호">
+							<input type="text" name="Code" id="mail-check-input" placeholder="인증번호">
 							<button type="button" class="mb-2" onclick="mailCheck()">확인</button>
 							<span id="mail-check-warn"></span>
 						</div>
@@ -180,18 +179,64 @@ input[name="Code"] {
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
-				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 </body>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- Bootstrap core JS-->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="resources/js/scripts.js"></script>
+
+<script type="text/javascript">
+	function PostCode() {
+		document.getElementById("Address").value = "";
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var addr = ''; // 주소 변수
+				var extraAddr = ''; // 참고항목 변수
+
+				//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					addr = data.roadAddress;
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					addr = data.jibunAddress;
+				}
+
+				// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+				if (data.userSelectedType === 'R') {
+					// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+					// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					// 건물명이 있고, 공동주택일 경우 추가한다.
+					if (data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== '' ? ', '
+								+ data.buildingName : data.buildingName);
+					}
+					// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+					if (extraAddr !== '') {
+						extraAddr = ' (' + extraAddr + ')';
+					}
+				}
+
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+
+				document.getElementById("Address").value = addr;
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("DetailAddress").focus();
+			}
+		}).open();
+	}
+</script>
+
 <script type="text/javascript">
 	let buttonClicked = false;
 	let button = document.getElementById('#IdCheck');
@@ -279,7 +324,20 @@ input[name="Code"] {
 		}
 		return;
 	}
+</script>
 
+<script>
+	document.querySelector('#fileInput').addEventListener(
+			'change',
+			function(e) {
+				var reader = new FileReader();
 
+				reader.onload = function(event) {
+					document.querySelector('#preview').setAttribute('src',
+							event.target.result);
+				};
+
+				reader.readAsDataURL(e.target.files[0]);
+			});
 </script>
 </html>
