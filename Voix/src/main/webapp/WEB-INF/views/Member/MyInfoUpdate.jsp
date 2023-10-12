@@ -85,8 +85,8 @@
 								<td>
 									<div class="tdcell mb-3">
 										<div>
-											<img style="width: 70px; height: 70px;" alt="" src="${mInfo.mimg}">
-											<input class="formInput p-1" type="file" name="mimg">
+											<img id="preview" style="width: 70px; height: 70px;" alt="" src="${mInfo.mimg}">
+											<input id="fileInput" class="formInput p-1" type="file" name="mimg">
 										</div>
 
 									</div>
@@ -230,6 +230,21 @@
 						}
 					}).open();
 		}
+	</script>
+
+	<script>
+		document.querySelector('#fileInput').addEventListener(
+				'change',
+				function(e) {
+					var reader = new FileReader();
+
+					reader.onload = function(event) {
+						document.querySelector('#preview').setAttribute('src',
+								event.target.result);
+					};
+
+					reader.readAsDataURL(e.target.files[0]);
+				});
 	</script>
 
 </body>
