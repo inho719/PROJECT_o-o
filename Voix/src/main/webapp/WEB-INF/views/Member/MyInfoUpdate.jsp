@@ -68,6 +68,7 @@
 					<div class="mb-2">
 						내ID:&nbsp
 						<input type="text" name="mid" value="${mInfo.mid}" disabled="disabled" style="border: none; background-color: white;">
+						<a class="btn btn-danger" href="PwUpdatePage">비밀번호변경</a>
 						<input type="text" style="display: none;" name="mid" value="${mInfo.mid}" readonly="readonly">
 					</div>
 
