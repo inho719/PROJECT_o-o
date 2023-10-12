@@ -62,7 +62,7 @@
 		<div class="card mb-4 mx-auto" style="width: 700px;">
 			<div class="card-body">
 
-				<form action="${pageContext.request.contextPath}/memberModify" method="get">
+				<form action="${pageContext.request.contextPath}/memberModify" method="post" enctype="multipart/form-data">
 
 					<h4>[내정보 변경]</h4>
 					<div class="mb-2">
@@ -85,8 +85,28 @@
 								<td>
 									<div class="tdcell mb-3">
 										<div>
-											<img style="width: 70px; height: 70px;" alt="" src="${mInfo.mimg}">
-											<input class="formInput p-1" type="file" name="mimg">
+											<%-- <img id="preview" style="width: 70px; height: 70px;" alt="" src="${mInfo.mimg}"> --%>
+
+											<c:choose>
+												<c:when test="${sessionScope.loginState == 'YC'}">
+													<c:choose>
+														<c:when test="${sessionScope.loginProfile == null}">
+															<%-- 등록된 프로필이 없는 경우 --%>
+															<img id="preview" style="width: 70px; height: 70px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/images.png" alt="일반 프로필1">
+														</c:when>
+														<c:otherwise>
+															<%-- 등록된 프로필이 있는 경우 --%>
+															<img id="preview" style="width: 70px; height: 70px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/${sessionScope.loginProfile}" alt="일반 프로필2">
+														</c:otherwise>
+													</c:choose>
+												</c:when>
+
+												<c:otherwise>
+													<img id="preview" style="width: 70px; height: 70px;" class="img-profile" src="${sessionScope.loginProfile}" alt="카카오 프로필">
+												</c:otherwise>
+											</c:choose>
+
+											<input id="fileInput" class="formInput p-1" type="file" name="mfile">
 										</div>
 
 									</div>
@@ -177,7 +197,7 @@
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="/resources/js/scripts.js"></script>
+	<script src="js/scripts.js"></script>
 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -230,6 +250,21 @@
 						}
 					}).open();
 		}
+	</script>
+
+	<script>
+		document.querySelector('#fileInput').addEventListener(
+				'change',
+				function(e) {
+					var reader = new FileReader();
+
+					reader.onload = function(event) {
+						document.querySelector('#preview').setAttribute('src',
+								event.target.result);
+					};
+
+					reader.readAsDataURL(e.target.files[0]);
+				});
 	</script>
 
 </body>
