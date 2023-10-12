@@ -46,11 +46,11 @@
 								<c:choose>
 									<c:when test="${sessionScope.loginProfile == null}">
 										<%-- 등록된 프로필이 없는 경우 --%>
-										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/images.png" alt="일반 프로필1">
+										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/memberProfile/기본프로필.jpg" alt="일반 프로필1">
 									</c:when>
 									<c:otherwise>
 										<%-- 등록된 프로필이 있는 경우 --%>
-										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/${sessionScope.loginProfile}" alt="일반 프로필2">
+										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/memberProfile/${sessionScope.loginProfile}" alt="일반 프로필2">
 									</c:otherwise>
 								</c:choose>
 							</c:when>
