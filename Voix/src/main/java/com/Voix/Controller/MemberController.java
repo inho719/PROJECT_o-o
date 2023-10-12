@@ -1,5 +1,6 @@
 package com.Voix.Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -247,7 +248,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/memberModify")
-	public ModelAndView memberModify(Member member, String mid, String mpw, String mname, String address, String detailAddress, String memail, String mimg, String mstate, RedirectAttributes ra) {
+	public ModelAndView memberModify(Member member, String mid, String mpw, String mname, String address, String detailAddress, String memail, MultipartFile mfile, String mstate, RedirectAttributes ra, HttpSession session) throws IllegalStateException, IOException {
 		System.out.println("회원정보수정요청");
 		ModelAndView mav = new ModelAndView();
 		Member mem = new Member();
@@ -256,12 +257,13 @@ public class MemberController {
 		mem.setMname(mname);
 		mem.setMaddr(address + " " + detailAddress);
 		mem.setMemail(memail);
-		mem.setMimg(mimg);
+		mem.setMfile(mfile);
 		mem.setMstate(mstate);
 		System.out.println(mem);
-		int updateResult = msvc.modifyMemberInfo(mem);
+		int updateResult = msvc.modifyMemberInfo(mem, session);
 		if (updateResult > 0) {
 			System.out.println("회원정보 수정 성공");
+			session.setAttribute("loginProfile", mem.getMimg());
 			ra.addFlashAttribute("msg", "회원정보가 수정 되었습니다");
 		} else {
 			System.out.println("회원정보 수정 실패");
