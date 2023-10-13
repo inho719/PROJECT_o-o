@@ -45,37 +45,42 @@
 			<div class="card col-md-12 mb-2">
 				<div class="row">
 					<div class="card col-md-2 my-md-2 mx-md-3">
-						<img alt="뉴스사진" src="">
+						<img alt="뉴스사진" src="${nw.nwimg }">
 					</div>
 					<div class="card col-md-8 my-md-2 mx-md-3 ">
-						<p>작성일, 조회수</p>
+						<p>${nw.nwcontent }</p>
 					</div>
 				</div>
-				<span>뉴스내용</span>
+				<span>작성일: ${nw.nwdate }, // 조회수: ${nw.nwbighit }</span>
 			</div>
 
 
 
 
-			<div class="card col-md-12 mb-2">
-				<p>댓글 영역</p>
-			</div>
 
-		</div>
-
-		<!-- 				<div class="card mb-4">
-					<a href="#!"><img class="card-img-top"
-						src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-					<div class="card-body">
-						<div class="small text-muted">January 1, 2023</div>
-						<h2 class="card-title">Featured Post Title</h2>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex
-							quis soluta, a laboriosam. Dicta expedita corporis animi vero
-							voluptate voluptatibus possimus, veniam magni quis!</p>
-						<a class="btn btn-primary" href="#!">Read more →</a>
+				<c:if test="${sessionScope.loginId != null }">
+				<div class="reviewWrite">
+					<form action="newsRegistReview" class="my-3" method="post">
+							<input type="text" name="restate" value="${nw.nwcode }" style="display:none">
+							<textarea class="w-100 reviewComment" name="recontent"></textarea>
+							<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+						</form>
+				</div>
+				<hr>
+			</c:if>
+			<c:forEach items="${reviewList}" var="re">
+					<div class="meminfo">
+						<input value="${re.REWRITER}" style="margin: 0px;" disabled="disabled">
+						<c:if test="${sessionScope.loginId == re.REWRITER }">
+						<button type="button" onclick="location.href='/deleteNewsReview?recode=${re.RECODE}&nwcode=${nw.nwcode}'" class="btn btn-danger" style="font-size: 10px; margin-bottom: 4px; height: 30px;">삭제</button>
+						</c:if>
 					</div>
-				</div>  -->
+					<div style="margin-top: 5px; margin-bottom: 5px;">
+						<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
+					</div>
+					<div class="small text-muted">${re.REDATE}</div>
+				</c:forEach>
+		</div>
 
 
 	</div>
