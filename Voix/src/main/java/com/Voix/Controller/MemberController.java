@@ -273,4 +273,15 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/PwUpdatePage")
+	public ModelAndView PwUpdatePage(HttpSession session) {
+		System.out.println("/PwUpdatePage 요청");
+		ModelAndView mav = new ModelAndView();
+		String loginId = (String)session.getAttribute("loginId");
+		Member memberInfo = msvc.memberInfo(loginId);
+		mav.addObject("mInfo", memberInfo);
+		mav.setViewName("/Member/PwUpdatePage");
+		return mav;
+	}
+
 }
