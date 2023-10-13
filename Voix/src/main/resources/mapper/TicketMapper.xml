@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getTkInfo">
-		SELECT * FROM TICKETS WHERE TKCODE = #{tkcode} ORDER BY REDATE DESC
+		SELECT * FROM TICKETS WHERE TKCODE = #{tkcode}
 	</select>
 		<select id="getTkTitle">
 		SELECT TKTITLE FROM TICKETS WHERE TKPLACE = #{tkplace}
