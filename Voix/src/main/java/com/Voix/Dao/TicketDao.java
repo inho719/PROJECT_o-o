@@ -11,6 +11,6 @@ public interface TicketDao {
 
 	Ticket getTkInfo(String tkcode);
 
-
+	ArrayList<Ticket> getTkTitle(String tkplace);
 
 }

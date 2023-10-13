@@ -6,7 +6,7 @@ import lombok.Data;
 public class Chart {
 	private String sgcode;
 	private String sgtitle;
-	private String sgaltitle;
+	private String sgartitle;
 	private String sgartist;
 	private String sgmvurl;
 	private String sginfo;

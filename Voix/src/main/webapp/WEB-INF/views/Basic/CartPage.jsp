@@ -53,50 +53,6 @@ table, tr, td {
 		</div>
 
 		<div class="card m-2">
-			<div class="row">
-				<div class="col-md-1 m-1">
-					<button class="mt-3">asdf</button>
-				</div>
-				<div class="col-md-10 m-2">
-					<table>
-						<tr>
-							<td rowspan="2" style="width: 10%"><img alt="앨범포스터" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" style="width: 100%;" class="card-img-top"></td>
-							<td>상품이름</td>
-							<td>가격</td>
-							<td rowspan="2">수량</td>
-						</tr>
-						<tr>
-							<td>어디사이트</td>
-							<td>할인가격</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-
-		<div class="card m-2">
-			<div class="row">
-				<div class="col-md-1 m-1">
-					<button class="mt-3">asdf</button>
-				</div>
-				<div class="col-md-10 m-2">
-					<table>
-						<tr>
-							<td rowspan="2" style="width: 10%"><img alt="앨범포스터" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" style="width: 100%;" class="card-img-top"></td>
-							<td>상품이름</td>
-							<td>가격</td>
-							<td rowspan="2">수량</td>
-						</tr>
-						<tr>
-							<td>어디사이트</td>
-							<td>할인가격</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-
-		<div class="card m-2">
 			<div class="row" style="justify-content: center; align-items: center;">
 				<div class="card col-md-4 m-2">선택상품 + 총 배송비</div>
 				<div class="card col-md-4 m-2">주문금액</div>

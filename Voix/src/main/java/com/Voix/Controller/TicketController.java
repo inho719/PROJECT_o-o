@@ -47,5 +47,11 @@ public class TicketController {
 		System.out.println("지도 좌표불러오기");
 		return tsvc.getMapXY(tkplace);
 	}
+		@RequestMapping(value="/getTkTitle")
+	public @ResponseBody ArrayList<Ticket> getTkTitle(String tkplace) {
+		System.out.println("장소를 이용하여 공연제목들 불러오기");
+		return tsvc.getTkTitle(tkplace);
+	}
+	
 	
 }

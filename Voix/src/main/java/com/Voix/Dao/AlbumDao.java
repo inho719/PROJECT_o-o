@@ -14,4 +14,10 @@ public interface AlbumDao {
 
 	ArrayList<Cart> insertCart_map(String caalcode, String loginId);
 
+	String selectMaxCaCode();
+
+	int insertCart(Cart crt);
+
+	ArrayList<HashMap<String, String>> selectCartList(String loginId);
+
 }
