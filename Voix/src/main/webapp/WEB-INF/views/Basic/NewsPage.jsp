@@ -28,6 +28,7 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
+
 </style>
 
 </head>
@@ -45,28 +46,29 @@
 							<c:if test="${NewsMap.NWIMG != null }">
 								<div class="NewsImg">
 									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class="" src="${NewsMap.NWIMG}"
-										alt="..." /></a>
+										alt="..." style="width: 350px; height:300px; object-fit: cover;" /></a>
 								</div>
 							</c:if>
 							<c:if test="${NewsMap.NWIMG == null }">
 								<div class="NewsImg">
 									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class=""
-										src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg"
+										src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" 
+										style="width: 350px; height:300px; object-fit: cover;" 	
 										alt="..." /></a>
 								</div>
 							</c:if>
-							<div class="NewsText" style="flex: 1;">
+							<div class="NewsText" style="flex: 1;" >
 								<div class="NewsTitle">
-									<h2 class="card-title m-2">${NewsMap.NWTITLE}</h2>
+									<h2 class="card-title m-2" style ="overflow: hidden; height: 75px;">${NewsMap.NWTITLE}</h2>
 								</div>
-								<div class="NewsContents p-2">
-									<p class="card-text">${NewsMap.NWCINTENT}</p>
+								<div class="NewsContents p-2"  style="height: 150px; overflow: hidden;">
+									<p class="card-text">${NewsMap.NWCONTENT}</p>
 								</div>
 								<div class="small text-mute m-2"style="display: flex; justify-content: space-between; align-items: flex-end;">
 		<!-- ---------------------------------------------------------------------------- -->
 									<div class="like_article" onclick="like('${NewsMap.NWCODE}')">
 										<a href="#" class="prdLike">	
-										<img alt="" src="/resources/assets/heart.png">									
+										<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
 										</a>
 									</div>
 									
