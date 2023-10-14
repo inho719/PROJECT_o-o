@@ -56,6 +56,7 @@
 	border-left: 4px solid #e8ec74;
 	border-top: 4px solid #e8ec74;
 	border-right: 4px solid #e8ec74;
+	background: #484848;
 }
 
 .navbar-brand.unclicked {
@@ -120,6 +121,10 @@ th {
 	font-weight: bold;
 	cursor: pointer;
 	font-size: 80px;
+}
+th:hover{
+	background: #484848;
+    border-top: 5px solid yellow;
 }
 
 </style>
