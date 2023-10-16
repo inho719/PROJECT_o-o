@@ -15,6 +15,9 @@ import com.Voix.Dto.Cart;
 public class AlbumService {
 	@Autowired
 	private AlbumDao adao;
+	
+	@Autowired
+	private TicketService tsvc;
 
 	public ArrayList<HashMap<String, String>> getAlbumtList_map() {
 		
@@ -70,109 +73,29 @@ public class AlbumService {
 		return adao.selectCartList(loginId);
 	}
 
-	public String kakaoPay_ready(Order odInfo, HttpSession session) {
-		System.out.println("service kakaoPay_ready()");
-		System.out.println(odInfo);
-		String requestUrl = "https://kapi.kakao.com/v1/payment/ready";
-		HashMap<String, String> requestParams = new HashMap<String, String>();
-		requestParams.put("partner_order_id", odInfo.getOdcode());
-		requestParams.put("partner_user_id", odInfo.getOdmid());
-		requestParams.put("item_name", "앨범결제");
-		requestParams.put("quantity", odInfo.getOdqty());
-		requestParams.put("total_amount", odInfo.getOdprice());
-		requestParams.put("tax_free_amount", "0");
-		requestParams.put("approval_url", "http://localhost:8080/kakaoPay_approval");
-		requestParams.put("cancel_url", "http://localhost:8080/kakaoPay_cancel");
-		requestParams.put("fail_url", "http://localhost:8080/kakaoPay_fail");
-
-		String result = null;
-		try {
-			String response = kakaoResponse_json(requestUrl, requestParams);
-			/* tid, next_redirect_pc_url */
-			JsonObject re = (JsonObject)JsonParser.parseString(response);
-			String tid = re.get("tid").getAsString();
-			String nextUrl = re.get("next_redirect_pc_url").getAsString();
-			System.out.println("tid : " + tid);
-			session.setAttribute("tid", tid);
-			session.setAttribute("odcode", odInfo.getOdcode());
-			System.out.println("nextUrl : " + nextUrl);
-			result = nextUrl;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return result; // 결제 QR 페이지 URL
+	public ArrayList<HashMap<String, String>> selectReviewList(String altitle) {
+		System.out.println("selectReivewList  호출");
+		ArrayList<HashMap<String, String>> Resultre = adao.selectReviewList(altitle);
+		return Resultre;
 	}
 
-	private String kakaoResponse_json(String requestUrl, HashMap<String, String> requestParams) throws IOException {
-		System.out.println("SERVICE kakaoResponse_json() 호출");
-		StringBuilder urlBuilder = new StringBuilder(requestUrl); /* URL */
-		urlBuilder.append("?" + URLEncoder.encode("cid", "UTF-8") + "=TC0ONETIME"); /* 가맹점 코드 */
-		for (String key : requestParams.keySet()) {
-			urlBuilder.append("&" + URLEncoder.encode(key, "UTF-8") + "=" + URLEncoder.encode(requestParams.get(key), "UTF-8")); /* 요청 파라메터 */
-		}
-
-		URL url = new URL(urlBuilder.toString());
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Authorization", "KakaoAK 2a9875678cefa0641477312f89b71e56");
-		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		System.out.println("Response code: " + conn.getResponseCode());
-
-		if (conn.getResponseCode() != 200) {
-			return null;
-		}
-
-		BufferedReader rd;
-		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		} else {
-			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-		}
-		StringBuilder sb = new StringBuilder();
-		String line;
-		while ((line = rd.readLine()) != null) {
-			sb.append(line);
-		}
-		rd.close();
-		conn.disconnect();
-		System.out.println(sb.toString());
-
-		return sb.toString();
+	public Album getAlInfo(String alcode) {
+		System.out.println("SERVICE - 티켓정보 출력");
+		return adao.getNwInfo(alcode);
 	}
 
-	public String kakaoPay_approval(String tid, String pg_token, String odcode, String loginId) {
-		System.out.println("service kakaoPay_approval()");
-		String requestUrl = "https://kapi.kakao.com/v1/payment/approve";
-		HashMap<String, String> requestParams = new HashMap<String, String>();
-		requestParams.put("tid", tid);
-		requestParams.put("partner_order_id", odcode);  /* recode */
-		requestParams.put("partner_user_id", loginId);    /* loginId */
-		requestParams.put("pg_token", pg_token);
-		
-		String result = null;
-		try {
-			String response = kakaoResponse_json(requestUrl, requestParams);
-			result = response;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		if(result == null) {
-			
-		}
-		
-		return result;
+	public int albumRegistReview(String restate, String recontent, String rewriter) {
+		System.out.println("service - registReview()");
+		String maxRvCode = adao.selectMaxReCode();
+		String recode = tsvc.genCode(maxRvCode);
+		int registReview = adao.albumRegistReview(recode, restate, recontent, rewriter);
+		System.out.println(registReview);
+		return registReview;
 	}
 
-	public int cancelReserve(String odcode) {
-		return adao.deleteReserve(odcode);
-		
-	}
-
-	public String odcodeseting(String odcode) {
-		String MaxOdcode = adao.getmaxOdcode(odcode);
-		String addodcode = genCode(MaxOdcode);
-		return addodcode;
+	public int deleteReview(String recode) {
+		System.out.println("SERVEICE - deleteReview 호출");
+		return adao.deleteReview(recode);
 	}
 
 
