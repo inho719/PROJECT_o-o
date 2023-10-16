@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.Voix.Dao.AlbumDao">
+	<select id="selectAlbum_map">
+	SELECT  ALIMG, ALTITLE, ALARTIST, TO_CHAR(ALDATE,'YYYY-MM-DD') AS ALDATE, ALGENRE
+	 FROM ALBUMS GROUP BY ALTITLE, ALIMG, ALARTIST,ALDATE, ALGENRE ORDER BY ALDATE DESC
+	</select>
+	
+	<select id="selectAlbumInfo_map">
+	SELECT ALCODE, ALIMG, ALTITLE, ALPRICE, ALSALEPRICE, ALARTIST, TO_CHAR(ALDATE,'YYYY-MM-DD') AS ALDATE, ALINFO, ALGENRE, ALSCORE, ALLIST, ALSITE
+	 FROM ALBUMS WHERE ALTITLE = #{altitle} ORDER BY ALDATE DESC
+	</select>
+	
+	<select id="getAlbumInfo_alcode">
+	SELECT * FROM ALBUMS WHERE ALCODE = #{alcode}
+	</select>
+	<select id="getmaxOdcode">
+	SELECT NVL( MAX(ODCODE), 'O0000' ) FROM ORDERS
+	</select>
+	<insert id="insertOdInfo">
+	INSERT INTO ORDERS(ODCODE, ODMID, ODALCODE, ODQTY, ODPRICE, ODDATE, ODADDR)
+	VALUES (#{odcode},#{odmid},#{odalcode},#{odqty},#{odprice},SYSDATE,#{odaddr})
+	</insert>
+	
+	<delete id="deleteReserve">
+		DELETE FROM ODERS WHERE ODCODE = #{odcode}
+	</delete>
+</mapper>

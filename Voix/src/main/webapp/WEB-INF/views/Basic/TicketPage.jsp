@@ -64,7 +64,7 @@
 							</c:if>
 							<c:if test="${TkMap.TKIMG == null }">
 								<div class="TicketImg">
-									<a href="#티켓코드"><img class=""
+									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}"><img class=""
 										src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
 										alt="..." /></a>
 								</div>
@@ -117,6 +117,6 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+	<script src="/resources/js/scripts.js"></script>
 </body>
 </html>

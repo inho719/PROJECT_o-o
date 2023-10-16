@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,11 @@ public class TicketController {
 	private TicketService tsvc;
 	
 	@RequestMapping(value ="/TicketPage")
-	public ModelAndView TicketPage() {
+	public ModelAndView TicketPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_map();
+		session.setAttribute("sideState", "N");
+		session.setAttribute("rankState", "TK");
 		System.out.println(TkList_map);
 		mav.addObject("TkListMap",TkList_map);
 		mav.setViewName("Basic/TicketPage");
@@ -43,5 +47,11 @@ public class TicketController {
 		System.out.println("지도 좌표불러오기");
 		return tsvc.getMapXY(tkplace);
 	}
+		@RequestMapping(value="/getTkTitle")
+	public @ResponseBody ArrayList<Ticket> getTkTitle(String tkplace) {
+		System.out.println("장소를 이용하여 공연제목들 불러오기");
+		return tsvc.getTkTitle(tkplace);
+	}
+	
 	
 }

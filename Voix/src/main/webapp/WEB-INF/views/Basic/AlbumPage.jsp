@@ -28,15 +28,16 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
-.thDiv{
-    border: 3px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 30px;
-    text-align: center;
-    background-color: black;
-    color: white;
- }
+
+.thDiv {
+	border: 3px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	font-size: 30px;
+	text-align: center;
+	background-color: black;
+	color: white;
+}
 </style>
 
 </head>
@@ -48,245 +49,95 @@
 			<!-- Ticket entries-->
 			<div class="col-lg-8">
 				<!-- Featured Ticket post-->
-				<table class ="w-100 table">
+				<table class="w-100 table">
 					<thead>
 						<tr>
-						
+
 							<th><div class="thDiv">가요</div></th>
 							<th><div class="thDiv">팝</div></th>
 						</tr>
 					</thead>
+
 					<tbody>
-						<tr>
-							<td class="가요 테이블">
+						<c:forEach items="${AlbumListMap}" var="AlbumMap">
+							<tr>
+								<c:if test="${AlbumMap.ALGENRE == '가요' }">
+									<td class="가요 테이블">
 
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
+										<div class="card mb-4" style="height: 150px;">
+											<div class="AlbumDiv" style="display: flex;">
+												<c:if test="${AlbumMap.ALIMG != null }">
+													<div class="AlbumImg">
+														<a href="/AlbumInfoPage?altitle=${AlbumMap.ALTITLE}"><img
+															class="" src="${AlbumMap.ALIMG}" alt="..." /></a>
+													</div>
+												</c:if>
+												<c:if test="${AlbumMap.ALIMG == null }">
+													<div class="AlbumImg">
+														<a href="/AlbumInfoPage?altitle=${AlbumMap.ALTITLE}"><img
+															class=""
+															src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
+															alt="..." /></a>
+													</div>
+												</c:if>
+												<div class="AlbumContents w-100">
+													<div class="AlbumTitle">
+														<h4 class="card-title m-2">${AlbumMap.ALTITLE}</h4>
+													</div>
+													<div class="AlbumContentsWrapper">
+														<div class="AlbumText p-2 d-flex"
+															style="justify-content: space-between;">
+															<p class="card-text">${AlbumMap.ALARTIST}</p>
+															<p class="card-text">${AlbumMap.ALDATE}</p>
+														</div>
+													</div>
+													<div class="small m-2 d-flex"
+														style="justify-content: space-between;">
+														
+														<a href="찜" class=""><img alt=""
+															src="/resources/assets/heart.png"></a>
+													</div>
 												</div>
 											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
 										</div>
-									</div>
-								</div>
+									</td>
+								</c:if>
+								<c:if test="${AlbumMap.ALGENRE == '팝송' }">
+									<td class="팝 테이블">
 
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
+										<div class="card mb-4" style="height: 150px;">
+											<div class="AlbumDiv" style="display: flex;">
+												<div class="AlbumImg">
+													<a href="#앨범코드"><img class=""
+														src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
+														alt="..." /></a>
+												</div>
+												<div class="AlbumContents w-100">
+													<div class="AlbumTitle">
+														<h4 class="card-title m-2">${AlbumMap.ALTITLE}</h4>
+													</div>
+													<div class="AlbumContentsWrapper">
+														<div class="AlbumText p-2 d-flex"
+															style="justify-content: space-between;">
+															<p class="card-text">${AlbumMap.ALARTIST}</p>
+															<p class="card-text">${AlbumMap.ALDATE}</p>
+														</div>
+													</div>
+													<div class="small m-2 d-flex"
+														style="justify-content: space-between;">
+														<p class="text-mute">${AlbumMap.ALPRICE}</p>
+														<p class="text-mute">${AlbumMap.ALSALEPRICE}</p>
+														<a href="찜" class=""><img alt=""
+															src="/resources/assets/heart.png"></a>
+													</div>
 												</div>
 											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
 										</div>
-									</div>
-								</div>
 
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
-												</div>
-											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
-												</div>
-											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-
-
-							</td>
-							<td class="팝 테이블">
-
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
-												</div>
-											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
-												</div>
-											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
-												</div>
-											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card mb-4" style="height: 150px;">
-									<div class="AlbumDiv" style="display: flex;">
-										<div class="AlbumImg">
-											<a href="#앨범코드"><img class=""
-												src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-												alt="..." /></a>
-										</div>
-										<div class="AlbumContents w-100">
-											<div class="AlbumTitle">
-												<h4 class="card-title m-2">앨범제목</h4>
-											</div>
-											<div class="AlbumContentsWrapper">
-												<div class="AlbumText p-2 d-flex"
-													style="justify-content: space-between;">
-													<p class="card-text">작곡가</p>
-													<p class="card-text">앨범이름</p>
-												</div>
-											</div>
-											<div class="small m-2 d-flex"
-												style="justify-content: space-between;">
-												<p class="text-mute">가격Price</p>
-												<a href="찜" class=""><img alt=""
-													src="/resources/assets/heart.png"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</td>
-						</tr>
+									</td>
+								</c:if>
+							</tr>
+						</c:forEach>
 
 					</tbody>
 				</table>
@@ -312,6 +163,6 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+	<script src="/resources/js/scripts.js"></script>
 </body>
 </html>

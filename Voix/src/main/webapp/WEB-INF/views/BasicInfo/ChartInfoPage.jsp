@@ -34,16 +34,16 @@
 
 
 
-
+	<c:forEach items="${ChartInfoList}" var="ChartInfoList">
 		<div class="row">
 			<div class="card col-md-4 mb-4 ">
-				<img alt="랭킹 포스터" src="">
+				<img alt="랭킹 포스터" src="${ChartInfoList.sgimg}">
 			</div>
 
 			<div class="card col-md-8 mb-4">
-				<p>1위</p>
-				<p>2위</p>
-				<p>3위</p>
+				<p>${ChartInfoList.sgaltitle}</p>
+				<p>${ChartInfoList.sgtitle}</p>
+				<p>${ChartInfoList.sginfo}</p>
 			</div>
 		</div>
 
@@ -51,49 +51,21 @@
 		<div class="row">
 
 			<div class="col mb-4">
-				<iframe width="660px" height="415px"
-					src="https://www.youtube.com/embed/v3L1XdqGnyI?si=FYP8NGoNVpukG61z"
-					title="YouTube video player" frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-					allowfullscreen></iframe>
+				${ChartInfoList.sgmvurl}
 			</div>
 
 			<div class="card col mb-4">
 				<div style="height: 415px; overflow: scroll; margin-left: 10px;">
-					[Verse 1: Winter, Giselle] <br> 멈춰버린 my timeline <br>
-					지루해진 day and night <br> 재미없고 따분해 <br> 뻔한 everyday-ay-ay
-					(Yeah) <br> 새 feed 속의 우릴 보면 마치 딴 세상 얘기 같아 <br> 나만 빼고 행복해
-					but, I'm not okay (Ye-yeah) ​<br> <br> [Pre-Chorus:
-					Karina] <br> 다들 완벽해 보이는 매일 <br> 나 혼자만 logout된 듯이 <br>
-					이 세상과 내 마음의 거린 so far ​<br> <br> [Chorus: NingNing,
-					Giselle, Winter, Karina] <br> 이건 마치 hell, yeah, I'm unhappy <br>
-					행복한 척 tell ya but I'm unhappy <br> 보란듯이 꾸미기 바쁜 feed <br>
-					궁금하지 않아 난 set me free <br> 이건 마치 hell, yeah, I'm unhappy, I'm
-					unhappy I'm unhappy ​ <br> <br> [Verse 2: NingNing,
-					Giselle] <br> 가상현실 속 같지 <br> 누가 진짜 나인지 <br> 이젠 뭐가
-					맞는지 몰라 you and me <br> Tell me what you, what you feelin' (Ya)
-					<br> I got trouble, trouble healin' (Ya) <br> 필요한 건 오직
-					chillin' (Ya) <br> 날 놓아줄 수 없다면 delete me ​<br> <br>
-					[Pre-Chorus: Winter] 다들 완벽해 보이는 매일 나 혼자만 logout된 듯이 이 화면 속과 내 마음의
-					거린 so far ​ [Chorus: Karina, NingNing, Giselle, Winter] 이건 마치 hell,
-					yeah, I'm unhappy 행복한 척 tell ya but I'm unhappy 보란듯이 꾸미기 바쁜 feed
-					궁금하지 않아 난 set me free 이건 마치 hell ya, I'm unhappy, I'm unhappy I'm
-					unhappy, I'm unhappy ​ [Bridge: Giselle, NingNing, Karina, Winter]
-					I want and I need it (Yeah, yeah) 난 진짜를 원해 (Ah) 원해 나의 힐링 (Ooh) 난 더
-					늦기 전에 용기내 delete, I'm not alone 허상뿐인가짠 no more 숨막힐 듯한 매일 I wanna
-					stop, yeah Don't know what you looking for ​ [Chorus: NingNing,
-					Karina, Winter, Giselle] 이제부턴 tell ya, I'm so happy 솔직하게 tell ya,
-					I'm so happy 보란듯이 꾸미기 바쁜 feed 미련 없이 벗어나 set me free 내가 아닌 나로만 가득한
-					세상은 싫어 tell ya I'm so happy, l'm so happy [출처] 에스파(aespa) - I'm
-					unhappy 가사/해석/음악/듣기/뮤비/단상|작성자 카프리Sun
+					${ChartInfoList.sglyric}
 				</div>
 			</div>
+			<div class="card col mb-4">
+				<p>${ChartInfoList.sgartist}</p>
+			</div>
 		</div>
+	</c:forEach>
 
 
-		<div class="card col mb-4">
-			<p>아티스트</p>
-		</div>
 
 		<div class="card col mb-4">
 			<p>댓글 영역</p>
@@ -133,7 +105,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+	<script src="/resources/js/scripts.js"></script>
 
 </body>
 

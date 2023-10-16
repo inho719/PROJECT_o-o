@@ -9,14 +9,16 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import com.Voix.Dao.TicketDao;
 import com.Voix.Dto.Ticket;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @Service
 public class TicketService {
@@ -35,16 +37,19 @@ public class TicketService {
 
 	public String getMapXY(String tkplace) throws IOException {
 		System.out.println("SERVICE - getMapXY 호출");
+		StringBuilder urlBuilder = new StringBuilder("https://dapi.kakao.com/v2/local/search/keyword");
+		urlBuilder.append("?" + URLEncoder.encode("query", "UTF-8") + "=" + URLEncoder.encode(tkplace, "UTF-8"));
 
-		StringBuilder urlBuilder = new StringBuilder("https://dapi.kakao.com/v2/local/search/keyword.json"); /* URL */
-		urlBuilder.append("?" + URLEncoder.encode("query", "UTF-8") + "=" + "고려대학교 화정체육관"); /* 가맹점 코드 */
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Authorization", "KakaoAK de39587ee41403602625b2b26329f02c");
-		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.CONTENT_TYPE, "application/json;charset=UTF-8");
 		System.out.println("Response code: " + conn.getResponseCode());
+
+		if (conn.getResponseCode() != 200) {
+			return null;
+		}
+
 		BufferedReader rd;
 		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -58,14 +63,22 @@ public class TicketService {
 		}
 		rd.close();
 		conn.disconnect();
-		System.out.println(sb.toString());
-
-//    JsonObject sttnJson = JsonParser.parseString(sb.toString()).getAsJsonObject();
-//    JsonElement sttnList = sttnJson.get("response").getAsJsonObject().get("body").getAsJsonObject().get("items").getAsJsonObject().get("item");
-//    Gson gson = new Gson();
-//    String result = gson.toJson(sttnList);
-
-		return "";
+		JsonElement xyjson = JsonParser.parseString(sb.toString()).getAsJsonObject().get("documents").getAsJsonArray().get(0).getAsJsonObject();
+		Gson gson = new Gson();
+		String result = gson.toJson(xyjson);
+		return result;
+	}
+		public ArrayList<Ticket> getTkTitle(String tkplace) {
+		System.out.println("SERVICE getTkTitle");
+		System.out.println(tkplace);
+		ArrayList<Ticket> result = null;
+		try {
+			result = tdao.getTkTitle(tkplace);			
+		} catch (Exception e) {
+			
+		}
+		System.out.println(result);
+		return result;
 	}
 
 }
