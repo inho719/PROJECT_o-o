@@ -26,18 +26,20 @@
 	FROM CARTS C INNER JOIN ALBUMS A ON C.CAALCODE = A.ALCODE
 	WHERE C.CAMID = #{loginId}
 	</select>
-	<select id="getAlbumInfo_alcode">
-	SELECT * FROM ALBUMS WHERE ALCODE = #{alcode}
+	
+	<select id="selectReviewList" resultType="hashmap">
+		SELECT * FROM REVIEWS WHERE RESTATE = #{altitle}
 	</select>
-	<select id="getmaxOdcode">
-	SELECT NVL( MAX(ODCODE), 'O0000' ) FROM ORDERS
+	
+	<select id="selectMaxReCode">
+		SELECT NVL(MAX(RECODE), 'RE0000') FROM REVIEWS
 	</select>
-	<insert id="insertOdInfo">
-	INSERT INTO ORDERS(ODCODE, ODMID, ODALCODE, ODQTY, ODPRICE, ODDATE, ODADDR)
-	VALUES (#{odcode},#{odmid},#{odalcode},#{odqty},#{odprice},SYSDATE,#{odaddr})
+	
+	<insert id="albumRegistReview">
+		INSERT INTO REVIEWS(RECODE,REWRITER,RECONTENT,REDATE,RESTATE) VALUES(#{recode},#{rewriter},#{recontent},SYSDATE,#{restate})
 	</insert>
 	
-	<delete id="deleteReserve">
-		DELETE FROM ODERS WHERE ODCODE = #{odcode}
+	<delete id="deleteReview">
+		DELETE FROM REVIEWS WHERE RECODE = #{recode}
 	</delete>
 </mapper>
