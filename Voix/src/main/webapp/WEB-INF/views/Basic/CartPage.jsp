@@ -26,41 +26,55 @@ table, tr, td {
 	<%@ include file="/WEB-INF/views/Includes/Menu.jsp"%>
 	<!-- Page content-->
 	<div class="container">
-				<div class="newTitle card col-md-12 mb-2">
-					<h3>제목</h3>
-				</div>
-	
-		<div class="card m-2">
-			<div class="row">
-				<div class="col-md-1 m-1">
-					<button class="mt-3">asdf</button>
-				</div>
-				<div class="col-md-10 m-2">
-					<table>
-						<tr>
-							<td rowspan="2" style="width: 10%"><img alt="앨범포스터" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" style="width: 100%;" class="card-img-top"></td>
-							<td>상품이름</td>
-							<td>가격</td>
-							<td rowspan="2">수량</td>
-						</tr>
-						<tr>
-							<td>어디사이트</td>
-							<td>할인가격</td>
-						</tr>
-					</table>
+		<div class="newTitle card col-md-12 mb-2">
+		</div>
+			<input type="checkbox" id="cbx_chkAll" />모두선택
+	<form action="DeleteCartList" method="post">
+		<c:forEach items="${CartList}" var="CartList" varStatus="loop">
+			<div class="card m-2" id="CartList${loop.index}" data-caqty="${CartList.CAQTY}" data-alsaleprice="${CartList.ALSALEPRICE}">
+				<div class="row">
+					<div class="col-md-1 m-1">
+						<input type="checkbox" onclick="CheckCartList()" name="CartCheck" id="cartCheck${loop.index}" onchange="updateTotalPrice()" value="${CartList.CACODE}">
+					</div>
+					<div class="col-md-10 m-2">
+						<table>
+							<tr>
+								<td rowspan="2" style="width: 10%"><img alt="앨범포스터" src="${CartList.ALIMG}" style="width: 100%;" class="card-img-top"></td>
+								<td>${CartList.ALTITLE }</td>
+								<td>${CartList.ALPRICE }</td>
+								<td rowspan="2">${CartList.CAQTY}</td>
+							</tr>
+							<tr>
+								<td><c:if test="${CartList.ALSITE == 'Y'}">
+							예스24
+							</c:if> <c:if test="${CartList.ALSITE == 'K'}">
+							교보문고
+							</c:if> <c:if test="${CartList.ALSITE == 'A'}">
+							알라딘
+							</c:if> <c:if test="${CartList.ALSITE == 'I'}">
+							인터파크
+							</c:if></td>
+								<td>${CartList.ALSALEPRICE}</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
-		</div>
+		</c:forEach>
 
 		<div class="card m-2">
 			<div class="row" style="justify-content: center; align-items: center;">
-				<div class="card col-md-4 m-2">선택상품 + 총 배송비</div>
-				<div class="card col-md-4 m-2">주문금액</div>
+				<div class="card col-md-4 m-2" id="CheckNum"></div>
+				<div class="card col-md-4 m-2" id="AllPrice"></div>
+				<div class="card col-md-2 m-2">
+					<button >선택 항목 삭제</button>
+				</div>
 				<div class="card col-md-2 m-2">
 					<button>결제</button>
 				</div>
 			</div>
 		</div>
+	</form>
 	</div>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
@@ -72,5 +86,78 @@ table, tr, td {
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+	<script type="text/javascript">
+	function CheckCartList()  {
+		  // 선택된 목록 가져오기
+		  const CartList = 'input[name="CartCheck"]:checked';
+		  const selectedElements = 
+		      document.querySelectorAll(CartList);
+		  
+		  // 선택된 목록의 갯수 세기
+		  const selectedElementsCnt =
+		        selectedElements.length;
+		  
+		  // 출력
+		  document.getElementById('CheckNum').innerText
+		    = ('선택한 앨범 : '+selectedElementsCnt+'개');
+		  
+		}
+	</script>
+	<script type="text/javascript">
+function updateTotalPrice() {
+  // 모든 체크박스 가져오기
+  const checkboxes = document.querySelectorAll('input[name="CartCheck"]');
+
+  let totalPrice = 0;
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      // 체크박스 ID에서 인덱스 추출
+      console.log(checkbox.id);
+      let index = checkbox.id.replace('cartCheck', '');
+	  console.log("index : " + index)
+      // 관련 CartList 요소 가져오기
+      let cartList = document.getElementById('CartList' + index);
+	  console.log("cartList : " + cartList);
+      if (cartList) {
+        const caQty = parseInt(cartList.getAttribute('data-caqty'));
+        const alSalePrice = parseFloat(cartList.getAttribute('data-alsaleprice'));
+        totalPrice += caQty * alSalePrice;
+        console.log("totalPrice: " + totalPrice)
+      }
+    }
+  });
+
+  // 합계 금액 표시
+  document.getElementById('AllPrice').textContent = '총 금액 : ' + totalPrice+'원';
+}
+</script>
+<script type="text/javascript">
+function toggleAllCheckboxes() {
+    var cbx_chkAll = document.getElementById('cbx_chkAll');
+    var CartCheckboxes = document.getElementsByName('CartCheck');
+
+    for (var i = 0; i < CartCheckboxes.length; i++) {
+        CartCheckboxes[i].checked = cbx_chkAll.checked;
+    }
+}
+
+function checkIfAllChecked() {
+    var cbx_chkAll = document.getElementById('cbx_chkAll');
+    var CartCheckboxes = document.getElementsByName('CartCheck');
+    var allChecked = true;
+
+    for (var i = 0; i < CartCheckboxes.length; i++) {
+        if (!CartCheckboxes[i].checked) {
+            allChecked = false;
+            break;
+        }
+    }
+
+    cbx_chkAll.checked = allChecked;
+}
+</script>
+
+
 </body>
 </html>

@@ -2,17 +2,19 @@ package com.Voix.Controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Voix.Dto.Album;
-import com.Voix.Dto.Cart;
 import com.Voix.Service.AlbumService;
 
 @Controller
@@ -48,7 +50,17 @@ public class AlbumController {
 	}
 
 	@RequestMapping(value = "/CartPage")
-	public ModelAndView CartPage(String caalcode, int caqty, HttpSession session, RedirectAttributes ra) {
+	public ModelAndView CartPage(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String loginId = (String) session.getAttribute("loginId");
+				ArrayList<HashMap<String,String>> CartList = asvc.CartList(loginId);
+				System.out.println(CartList);
+				mav.addObject("CartList", CartList);
+				mav.setViewName("Basic/CartPage");
+		return mav;
+	}
+	@RequestMapping(value = "/InsertCartPage")
+	public ModelAndView InsertCartPage(String caalcode, int caqty, HttpSession session, RedirectAttributes ra) {
 		ModelAndView mav = new ModelAndView();
 		String loginId = (String) session.getAttribute("loginId");
 		if (loginId == null) {
@@ -63,14 +75,29 @@ public class AlbumController {
 			int insertCart = asvc.insetCart(caalcode, caqty, loginId);
 			if (insertCart > 0) {
 				System.out.println("장바구니 추가 완료");
-				ArrayList<HashMap<String,String>> CartList = asvc.CartList(loginId);
-				System.out.println(CartList);
-				mav.addObject("CartList", CartList);
+				mav.setViewName("redirect:/CartPage");
+			}else {
+				System.out.println("장바구니 추가 실패");
+				ra.addFlashAttribute("msg","항목을 장바구니에 추가하는데 실패하였습니다. 다시 시도해주세요");
+				mav.setViewName("redirect:/AlbumInfoPage");
 			}
-			// ArrayList<Cart> CartList =
-			mav.setViewName("Basic/CartPage");
 		}
 		return mav;
 	}
+	@RequestMapping(value = "/DeleteCartList", method = RequestMethod.POST)
+	public ModelAndView DeleteCartList(@RequestParam(value = "CartCheck") String[] CartCheck) {
+		ModelAndView mav = new ModelAndView();
+		
+		for(int i = 0; i < CartCheck.length; i++) {
+			System.out.println(CartCheck[i]);
+			asvc.DeleteCartList(CartCheck[i]);
+		}
+		
+		mav.setViewName("redirect:/CartPage");
+		return mav;
+	}
+	
+	
+	
 
 }

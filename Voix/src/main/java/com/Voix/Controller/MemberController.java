@@ -187,6 +187,7 @@ public class MemberController {
 			session.setAttribute("loginId", loginMember.getMid());
 			session.setAttribute("loginProfile", loginMember.getMimg());
 			session.setAttribute("loginState", loginMember.getMstate());
+			session.setAttribute("loginName", loginMember.getMname());
 
 			ra.addFlashAttribute("msg", "로그인 성공.");
 			mav.setViewName("redirect:/");
@@ -270,6 +271,16 @@ public class MemberController {
 			ra.addFlashAttribute("msg", "회원정보가 수정을 실패했습니다");
 		}
 		mav.setViewName("redirect:/MyInfoPage");
+		return mav;
+	}
+	@RequestMapping(value = "/PwUpdatePage")
+	public ModelAndView PwUpdatePage(HttpSession session) {
+		System.out.println("/PwUpdatePage 요청");
+		ModelAndView mav = new ModelAndView();
+		String loginId = (String)session.getAttribute("loginId");
+		Member memberInfo = msvc.memberInfo(loginId);
+		mav.addObject("mInfo", memberInfo);
+		mav.setViewName("/Member/PwUpdatePage");
 		return mav;
 	}
 

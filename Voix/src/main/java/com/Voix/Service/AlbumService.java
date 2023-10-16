@@ -70,5 +70,10 @@ public class AlbumService {
 		return adao.selectCartList(loginId);
 	}
 
+	public int DeleteCartList(String cacode) {
+		
+		return adao.DeleteCartList(cacode);
+	}
+
 
 }

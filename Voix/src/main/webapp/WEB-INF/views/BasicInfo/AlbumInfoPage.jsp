@@ -77,7 +77,7 @@ button {
             </div>
             <div class="card col-md-4 mb-2 " style="display: inline-block;">
                <div>
-                  <button type="submit" class="button mb-4 mt-4" onclick="formsubmit('CartPage')">장바구니 바로가기</button>
+                  <button type="submit" class="button mb-4 mt-4" onclick="formsubmit('InsertCartPage')">장바구니 바로가기</button>
                </div>
                <div>
                   <button class="submit" onclick="formsubmit('PayPage')">결제 바로가기</button>

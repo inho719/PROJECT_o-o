@@ -20,4 +20,6 @@ public interface AlbumDao {
 
 	ArrayList<HashMap<String, String>> selectCartList(String loginId);
 
+	int DeleteCartList(String cacode);
+
 }
