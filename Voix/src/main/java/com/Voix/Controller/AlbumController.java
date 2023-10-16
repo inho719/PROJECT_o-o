@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Voix.Dto.Album;
+import com.Voix.Dto.News;
 import com.Voix.Service.AlbumService;
 
 @Controller
@@ -34,15 +35,39 @@ public class AlbumController {
 	}
 
 	@RequestMapping(value = "/AlbumInfoPage")
-	public ModelAndView NewsInfoPage(String altitle) {
+	public ModelAndView AlbumInfoPage(String altitle) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Album> AlbumInfoList = asvc.getAlbumInfoList(altitle);
 		Album ALInfo = AlbumInfoList.get(0);
 		System.out.println(AlbumInfoList);
 		mav.addObject("ALInfo", ALInfo);
 		mav.addObject("AlbumInfoList", AlbumInfoList);
+		ArrayList<HashMap<String,String>> reviewList = asvc.selectReviewList(altitle);
+		mav.addObject("reviewList",reviewList);
 
 		mav.setViewName("BasicInfo/AlbumInfoPage");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/albumRegistReview")
+	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
+		String rewriter = (String)session.getAttribute("loginId");
+		int registResult = asvc.albumRegistReview(restate, recontent, rewriter);
+		ModelAndView mav = new ModelAndView();
+		ra.addFlashAttribute("msg", "댓글이 등록 되었습니다.");
+		mav.setViewName("redirect:/AlbumInfoPage?altitle="+restate);
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/albumDeleteReview")
+	public ModelAndView deleteReivew(String recode,String altitle,RedirectAttributes ra) {
+		System.out.println("리뷰 삭제 요청");
+		ModelAndView mav = new ModelAndView();
+		int Result = asvc.deleteReview(recode);
+		ra.addFlashAttribute("msg", "댓글 삭제 완료 되었습니다.");
+		mav.setViewName("redirect:/AlbumInfoPage?altitle="+altitle);
+
 		return mav;
 	}
 
@@ -71,60 +96,5 @@ public class AlbumController {
 		}
 		return mav;
 	}
-	@RequestMapping(value = "/PayPage")
-	public ModelAndView PayPage(String alcode,HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		Album alInfo = asvc.getAlbumInfo_alcode(alcode);
-		String mid = session.getAttribute("loginId").toString();
-		mav.addObject("mid",mid);
-		mav.addObject("al",alInfo);
-		mav.setViewName("Basic/PayPage");
-		return mav;
-	}
-	@RequestMapping(value="/kakaoPay_ready")
-	public @ResponseBody String kakaoPay_ready(Order odInfo,HttpSession session) {
-		System.out.println("카카오 결제 준비 요청 - / kakaoPay_ready");
-		String odcode =asvc.odcodeseting(odInfo.getOdcode());
-		odInfo.setOdcode(odcode);
-		int insertOd = asvc.insertOdInfo(odInfo);
-		String result = asvc.kakaoPay_ready(odInfo, session);
-		return result;
-	}
-	
-	@RequestMapping(value = "/kakaoPay_approval")
-	public ModelAndView kakaoPay_approval(String pg_token, HttpSession session) {
-		System.out.println("카카오 결제 승인 요청");
-		ModelAndView mav = new ModelAndView();
-		
-		System.out.println("pg_token : " + pg_token);
-		String tid = (String)session.getAttribute("tid");
-		System.out.println("tid : " + tid);
-		String odcode = (String)session.getAttribute("odcode");
-		String loginId = (String)session.getAttribute("loginId");
-		String result = asvc.kakaoPay_approval(tid, pg_token, odcode, loginId ); 
-		if( result == null) {
-		System.out.println("결제 오류");
-		asvc.cancelReserve(odcode);
-		mav.addObject("payResult", "N");
-		} else {
-		System.out.println("결제 승인");
-		
-		mav.addObject("payResult", "Y");
-		}
-		session.removeAttribute("mid");
-		session.removeAttribute("odcode");
-		mav.setViewName("/Basic/PayResult");
-		return mav;
-		}
-
-		@RequestMapping(value = "/kakaoPay_cancel")
-		public ModelAndView kakaoPay_cancel(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		String odcode = (String)session.getAttribute("odcode");
-		asvc.cancelReserve(odcode);
-		mav.addObject("payResult", "N");
-		mav.setViewName("/Basic/AlbumPage");
-		return mav;
-		}
 
 }
