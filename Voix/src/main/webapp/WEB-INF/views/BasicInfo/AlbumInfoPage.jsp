@@ -88,16 +88,37 @@ button {
       </div>
 
    </div>
-   <div>
-      <div class="borderline" style="overflow: scroll; height: 500px; width: 80%;">
-         <div>
-            댓글
-            <input value="댓글모음">
-         </div>
-         <div>댓글</div>
-         <div>댓글</div>
-      </div>
-   </div>
+    	<c:if test="${sessionScope.loginId != null }">
+			<div class="replyWrite">
+				<h3>댓글 작성 양식 - 로그인한 경우 출력</h3>
+				<form action="albumRegistReview" class="my-3" method="post">
+					<input type="text" name="restate" value="${ALInfo.altitle}" style="display: none">
+					<textarea class="w-100 reviewComment" name="recontent"></textarea>
+					<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+				</form>
+			</div>
+			<hr>
+		</c:if>
+		<div class="borderline" style="overflow: scroll; height: 500px; width: 80%;">
+			<div class="replyArea">
+				<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
+					<c:forEach items="${reviewList}" var="re">
+						<div class="meminfo">
+							<span>작성자: ${re.REWRITER} </span>
+							<div style="margin-top: 5px; margin-bottom: 5px;">
+								<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
+							</div>
+							<c:if test="${sessionScope.loginId == re.REWRITER}">
+								<button type="button" onclick="location.href='/albumDeleteReview?recode=${re.RECODE}&altitle=${ALInfo.altitle}'" class="btn btn-danger" style="font-size: 10px; margin-bottom: 4px; width: 70px; height: 30px; float: right;">댓글 삭제</button>
+							</c:if>
+							<div class="small text-muted">작성시간: ${re.REDATE}</div>
+
+						</div>
+						<hr>
+					</c:forEach>
+					</div>
+				</div> 
+	</div>
 
    <!-- Footer-->
    <footer class="py-5 bg-dark">
