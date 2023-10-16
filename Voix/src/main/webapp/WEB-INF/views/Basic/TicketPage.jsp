@@ -38,116 +38,68 @@
 		<div class="row">
 			<!-- Ticket entries-->
 			<div class="col-lg-8">
-			<div class="w-100" >
-				<div class="list-group">
-					<ul class="list-group list-group-horizontal" style="list-style: none;">
-						<li class="w-25"><a class="list-group-item">멜론</a></li>
-						<li class="w-25"><a class="list-group-item">인터파크</a></li>
-						<li class="w-25"><a class="list-group-item">예스24</a></li>
-						<li class="w-25"><a class="list-group-item">벅스</a></li>
-					</ul>
+				<div class="w-100">
+					<div class="list-group">
+						<ul class="list-group list-group-horizontal"
+							style="list-style: none;">
+							<li class="w-25"><a class="list-group-item">멜론</a></li>
+							<li class="w-25"><a class="list-group-item">인터파크</a></li>
+							<li class="w-25"><a class="list-group-item">예스24</a></li>
+							<li class="w-25"><a class="list-group-item">벅스</a></li>
+						</ul>
+					</div>
 				</div>
-			</div>
-			
-			
-			
+
 				<!-- Featured Ticket post-->
-				<div class="card mb-4">
-					<div class="TicketDiv" style="display: flex;">
-						<div class="TicketImg">
-							<a href="#티켓코드"><img class=""
-								src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="TicketContents w-100">
-							<div class="TicketTitle">
-								<h2 class="card-title m-2">티켓제목</h2>
-							</div>
-							<div class="TicketContentsWrapper">
-								<div class="TicketText p-2 d-flex"
-									style="justify-content: space-between;">
-									<p class="card-text">공연정보좌라라라라락</p>
-									<p class="card-text small">가격Price</p>
+				<c:forEach items="${TkListMap}" var="TkMap">
+					<div class="card mb-4">
+						<div class="TicketDiv" style="display: flex;">
+							<c:if test="${TkMap.TKIMG != null }">
+								<div class="TicketImg">
+									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}"><img class=""
+										src="${TkMap.TKIMG}" alt="..." /></a>
 								</div>
-							</div>
-							<div class="small text-mute m-2" style="text-align: end;">
-								<a href="찜" class=""><img alt=""
-									src="/resources/assets/heart.png"></a>
+							</c:if>
+							<c:if test="${TkMap.TKIMG == null }">
+								<div class="TicketImg">
+									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}"><img class=""
+										src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
+										alt="..." /></a>
+								</div>
+							</c:if>
+							<div class="TicketContents w-100">
+								<div class="TicketTitle">
+									<h2 class="card-title m-2">${TkMap.TKTITLE}</h2>
+								</div>
+								<div class="TicketContentsWrapper">
+									<div class="TicketText p-2 d-flex"
+										style="justify-content: space-between;">
+										<p class="card-text">${TkMap.TKINFO}</p>
+										
+										<div>
+										<p class="card-text small">${TkMap.TKDATE}</p>
+										<br>
+										<p class="card-text small">${TkMap.TKPLACE}</p>
+										<br>
+										<p class="card-text small">${TkMap.TKTIME}</p>
+										<br>
+										<p class="card-text small">${TkMap.TKARTIST}</p>
+										</div>
+									</div>
+								</div>
+								<div class="small text-mute m-2" style="text-align: end;">
+									
+									<div>
+										<a href="#" class="like_article" onclick="like('${TkMap.TKCODE}')">
+										<img alt="" src="/resources/assets/heart.png">
+										</a>
+									</div>	
+												
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="TicketDiv" style="display: flex;">
-						<div class="TicketImg">
-							<a href="#티켓코드"><img class=""
-								src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="TicketContents w-100">
-							<div class="TicketTitle">
-								<h2 class="card-title m-2">티켓제목</h2>
-							</div>
-							<div class="TicketContentsWrapper">
-								<div class="TicketText p-2 d-flex"
-									style="justify-content: space-between;">
-									<p class="card-text">공연정보좌라라라라락</p>
-									<p class="card-text small">가격Price</p>
-								</div>
-							</div>
-							<div class="small text-mute m-2" style="text-align: end;">
-								<a href="찜" class=""><img alt=""
-									src="/resources/assets/heart.png"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="TicketDiv" style="display: flex;">
-						<div class="TicketImg">
-							<a href="#티켓코드"><img class=""
-								src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="TicketContents w-100">
-							<div class="TicketTitle">
-								<h2 class="card-title m-2">티켓제목</h2>
-							</div>
-							<div class="TicketContentsWrapper">
-								<div class="TicketText p-2 d-flex"
-									style="justify-content: space-between;">
-									<p class="card-text">공연정보좌라라라라락</p>
-									<p class="card-text small">가격Price</p>
-								</div>
-							</div>
-							<div class="small text-mute m-2" style="text-align: end;">
-								<a href="찜" class=""><img alt=""
-									src="/resources/assets/heart.png"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="TicketDiv" style="display: flex;">
-						<div class="TicketImg">
-							<a href="#티켓코드"><img class=""
-								src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="TicketContents w-100">
-							<div class="TicketTitle">
-								<h2 class="card-title m-2">티켓제목</h2>
-							</div>
-							<div class="TicketContentsWrapper">
-								<div class="TicketText p-2 d-flex"
-									style="justify-content: space-between;">
-									<p class="card-text">공연정보좌라라라라락</p>
-									<p class="card-text small">가격Price</p>
-								</div>
-							</div>
-							<div class="small text-mute m-2" style="text-align: end;">
-								<a href="찜" class=""><img alt=""
-									src="/resources/assets/heart.png"></a>
-							</div>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 
 
 
@@ -168,6 +120,42 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+	<script src="/resources/js/scripts.js">
+	</script>
+	
+	<!-- if(loginId.length === 0){ -->
+	<script type="text/javascript">
+	let loginId = '${sessionScope.loginId}';
+	function like(ticketCode){
+	console.log(loginId);
+	console.log(ticketCode);
+	if(loginId.length === 0){
+		alert("로그인을 먼저 해주세요.");
+		location.href="/LoginPage";		
+	} else {
+	
+		$.ajax({
+			type : "GET",
+			url : "likeTicket",
+			data : {
+				"like" : ticketCode
+			},
+			async : false,
+			success : function(response) {
+				alert("찜하기가 되었습니다.");
+			},
+			error: function(){
+				console.error("찜하기 요청 중 오류 발생");
+				alert("이미 찜이 되어있습니다.");
+			}
+		});
+	
+	}
+}   
+   </script>
+	
+	
+	
+	
 </body>
 </html>
