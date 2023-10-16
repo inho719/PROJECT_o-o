@@ -22,8 +22,11 @@
 	
 	</insert>
 	<select id="selectCartList">
-	SELECT C.CACODE, C.CAQTY, A.ALPRICE, A.ALSALEPRICE, A.ALIMG, A.ALSITE
+	SELECT C.CACODE, C.CAQTY, A.ALPRICE, A.ALSALEPRICE, A.ALIMG, A.ALSITE, A.ALTITLE
 	FROM CARTS C INNER JOIN ALBUMS A ON C.CAALCODE = A.ALCODE
 	WHERE C.CAMID = #{loginId}
 	</select>
+	<delete id="DeleteCartList" parameterType="string">
+	DELETE FROM CARTS WHERE CACODE = #{cacode}
+	</delete>
 </mapper>
