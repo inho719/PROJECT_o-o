@@ -71,5 +71,60 @@ public class AlbumController {
 		}
 		return mav;
 	}
+	@RequestMapping(value = "/PayPage")
+	public ModelAndView PayPage(String alcode,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		Album alInfo = asvc.getAlbumInfo_alcode(alcode);
+		String mid = session.getAttribute("loginId").toString();
+		mav.addObject("mid",mid);
+		mav.addObject("al",alInfo);
+		mav.setViewName("Basic/PayPage");
+		return mav;
+	}
+	@RequestMapping(value="/kakaoPay_ready")
+	public @ResponseBody String kakaoPay_ready(Order odInfo,HttpSession session) {
+		System.out.println("카카오 결제 준비 요청 - / kakaoPay_ready");
+		String odcode =asvc.odcodeseting(odInfo.getOdcode());
+		odInfo.setOdcode(odcode);
+		int insertOd = asvc.insertOdInfo(odInfo);
+		String result = asvc.kakaoPay_ready(odInfo, session);
+		return result;
+	}
+	
+	@RequestMapping(value = "/kakaoPay_approval")
+	public ModelAndView kakaoPay_approval(String pg_token, HttpSession session) {
+		System.out.println("카카오 결제 승인 요청");
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("pg_token : " + pg_token);
+		String tid = (String)session.getAttribute("tid");
+		System.out.println("tid : " + tid);
+		String odcode = (String)session.getAttribute("odcode");
+		String loginId = (String)session.getAttribute("loginId");
+		String result = asvc.kakaoPay_approval(tid, pg_token, odcode, loginId ); 
+		if( result == null) {
+		System.out.println("결제 오류");
+		asvc.cancelReserve(odcode);
+		mav.addObject("payResult", "N");
+		} else {
+		System.out.println("결제 승인");
+		
+		mav.addObject("payResult", "Y");
+		}
+		session.removeAttribute("mid");
+		session.removeAttribute("odcode");
+		mav.setViewName("/Basic/PayResult");
+		return mav;
+		}
+
+		@RequestMapping(value = "/kakaoPay_cancel")
+		public ModelAndView kakaoPay_cancel(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String odcode = (String)session.getAttribute("odcode");
+		asvc.cancelReserve(odcode);
+		mav.addObject("payResult", "N");
+		mav.setViewName("/Basic/AlbumPage");
+		return mav;
+		}
 
 }
