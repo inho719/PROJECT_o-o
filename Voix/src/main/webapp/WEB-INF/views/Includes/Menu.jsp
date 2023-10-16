@@ -188,7 +188,7 @@ th:hover{
 			  -->
 
 		</table>
-		<div class="searchbar">
+		<div class="searchbar mb-4">
 			<input class="navbar-brand form-control2" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" />
 			<button class="btn btn-primary" id="button-search" type="button">Go!</button>
 		</div>
