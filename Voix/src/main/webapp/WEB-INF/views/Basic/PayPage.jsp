@@ -30,40 +30,41 @@
 
 		<!-- Featured blog post-->
 
-		<div class="newsTitle card col-md-12 mb-2">
-			<h3>제목</h3>
-		</div>
-
 
 		<div class="row">
 
-			<div class="col mb-4 m-2">
-				<img alt="" src="https://i3.ruliweb.com/img/20/01/26/16fe1c27a9b49956a.png" style="width: 560px; height: 315px;">
+			<div class="col-md-4 mb-4">
+				<img alt="" src="${al.alimg}" style="width: 100%; height: 315px;">
 			</div>
 
-			<div class="card col mb-4 m-2">
-				<div style="height: 315px; overflow: scroll; margin-left: 10px;">상품정보</div>
+			<div class="card col-md-8 mb-4" style="width: 65.666667% !important;">
+				<div style="height: 315px; margin-left: 10px;">
+					<p>${al.altitle}</p>
+					<p>${al.alartist}</p>
+					<p>${al.algenre}</p>
+					<p>${al.alprice}</p>
+					<p>${al.alsaleprice}</p>
+					<p>${al.aldate}</p>
+					<p>${al.alinfo}</p>
+
+				</div>
 			</div>
 		</div>
 
 
 		<div class="card col mb-8">
-		
-		 <div class="row">
-		 <div class="col-md-8 m-2">
-			<input type="text" placeholder="주소" style="width: 760px;">
-		 </div>
-				<div class="col-md-2 m-2">
-					<button>주소찾기</button>
-				</div>
+
+
+			<div class="m-2">
+				<input placeholder="주소" class="formInput" type="text" id="Address" name="Address" style="width: 80%;">
+				<button type="button" class="mb-2" onclick="PostCode()">주소찾기</button>
 			</div>
-			
-			<input type="text" placeholder="상세주소" class="m-2"> 
-			<input type="text" placeholder="요청사항" class="m-2"> 
-			<input type="text" placeholder="받는사람" class="m-2">
+			<input placeholder="상세주소" class="formInput m-2" type="text" id="DetailAddress" name="DetailAddress" style="width: 80%;">
+			<input type="text" placeholder="받는사람" class="m-2" value="${mid}" style="width: 80%;">
+
 		</div>
 
-		<button style="align-items: center;">결제하기</button>
+		<button type="button" style="align-items: center;" onclick="goPay()">결제하기</button>
 
 	</div>
 
@@ -80,8 +81,108 @@
 
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+	<script>
+		function PostCode() {
+			document.getElementById("Address").value = "";
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var addr = ''; // 주소 변수
+							var extraAddr = ''; // 참고항목 변수
+
+							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								addr = data.roadAddress;
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								addr = data.jibunAddress;
+							}
+
+							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+							if (data.userSelectedType === 'R') {
+								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+								if (data.bname !== ''
+										&& /[동|로|가]$/g.test(data.bname)) {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있고, 공동주택일 경우 추가한다.
+								if (data.buildingName !== ''
+										&& data.apartment === 'Y') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+								if (extraAddr !== '') {
+									extraAddr = ' (' + extraAddr + ')';
+								}
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+
+							document.getElementById("Address").value = addr;
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById("DetailAddress").focus();
+						}
+					}).open();
+		}
+	</script>
+
+	<script type="text/javascript">
+		let popUpName = null;
+		let addr = document.getElementById("Address");
+		let dadr = document.getElementById("DetailAddress");
+		let alcode = '${al.alcode}';
+		let alqty = '1';
+		let alprice = ${al.alprice};
+		let odmid = '${sessionScope.loginId}';
+		function goPay() {
+			console.log(addr.value);
+			if (odmid.length == 0) {
+				alert('로그인 후 이용 가능합니다.');
+				location.href = "LoginPage";
+			}
+			if (addr.value.length == 0) {
+				alert('주소를 입력하시오');
+				addr.focus();
+			}
+			if (dadr.value.length == 0) {
+				alert('상세주소를 입력하시오');
+				dadr.focus();
+			} else if(odmid.length != 0 && addr.value.length != 0&& dadr.value.length != 0 ){
+				kakaoPay_ready();
+			}
+		}
+		function kakaoPay_ready() {
+			console.log('카카오 페이 결제준비');
+			$.ajax({
+				type : "post",
+				url : "kakaoPay_ready",
+				data : {
+					'odmid' : odmid,
+					'odalcode' : alcode,
+					'odqty' : alqty,
+					'odprice' : alprice,
+					'odaddr' : addr.value + " " + dadr.value
+				},
+				async : false,
+				success : function(result) {
+					console.log(result);
+					popUpName = window.open(result, "pay",
+							"width=400,height=600");
+				}
+
+			})
+		}
+	</script>
 
 </body>
 
