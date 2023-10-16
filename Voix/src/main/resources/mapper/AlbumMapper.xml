@@ -26,4 +26,18 @@
 	FROM CARTS C INNER JOIN ALBUMS A ON C.CAALCODE = A.ALCODE
 	WHERE C.CAMID = #{loginId}
 	</select>
+	<select id="getAlbumInfo_alcode">
+	SELECT * FROM ALBUMS WHERE ALCODE = #{alcode}
+	</select>
+	<select id="getmaxOdcode">
+	SELECT NVL( MAX(ODCODE), 'O0000' ) FROM ORDERS
+	</select>
+	<insert id="insertOdInfo">
+	INSERT INTO ORDERS(ODCODE, ODMID, ODALCODE, ODQTY, ODPRICE, ODDATE, ODADDR)
+	VALUES (#{odcode},#{odmid},#{odalcode},#{odqty},#{odprice},SYSDATE,#{odaddr})
+	</insert>
+	
+	<delete id="deleteReserve">
+		DELETE FROM ODERS WHERE ODCODE = #{odcode}
+	</delete>
 </mapper>
