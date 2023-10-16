@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- Side widgets-->
-<div class="col-lg-4">
+<div class="col-lg-3">
 
 	<c:choose>
 		<c:when test="${sessionScope.loginId == null }">
