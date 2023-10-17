@@ -5,7 +5,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <!-- Side widgets-->
-<div class="col-lg-4">
+<div class="col-lg-3">
 
 	<c:choose>
 		<c:when test="${sessionScope.loginId == null }">
