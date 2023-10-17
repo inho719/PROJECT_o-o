@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <link href="resources/css/styles.css" rel="stylesheet" />
+		<c:if test ="${msg != null }">
+ 			<script type="text/javascript">
+    			alert('${msg}');
+   			</script>
+		</c:if>
 <style>
 .homePageLink {
 	font-size: 16px;
@@ -51,6 +56,7 @@
 	border-left: 4px solid #e8ec74;
 	border-top: 4px solid #e8ec74;
 	border-right: 4px solid #e8ec74;
+	background: #484848;
 }
 
 .navbar-brand.unclicked {
@@ -116,6 +122,11 @@ th {
 	cursor: pointer;
 	font-size: 80px;
 }
+th:hover{
+	background: #484848;
+    border-top: 5px solid yellow;
+}
+
 </style>
 
 <!-- white-space: nowrap; -->
@@ -177,7 +188,7 @@ th {
 			  -->
 
 		</table>
-		<div class="searchbar">
+		<div class="searchbar mb-4">
 			<input class="navbar-brand form-control2" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" />
 			<button class="btn btn-primary" id="button-search" type="button">Go!</button>
 		</div>

@@ -1,7 +1,9 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <!-- Side widgets-->
 <div class="col-lg-4">
 
@@ -75,10 +77,11 @@
 
 								<div class="card-body d-flex">
 									<div class="card-img">
+										<div class="player" id="player"></div>
 										<img alt="" class="me-5" style="width: 35%;"
 											src="${pageContext.request.contextPath }/resources/users/album/앨범표지.jpg">
-										<a href="재생" class="me-3"> <i class="bi bi-play-circle"
-											style="font-size: 35px;"></i></a> <a href="찜"> <i
+										<i onclick="playVideo()" class="bi bi-play-circle me-3"
+											style="font-size: 35px;"></i> <a href="찜"> <i
 											class="bi bi-arrow-through-heart-fill"
 											style="font-size: 35px;"></i>
 										</a>
@@ -95,11 +98,12 @@
 
 											<div class="card-body d-flex">
 												<div class="card-img">
+													<div id="player"></div>
 													<img alt="" class="me-5" style="width: 35%;"
 														src="${pageContext.request.contextPath }/resources/users/album/${pl.sgimg }">
-													<a href="재생" class="me-3"> <i class="bi bi-play-circle"
-														style="font-size: 35px;"></i></a> <a href="찜"> <i
-														class="bi bi-arrow-through-heart-fill"
+													<a href="" class="me-3" id="playbtn"> <i
+														class="bi bi-play-circle" style="font-size: 35px;"></i></a> <a
+														href="찜"> <i class="bi bi-arrow-through-heart-fill"
 														style="font-size: 35px;"></i>
 													</a>
 												</div>
@@ -115,11 +119,12 @@
 										<c:forEach var="pl" items="${sessionScope.playlist}" end="1">
 											<div class="card-body d-flex">
 												<div class="card-img">
+													<div id="player"></div>
 													<img alt="" class="me-5" style="width: 35%;"
 														src="${pageContext.request.contextPath }/resources/users/album/${pl.sgimg }">
-													<a href="재생" class="me-3"> <i class="bi bi-play-circle"
-														style="font-size: 35px;"></i></a> <a href="찜"> <i
-														class="bi bi-arrow-through-heart-fill"
+													<a href="" class="me-3" id="playbtn"> <i
+														class="bi bi-play-circle" style="font-size: 35px;"></i></a> <a
+														href="찜"> <i class="bi bi-arrow-through-heart-fill"
 														style="font-size: 35px;"></i>
 													</a>
 												</div>
@@ -165,7 +170,6 @@
 					</div>
 				</c:when>
 
-
 			</c:choose>
 
 
@@ -174,5 +178,50 @@
 	</c:choose>
 
 </div>
+
+<script>
+	// 2. This code loads the IFrame Player API code asynchronously.
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player = document.querySelector("#playlist > div.card-body.d-flex > div > div");
+
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			videoId : 'gfk3QLU1x0E',
+			playerVars : {
+				'controls' : 0
+			},
+			events : {
+				'onReady' : onPlayerReady,
+				'onStateChange' : onPlayerStateChange,
+				'onError' : onPlayerError
+			}
+		});
+		$('iframe').addClass('d-none');
+	}
+
+	function onPlayerReady(event) {
+		event.target.setVolume(100);
+	}
+
+	function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.ENDED) {
+			// 동영상이 종료되면 필요한 작업을 수행할 수 있습니다.
+		}
+	}
+
+	function onPlayerError(event) {
+		// 동영상 재생 중에 오류가 발생한 경우 처리할 수 있습니다.
+	}
+
+	function playVideo() {
+		if (player) {
+			player.playVideo();
+		}
+	}
+</script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">

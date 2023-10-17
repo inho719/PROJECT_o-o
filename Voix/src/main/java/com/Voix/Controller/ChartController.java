@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Voix.Dto.Chart;
 import com.Voix.Dto.playL;
 import com.Voix.Service.ChartService;
 
@@ -33,8 +34,11 @@ public class ChartController {
 	}
 	
 	@RequestMapping(value ="/ChartInfoPage")
-	public ModelAndView ChartInfoPage() {
+	public ModelAndView ChartInfoPage(String sgcode) {
 		ModelAndView mav = new ModelAndView();
+		ArrayList<Chart> ChartInfoList = csvc.getChartInfoList(sgcode);
+		System.out.println(ChartInfoList);
+		mav.addObject("ChartInfoList", ChartInfoList);
 		mav.setViewName("BasicInfo/ChartInfoPage");
 		return mav;
 	}

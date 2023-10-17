@@ -1,6 +1,10 @@
 package com.Voix.Controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.URLEncoder;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -187,6 +191,7 @@ public class MemberController {
 			session.setAttribute("loginId", loginMember.getMid());
 			session.setAttribute("loginProfile", loginMember.getMimg());
 			session.setAttribute("loginState", loginMember.getMstate());
+			session.setAttribute("loginName", loginMember.getMname());
 
 			ra.addFlashAttribute("msg", "로그인 성공.");
 			mav.setViewName("redirect:/");
@@ -201,7 +206,7 @@ public class MemberController {
 		System.out.println("카카오 로그인 요청");
 		System.out.println("카카오 id: " + id);
 		// Member, MemberService, MemberDao
-		Member loginMember = msvc.getLoginMemberInfo_kakao(id);
+		Member loginMember = msvc.getLoginMemberInfo(id);
 		if (loginMember == null) {
 			System.out.println("카카오 계정 정보 없음");
 			return "N";
@@ -277,11 +282,57 @@ public class MemberController {
 	public ModelAndView PwUpdatePage(HttpSession session) {
 		System.out.println("/PwUpdatePage 요청");
 		ModelAndView mav = new ModelAndView();
-		String loginId = (String)session.getAttribute("loginId");
+		String loginId = (String) session.getAttribute("loginId");
 		Member memberInfo = msvc.memberInfo(loginId);
 		mav.addObject("mInfo", memberInfo);
 		mav.setViewName("/Member/PwUpdatePage");
 		return mav;
+	}
+	Member mem = null;
+	@RequestMapping(value = "/naverResult")
+	public ModelAndView naverResult(String code, String state, HttpSession session) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		String getToken = msvc.getToken(code, state);
+		System.out.println("getToken : " + getToken);
+		Member navergetInfo = msvc.memberlogin_naver(getToken);
+		Member loginInfo = null;
+		try {
+			loginInfo = msvc.getLoginMemberInfo(navergetInfo.getMid());
+		} catch (Exception e) {
+		}
+
+		if (loginInfo != null) {
+			session.setAttribute("loginId", navergetInfo.getMid());
+			session.setAttribute("loginProfile", navergetInfo.getMimg());
+			session.setAttribute("loginState", navergetInfo.getMstate());
+			session.setAttribute("loginName", navergetInfo.getMname());
+		} else {
+			mem = navergetInfo;
+		}
+		mav.addObject("N", loginInfo);
+		mav.setViewName("/Member/naverLoginResult");
+		return mav;
+	}
+	
+	@RequestMapping(value="/memberJoin_naver")
+	public @ResponseBody int memberJoin_naver() {
+		System.out.println(mem);
+		int insertResult = msvc.insertNaverLogin(mem);
+		return insertResult;
+	}
+
+	@RequestMapping(value = "/naverPopup")
+	public String naverPopup() throws UnsupportedEncodingException {
+		String clientId = "uqIAhwBYmZxJrA3aR_ze";// 애플리케이션 클라이언트 아이디값";
+		String redirectURI = URLEncoder.encode("http://localhost:8080/naverResult", "UTF-8");
+		SecureRandom random = new SecureRandom();
+		String state = new BigInteger(130, random).toString();
+		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+		apiURL += "&client_id=" + clientId;
+		apiURL += "&redirect_uri=" + redirectURI;
+		apiURL += "&state=" + state;
+
+		return "redirect:" + apiURL;
 	}
 
 }

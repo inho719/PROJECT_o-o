@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.Voix.Dto.Album;
 import com.Voix.Dto.Cart;
+import com.Voix.Dto.Order;
 
 public interface AlbumDao {
 
@@ -13,5 +14,19 @@ public interface AlbumDao {
 	ArrayList<Album> selectAlbumInfo_map(String altitle);
 
 	ArrayList<Cart> insertCart_map(String caalcode, String loginId);
+
+	String selectMaxCaCode();
+
+	int insertCart(Cart crt);
+
+	ArrayList<HashMap<String, String>> selectCartList(String loginId);
+	
+	Album getAlbumInfo_alcode(String caalcode);
+
+	int insertOdInfo(Order odInfo);
+
+	String getmaxOdcode(String odcode);
+
+	int deleteReserve(String odcode);
 
 }

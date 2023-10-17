@@ -75,4 +75,9 @@
 	<update id="updateMemberInfo">
 		UPDATE MEMBERS SET MNAME = #{mname}, MADDR = #{maddr}, MEMAIL = #{memail}, MIMG = #{mimg} WHERE MID = #{mid}
 	</update>
+	
+	<insert id="insertNaverLogin">
+		INSERT INTO MEMBERS
+		VALUES(#{mid}, '1111' , #{mname}, '', #{memail}, #{mimg}, 'YN')
+	</insert>
 </mapper>

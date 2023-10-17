@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service;
 import com.Voix.Dao.TicketDao;
 import com.Voix.Dto.Ticket;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @Service
@@ -68,14 +66,46 @@ public class TicketService {
 		String result = gson.toJson(xyjson);
 		return result;
 	}
-		public ArrayList<Ticket> getTkTitle(String tkplace) {
+
+	public String genCode(String currentCode) {
+		System.out.println("genCode()호출: " + currentCode);
+		String strCode = currentCode.substring(0,2);
+		int numCode = Integer.parseInt(currentCode.substring(2));
+		
+		
+		String newCode = strCode + String.format("%04d", numCode+1);
+		System.out.println(newCode);
+		return newCode;
+	}
+
+
+	public int registReview(String restate, String recontent, String rewriter) {
+		System.out.println("service - registReview()");
+		String maxRvCode = tdao.selectMaxReCode();
+		String recode = genCode(maxRvCode);
+		int registReview = tdao.registReview(recode, restate, recontent, rewriter);
+		System.out.println(registReview);
+		return registReview;
+	}
+
+	public ArrayList<HashMap<String, String>> selectReviewList(String tkcode) {
+		System.out.println("selectReivewList  호출");
+		ArrayList<HashMap<String, String>> Resultre = tdao.selectReviewList(tkcode);
+		return Resultre;
+	}
+
+	public int deleteReview(String recode) {
+		System.out.println("SERVEICE - deleteReview 호출");
+		return tdao.deleteReview(recode);
+	}
+	public ArrayList<Ticket> getTkTitle(String tkplace) {
 		System.out.println("SERVICE getTkTitle");
 		System.out.println(tkplace);
 		ArrayList<Ticket> result = null;
 		try {
 			result = tdao.getTkTitle(tkplace);			
 		} catch (Exception e) {
-			
+
 		}
 		System.out.println(result);
 		return result;

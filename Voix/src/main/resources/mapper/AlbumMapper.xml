@@ -14,4 +14,30 @@
 	SELECT ALCODE, ALIMG, ALTITLE, ALPRICE, ALSALEPRICE, ALARTIST, TO_CHAR(ALDATE,'YYYY-MM-DD') AS ALDATE, ALINFO, ALGENRE, ALSCORE, ALLIST, ALSITE
 	 FROM ALBUMS WHERE ALTITLE = #{altitle} ORDER BY ALDATE DESC
 	</select>
+	<select id="selectMaxCaCode">
+	SELECT NVL(MAX(CACODE), 'C0000') FROM CARTS
+	</select>
+	<insert id="insertCart">
+	INSERT INTO CARTS VALUES(#{cacode},#{camid},#{caalcode},#{caqty})
+	
+	</insert>
+	<select id="selectCartList">
+	SELECT C.CACODE, C.CAQTY, A.ALPRICE, A.ALSALEPRICE, A.ALIMG, A.ALSITE
+	FROM CARTS C INNER JOIN ALBUMS A ON C.CAALCODE = A.ALCODE
+	WHERE C.CAMID = #{loginId}
+	</select>
+	<select id="getAlbumInfo_alcode">
+	SELECT * FROM ALBUMS WHERE ALCODE = #{alcode}
+	</select>
+	<select id="getmaxOdcode">
+	SELECT NVL( MAX(ODCODE), 'O0000' ) FROM ORDERS
+	</select>
+	<insert id="insertOdInfo">
+	INSERT INTO ORDERS(ODCODE, ODMID, ODALCODE, ODQTY, ODPRICE, ODDATE, ODADDR)
+	VALUES (#{odcode},#{odmid},#{odalcode},#{odqty},#{odprice},SYSDATE,#{odaddr})
+	</insert>
+	
+	<delete id="deleteReserve">
+		DELETE FROM ODERS WHERE ODCODE = #{odcode}
+	</delete>
 </mapper>

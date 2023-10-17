@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -46,7 +47,6 @@ public class NewsController {
 		
 		
 	}
-	
 	@RequestMapping(value = "/newsRegistReview")
 	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
 		String rewriter = (String)session.getAttribute("loginId");
@@ -67,5 +67,14 @@ public class NewsController {
 		mav.setViewName("redirect:/NewsInfoPage?nwcode="+nwcode);
 	
 		return mav;
+	}
+	@RequestMapping(value="/likeNews")
+	public @ResponseBody int likeNews(String like, HttpSession session) {
+		System.out.println("뉴스 찜 기능");
+		String mid = session.getAttribute("loginId").toString();
+		System.out.println("뉴스- 아이디 확인:"+mid);
+		System.out.println("뉴스-   찜 확인:"+like);
+		
+	return nsvc.likeNews(like,mid);
 	}
 }
