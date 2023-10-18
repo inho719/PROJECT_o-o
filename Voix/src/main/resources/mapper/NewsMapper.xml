@@ -32,4 +32,12 @@
    		INSERT INTO LIKES (LIMID, LILIST)
     	VALUES (#{mid}, #{like})
 	</insert>
+
+	<select id="selectSearch_Title">
+	SELECT * FROM NEWS WHERE NWTITLE like '%${nwtitle}%'
+	</select>
+	
+	<select id="selectSearch_Content">
+	SELECT * FROM NEWS WHERE NWCONTENT like '%${nwcontent}%'
+	</select>
 </mapper>
