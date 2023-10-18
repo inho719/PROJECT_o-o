@@ -28,24 +28,29 @@ table, tr, td {
 	<div class="container">
 		<div class="newTitle card col-md-12 mb-2">
 		</div>
-			<input type="checkbox" id="cbx_chkAll" onchange="toggleAllCheckboxes()"/>모두선택
+			<input type="checkbox" style="width: 20px;
+    height: 20px;
+    "id="cbx_chkAll" onchange="toggleAllCheckboxes()" />모두선택
 	<form action="DeleteCartList" method="post">
 		<c:forEach items="${CartList}" var="CartList" varStatus="loop">
 			<div class="card m-2 CartList" id="CartList${loop.index}" data-caqty="${CartList.CAQTY}" data-alsaleprice="${CartList.ALSALEPRICE}" data-alcode="${CartList.CAALCODE }"data-cacode="${CartList.CACODE}">
 				<div class="row">
-					<div class="col-md-1 m-1">
-						<input type="checkbox"  name="CartCheck" id="cartCheck${loop.index}" onchange="updateTotalPrice()" value="${CartList.CACODE}">
+					<div class="col-md-1 m-1 align-self-center text-center">
+						<input type="checkbox" style="width: 20px;height: 20px;" name="CartCheck" id="cartCheck${loop.index}" onchange="updateTotalPrice()" value="${CartList.CACODE}">
 					</div>
 					<div class="col-md-10 m-2">
-						<table>
+						<table class="border">
 							<tr>
-								<td rowspan="2" style="width: 10%"><img alt="앨범포스터" src="${CartList.ALIMG}" style="width: 100%;" class="card-img-top"></td>
-								<td>${CartList.ALTITLE }</td>
-								<td>${CartList.ALPRICE }</td>
-								<td id="caqty" rowspan="2">${CartList.CAQTY}</td>
+								<td rowspan="2" style="width: 150px;height:150px;">
+								<img alt="앨범포스터" src="${CartList.ALIMG}" 
+								style="width: 100%;height: 100%;object-fit: cover;" class="card-img-top">
+								</td>
+								<td class="w-50"><h3>${CartList.ALTITLE }</h3></td>
+								<td><h5>가격 : ${CartList.ALPRICE }원</h5></td>
+								<td id="caqty" rowspan="2"><h5>${CartList.CAQTY}개</h5></td>
 							</tr>
 							<tr>
-								<td><c:if test="${CartList.ALSITE == 'Y'}">
+								<td><h5><c:if test="${CartList.ALSITE == 'Y'}">
 							예스24
 							</c:if> <c:if test="${CartList.ALSITE == 'K'}">
 							교보문고
@@ -53,8 +58,8 @@ table, tr, td {
 							알라딘
 							</c:if> <c:if test="${CartList.ALSITE == 'I'}">
 							인터파크
-							</c:if></td>
-								<td>${CartList.ALSALEPRICE}</td>
+							</c:if></h5></td>
+								<td><h5>세일가 : ${CartList.ALSALEPRICE}원</h5></td>
 							</tr>
 						</table>
 					</div>
@@ -64,13 +69,12 @@ table, tr, td {
 
 		<div class="card m-2">
 			<div class="row" style="justify-content: center; align-items: center;">
-				<div class="card col-md-4 m-2" id="CheckNum"></div>
-				<div class="card col-md-4 m-2" id="AllPrice"></div>
-				<div class="card col-md-2 m-2">
-					<button >선택 항목 삭제</button>
-				</div>
-				<div class="card col-md-2 m-2">
-					<button type="button" style="align-items: center;" onclick="PayList()">결제하기</button>
+				<div class="col-md-4 m-2" id="CheckNum"style="font-size:25px;font-weight:bold;"></div>
+				<div class="col-md-4 m-2" id="AllPrice"style="font-size:25px;font-weight:bold;"></div>
+				
+				<div class="col-md-2 m-3">
+					<button class="btn btn-outline-danger mb-2 w-100">선택 항목 삭제</button>
+					<button type="button" class="btn btn-outline-danger w-100" onclick="PayList()">결제하기</button>
 				</div>
 			</div>
 		</div>
