@@ -40,4 +40,11 @@
 	<delete id="deleteReserve">
 		DELETE FROM ODERS WHERE ODCODE = #{odcode}
 	</delete>
+	<select id="selectSearch_Title">
+		SELECT * FROM ALBUMS WHERE ALTITLE like '%${altitle}%'
+	</select>
+	
+	<select id="selectSearch_Content">
+		SELECT * FROM ALBUMS WHERE ALARTITST like '%${alartist}%'
+	</select>
 </mapper>
