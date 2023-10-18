@@ -40,7 +40,7 @@
 		<div class="row">
 
 			<div class="newsTitle card col-md-12 mb-2">
-				<h3>뉴스제목</h3>
+				<h3>${nw.nwtitle}</h3>
 			</div>
 			<div class="card col-md-12 mb-2">
 				<div class="row">
