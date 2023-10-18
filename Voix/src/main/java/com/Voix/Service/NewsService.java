@@ -52,4 +52,21 @@ public class NewsService {
 		System.out.println("SERVICE- 뉴스 찜");
 		return ndao.likeNews(like,mid);
 	}
+	public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword) {
+		ArrayList<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> titleList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
+			try {
+				titleList = ndao.selectSearch_Title(searchKeyword);				
+			} catch (Exception e) {
+			}
+			System.out.println(titleList);
+			try {
+				contentList = ndao.selectSearch_Content(searchKeyword);				
+			} catch (Exception e) {
+			}
+			searchList.addAll(titleList);
+			searchList.addAll(contentList);
+		return searchList;
+	}
 }
