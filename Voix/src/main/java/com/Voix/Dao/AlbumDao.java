@@ -20,12 +20,14 @@ public interface AlbumDao {
 	int insertCart(Cart crt);
 
 	ArrayList<HashMap<String, String>> selectCartList(String loginId);
-	
-	Album getAlbumInfo_alcode(String caalcode);
 
+	int DeleteCartList(String cacode);
+
+	Album getAlbumInfo_alcode(String alcode);
+	
 	int insertOdInfo(Order odInfo);
 
-	String getmaxOdcode(String odcode);
+	String getmaxOdcode();
 
 	int deleteReserve(String odcode);
 	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
