@@ -77,4 +77,12 @@ public class NewsController {
 		
 	return nsvc.likeNews(like,mid);
 	}
+	@RequestMapping(value = "/NewsHitList")
+	public  @ResponseBody String NewsHitList() {
+		System.out.println("사이드바 조회수 목록 출력");
+		ModelAndView mav = new ModelAndView();
+		ArrayList<HashMap<String,String>> NewsHitList = nsvc.selectNewsHitList();
+		
+		return new Gson().toJson(NewsHitList);
+	}
 }
