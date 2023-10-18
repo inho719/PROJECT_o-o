@@ -27,4 +27,6 @@ public interface NewsDao {
 
 	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
 
+	ArrayList<HashMap<String, String>> selectNewsHitList();
+
 }
