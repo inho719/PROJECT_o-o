@@ -22,10 +22,13 @@
 	
 	</insert>
 	<select id="selectCartList">
-	SELECT C.CACODE, C.CAQTY, A.ALPRICE, A.ALSALEPRICE, A.ALIMG, A.ALSITE
+	SELECT C.CACODE, C.CAQTY,C.CAALCODE, A.ALPRICE, A.ALSALEPRICE, A.ALIMG, A.ALSITE, A.ALTITLE
 	FROM CARTS C INNER JOIN ALBUMS A ON C.CAALCODE = A.ALCODE
 	WHERE C.CAMID = #{loginId}
 	</select>
+	<delete id="DeleteCartList" parameterType="string">
+	DELETE FROM CARTS WHERE CACODE = #{cacode}
+	</delete>
 	<select id="getAlbumInfo_alcode">
 	SELECT * FROM ALBUMS WHERE ALCODE = #{alcode}
 	</select>
@@ -38,12 +41,12 @@
 	</insert>
 	
 	<delete id="deleteReserve">
-		DELETE FROM ODERS WHERE ODCODE = #{odcode}
+		DELETE FROM ORDERS WHERE ODCODE = #{odcode}
 	</delete>
 	<select id="selectSearch_Title">
 		SELECT * FROM ALBUMS WHERE ALTITLE like '%${altitle}%'
 	</select>
-	
+
 	<select id="selectSearch_Content">
 		SELECT * FROM ALBUMS WHERE ALARTITST like '%${alartist}%'
 	</select>
