@@ -23,4 +23,8 @@ public interface NewsDao {
 
 	int likeNews(@Param("like")String like,@Param("mid")String mid);
 
+	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
+
+	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
+
 }
