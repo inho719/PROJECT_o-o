@@ -69,4 +69,8 @@ public class NewsService {
 			searchList.addAll(contentList);
 		return searchList;
 	}
+	public ArrayList<HashMap<String, String>> selectNewsHitList() {
+		System.out.println("조회수 목록 조회");
+		return ndao.selectNewsHitList();
+	}
 }
