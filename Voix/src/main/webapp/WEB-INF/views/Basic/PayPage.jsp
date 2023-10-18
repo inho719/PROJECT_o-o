@@ -30,10 +30,13 @@
 
 		<!-- Featured blog post-->
 
-
+	<c:forEach items="${alList }" var="al">
 		<div class="row">
 
 			<div class="col-md-4 mb-4">
+				<input id="alList1" type="hidden" value="${al.alcode }">
+				<input type="hidden" value="${al.alqty}">
+				<span class="d-none alcode_qty_price">${al.alcode }_${al.alqty}_${al.alsaleprice}</span>
 				<img alt="" src="${al.alimg}" style="width: 100%; height: 315px;">
 			</div>
 
@@ -46,11 +49,14 @@
 					<p>${al.alsaleprice}</p>
 					<p>${al.aldate}</p>
 					<p>${al.alinfo}</p>
+				<!-- 
+				 <p>${al.alqty}</p>
+				 -->	
 
 				</div>
 			</div>
 		</div>
-
+	</c:forEach>
 
 		<div class="card col mb-8">
 
@@ -63,7 +69,7 @@
 			<input type="text" placeholder="받는사람" class="m-2" value="${mid}" style="width: 80%;">
 
 		</div>
-
+		
 		<button type="button" style="align-items: center;" onclick="goPay()">결제하기</button>
 
 	</div>
@@ -137,12 +143,16 @@
 	</script>
 
 	<script type="text/javascript">
+	
+		
+		let alqtys = [];
+	
 		let popUpName = null;
 		let addr = document.getElementById("Address");
 		let dadr = document.getElementById("DetailAddress");
-		let alcode = '${al.alcode}';
-		let alqty = '1';
-		let alprice = ${al.alprice};
+	//	let alcode = '${alcode}';	
+	//	let alqty = '1';
+	//	let alprice = ${alsaleprice};
 		let odmid = '${sessionScope.loginId}';
 		function goPay() {
 			console.log(addr.value);
@@ -161,17 +171,28 @@
 				kakaoPay_ready();
 			}
 		}
+			
+		
 		function kakaoPay_ready() {
 			console.log('카카오 페이 결제준비');
+			let cartList = [];
+			let payInfoList = document.querySelectorAll(".alcode_qty_price");
+			for(let info of payInfoList){
+				let od_alcode = info.innerText.split("_")[0];
+				let od_qty = info.innerText.split("_")[1];
+				let od_price = info.innerText.split("_")[2];
+				let odDto_Json = { "odalcode" : od_alcode, "odqty" : od_qty, "odprice" :od_price };
+				cartList.push(odDto_Json);
+			}
+			console.log(cartList);
+			
 			$.ajax({
 				type : "post",
 				url : "kakaoPay_ready",
 				data : {
 					'odmid' : odmid,
-					'odalcode' : alcode,
-					'odqty' : alqty,
-					'odprice' : alprice,
-					'odaddr' : addr.value + " " + dadr.value
+					'odaddr' : addr.value + " " + dadr.value,
+					'orList' : JSON.stringify(cartList)
 				},
 				async : false,
 				success : function(result) {
@@ -181,6 +202,7 @@
 				}
 
 			})
+			
 		}
 	</script>
 
