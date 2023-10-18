@@ -2,11 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <link href="resources/css/styles.css" rel="stylesheet" />
-		<c:if test ="${msg != null }">
- 			<script type="text/javascript">
+<c:if test="${msg != null }">
+	<script type="text/javascript">
     			alert('${msg}');
    			</script>
-		</c:if>
+</c:if>
 <style>
 .homePageLink {
 	font-size: 16px;
@@ -122,11 +122,11 @@ th {
 	cursor: pointer;
 	font-size: 80px;
 }
-th:hover{
-	background: #484848;
-    border-top: 5px solid yellow;
-}
 
+th:hover {
+	background: #484848;
+	border-top: 5px solid yellow;
+}
 </style>
 
 <!-- white-space: nowrap; -->
@@ -189,8 +189,11 @@ th:hover{
 
 		</table>
 		<div class="searchbar mb-4">
-			<input class="navbar-brand form-control2" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" />
-			<button class="btn btn-primary" id="button-search" type="button">Go!</button>
+			<form action="/getSearch">
+				<input type="hidden" id="pageType" name="pageType" value=""> 
+				<input class="navbar-brand form-control2" id="searchKeyword" name="searchKeyword" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" />
+				<button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+			</form>
 		</div>
 
 		<!--  
@@ -206,7 +209,7 @@ th:hover{
 
 
 
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<script type="text/javascript">
     const clickImg = document.getElementById("clickImg");
     const colorChange = document.querySelectorAll(".navbar-brand");
@@ -262,8 +265,15 @@ th:hover{
     });
 </script>
 
+	<script type="text/javascript">
+		let currentURL = window.location.href;
+		let currentPath = currentURL.split("/")[3];
+		pageId = document.querySelector('#pageType');
+		pageId.value = currentPath;		
+		console.log(pageId.value);
 
 
+</script>
 
 
 
