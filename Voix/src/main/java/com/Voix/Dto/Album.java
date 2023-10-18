@@ -16,4 +16,5 @@ public class Album {
 	private String alscore;
 	private String allist;
 	private String alsite;
+	int alqty;
 }
