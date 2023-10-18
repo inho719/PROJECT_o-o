@@ -36,7 +36,15 @@ public class AlbumService {
 		
 		return adao.selectAlbumInfo_map(altitle);
 	}
-	
+	public Album getAlbumInfo_alcode(String alcode) {
+		System.out.println("SERVICE getAlbumInfo_alcode");
+		return adao.getAlbumInfo_alcode(alcode);
+	}
+	public int insertOdInfo(Order odInfo) {
+		System.out.println("SERVICE insertOdinfo");
+		int insertOd = adao.insertOdInfo(odInfo);
+		return insertOd;
+	}
 	public String genCode(String currentCode) {
 		System.out.println("Album - genCode() 호출: " + currentCode);
 		// ㄴcurrentCode = MV00000 가 들어오면 MV00001로 바꿔줄거임 (영문, 숫자 분리할거임)
@@ -81,6 +89,10 @@ public class AlbumService {
 		return adao.selectCartList(loginId);
 	}
 
+	public int DeleteCartList(String cacode) {
+		
+		return adao.DeleteCartList(cacode);
+	}
 	public String kakaoPay_ready(Order odInfo, HttpSession session) {
 		System.out.println("service kakaoPay_ready()");
 		System.out.println(odInfo);
@@ -180,21 +192,12 @@ public class AlbumService {
 		
 	}
 
-	public String odcodeseting(String odcode) {
-		String MaxOdcode = adao.getmaxOdcode(odcode);
+	public String odcodeseting() {
+		String MaxOdcode = adao.getmaxOdcode();
 		String addodcode = genCode(MaxOdcode);
 		return addodcode;
 	}
-
-	public int insertOdInfo(Order odInfo) {
-		return adao.insertOdInfo(odInfo);
-	}
-
-	public Album getAlbumInfo_alcode(String caalcode) {
-		return adao.getAlbumInfo_alcode(caalcode);
-	}
-
-public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword) {
+	public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword) {
 		ArrayList<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
 		ArrayList<HashMap<String, String>> titleList = new ArrayList<HashMap<String, String>>();
 		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
@@ -211,4 +214,7 @@ public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword) {
 			searchList.addAll(contentList);
 		return searchList;
 	} 
+	
+
+
 }
