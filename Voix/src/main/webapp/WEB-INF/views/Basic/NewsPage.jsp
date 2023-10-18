@@ -28,6 +28,16 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
+.news-hit-item {
+    white-space: nowrap; /* 줄 바꿈 방지 */
+    overflow: hidden; /* 내용 숨기기 */
+    text-overflow: ellipsis; /* 긴 내용에 대한 생략 부호 (...) */
+    margin-bottom: 5px; /* 아래 여백 추가 (선택적) */
+}
+.news-hit-item a {
+    color: black; /* 링크 텍스트 색상을 검은색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
 
 </style>
 
