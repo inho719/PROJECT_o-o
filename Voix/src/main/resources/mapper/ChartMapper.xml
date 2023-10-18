@@ -12,4 +12,12 @@
 	<select id="selectChartInfo_map">
 		SELECT * FROM SONGS WHERE SGCODE = #{sgcode} ORDER BY SGCODE DESC 
 	</select>
+
+	<select id="selectSearch_Title">
+	SELECT * FROM SONGS WHERE SGTITLE like '%${sgtitle}%'
+	</select>
+	
+	<select id="selectSearch_Content">
+	SELECT * FROM ALBUMS WHERE SGARTIST like '%${sgtitle}%'
+	</select>
 </mapper>
