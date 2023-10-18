@@ -144,19 +144,18 @@
 			<c:choose>
 				<c:when test="${sessionScope.sideState == 'N'}">
 					<!-- 조회수 뉴스,블로그,티켓,앨범페이지 -->
+					<c:choose>
+					<c:when test="${sessionScope.rankState == 'NW'}" >
 					<div class="card mb-4">
 						<div class="card-header">높은 조회수</div>
 						<div class="card-body">
-							<div class="" style="border-bottom: 2px solid black;">1. 내용
-								title</div>
-							<div class="" style="border-bottom: 2px solid black;">2. 내용
-							</div>
-							<div class="" style="border-bottom: 2px solid black;">3. 내용
-							</div>
-							<div class="" style="border-bottom: 2px solid black;">4. 내용
+							<div class="" style="border-bottom: 2px solid black;" id = "NewsHit">
+							
 							</div>
 						</div>
 					</div>
+					</c:when>
+					</c:choose>
 
 				</c:when>
 				<c:when test="${sessionScope.sideState == 'P'}">
@@ -222,6 +221,48 @@
 			player.playVideo();
 		}
 	}
+</script>
+</script>
+<script type="text/javascript">
+if (${sessionScope.rankState == 'NW'}) {
+    $.ajax({
+        type: "GET",
+        url: "NewsHitList",
+        dataType: 'json',
+        success: function (result) {
+            var newsHitDiv = document.getElementById("NewsHit");
+
+            for (let i = 0; i < result.length; i++) {
+                var hitNews = result[i];
+
+                // Create a new div element
+                var newsHitItemDiv = document.createElement("div");
+                newsHitItemDiv.className = "news-hit-item";
+
+                // Create a new anchor link
+                var newsHitItem = document.createElement("a");
+                newsHitItem.href = "javascript:void(0);"; // Set a dummy href
+
+                // Set data-nwcode as a custom data attribute
+                newsHitItem.setAttribute("data-nwcode", hitNews.NWCODE);
+
+                newsHitItem.textContent = (i + 1) + ". " + hitNews.NWTITLE; // Adding the number
+                newsHitItem.onclick = function () {
+                    // Define an onclick function
+                    // Get the NWCODE from the data attribute
+                    var nwcode = this.getAttribute("data-nwcode");
+                    // Redirect to the NewsInfoPage with the NWCODE
+                    window.location.href = "NewsInfoPage?nwcode=" + nwcode;
+                };
+
+                // Append the anchor link to the div
+                newsHitItemDiv.appendChild(newsHitItem);
+                // Append the div to the NewsHit div
+                newsHitDiv.appendChild(newsHitItemDiv);
+            }
+        },
+    });
+}
 </script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
