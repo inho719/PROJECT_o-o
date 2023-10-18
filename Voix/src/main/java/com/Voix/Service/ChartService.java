@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Voix.Dao.ChartDao;
+import com.Voix.Dto.Chart;
 
 @Service
 public class ChartService {
@@ -17,6 +18,11 @@ public class ChartService {
 	public ArrayList<HashMap<String, String>> getChartList_map() {
 		
 		return cdao.selectChart_map();
+	}
+
+	public ArrayList<Chart> getChartInfoList(String sgcode) {
+		
+		return cdao.selectChartInfo_map(sgcode);
 	}
 	
 }

@@ -1,8 +1,11 @@
 package com.Voix.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -13,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.Voix.Dao.MemberDao;
 import com.Voix.Dto.Member;
@@ -85,8 +89,34 @@ public class MemberService {
 		return mdao.FindId(email);
 	}
 
-	public int getinsertMemberJoin_comm(Member mem, HttpSession session) {
+	public int getinsertMemberJoin_comm(Member mem, HttpSession session) throws IllegalStateException, IOException {
 		System.out.println("SERVICE - getinsertMemberJoin_comm");
+
+		MultipartFile mfile = mem.getMfile();
+		String mprofile = ""; // 파일명 저장할 변수
+		String savePath = session.getServletContext().getRealPath("/resources/users/me"); // 파일을 저장할 경로
+
+		System.out.println(savePath);
+		System.out.println(mfile);
+
+		// 첨부파일 유무 확인
+		if (!mfile.isEmpty()) {
+			System.out.println("첨부파일 있음");
+			UUID uuid = UUID.randomUUID();
+			String code = uuid.toString();
+
+			mprofile = code + "_" + mfile.getOriginalFilename();
+
+			// 저장할 경로 resources/boardUpload 폴더에 파일저장?
+			System.out.println("savePath: " + savePath);
+			File newFile = new File(savePath, mprofile);
+			mfile.transferTo(newFile);
+		}
+
+		System.out.println("파일이름: " + mprofile);
+		mem.setMimg(mprofile);
+		System.out.println(mem); // 제목, 내용, 작성자, 첨부파일명
+
 		int Result = mdao.getinsertMemberJoin_comm(mem);
 		return Result;
 	}
@@ -108,8 +138,7 @@ public class MemberService {
 	}
 
 	// 마이인포정보출력
-	
-	
+
 	public ArrayList<HashMap<String, String>> newsLike(String loginId) {
 		return mdao.newsLikeList(loginId);
 	}
@@ -131,15 +160,15 @@ public class MemberService {
 		return memInfo;
 	}
 
-	//로그인
-	
+	// 로그인
+
 	public Member getLoginMemberInfo(String mid, String mpw) {
 		System.out.println("MemberService - getLoginMemberInfo()호출");
 		Member login = mdao.loginMember(mid, mpw);
 		return login;
 	}
 
-	//카카오로그인
+	// 카카오로그인
 	public Member getLoginMemberInfo_kakao(String id) {
 		System.out.println("service - getLoginMemberInfo_kakao 호출");
 		return mdao.selectMemberInfo(id);
@@ -150,12 +179,39 @@ public class MemberService {
 		return mdao.insertMember_kakao(member);
 	}
 
-	//회원정보수정
-	public int modifyMemberInfo(Member member) {
+	// 회원정보수정
+	public int modifyMemberInfo(Member member, HttpSession session) throws IllegalStateException, IOException {
+		System.out.println("회원정보 수정 요청");
+
+		MultipartFile mfile = member.getMfile();
+		String mprofile = ""; // 파일명 저장할 변수
+		String savePath = session.getServletContext().getRealPath("/resources/users/me"); // 파일을 저장할 경로
+
+		System.out.println(savePath);
+		System.out.println(mfile);
+
+		// 첨부파일 유무 확인
+		if (!mfile.isEmpty()) {
+			System.out.println("첨부파일 있음");
+			UUID uuid = UUID.randomUUID();
+			String code = uuid.toString();
+
+			mprofile = code + "_" + mfile.getOriginalFilename();
+
+			// 저장할 경로 resources/boardUpload 폴더에 파일저장?
+			System.out.println("savePath: " + savePath);
+			File newFile = new File(savePath, mprofile);
+			mfile.transferTo(newFile);
+		}
+
+		System.out.println("파일이름: " + mprofile);
+		member.setMimg(mprofile);
+		System.out.println(member); // 제목, 내용, 작성자, 첨부파일명
+
 		int result = 0;
 		try {
-		result=mdao.updateMemberInfo(member);
-		}catch(Exception e) {
+			result = mdao.updateMemberInfo(member);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
