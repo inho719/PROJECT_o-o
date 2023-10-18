@@ -48,4 +48,9 @@
 	<select id="selectSearch_Content">
 		SELECT * FROM TICKETS WHERE TKARTIST like '%${tkartist}%'
 	</select>
+	<select id="selectNewsHitList">
+	SELECT NWTITLE,NWCODE
+	FROM NEWS
+	ORDER BY NWBIGHIT DESC
+	</select>
 </mapper>
