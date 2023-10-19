@@ -68,19 +68,41 @@ button {
 				</div>
 			</div>
 		</div>
-		<div class="borderline" style="overflow: scroll; height: 500px; width: 80%;">
-			<div>
-				댓글 <input value="댓글모음">
+
+		<c:if test="${sessionScope.loginId != null }">
+			<div class="replyWrite">
+				<h3>댓글 작성 양식 - 로그인한 경우 출력</h3>
+				<form action="registReview" class="my-3" method="post">
+					<input type="text" name="restate" value="${tk.tkcode }" style="display: none">
+					<textarea class="w-100 reviewComment" name="recontent"></textarea>
+					<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+				</form>
 			</div>
-			<div>댓글</div>
-			<div>댓글</div>
+			<hr>
+		</c:if>
+
+		<div class="borderline" style="overflow: scroll; height: 500px; width: 100%;">
+			<div class="replyArea">
+				<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
+					<c:forEach items="${reviewList}" var="re">
+						<div class="meminfo">
+							<span>작성자: ${re.REWRITER} </span>
+							<div style="margin-top: 5px; margin-bottom: 5px;">
+								<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
+							</div>
+							<c:if test="${sessionScope.loginId == re.REWRITER}">
+								<button type="button" onclick="location.href='/deleteReview?recode=${re.RECODE}&tkcode=${tk.tkcode}'" class="btn btn-danger" style="font-size: 10px; margin-bottom: 4px; width: 70px; height: 30px; float: right;">댓글 삭제</button>
+							</c:if>
+							<div class="small text-muted">작성시간: ${re.REDATE}</div>
+
+						</div>
+						<hr>
+					</c:forEach>
+				</div>
+
+			</div>
 		</div>
 	</div>
-	<!-- Footer-->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
-		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
