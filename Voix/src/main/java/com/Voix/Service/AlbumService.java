@@ -215,6 +215,29 @@ public class AlbumService {
 		return searchList;
 	} 
 	
+	public ArrayList<HashMap<String, String>> selectReviewList(String altitle) {
+		System.out.println("selectReivewList  호출");
+		ArrayList<HashMap<String, String>> Resultre = adao.selectReviewList(altitle);
+		return Resultre;
+	}
 
+	public Album getAlInfo(String alcode) {
+		System.out.println("SERVICE - 티켓정보 출력");
+		return adao.getNwInfo(alcode);
+	}
+
+	public int albumRegistReview(String restate, String recontent, String rewriter) {
+		System.out.println("service - registReview()");
+		String maxRvCode = adao.selectMaxReCode();
+		String recode = tsvc.genCode(maxRvCode);
+		int registReview = adao.albumRegistReview(recode, restate, recontent, rewriter);
+		System.out.println(registReview);
+		return registReview;
+	}
+
+	public int deleteReview(String recode) {
+		System.out.println("SERVEICE - deleteReview 호출");
+		return adao.deleteReview(recode);
+	}
 
 }
