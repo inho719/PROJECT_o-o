@@ -71,6 +71,34 @@ public class AlbumController {
 		}
 		return mav;
 	}
+	
+	//정원: likeAlbum 기능 수정예정. 
+	@RequestMapping(value="/likeAlbum")
+	public ModelAndView likeAlbum(String like, HttpSession session,  RedirectAttributes ra) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("앨범 찜 기능");
+		String mid = session.getAttribute("loginId").toString();
+		System.out.println("앨범- 아이디 확인:"+mid);
+		System.out.println("앨범-   찜 확인:"+like);
+		int insertLike = asvc.likeAlbum(like,mid);
+		if(insertLike == 0) {
+			System.out.println("찜 실패");
+			ra.addFlashAttribute("msg", "찜하기 실패 다시시도해주세요");
+			mav.setViewName("redirect:");
+		}else {
+			System.out.println("찜 성공");
+			ArrayList<Like> LikeList = asvc.likeSelect(like,mid);
+			if(LikeList.get(0) != null) {
+				mav.addObject("LikeList",LikeList);
+				mav.setViewName("redirect:");
+			}else {
+				ra.addFlashAttribute("msg", "찜하기 실패 다시시도해주세요");
+				mav.setViewName("redirect:");
+			}
+		}
+	return mav;
+	}
+	
 	@RequestMapping(value = "/PayPage")
 	public ModelAndView PayPage(String alcode,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
