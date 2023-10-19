@@ -77,8 +77,7 @@ public class NewsService {
 		// TODO Auto-generated method stub
 		return ndao.selectMaxNwCode();
 	}
-
-	/*-------------크롤링---------------*/
+	
 	public String genCode(String currentCode) {
 		System.out.println("genCode()호출: " + currentCode);	
 		String strCode = currentCode.substring(0,1);
@@ -93,5 +92,4 @@ public class NewsService {
 		// TODO Auto-generated method stub
 		return ndao.insertNews(news);
 	}
-	/*-------------크롤링-끝--------------*/
 }
