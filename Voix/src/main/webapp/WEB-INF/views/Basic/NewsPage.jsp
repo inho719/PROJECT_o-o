@@ -65,7 +65,7 @@
 									<p class="card-text">${NewsMap.NWCONTENT}</p>
 								</div>
 								<div class="small text-mute m-2"style="display: flex; justify-content: space-between; align-items: flex-end;">
-		<!-- ---------------------------------------------------------------------------- -->
+		
 									<div class="like_article" onclick="like('${NewsMap.NWCODE}')">
 										<a href="#" class="prdLike">	
 										<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
@@ -119,6 +119,7 @@
 	console.log(loginId);
 	console.log(newsCode);
 	if(loginId.length === 0){
+		alert("로그인을 먼저 해주세요.");
 		location.href="/LoginPage";
 		
 	} else {
