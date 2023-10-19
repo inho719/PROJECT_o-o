@@ -110,5 +110,9 @@ public class TicketService {
 		System.out.println(result);
 		return result;
 	}
+	public int likeTicket(String like, String mid) {
+		System.out.println("SERVICE- 티켓 찜");
+		return tdao.likeTicket(like,mid);
+	}
 
 }
