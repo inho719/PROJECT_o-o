@@ -23,5 +23,7 @@ public interface TicketDao {
 	
 	ArrayList<Ticket> getTkTitle(String tkplace);
 
+	int likeTicket(@Param("like")String like,@Param("mid")String mid);
+
 
 }
