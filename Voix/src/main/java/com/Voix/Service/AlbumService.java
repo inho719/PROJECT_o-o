@@ -26,6 +26,9 @@ import com.google.gson.JsonParser;
 public class AlbumService {
 	@Autowired
 	private AlbumDao adao;
+	
+	@Autowired
+	private TicketService tsvc;
 
 	public ArrayList<HashMap<String, String>> getAlbumtList_map() {
 		

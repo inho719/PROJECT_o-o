@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Voix.Dto.News;
 import com.Voix.Service.NewsService;
+import com.google.gson.Gson;
 
 @Controller
 public class NewsController {
