@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Blog Home - Start Bootstrap Template</title>
+<title>AlbumInfoPage</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -29,6 +29,15 @@ button {
 .disNone{
    display: none;
 }
+.AlbumImg{
+	width:100%;
+}
+.selectbox{
+	border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    width: 100px;
+}
 
 </style>
 </head>
@@ -41,75 +50,83 @@ button {
          <div class="row">
 
             <c:if test="${ALInfo.alimg != null }">
-               <div class="AlbumImg">
-                  <img class="" src="${ALInfo.alimg}" alt="..." />
+               <div class="col mb-4">
+                  <img class="AlbumImg" src="${ALInfo.alimg}" alt="..." />
                </div>
             </c:if>
             <c:if test="${ALInfo.alimg == null }">
-               <div class="AlbumImg">
-                  <img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
+               <div class="col">
+                  <img class="AlbumImg" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
                </div>
             </c:if>
-            <div class="card col-md-8 mb-4">
-               <p>${ALInfo.alartist}</p>
-               <p>${ALInfo.alinfo}</p>
-               <p>${ALInfo.aldate}</p>
+            <div class="card col-md-5 mb-4" style="font-size: x-large;">
+            	<div class="card-title text-lg-center">
+            		<p style="font-size: xx-large;">${ALInfo.alartist}</p>
+            	</div>
+              	<div class="card-body">
+              		<p style="font-size:">${ALInfo.alinfo}</p>
+              	</div>
+              	<div class="card-footer text-lg-center" style="background-color: unset;">
+              		<p>${ALInfo.aldate}</p>
+              	</div>
             </div>
 
 
          </div>
       </div>
 
-      <div class="card col-md-12 mb-2">${ALInfo.allist}</div>
+      <div class="col-md-12 mb-2" style="font-size: xxx-large;">${ALInfo.allist}</div>
 
       <div>
          <div class="row">
-            <div class="card col-md-8 mb-2">
-               <div class="card mb-2 mt-2">${ALInfo.alprice}</div>
+            <div class="card col-md-8 mb-2 p-3" style="font-size: x-large;">
+               <div class="mb-2 m-3">원가 : ${ALInfo.alprice}원</div>
                <c:forEach items="${AlbumInfoList}" var="AlbumInfoList">
-                  <div class="card mb-2">
+                  <div class="mb-2 m-3">
                      <input type="radio" name="al" id="${AlbumInfoList.alcode}" oninput ="is_checked(this)" value="${AlbumInfoList.alcode}">
-                     ${AlbumInfoList.alsaleprice}원
+		                   ${AlbumInfoList.alsaleprice}원
                      <!--내일 이거 해야함 체크 표시 해야 나오게  -->
-                     <input id="selectQty_${AlbumInfoList.alcode}" type="number" min="0" placeholder="수량" class="disNone">
+                     <input id="selectQty_${AlbumInfoList.alcode}" type="number" value="1" min="1" placeholder="수량" class="disNone selectbox">
                   </div>
                </c:forEach>
             </div>
-            <div class="card col-md-4 mb-2 " style="display: inline-block;">
+            <div class=" col-md-4 mb-2 " style="display: inline-block;align-self: center;">
                <div>
-                  <button type="submit" class="button mb-4 mt-4" onclick="formsubmit('CartPage')">장바구니 바로가기</button>
+                  <button type="submit" class="btn btn-success mb-4" style="font-size: x-large;"onclick="formsubmit('InsertCartPage')">장바구니 바로가기</button>
                </div>
                <div>
-                  <button class="submit" onclick="formsubmit('PayPage')">결제 바로가기</button>
+                  <button class="btn btn-success" style="font-size: x-large;"onclick="formsubmit('PayPage')">결제 바로가기</button>
                </div>
             </div>
             
          </div>
       </div>
-
-   </div>
-   <div>
-      <div class="borderline" style="overflow: scroll; height: 500px; width: 80%;">
+		<div>
 			<div class="replyArea">
-				<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
+				<div class="row my-3 scroll"
+					style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 					<c:forEach items="${reviewList}" var="re">
 						<div class="meminfo">
 							<span>작성자: ${re.REWRITER} </span>
 							<div style="margin-top: 5px; margin-bottom: 5px;">
-								<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
+								<textarea rows="" cols="" class="rvcomm scroll"
+									disabled="disabled">${re.RECONTENT}</textarea>
 							</div>
 							<c:if test="${sessionScope.loginId == re.REWRITER}">
-								<button type="button" onclick="location.href='/albumDeleteReview?recode=${re.RECODE}&altitle=${ALInfo.altitle}'" class="btn btn-danger" style="font-size: 10px; margin-bottom: 4px; width: 70px; height: 30px; float: right;">댓글 삭제</button>
+								<button type="button"
+									onclick="location.href='/albumDeleteReview?recode=${re.RECODE}&altitle=${ALInfo.altitle}'"
+									class="btn btn-danger"
+									style="font-size: 10px; margin-bottom: 4px; width: 70px; height: 30px; float: right;">댓글
+									삭제</button>
 							</c:if>
 							<div class="small text-muted">작성시간: ${re.REDATE}</div>
-
 						</div>
 						<hr>
 					</c:forEach>
-					</div>
-				</div> 
+				</div>
+			</div>
+		</div>
 	</div>
-
    <!-- Footer-->
    <footer class="py-5 bg-dark">
       <div class="container">
@@ -142,7 +159,12 @@ button {
         let checkEl = document.querySelector('input[type="radio"]:checked');
         console.log(checkEl.value);
         console.log(checkEl.nextElementSibling.value);
-        location.href= "/"+url+"?caalcode="+checkEl.value+'&caqty='+ checkEl.nextElementSibling.value;
+        if(url == "InsertCartPage"){
+      	  location.href= "/"+url+"?caalcode="+checkEl.value+'&caqty='+ checkEl.nextElementSibling.value;
+        	
+        }else if (url == "PayPage"){
+          location.href= "/"+url+"?selAl="+checkEl.value+'_1';
+        }
           
           
    
