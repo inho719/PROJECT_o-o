@@ -80,6 +80,14 @@ public class TicketController {
 
 			return mav;
 		}
-	
+		@RequestMapping(value="/likeTicket")
+		public @ResponseBody int likeNews(String like, HttpSession session) {
+			System.out.println("티켓 찜 기능");
+			String mid = session.getAttribute("loginId").toString();
+			System.out.println("티켓- 아이디 확인:"+mid);
+			System.out.println("티켓-   찜 확인:"+like);
+			
+		return tsvc.likeTicket(like,mid);
+		}
 	
 }
