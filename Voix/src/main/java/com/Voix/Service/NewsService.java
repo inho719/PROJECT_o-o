@@ -73,4 +73,25 @@ public class NewsService {
 		System.out.println("조회수 목록 조회");
 		return ndao.selectNewsHitList();
 	}
+	public String selectMaxNwCode() {
+		// TODO Auto-generated method stub
+		return ndao.selectMaxNwCode();
+	}
+
+	/*-------------크롤링---------------*/
+	public String genCode(String currentCode) {
+		System.out.println("genCode()호출: " + currentCode);	
+		String strCode = currentCode.substring(0,1);
+		int numCode = Integer.parseInt(currentCode.substring(2));
+		
+		
+		String newCode = strCode + String.format("%04d", numCode+1);
+		return newCode;
+	}
+
+	public int insertNews(News news) {
+		// TODO Auto-generated method stub
+		return ndao.insertNews(news);
+	}
+	/*-------------크롤링-끝--------------*/
 }
