@@ -69,7 +69,17 @@ public class AlbumService {
 		// TODO Auto-generated method stub
 		return adao.selectCartList(loginId);
 	}
+	//정원: likeAlbum, likeSelect 수정 예정 
+	public int likeAlbum(String like, String mid) {
+		System.out.println("SERVICE- 엘범 찜");
+		return adao.likeAlbum(like,mid);
+	}
 
+	public ArrayList<Like> likeSelect(String like, String mid) {
+		
+		return adao.likeSelect(like,mid);
+	}
+	
 	public String kakaoPay_ready(Order odInfo, HttpSession session) {
 		System.out.println("service kakaoPay_ready()");
 		System.out.println(odInfo);
