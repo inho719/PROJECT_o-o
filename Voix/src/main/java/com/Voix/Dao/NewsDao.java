@@ -29,4 +29,7 @@ public interface NewsDao {
 
 	ArrayList<HashMap<String, String>> selectNewsHitList();
 
+	String selectMaxNwCode();
+
+	int insertNews(News news)
 }
