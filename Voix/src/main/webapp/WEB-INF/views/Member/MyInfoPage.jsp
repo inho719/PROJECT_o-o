@@ -65,7 +65,7 @@
 							<p class="mb-1">이름: ${mInfo.mname}</p>
 							<p class="mb-1">이메일: ${mInfo.memail}</p>
 							<p class="mb-3">주소: ${mInfo.maddr}</p>
-							<a class="btn btn-danger" href="/MyInfoUpdate">내정보변경하기</a>
+							<a class="btn btn-danger" href="#" onclick="PwCheck()">내정보변경하기</a>
 						</div>
 
 
@@ -211,5 +211,17 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+<script>
+    let loginPw = '<c:out value="${sessionScope.loginPw}" />'; // 세션에서 비밀번호 가져오기
+    function PwCheck() {
+        console.log('호출성공');
+        let pw = prompt('비밀번호를 입력해주세요.'); // 변수 이름을 'pw'로 수정
+        if (pw === loginPw) {
+        	window.location.href = "/MyInfoUpdate";
+        }else{
+        	alert('비밀번호가 일치하지 않습니다. 다시 시도해주세요');
+        }
+    }
+</script>
 </body>
 </html>
