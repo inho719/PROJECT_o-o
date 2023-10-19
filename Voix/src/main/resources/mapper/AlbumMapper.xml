@@ -26,6 +26,18 @@
 	FROM CARTS C INNER JOIN ALBUMS A ON C.CAALCODE = A.ALCODE
 	WHERE C.CAMID = #{loginId}
 	</select>
+	
+	<insert id="likeAlbum">	
+    	INSERT INTO LIKES (LIMID, LILIST)
+   	    VALUES(#{mid},(SELECT MAX(ALCODE) 
+        			   FROM ALBUMS
+                       WHERE ALTITLE =#{like}))
+	</insert>
+	<select id="likeList">
+	SELECT * FROM LIKES WHERE LIMID= #{mid} AND LILIST = #{like}
+	</select>
+
+	
 	<select id="getAlbumInfo_alcode">
 	SELECT * FROM ALBUMS WHERE ALCODE = #{alcode}
 	</select>
