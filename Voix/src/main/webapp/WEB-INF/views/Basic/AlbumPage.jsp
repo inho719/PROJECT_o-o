@@ -36,6 +36,9 @@
 	background-color: black;
 	color: white;
 }
+.AlbumContents{
+width: 100%;
+}
 </style>
 
 </head>
