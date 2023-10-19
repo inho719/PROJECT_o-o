@@ -31,4 +31,9 @@
 		<select id="getTkTitle">
 		SELECT TKTITLE FROM TICKETS WHERE TKPLACE = #{tkplace}
 	</select>
+
+	<insert id="likeTicket">
+   		INSERT INTO LIKES (LIMID, LILIST)
+    	VALUES (#{mid}, #{like})
+	</insert>
 </mapper>
