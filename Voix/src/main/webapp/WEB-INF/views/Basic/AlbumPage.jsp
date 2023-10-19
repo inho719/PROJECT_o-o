@@ -91,11 +91,17 @@
 															<p class="card-text">${AlbumMap.ALDATE}</p>
 														</div>
 													</div>
-													<div class="small m-2 d-flex"
-														style="justify-content: space-between;">
+													<div class="small m-2 d-flex" style="justify-content: space-between;">
 														
-														<a href="찜" class=""><img alt=""
-															src="/resources/assets/heart.png"></a>
+														<div class="like_article">
+															<div>
+															<img alt="" onclick="like('${AlbumMap.ALTITLE}')" src="/resources/assets/heart.png">	
+															</div>	
+															<div>
+															<img alt="" onclick="like('${AlbumMap.ALTITLE}')" src="/resources/assets/blankheart.png">									
+															</div>
+														</div>
+														
 													</div>
 												</div>
 											</div>
@@ -127,8 +133,16 @@
 														style="justify-content: space-between;">
 														<p class="text-mute">${AlbumMap.ALPRICE}</p>
 														<p class="text-mute">${AlbumMap.ALSALEPRICE}</p>
-														<a href="찜" class=""><img alt=""
-															src="/resources/assets/heart.png"></a>
+
+														<div class="like_article">
+															<div>
+															<img alt="" onclick="like('${AlbumMap.ALTITLE}')" src="/resources/assets/heart.png">	
+															</div>	
+															<div>
+															<img alt="" onclick="like('${AlbumMap.ALTITLE}')" src="/resources/assets/blankheart.png">									
+															</div>
+														</div>
+													
 													</div>
 												</div>
 											</div>
@@ -164,5 +178,39 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+
+
+	<script type="text/javascript">
+	let loginId = '${sessionScope.loginId}';
+	function like(albumCode){
+	console.log(loginId);
+	console.log(albumCode);
+	if(loginId.length === 0){
+		alert("로그인을 먼저 해주세요.");
+		location.href="/LoginPage";
+
+	} else {
+	
+		$.ajax({
+			type : "GET",
+			url : "likeAlbum",
+			data : {
+				"like" : albumCode
+			},
+			async : false,
+			success : function(response) {
+				alert("찜하기가 되었습니다.");
+				
+			},
+			error: function(){
+				console.error("찜하기 요청 중 오류 발생");
+				alert("이미 찜이 되어있습니다.");
+			}
+		});
+	
+	}
+}   
+	
+   </script>
 </body>
 </html>
