@@ -42,15 +42,39 @@ public class AlbumController {
 	}
 
 	@RequestMapping(value = "/AlbumInfoPage")
-	public ModelAndView NewsInfoPage(String altitle) {
+	public ModelAndView AlbumInfoPage(String altitle) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Album> AlbumInfoList = asvc.getAlbumInfoList(altitle);
 		Album ALInfo = AlbumInfoList.get(0);
 		System.out.println(AlbumInfoList);
 		mav.addObject("ALInfo", ALInfo);
 		mav.addObject("AlbumInfoList", AlbumInfoList);
+		ArrayList<HashMap<String,String>> reviewList = asvc.selectReviewList(altitle);
+		mav.addObject("reviewList",reviewList);
 
 		mav.setViewName("BasicInfo/AlbumInfoPage");
+		return mav;
+	}
+
+	@RequestMapping(value = "/albumRegistReview")
+	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
+		String rewriter = (String)session.getAttribute("loginId");
+		int registResult = asvc.albumRegistReview(restate, recontent, rewriter);
+		ModelAndView mav = new ModelAndView();
+		ra.addFlashAttribute("msg", "댓글이 등록 되었습니다.");
+		mav.setViewName("redirect:/AlbumInfoPage?altitle="+restate);
+		return mav;
+		
+	}
+	
+	@RequestMapping(value="/albumDeleteReview")
+	public ModelAndView deleteReivew(String recode,String altitle,RedirectAttributes ra) {
+		System.out.println("리뷰 삭제 요청");
+		ModelAndView mav = new ModelAndView();
+		int Result = asvc.deleteReview(recode);
+		ra.addFlashAttribute("msg", "댓글 삭제 완료 되었습니다.");
+		mav.setViewName("redirect:/AlbumInfoPage?altitle="+altitle);
+
 		return mav;
 	}
 
