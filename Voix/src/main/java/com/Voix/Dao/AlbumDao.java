@@ -30,4 +30,8 @@ public interface AlbumDao {
 	String getmaxOdcode();
 
 	int deleteReserve(String odcode);
+	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
+
+	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
+
 }

@@ -8,4 +8,8 @@
 	<select id="selectChart_map">
 		SELECT * FROM SONGS ORDER BY SGCODE DESC 
 	</select>
+	
+	<select id="selectChartInfo_map">
+		SELECT * FROM SONGS WHERE SGCODE = #{sgcode} ORDER BY SGCODE DESC 
+	</select>
 </mapper>

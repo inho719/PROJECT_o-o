@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Blog Home - Start Bootstrap Template</title>
+<title>AlbumInfoPage</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -29,6 +29,15 @@ button {
 .disNone{
    display: none;
 }
+.AlbumImg{
+	width:100%;
+}
+.selectbox{
+	border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    width: 100px;
+}
 
 </style>
 </head>
@@ -41,64 +50,91 @@ button {
          <div class="row">
 
             <c:if test="${ALInfo.alimg != null }">
-               <div class="AlbumImg">
-                  <img class="" src="${ALInfo.alimg}" alt="..." />
+               <div class="col mb-4">
+                  <img class="AlbumImg" src="${ALInfo.alimg}" alt="..." />
                </div>
             </c:if>
             <c:if test="${ALInfo.alimg == null }">
-               <div class="AlbumImg">
-                  <img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
+               <div class="col">
+                  <img class="AlbumImg" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
                </div>
             </c:if>
-            <div class="card col-md-8 mb-4">
-               <p>${ALInfo.alartist}</p>
-               <p>${ALInfo.alinfo}</p>
-               <p>${ALInfo.aldate}</p>
+            <div class="card col-md-5 mb-4" style="font-size: x-large;">
+            	<div class="card-title text-lg-center">
+            		<p style="font-size: xx-large;">${ALInfo.alartist}</p>
+            	</div>
+              	<div class="card-body">
+              		<p style="font-size:">${ALInfo.alinfo}</p>
+              	</div>
+              	<div class="card-footer text-lg-center" style="background-color: unset;">
+              		<p>${ALInfo.aldate}</p>
+              	</div>
             </div>
 
 
          </div>
       </div>
 
-      <div class="card col-md-12 mb-2">${ALInfo.allist}</div>
+      <div class="col-md-12 mb-2" style="font-size: xxx-large;">${ALInfo.allist}</div>
 
       <div>
          <div class="row">
-            <div class="card col-md-8 mb-2">
-               <div class="card mb-2 mt-2">${ALInfo.alprice}</div>
+            <div class="card col-md-8 mb-2 p-3" style="font-size: x-large;">
+               <div class="mb-2 m-3">원가 : ${ALInfo.alprice}원</div>
                <c:forEach items="${AlbumInfoList}" var="AlbumInfoList">
-                  <div class="card mb-2">
+                  <div class="mb-2 m-3">
                      <input type="radio" name="al" id="${AlbumInfoList.alcode}" oninput ="is_checked(this)" value="${AlbumInfoList.alcode}">
-                     ${AlbumInfoList.alsaleprice}원
+		                   ${AlbumInfoList.alsaleprice}원
                      <!--내일 이거 해야함 체크 표시 해야 나오게  -->
-                     <input id="selectQty_${AlbumInfoList.alcode}" type="number" min="1" placeholder="수량" class="disNone">
+                     <input id="selectQty_${AlbumInfoList.alcode}" type="number" value="1" min="1" placeholder="수량" class="disNone selectbox">
                   </div>
                </c:forEach>
             </div>
-            <div class="card col-md-4 mb-2 " style="display: inline-block;">
+            <div class=" col-md-4 mb-2 " style="display: inline-block;align-self: center;">
                <div>
-                  <button type="submit" class="button mb-4 mt-4" onclick="formsubmit('InsertCartPage')">장바구니 바로가기</button>
+                  <button type="submit" class="btn btn-success mb-4" style="font-size: x-large;"onclick="formsubmit('InsertCartPage')">장바구니 바로가기</button>
                </div>
                <div>
-                  <button class="submit" onclick="formsubmit('PayPage')">결제 바로가기</button>
+                  <button class="btn btn-success" style="font-size: x-large;"onclick="formsubmit('PayPage')">결제 바로가기</button>
                </div>
             </div>
             
          </div>
       </div>
 
-   </div>
+   
    <div>
-      <div class="borderline" style="overflow: scroll; height: 500px; width: 80%;">
-         <div>
-            댓글
-            <input value="댓글모음">
+      <div class="borderline W-auto " style="overflow: scroll; height: 500px;">
+      	<table>
+      		<thead style="border-bottom: 1px solid black;">
+      			<tr>
+      				<td class="col-1"style="font-size: larger; font-weight: 900;">댓글번호</td>
+      				<td class="col-8"style="font-size: larger; font-weight: 900;">댓글내용</td>
+      				<td class="col-2"style="font-size: larger; font-weight: 900;">작성자</td>
+      				<td class="col-1"style="font-size: larger; font-weight: 900;">작성날짜</td>
+      			</tr>
+      		</thead>
+      		<tbody>
+      		
+      			<tr>
+      			
+      				<td>1</td>
+      				<td>노래가 너무 좋네요~ ㅎㅎ</td>
+      				<td>HWI</td>
+      				<td>2023-10-19</td>
+      				
+      			</tr>
+      			
+      		</tbody>
+      	
+      	</table>
+         <div class="">
+			         
          </div>
-         <div>댓글</div>
-         <div>댓글</div>
+         
       </div>
    </div>
-
+</div>
    <!-- Footer-->
    <footer class="py-5 bg-dark">
       <div class="container">
