@@ -34,4 +34,14 @@ public interface AlbumDao {
 
 	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
 
+	ArrayList<HashMap<String, String>> selectReviewList(String altitle);
+
+	Album getNwInfo(String alcode);
+
+	String selectMaxReCode();
+
+	int albumRegistReview(@Param("recode")String recode, @Param("restate")String restate, @Param("recontent")String recontent, @Param("rewriter")String rewriter);
+
+	int deleteReview(String recode);
+
 }
