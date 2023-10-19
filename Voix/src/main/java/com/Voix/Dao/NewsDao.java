@@ -31,5 +31,5 @@ public interface NewsDao {
 
 	String selectMaxNwCode();
 
-	int insertNews(News news)
+	int insertNews(News news);
 }
