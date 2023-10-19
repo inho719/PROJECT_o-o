@@ -46,4 +46,12 @@
 	FROM NEWS
 	ORDER BY NWBIGHIT DESC
 	</select>
+
+	<select id="selectMaxNwCode" resultType="String">
+		SELECT NVL(MAX(NWCODE), 'N0000') FROM NEWS
+	</select>
+	
+	<insert id="insertNews">
+		INSERT INTO NEWS VALUES(#{nwcode}, #{nwtitle}, #{nwcontent}, TO_DATE(#{nwdate}, 'YYYY-MM-DD HH24:MI:SS'), #{nwimg},'0')
+	</insert>
 </mapper>
