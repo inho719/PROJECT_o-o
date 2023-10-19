@@ -41,7 +41,7 @@
 			</div>
 
 			<div class="card col-md-8 mb-4">
-				<p>${ChartInfoList.sgaltitle}</p>
+				<p>${ChartInfoList.sgartitle}</p>
 				<p>${ChartInfoList.sgtitle}</p>
 				<p>${ChartInfoList.sginfo}</p>
 			</div>
