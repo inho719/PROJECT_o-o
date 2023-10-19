@@ -90,8 +90,13 @@
 									</div>
 								</div>
 								<div class="small text-mute m-2" style="text-align: end;">
-									<a href="찜" class=""><img alt=""
-										src="/resources/assets/heart.png"></a>
+									
+									<div>
+										<a href="#" class="like_article" onclick="like('${TkMap.TKCODE}')">
+										<img alt="" src="/resources/assets/heart.png">
+										</a>
+									</div>	
+
 								</div>
 							</div>
 						</div>
@@ -118,5 +123,38 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+
+
+	<script type="text/javascript">
+	let loginId = '${sessionScope.loginId}';
+	function like(ticketCode){
+	console.log(loginId);
+	console.log(ticketCode);
+	if(loginId.length === 0){
+		alert("로그인을 먼저 해주세요.");
+		location.href="/LoginPage";		
+	} else {
+	
+		$.ajax({
+			type : "GET",
+			url : "likeTicket",
+			data : {
+				"like" : ticketCode
+			},
+			async : false,
+			success : function(response) {
+				alert("찜하기가 되었습니다.");
+			},
+			error: function(){
+				console.error("찜하기 요청 중 오류 발생");
+				alert("이미 찜이 되어있습니다.");
+			}
+		});
+	
+	}
+}   
+   </script>
+
+	
 </body>
 </html>
