@@ -54,4 +54,12 @@
 	<insert id="insertNews">
 		INSERT INTO NEWS VALUES(#{nwcode}, #{nwtitle}, #{nwcontent}, TO_DATE(#{nwdate}, 'YYYY-MM-DD HH24:MI:SS'), #{nwimg},'0')
 	</insert>
+
+	<select id="selectMainNews">
+		SELECT *
+		FROM (SELECT NWCODE AS code, NWTITLE AS title , NWCONTENT AS content , NWIMG AS img , NWDATE AS dat2
+		FROM NEWS
+		ORDER BY NWDATE DESC)
+		WHERE ROWNUM = 1
+	</select>
 </mapper>
