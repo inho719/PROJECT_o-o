@@ -20,4 +20,12 @@
 	<select id="selectSearch_Content">
 	SELECT * FROM ALBUMS WHERE SGARTIST like '%${sgtitle}%'
 	</select>
+
+	<select id="selectMainChart">
+	SELECT *
+		FROM (SELECT SGCODE AS code, SGTITLE AS title , SGINFO AS content , SGIMG AS img , SGARTIST AS dat2
+		FROM SONGS
+		ORDER BY SGARTIST DESC)
+		WHERE ROWNUM = 1
+	</select>
 </mapper>
