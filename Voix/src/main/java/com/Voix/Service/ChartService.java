@@ -41,5 +41,10 @@ public class ChartService {
 			searchList.addAll(contentList);
 		return searchList;
 	}
+
+		public HashMap<String, String> selectMainChart(String themaStr) {
+		
+		return cdao.selectMainChart();
+	}
 	
 }
