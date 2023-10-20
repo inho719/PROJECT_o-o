@@ -15,4 +15,6 @@ public interface ChartDao {
 
 	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
 
+	HashMap<String, String> selectMainChart();
+
 }
