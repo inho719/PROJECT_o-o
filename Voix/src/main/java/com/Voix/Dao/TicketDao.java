@@ -27,5 +27,7 @@ public interface TicketDao {
 
 	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
 
+	HashMap<String, String> selectMainTicket();
+
 
 }
