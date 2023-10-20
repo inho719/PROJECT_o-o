@@ -242,5 +242,9 @@ public class AlbumService {
 		System.out.println("SERVEICE - deleteReview 호출");
 		return adao.deleteReview(recode);
 	}
+	public HashMap<String, String> selectMainAlbum(String themaStr) {
+		HashMap<String, String> result = adao.selectMainAlbum();
+		return result;
+	}
 
 }
