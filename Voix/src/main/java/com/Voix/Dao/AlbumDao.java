@@ -46,4 +46,6 @@ public interface AlbumDao {
 
 	int deleteReview(String recode);
 
+	HashMap<String, String> selectMainAlbum();
+
 }
