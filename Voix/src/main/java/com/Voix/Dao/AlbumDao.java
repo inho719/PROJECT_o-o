@@ -19,6 +19,10 @@ public interface AlbumDao {
 	int insertCart(Cart crt);
 
 	ArrayList<HashMap<String, String>> selectCartList(String loginId);
+
+	int likeAlbum(@Param("like")String like,@Param("mid")String mid);
+
+	ArrayList<Like> likeSelect(@Param("like")String like,@Param("mid")String mid);
 	
 	Album getAlbumInfo_alcode(String alcode);
 
