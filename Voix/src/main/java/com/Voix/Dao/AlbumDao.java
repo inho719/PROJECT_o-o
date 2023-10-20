@@ -13,7 +13,7 @@ public interface AlbumDao {
 
 	ArrayList<HashMap<String, String>> selectAlbum_map();
 
-	ArrayList<Album> selectAlbumInfo_map(String altitle);
+	ArrayList<Album> selectAlbumInfo_map(String alcode);
 
 	ArrayList<Cart> insertCart_map(String caalcode, String loginId);
 
@@ -32,11 +32,12 @@ public interface AlbumDao {
 	String getmaxOdcode();
 
 	int deleteReserve(String odcode);
+	
 	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
 
 	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
 
-	ArrayList<HashMap<String, String>> selectReviewList(String altitle);
+	ArrayList<HashMap<String, String>> selectReviewList(String alcode);
 
 	Album getNwInfo(String alcode);
 
@@ -47,5 +48,11 @@ public interface AlbumDao {
 	int deleteReview(String recode);
 
 	HashMap<String, String> selectMainAlbum();
+
+	String selectMaxAlCode();
+
+	int insertAlbumsPop(Album al);
+
+	int insertAlbumsKpop(Album al);
 
 }
