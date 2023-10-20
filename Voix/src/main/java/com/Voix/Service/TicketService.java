@@ -127,5 +127,11 @@ public class TicketService {
 			searchList.addAll(contentList);
 		return searchList;
 	}
+	public HashMap<String, String> selectMainTicket(String t) {
+		HashMap<String, String> result = tdao.selectMainTicket();
+		return result;
+	}
+
+	
 
 }
