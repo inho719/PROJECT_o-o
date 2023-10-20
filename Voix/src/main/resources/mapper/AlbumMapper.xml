@@ -59,7 +59,7 @@
 	</select>
 
 	<select id="selectReviewList" resultType="hashmap">
-		SELECT * FROM REVIEWS WHERE RESTATE = #{altitle}
+		SELECT * FROM REVIEWS WHERE RESTATE = #{alcode}
 	</select>
 
 	<select id="selectMaxReCode">
