@@ -32,4 +32,6 @@ public interface NewsDao {
 	String selectMaxNwCode();
 
 	int insertNews(News news);
+
+	HashMap<String, String> selectMainNews(String t);
 }
