@@ -66,4 +66,12 @@
 	<delete id="deleteReview">
 		DELETE FROM REVIEWS WHERE RECODE = #{recode}
 	</delete>
+
+	<select id="selectMainAlbum">
+		SELECT *
+		FROM (SELECT ALCODE AS code, ALTITLE AS title , ALARTIST AS content , ALIMG AS img , ALDATE AS dat2
+		FROM ALBUMS
+		ORDER BY ALDATE DESC)
+		WHERE ROWNUM = 1
+	</select>
 </mapper>
