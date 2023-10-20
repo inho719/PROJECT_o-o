@@ -92,4 +92,9 @@ public class NewsService {
 		// TODO Auto-generated method stub
 		return ndao.insertNews(news);
 	}
+
+	public HashMap<String, String> selectMainNews(String t) {
+		HashMap<String, String> result = ndao.selectMainNews(t);
+		return result;
+	}
 }
