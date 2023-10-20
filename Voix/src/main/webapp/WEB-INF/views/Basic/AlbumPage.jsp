@@ -36,8 +36,11 @@
 	background-color: black;
 	color: white;
 }
-.AlbumContents{
-width: 100%;
+
+.likeImg {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
 }
 </style>
 
@@ -64,29 +67,29 @@ width: 100%;
 								<table>
 									<tr>
 										<td>
-											<div class="card mb-2" style="height: 170px;">
+											<div class="card mb-2" style="height: 173px;">
 												<div class="AlbumDiv" style="display: flex;">
 													<div class="AlbumImg">
 														<c:if test="${AlbumMap.ALIMG != null }">
-															<a href="/AlbumInfoPage?altitle=${AlbumMap.ALTITLE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
 														</c:if>
 														<c:if test="${AlbumMap.ALIMG == null }">
-															<a href="/AlbumInfoPage?altitle=${AlbumMap.ALTITLE}"><img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
 														</c:if>
 													</div>
 													<div class="AlbumContents">
 														<div class="AlbumTitle">
-															<h4 class="card-title m-2">${AlbumMap.ALTITLE}</h4>
+															<h5 class="card-title m-2">${AlbumMap.ALTITLE}</h5>
 														</div>
 														<div class="AlbumContentsWrapper">
-															<div class="AlbumText p-2 d-flex" style="justify-content: space-between;">
+															<div class="AlbumText px-2 d-flex" style="justify-content: space-between;">
 																<p class="card-text">${AlbumMap.ALARTIST}</p>
-																<p class="card-text">${AlbumMap.ALDATE}</p>
+															</div>
+															<div class="small m-2 d-flex" style="justify-content: space-between; align-items: flex-end;">
+																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
 															</div>
 														</div>
-														<div class="small m-2 d-flex" style="justify-content: space-between;">
-															<a href="찜" class=""><img alt="" src="/resources/assets/heart.png"></a>
-														</div>
+														<a href="찜" class="likeImg"><img alt="" src="/resources/assets/heart.png"></a>
 													</div>
 												</div>
 											</div>
@@ -97,36 +100,35 @@ width: 100%;
 						</c:forEach>
 					</div>
 
-
 					<div style="width: 700px;">
 						<c:forEach items="${AlbumListMap}" var="AlbumMap">
 							<c:if test="${AlbumMap.ALGENRE == '팝송'}">
 								<table>
 									<tr>
 										<td>
-											<div class="card mb-2" style="height: 170px;">
+											<div class="card mb-2" style="height: 173px;">
 												<div class="AlbumDiv" style="display: flex;">
 													<div class="AlbumImg">
 														<c:if test="${AlbumMap.ALIMG != null }">
-															<a href="/AlbumInfoPage?altitle=${AlbumMap.ALTITLE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
 														</c:if>
 														<c:if test="${AlbumMap.ALIMG == null }">
-															<a href="/AlbumInfoPage?altitle=${AlbumMap.ALTITLE}"><img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
 														</c:if>
 													</div>
 													<div class="AlbumContents">
 														<div class="AlbumTitle">
-															<h4 class="card-title m-2">${AlbumMap.ALTITLE}</h4>
+															<h5 class="card-title m-2">${AlbumMap.ALTITLE}</h5>
 														</div>
 														<div class="AlbumContentsWrapper">
-															<div class="AlbumText p-2 d-flex" style="justify-content: space-between;">
+															<div class="AlbumText px-2 d-flex" style="justify-content: space-between;">
 																<p class="card-text">${AlbumMap.ALARTIST}</p>
-																<p class="card-text">${AlbumMap.ALDATE}</p>
+															</div>
+															<div class="small m-2 d-flex" style="justify-content: space-between; align-items: flex-end;">
+																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
 															</div>
 														</div>
-														<div class="small m-2 d-flex" style="justify-content: space-between;">
-															<a href="찜" class=""><img alt="" src="/resources/assets/heart.png"></a>
-														</div>
+														<a href="찜" class="likeImg"><img alt="" src="/resources/assets/heart.png"></a>
 													</div>
 												</div>
 											</div>
@@ -137,6 +139,9 @@ width: 100%;
 						</c:forEach>
 					</div>
 				</div>
+
+				<!-- <button id="myButtonPop" type="button">팝송크롤링</button> -->
+				<!-- <button id="myButtonKpop" type="button">가요크롤링</button> -->
 
 			</div>
 			<!-- end Page content-->
@@ -154,6 +159,34 @@ width: 100%;
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#myButtonPop").click(function() {
+				$.ajax({
+					url : "/getYes24Pop",
+					type : 'GET',
+					success : function(result) {
+						console.log(result);
+					}
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function() {
+			$("#myButtonKpop").click(function() {
+				$.ajax({
+					url : "/getYes24Kpop",
+					type : 'POST',
+					success : function(result) {
+						console.log(result);
+					}
+				});
+			});
+		});
+	</script>
 
 </body>
 </html>
