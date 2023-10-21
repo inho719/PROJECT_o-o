@@ -36,4 +36,6 @@ public interface MemberDao {
 	int updateMemberInfo(Member member);
 
 	int insertNaverLogin(Member navergetInfo);
+
+	ArrayList<HashMap<String, String>> selectOrderInfo(String mid);
 }
