@@ -307,5 +307,12 @@ public class MemberService {
 		
 		return mdao.insertNaverLogin(navergetInfo);
 	}
+	public ArrayList<HashMap<String, String>> getOrderInfo(String mid) {
+		System.out.println("SERVICE getOrderInfo");
+		
+		
+		return mdao.selectOrderInfo(mid);
+	}
+
 
 }
