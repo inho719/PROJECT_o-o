@@ -125,7 +125,7 @@ th {
 
 th:hover {
 	background: #484848;
-	border-top: 5px solid yellow;
+	border-top: 1px solid yellow;
 }
 </style>
 
