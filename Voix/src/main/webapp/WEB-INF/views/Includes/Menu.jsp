@@ -60,7 +60,7 @@
 }
 
 .navbar-brand.unclicked {
-	border-bottom: 4px solid #e8ec74;
+	border-bottom: 2px solid #e8ec74;
 }
 
 .navbar-brand.form-control2.click {
