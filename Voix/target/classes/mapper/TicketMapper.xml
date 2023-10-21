@@ -31,4 +31,19 @@
 		<select id="getTkTitle">
 		SELECT TKTITLE FROM TICKETS WHERE TKPLACE = #{tkplace}
 	</select>
+		<select id="selectSearch_Title">
+	SELECT * FROM TICKETS WHERE TKTITLE like '%${tktitle}%'
+	</select>
+	
+	<select id="selectSearch_Content">
+	SELECT * FROM TICKETS WHERE TKARTIST like '%${tkartist}%'
+	</select>
+
+	<select id="selectMainTicket">
+		SELECT *
+		FROM (SELECT TKCODE AS code, TKTITLE AS title , TKARTIST AS content , TKIMG AS img , TKDATE AS dat2
+		FROM TICKETS
+		ORDER BY TKDATE DESC)
+		WHERE ROWNUM = 1
+	</select>
 </mapper>

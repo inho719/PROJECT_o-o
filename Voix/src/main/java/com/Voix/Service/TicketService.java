@@ -110,5 +110,28 @@ public class TicketService {
 		System.out.println(result);
 		return result;
 	}
+	public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword) {
+		ArrayList<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> titleList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
+			try {
+				titleList = tdao.selectSearch_Title(searchKeyword);				
+			} catch (Exception e) {
+			}
+			System.out.println(titleList);
+			try {
+				contentList = tdao.selectSearch_Content(searchKeyword);				
+			} catch (Exception e) {
+			}
+			searchList.addAll(titleList);
+			searchList.addAll(contentList);
+		return searchList;
+	}
+	public HashMap<String, String> selectMainTicket(String t) {
+		HashMap<String, String> result = tdao.selectMainTicket();
+		return result;
+	}
+
+	
 
 }

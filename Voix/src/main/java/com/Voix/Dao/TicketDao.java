@@ -23,5 +23,11 @@ public interface TicketDao {
 	
 	ArrayList<Ticket> getTkTitle(String tkplace);
 
+	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
+
+	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
+
+	HashMap<String, String> selectMainTicket();
+
 
 }

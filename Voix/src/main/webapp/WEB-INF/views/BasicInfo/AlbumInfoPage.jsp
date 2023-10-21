@@ -38,6 +38,14 @@ button {
     text-align: center;
     width: 100px;
 }
+.scrollArea{
+  overflow: overlay;
+  height: 300px;
+  overflow-y: scroll;
+}
+.scrollArea::-webkit-scrollbar {
+    width: 10px;  /* 스크롤바의 너비 */
+}
 
 </style>
 </head>
@@ -63,7 +71,7 @@ button {
             	<div class="card-title text-lg-center">
             		<p style="font-size: xx-large;">${ALInfo.alartist}</p>
             	</div>
-              	<div class="card-body">
+              	<div class="card-body scrollArea">
               		<p style="font-size:">${ALInfo.alinfo}</p>
               	</div>
               	<div class="card-footer text-lg-center" style="background-color: unset;">
@@ -101,40 +109,32 @@ button {
             
          </div>
       </div>
-
-   
-   <div>
-      <div class="borderline W-auto " style="overflow: scroll; height: 500px;">
-      	<table>
-      		<thead style="border-bottom: 1px solid black;">
-      			<tr>
-      				<td class="col-1"style="font-size: larger; font-weight: 900;">댓글번호</td>
-      				<td class="col-8"style="font-size: larger; font-weight: 900;">댓글내용</td>
-      				<td class="col-2"style="font-size: larger; font-weight: 900;">작성자</td>
-      				<td class="col-1"style="font-size: larger; font-weight: 900;">작성날짜</td>
-      			</tr>
-      		</thead>
-      		<tbody>
-      		
-      			<tr>
-      			
-      				<td>1</td>
-      				<td>노래가 너무 좋네요~ ㅎㅎ</td>
-      				<td>HWI</td>
-      				<td>2023-10-19</td>
-      				
-      			</tr>
-      			
-      		</tbody>
-      	
-      	</table>
-         <div class="">
-			         
-         </div>
-         
-      </div>
-   </div>
-</div>
+		<div>
+			<div class="replyArea">
+				<div class="row my-3 scroll"
+					style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
+					<c:forEach items="${reviewList}" var="re">
+						<div class="meminfo">
+							<span>작성자: ${re.REWRITER} </span>
+							<div style="margin-top: 5px; margin-bottom: 5px;">
+								<textarea rows="" cols="" class="rvcomm scroll"
+									disabled="disabled">${re.RECONTENT}</textarea>
+							</div>
+							<c:if test="${sessionScope.loginId == re.REWRITER}">
+								<button type="button"
+									onclick="location.href='/albumDeleteReview?recode=${re.RECODE}&altitle=${ALInfo.altitle}'"
+									class="btn btn-danger"
+									style="font-size: 10px; margin-bottom: 4px; width: 70px; height: 30px; float: right;">댓글
+									삭제</button>
+							</c:if>
+							<div class="small text-muted">작성시간: ${re.REDATE}</div>
+						</div>
+						<hr>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
    <!-- Footer-->
    <footer class="py-5 bg-dark">
       <div class="container">
@@ -171,12 +171,31 @@ button {
       	  location.href= "/"+url+"?caalcode="+checkEl.value+'&caqty='+ checkEl.nextElementSibling.value;
         	
         }else if (url == "PayPage"){
-          location.href= "/"+url+"?selAl="+checkEl.value+'_1';
+          location.href= "/"+url+"?selAl="+checkEl.value+'_'+checkEl.nextElementSibling.value;
         }
           
           
    
       }
+    /*  function PayPage(){
+    	let formEl = document.createElement('form');
+    	formEl.setAttribute('action',"/PayPage");
+    	formEl.setAttribute('method',"post");
+    		
+    	for(let al of selAlcode){
+    		let inputEl = document.createElement('input');
+    		inputEl.setAttribute('type',"text");
+    		inputEl.setAttribute('name',"selAl");
+    		inputEl.setAttribute('value',al);
+    		formEl.appendChild(inputEl);
+    	}
+    	formEl.appendChild(inputEl);
+    	
+    	console.log(formEl)
+    	document.querySelector("#footer").appendChild(formEl);
+    	formEl.submit();
+    	
+      }*/
    </script>
 </body>
 </html>

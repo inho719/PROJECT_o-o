@@ -192,6 +192,12 @@ function PayList(){
 		inputEl.setAttribute('value',al);
 		formEl.appendChild(inputEl);
 	}
+	let pageCheck = document.createElement('input');
+	pageCheck.setAttribute('type',"text");
+	pageCheck.setAttribute('name',"checkPage");
+	pageCheck.setAttribute('value','cartPage');
+	formEl.appendChild(inputEl);
+	
 	console.log(formEl)
 	document.querySelector("#footer").appendChild(formEl);
 	formEl.submit();

@@ -32,4 +32,34 @@
    		INSERT INTO LIKES (LIMID, LILIST)
     	VALUES (#{mid}, #{like})
 	</insert>
+
+	<select id="selectSearch_Title">
+	SELECT * FROM NEWS WHERE NWTITLE like '%${nwtitle}%'
+	</select>
+	
+	<select id="selectSearch_Content">
+	SELECT * FROM NEWS WHERE NWCONTENT like '%${nwcontent}%'
+	</select>
+
+	<select id="selectNewsHitList">
+	SELECT NWTITLE,NWCODE
+	FROM NEWS
+	ORDER BY NWBIGHIT DESC
+	</select>
+
+	<select id="selectMaxNwCode" resultType="String">
+		SELECT NVL(MAX(NWCODE), 'N0000') FROM NEWS
+	</select>
+	
+	<insert id="insertNews">
+		INSERT INTO NEWS VALUES(#{nwcode}, #{nwtitle}, #{nwcontent}, TO_DATE(#{nwdate}, 'YYYY-MM-DD HH24:MI:SS'), #{nwimg},'0')
+	</insert>
+
+	<select id="selectMainNews">
+		SELECT *
+		FROM (SELECT NWCODE AS code, NWTITLE AS title , NWCONTENT AS content , NWIMG AS img , NWDATE AS dat2
+		FROM NEWS
+		ORDER BY NWDATE DESC)
+		WHERE ROWNUM = 1
+	</select>
 </mapper>
