@@ -80,4 +80,11 @@
 		INSERT INTO MEMBERS
 		VALUES(#{mid}, '1111' , #{mname}, '', #{memail}, #{mimg}, 'YN')
 	</insert>
+	<select id="selectOrderInfo">
+		SELECT AB.ALIMG, AB.ALCODE, AB.ALTITLE, OD.ODQTY, OD.ODCODE,
+		 	OD.ODPRICE, TO_CHAR(OD.ODDATE,'YYYY-MM-DD HH24:MI') AS ODDATE, OD.ODADDR
+		FROM ORDERS OD INNER JOIN ALBUMS AB
+		ON OD.ODALCODE = AB.ALCODE
+		WHERE OD.ODMID = #{mid}
+	</select>
 </mapper>
