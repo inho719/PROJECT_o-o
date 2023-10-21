@@ -184,7 +184,6 @@ function PayList(){
 	let formEl = document.createElement('form');
 	formEl.setAttribute('action',"/PayPage");
 	formEl.setAttribute('method',"post");
-	
 	for(let al of selAlcode){
 		let inputEl = document.createElement('input');
 		inputEl.setAttribute('type',"text");
