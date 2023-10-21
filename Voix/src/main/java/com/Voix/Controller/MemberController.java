@@ -333,6 +333,18 @@ public class MemberController {
 		apiURL += "&state=" + state;
 
 		return "redirect:" + apiURL;
+	}	
+	@RequestMapping(value="/PayHistory")
+	public ModelAndView PayHistory(HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		
+		String mid = session.getAttribute("loginId").toString();
+		ArrayList<HashMap<String, String>> OrderInfo = msvc.getOrderInfo(mid);
+		mav.addObject("OrderInfo",OrderInfo);
+		mav.setViewName("/Member/PayHistoryPage");
+				
+		return mav;
+		
 	}
 
 }
