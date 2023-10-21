@@ -23,33 +23,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-
-/* 오류대비 백업용
-package com.Voix.Controller;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.Voix.Dto.Album;
-import com.Voix.Service.AlbumService;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-*/
 @Controller
 public class AlbumController {
 
@@ -158,7 +131,7 @@ public class AlbumController {
 	}
 
 	@RequestMapping(value = "/PayPage")
-	public ModelAndView PayPage(String[] selAl, HttpSession session, RedirectAttributes ra) {
+	public ModelAndView PayPage(String[] selAl,HttpSession session, RedirectAttributes ra) {
 		ModelAndView mav = new ModelAndView();
 		String mid = (String) session.getAttribute("loginId");
 		if (mid == null) {
@@ -174,6 +147,7 @@ public class AlbumController {
 				String[] al_Spilt = al.split("_");
 				String alcode = al_Spilt[0];
 				String alqty = al_Spilt[1];
+				System.out.println(alqty);
 
 				if (al_Spilt.length > 2) {
 					String cacode = null;
@@ -184,9 +158,10 @@ public class AlbumController {
 				Album alInfo = asvc.getAlbumInfo_alcode(alcode);
 				alInfo.setAlqty(Integer.parseInt(alqty));
 				alInfoList.add(alInfo);
+				
 			}
 			System.out.println("결제페이지이동 완료");
-
+			
 			mav.addObject("mid", mid);
 			mav.addObject("alList", alInfoList);
 			mav.setViewName("Basic/PayPage");
@@ -214,8 +189,11 @@ public class AlbumController {
 			oddto.setOdaddr(odaddr);
 			oddto.setOdmid(odmid);
 			System.out.println(oddto);
-			totalPrice += od.getAsJsonObject().get("odprice").getAsInt();
-			totalQty += od.getAsJsonObject().get("odqty").getAsInt();
+	        int price = od.getAsJsonObject().get("odprice").getAsInt();
+	        int qty = od.getAsJsonObject().get("odqty").getAsInt();
+	        
+	        totalPrice += price * qty; // 가격과 수량을 곱한 값을 더함
+	        totalQty += qty;
 			codeList[i] = oddto.getOdcode();
 			i++;
 
@@ -227,7 +205,8 @@ public class AlbumController {
 		session.setAttribute("codeList", codeList);
 		odInfo.setOdprice(totalPrice + "");
 		odInfo.setOdqty(totalQty + "");
-
+		System.out.println(totalQty);
+		System.out.println(totalPrice);
 		String result = asvc.kakaoPay_ready(odInfo, session);
 		return result;
 	}
