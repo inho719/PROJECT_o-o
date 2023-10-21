@@ -50,6 +50,7 @@
 
 .navbar-brand {
 	cursor: pointer;
+	border-top: 1px solid black;
 }
 
 .navbar-brand.click {
