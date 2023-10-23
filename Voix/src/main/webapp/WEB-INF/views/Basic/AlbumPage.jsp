@@ -89,7 +89,7 @@
 																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
 															</div>
 														</div>
-														<a href="찜" class="likeImg"><img alt="" src="/resources/assets/heart.png"></a>
+														
 													</div>
 												</div>
 											</div>
@@ -128,7 +128,7 @@
 																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
 															</div>
 														</div>
-														<a href="찜" class="likeImg"><img alt="" src="/resources/assets/heart.png"></a>
+														
 													</div>
 												</div>
 											</div>
