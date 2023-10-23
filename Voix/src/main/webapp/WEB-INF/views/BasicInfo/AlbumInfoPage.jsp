@@ -87,14 +87,17 @@ width: 10px;
       <div>
          <div class="row">
             <div class="card col-md-8 mb-2 p-3" style="font-size: x-large;">
-               <div class="mb-2 m-3">원가 : ${ALInfo.alprice}원</div>
+               <div class="mb-2 m-3">정가 : ${ALInfo.alprice}원</div>
                <c:forEach items="${AlbumInfoList}" var="AlbumInfoList">
                   <div class="mb-2 m-3">
                      <input type="radio" name="al" id="${AlbumInfoList.alcode}" oninput ="is_checked(this)" value="${AlbumInfoList.alcode}">
-		                   ${AlbumInfoList.alsaleprice}원
+		                   할인가 : ${AlbumInfoList.alsaleprice}원
                      <!--내일 이거 해야함 체크 표시 해야 나오게  -->
                      <input id="selectQty_${AlbumInfoList.alcode}" type="number" value="1" min="1" placeholder="수량" class="disNone selectbox">
-                  </div>
+                     <a href="#" class="prdLike"  onclick="like('${AlbumInfoList.alcode}')">	
+			<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
+		     </a>  
+		</div>
                </c:forEach>
             </div>
             <div class=" col-md-4 mb-2 " style="display: inline-block;align-self: center;">
@@ -176,6 +179,36 @@ width: 10px;
           
    
       }
+   </script> 
+  <script type="text/javascript">
+	let loginId = '${sessionScope.loginId}';
+	function like(alCode){
+	console.log(loginId);
+	console.log(alCode);
+	if(loginId.length === 0){
+		location.href="/LoginPage";
+		
+	} else {
+	
+		$.ajax({
+			type : "GET",
+			url : "likeAlbum",
+			data : {
+				"like" : alCode
+			},
+			async : false,
+			success : function(response) {
+				alert("찜하기가 되었습니다.");
+			},
+			error: function(){
+				console.error("찜하기 요청 중 오류 발생");
+				alert("이미 찜이 되어있습니다.");
+			}
+		});
+	
+	}
+}   
    </script>
+
 </body>
 </html>
