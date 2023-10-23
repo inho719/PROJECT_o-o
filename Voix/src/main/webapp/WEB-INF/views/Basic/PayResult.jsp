@@ -17,7 +17,8 @@
 				//window.opener.reserveResult_success();
 			} else {
 				/* INSERT 성공, 결제 실패 */
-				window.opener.failReserve();
+				window.opener.alert('결제 실패!');
+				window.opener.location.href="/";
 			}
 			
 		}
@@ -27,7 +28,6 @@
 <body>
 </body>
 </html>
-
 
 
 

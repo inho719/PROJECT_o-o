@@ -28,6 +28,17 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
+.news-hit-item {
+    white-space: nowrap; /* 줄 바꿈 방지 */
+    overflow: hidden; /* 내용 숨기기 */
+    text-overflow: ellipsis; /* 긴 내용에 대한 생략 부호 (...) */
+    margin-bottom: 5px; /* 아래 여백 추가 (선택적) */
+}
+.news-hit-item a {
+    color: black; /* 링크 텍스트 색상을 검은색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
 </style>
 
 </head>
@@ -45,26 +56,32 @@
 							<c:if test="${NewsMap.NWIMG != null }">
 								<div class="NewsImg">
 									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class="" src="${NewsMap.NWIMG}"
-										alt="..." /></a>
+										alt="..." style="width: 350px; height:300px; object-fit: cover;" /></a>
 								</div>
 							</c:if>
 							<c:if test="${NewsMap.NWIMG == null }">
 								<div class="NewsImg">
 									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class=""
-										src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg"
+										src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" 
+										style="width: 350px; height:300px; object-fit: cover;" 	
 										alt="..." /></a>
 								</div>
 							</c:if>
-							<div class="NewsText" style="flex: 1;">
+							<div class="NewsText" style="flex: 1;" >
 								<div class="NewsTitle">
-									<h2 class="card-title m-2">${NewsMap.NWTITLE}</h2>
+									<h2 class="card-title m-2" style ="overflow: hidden; height: 75px;">${NewsMap.NWTITLE}</h2>
 								</div>
-								<div class="NewsContents p-2">
-									<p class="card-text">${NewsMap.NWCINTENT}</p>
+								<div class="NewsContents p-2"  style="height: 150px; overflow: hidden;">
+									<p class="card-text">${NewsMap.NWCONTENT}</p>
 								</div>
-								<div class="small text-mute m-2"
-									style="display: flex; justify-content: space-between; align-items: flex-end;">
-									<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
+								<div class="small text-mute m-2"style="display: flex; justify-content: space-between; align-items: flex-end;">
+		<!-- ---------------------------------------------------------------------------- -->
+									<div class="like_article" onclick="like('${NewsMap.NWCODE}')">
+										<a href="#" class="prdLike">	
+										<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
+										</a>
+									</div>
+									
 									<a class="Views"
 										style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
 									<a class="Views"
@@ -99,9 +116,44 @@
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="/resources/js/scripts.js"></script>
+	
+	<!-- if(loginId.length === 0){ -->
+	<script type="text/javascript">
+	let loginId = '${sessionScope.loginId}';
+	function like(newsCode){
+	console.log(loginId);
+	console.log(newsCode);
+	if(loginId.length === 0){
+		location.href="/LoginPage";
+		
+	} else {
+	
+		$.ajax({
+			type : "GET",
+			url : "likeNews",
+			data : {
+				"like" : newsCode
+			},
+			async : false,
+			success : function(response) {
+				alert("찜하기가 되었습니다.");
+			},
+			error: function(){
+				console.error("찜하기 요청 중 오류 발생");
+				alert("이미 찜이 되어있습니다.");
+			}
+		});
+	
+	}
+}   
+   </script>
+	
 </body>
+
+
 </html>

@@ -1,9 +1,11 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <!-- Side widgets-->
-<div class="col-lg-4">
+<div class="col-lg-3">
 
 	<c:choose>
 		<c:when test="${sessionScope.loginId == null }">
@@ -75,10 +77,11 @@
 
 								<div class="card-body d-flex">
 									<div class="card-img">
+										<div class="player" id="player"></div>
 										<img alt="" class="me-5" style="width: 35%;"
 											src="${pageContext.request.contextPath }/resources/users/album/앨범표지.jpg">
-										<a href="재생" class="me-3"> <i class="bi bi-play-circle"
-											style="font-size: 35px;"></i></a> <a href="찜"> <i
+										<i onclick="playVideo()" class="bi bi-play-circle me-3"
+											style="font-size: 35px;"></i> <a href="찜"> <i
 											class="bi bi-arrow-through-heart-fill"
 											style="font-size: 35px;"></i>
 										</a>
@@ -95,11 +98,12 @@
 
 											<div class="card-body d-flex">
 												<div class="card-img">
+													<div id="player"></div>
 													<img alt="" class="me-5" style="width: 35%;"
 														src="${pageContext.request.contextPath }/resources/users/album/${pl.sgimg }">
-													<a href="재생" class="me-3"> <i class="bi bi-play-circle"
-														style="font-size: 35px;"></i></a> <a href="찜"> <i
-														class="bi bi-arrow-through-heart-fill"
+													<a href="" class="me-3" id="playbtn"> <i
+														class="bi bi-play-circle" style="font-size: 35px;"></i></a> <a
+														href="찜"> <i class="bi bi-arrow-through-heart-fill"
 														style="font-size: 35px;"></i>
 													</a>
 												</div>
@@ -115,11 +119,12 @@
 										<c:forEach var="pl" items="${sessionScope.playlist}" end="1">
 											<div class="card-body d-flex">
 												<div class="card-img">
+													<div id="player"></div>
 													<img alt="" class="me-5" style="width: 35%;"
 														src="${pageContext.request.contextPath }/resources/users/album/${pl.sgimg }">
-													<a href="재생" class="me-3"> <i class="bi bi-play-circle"
-														style="font-size: 35px;"></i></a> <a href="찜"> <i
-														class="bi bi-arrow-through-heart-fill"
+													<a href="" class="me-3" id="playbtn"> <i
+														class="bi bi-play-circle" style="font-size: 35px;"></i></a> <a
+														href="찜"> <i class="bi bi-arrow-through-heart-fill"
 														style="font-size: 35px;"></i>
 													</a>
 												</div>
@@ -139,19 +144,18 @@
 			<c:choose>
 				<c:when test="${sessionScope.sideState == 'N'}">
 					<!-- 조회수 뉴스,블로그,티켓,앨범페이지 -->
+					<c:choose>
+					<c:when test="${sessionScope.rankState == 'NW'}" >
 					<div class="card mb-4">
 						<div class="card-header">높은 조회수</div>
 						<div class="card-body">
-							<div class="" style="border-bottom: 2px solid black;">1. 내용
-								title</div>
-							<div class="" style="border-bottom: 2px solid black;">2. 내용
-							</div>
-							<div class="" style="border-bottom: 2px solid black;">3. 내용
-							</div>
-							<div class="" style="border-bottom: 2px solid black;">4. 내용
+							<div class="" style="border-bottom: 2px solid black;" id = "NewsHit">
+							
 							</div>
 						</div>
 					</div>
+					</c:when>
+					</c:choose>
 
 				</c:when>
 				<c:when test="${sessionScope.sideState == 'P'}">
@@ -165,7 +169,6 @@
 					</div>
 				</c:when>
 
-
 			</c:choose>
 
 
@@ -174,5 +177,92 @@
 	</c:choose>
 
 </div>
+
+<script>
+	// 2. This code loads the IFrame Player API code asynchronously.
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player = document.querySelector("#playlist > div.card-body.d-flex > div > div");
+
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			videoId : 'gfk3QLU1x0E',
+			playerVars : {
+				'controls' : 0
+			},
+			events : {
+				'onReady' : onPlayerReady,
+				'onStateChange' : onPlayerStateChange,
+				'onError' : onPlayerError
+			}
+		});
+		$('iframe').addClass('d-none');
+	}
+
+	function onPlayerReady(event) {
+		event.target.setVolume(100);
+	}
+
+	function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.ENDED) {
+			// 동영상이 종료되면 필요한 작업을 수행할 수 있습니다.
+		}
+	}
+
+	function onPlayerError(event) {
+		// 동영상 재생 중에 오류가 발생한 경우 처리할 수 있습니다.
+	}
+
+	function playVideo() {
+		if (player) {
+			player.playVideo();
+		}
+	}
+</script>
+</script>
+<script type="text/javascript">
+if (${sessionScope.rankState == 'NW'}) {
+    $.ajax({
+        type: "GET",
+        url: "NewsHitList",
+        dataType: 'json',
+        success: function (result) {
+            var newsHitDiv = document.getElementById("NewsHit");
+
+            for (let i = 0; i < result.length; i++) {
+                var hitNews = result[i];
+
+                // Create a new div element
+                var newsHitItemDiv = document.createElement("div");
+                newsHitItemDiv.className = "news-hit-item";
+
+                // Create a new anchor link
+                var newsHitItem = document.createElement("a");
+                newsHitItem.href = "javascript:void(0);"; // Set a dummy href
+
+                // Set data-nwcode as a custom data attribute
+                newsHitItem.setAttribute("data-nwcode", hitNews.NWCODE);
+
+                newsHitItem.textContent = (i + 1) + ". " + hitNews.NWTITLE; // Adding the number
+                newsHitItem.onclick = function () {
+                    // Define an onclick function
+                    // Get the NWCODE from the data attribute
+                    var nwcode = this.getAttribute("data-nwcode");
+                    // Redirect to the NewsInfoPage with the NWCODE
+                    window.location.href = "NewsInfoPage?nwcode=" + nwcode;
+                };
+
+                // Append the anchor link to the div
+                newsHitItemDiv.appendChild(newsHitItem);
+                // Append the div to the NewsHit div
+                newsHitDiv.appendChild(newsHitItemDiv);
+            }
+        },
+    });
+}
+</script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">

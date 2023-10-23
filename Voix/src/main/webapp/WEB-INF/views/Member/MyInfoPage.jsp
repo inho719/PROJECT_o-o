@@ -46,11 +46,11 @@
 								<c:choose>
 									<c:when test="${sessionScope.loginProfile == null}">
 										<%-- 등록된 프로필이 없는 경우 --%>
-										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/images.png" alt="일반 프로필1">
+										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/memberProfile/기본프로필.jpg" alt="일반 프로필1">
 									</c:when>
 									<c:otherwise>
 										<%-- 등록된 프로필이 있는 경우 --%>
-										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/me/${sessionScope.loginProfile}" alt="일반 프로필2">
+										<img style="width: 170px; height: 150px;" class="img-profile" src="${pageContext.request.contextPath}/resources/users/memberProfile/${sessionScope.loginProfile}" alt="일반 프로필2">
 									</c:otherwise>
 								</c:choose>
 							</c:when>
@@ -60,14 +60,12 @@
 							</c:otherwise>
 						</c:choose>
 
-						<%-- <img alt="" src="${mInfo.mimg}" style="width: 170px; height: 150px;"> --%>
-
 
 						<div class="col mb-2">
 							<p class="mb-1">이름: ${mInfo.mname}</p>
 							<p class="mb-1">이메일: ${mInfo.memail}</p>
 							<p class="mb-3">주소: ${mInfo.maddr}</p>
-							<a class="btn btn-danger" href="/MyInfoUpdate">내정보변경하기</a>
+							<a class="btn btn-danger" href="#" onclick="PwCheck()">내정보변경하기</a>
 						</div>
 
 
@@ -78,7 +76,7 @@
 
 					<div class="row">
 						<div class="col" style="text-align: center;">
-							<a href="#">구매내역(링크)</a>
+							<a href="/PayHistory">구매내역</a>
 						</div>
 						<div class="col" style="text-align: center;">찜목록</div>
 						<div class="col" style="text-align: center;">내가쓴 댓글</div>
@@ -213,5 +211,17 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+<script>
+    let loginPw = '<c:out value="${sessionScope.loginPw}" />'; // 세션에서 비밀번호 가져오기
+    function PwCheck() {
+        console.log('호출성공');
+        let pw = prompt('비밀번호를 입력해주세요.'); // 변수 이름을 'pw'로 수정
+        if (pw === loginPw) {
+        	window.location.href = "/MyInfoUpdate";
+        }else{
+        	alert('비밀번호가 일치하지 않습니다. 다시 시도해주세요');
+        }
+    }
+</script>
 </body>
 </html>

@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <link href="resources/css/styles.css" rel="stylesheet" />
+<c:if test="${msg != null }">
+	<script type="text/javascript">
+    			alert('${msg}');
+   			</script>
+</c:if>
 <style>
 .homePageLink {
 	font-size: 16px;
@@ -45,16 +50,18 @@
 
 .navbar-brand {
 	cursor: pointer;
+	border-top: 1px solid black;
 }
 
 .navbar-brand.click {
 	border-left: 4px solid #e8ec74;
 	border-top: 4px solid #e8ec74;
 	border-right: 4px solid #e8ec74;
+	background: #484848;
 }
 
 .navbar-brand.unclicked {
-	border-bottom: 4px solid #e8ec74;
+	border-bottom: 2px solid #e8ec74;
 }
 
 .navbar-brand.form-control2.click {
@@ -115,6 +122,11 @@ th {
 	font-weight: bold;
 	cursor: pointer;
 	font-size: 80px;
+}
+
+th:hover {
+	background: #484848;
+	border-top: 1px solid yellow;
 }
 </style>
 
@@ -177,9 +189,12 @@ th {
 			  -->
 
 		</table>
-		<div class="searchbar">
-			<input class="navbar-brand form-control2" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" />
-			<button class="btn btn-primary" id="button-search" type="button">Go!</button>
+		<div class="searchbar mb-4">
+			<form action="/getSearch">
+				<input type="hidden" id="pageType" name="pageType" value=""> 
+				<input class="navbar-brand form-control2" id="searchKeyword" name="searchKeyword" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" />
+				<button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+			</form>
 		</div>
 
 		<!--  
@@ -195,7 +210,7 @@ th {
 
 
 
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<script type="text/javascript">
     const clickImg = document.getElementById("clickImg");
     const colorChange = document.querySelectorAll(".navbar-brand");
@@ -251,8 +266,15 @@ th {
     });
 </script>
 
+	<script type="text/javascript">
+		let currentURL = window.location.href;
+		let currentPath = currentURL.split("/")[3];
+		pageId = document.querySelector('#pageType');
+		pageId.value = currentPath;		
+		console.log(pageId.value);
 
 
+</script>
 
 
 

@@ -11,4 +11,10 @@ public interface ChartDao {
 
 	ArrayList<Chart> selectChartInfo_map(String sgcode);
 
+	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
+
+	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
+
+	HashMap<String, String> selectMainChart();
+
 }

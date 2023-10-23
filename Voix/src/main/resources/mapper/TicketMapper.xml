@@ -12,7 +12,46 @@
 	<select id="getTkInfo">
 		SELECT * FROM TICKETS WHERE TKCODE = #{tkcode}
 	</select>
+	
+	<insert id="registReview">
+		INSERT INTO REVIEWS(RECODE,REWRITER,RECONTENT,REDATE,RESTATE) VALUES(#{recode},#{rewriter},#{recontent},SYSDATE,#{restate})
+	</insert>
+	
+	 <select id="selectMaxReCode">
+		SELECT NVL(MAX(RECODE), 'RE0000') FROM REVIEWS
+	</select>
+	
+	<select id="selectReviewList" resultType="hashmap">
+		SELECT * FROM REVIEWS WHERE RESTATE = #{tkcode} ORDER BY REDATE DESC
+	</select>
+	
+	<delete id="deleteReview">
+		DELETE FROM REVIEWS WHERE RECODE = #{recode}
+	</delete>
 		<select id="getTkTitle">
 		SELECT TKTITLE FROM TICKETS WHERE TKPLACE = #{tkplace}
 	</select>
+		<select id="selectSearch_Title">
+	SELECT * FROM TICKETS WHERE TKTITLE like '%${tktitle}%'
+	</select>
+	
+	<select id="selectSearch_Content">
+	SELECT * FROM TICKETS WHERE TKARTIST like '%${tkartist}%'
+	</select>
+
+	<select id="selectMainTicket">
+		SELECT *
+		FROM (SELECT TKCODE AS code, TKTITLE AS title , TKARTIST AS content , TKIMG AS img , TKDATE AS dat2
+		FROM TICKETS
+		ORDER BY TKDATE DESC)
+		WHERE ROWNUM = 1
+	</select>
+	
+	<select id="getMaxTkCode">
+		SELECT NVL(MAX(TKCODE), 'T0000') FROM TICKETS
+	</select>
+	
+	<insert id="getTicket_melon">
+		INSERT INTO TICKETS(TKCODE, TKIMG, TKARTIST, TKDATE, TKPLACE, TKTIME, TKINFO, TKTITLE, TKURL, TKSTATE)
+	</insert>
 </mapper>

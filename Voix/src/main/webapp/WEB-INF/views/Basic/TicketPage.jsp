@@ -48,6 +48,7 @@
 							<li class="w-25"><a class="list-group-item">벅스</a></li>
 						</ul>
 					</div>
+					<button onclick="crowwclick()" >크롤ㄹ링 고고</button>
 				</div>
 
 
@@ -118,5 +119,17 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+	<script type="text/javascript">
+	function crowwclick(){
+		$.ajax({
+			url : "/getTicket_melon",
+			type : 'get',
+			success : function(result) {
+				console.log(result);
+			}
+		});
+	}
+	
+	</script>
 </body>
 </html>
