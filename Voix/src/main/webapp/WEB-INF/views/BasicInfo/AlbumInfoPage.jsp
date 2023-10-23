@@ -38,6 +38,13 @@ button {
     text-align: center;
     width: 100px;
 }
+.infoBox{
+    height: 600px;
+    overflow: overlay;
+}
+.infoBox::-webkit-scrollbar{
+width: 10px;
+}
 
 </style>
 </head>
@@ -63,7 +70,7 @@ button {
             	<div class="card-title text-lg-center">
             		<p style="font-size: xx-large;">${ALInfo.alartist}</p>
             	</div>
-              	<div class="card-body">
+              	<div class="card-body infoBox">
               		<p style="font-size:">${ALInfo.alinfo}</p>
               	</div>
               	<div class="card-footer text-lg-center" style="background-color: unset;">
