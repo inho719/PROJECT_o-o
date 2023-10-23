@@ -29,7 +29,7 @@
 	<!-- Page content-->
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 
 				<div class="card mb-2">
 					<div class="card-body">
