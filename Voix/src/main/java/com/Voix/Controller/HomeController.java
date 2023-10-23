@@ -13,12 +13,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Voix.Service.AlbumService;
+import com.Voix.Service.BlogService;
 import com.Voix.Service.ChartService;
 import com.Voix.Service.NewsService;
 import com.Voix.Service.TicketService;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 @Controller
 public class HomeController {
@@ -35,9 +41,12 @@ public class HomeController {
 	@Autowired
 	private TicketService tsvc;
 
+	@Autowired
+	private BlogService bsvc;
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model,HttpSession session) {
+	public String home(Locale locale, Model model, HttpSession session) {
 		System.out.println("메인페이지 이동");
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -46,6 +55,45 @@ public class HomeController {
 		session.setAttribute("sideState", "M");
 		return "MainPage";
 	}
+	//@RequestParam(value = "selThemas", defaultValue = "N") String selThemas,
+	@RequestMapping(value = "/getSelContents")
+	public @ResponseBody String getSelContents(String selThemas) {
+		System.out.println(selThemas);
+		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
+		
+		//ArrayList<String> themas = new ArrayList<String>();
+		
+		JsonArray themasArr = JsonParser.parseString(selThemas).getAsJsonArray();
+		for( JsonElement themaEl : themasArr ) {
+			//themas.add(   themaEl.getAsJsonObject().get("thema").getAsString() );
+			String themaStr = themaEl.getAsJsonObject().get("thema").getAsString();
+			HashMap<String, String> content = null;
+			switch(themaStr) {
+			case "news":
+				content = nsvc.selectMainNews(themaStr); //SELECT NEWSTITLE AS TITLE
+				break;
+			case "ticket":
+				content = tsvc.selectMainTicket(themaStr); // SELECT TKTITLE AS TITLE
+				break;
+			case "album":
+				content = asvc.selectMainAlbum(themaStr);
+				break;
+			case "chart":
+				content = csvc.selectMainChart(themaStr);
+				break;
+			case "blog":
+				content = bsvc.selectMainBlog(themaStr);
+				break;
+			case "price":
+
+				break;
+			}
+			contentList.add(content);
+		}
+		System.out.println(contentList);
+		return new Gson().toJson(contentList);
+	}
+	
 
 	@RequestMapping("/getSearch")
 	public ModelAndView search(String searchKeyword, String pageType) {
