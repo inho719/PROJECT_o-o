@@ -30,6 +30,15 @@ button {
 .Disnone {
 	display: none;
 }
+.infoo {
+  list-style-type: none;
+  word-break: break-all;
+  margin-left: -42px;
+ 
+}
+.infooItem{
+
+}
 </style>
 </head>
 <body>
@@ -44,12 +53,54 @@ button {
 					<img alt="공연포스터" src="${tk.tkimg}" style="width: 100%;" class="card-img-top">
 				</div>
 				<div class="card col-md-8 mb-4">
+					<ul class="infoo">
+						<li class="infooItem">
+							<strong class="infooLabel">공연제목</strong>
+							<div class="infooDesc">
+							<p class="infooText">${tk.tktitle}</p>
+							</div>							
+						</li>
+					
+						<li class="infooItem">
+							<strong class="infooLabel">출연진</strong>
+							<div class="infooDesc">
+							<p class="infooText">${tk.tkartist}</p>
+							</div>
+						</li>
+						<li class="infooItem">
+							<strong class="infooLabel">장소</strong>
+							<div class="infooDesc">
+							<p class="infooText"id="tkplace">${tk.tkplace}</p>
+							</div>
+						</li>
+						<li class="infooItem">
+							<strong class="infooLabel">공연기간</strong>
+							<div class="infooDesc">
+							<p class="infooText">${tk.tkdate}</p>
+							</div>
+						</li>
+						<li class="infooItem">
+							<strong class="infooLabel">공연시간</strong>
+							<div class="infooDesc">
+							<p class="infooText"> ${tk.tktime}</p>
+							</div>
+						</li>
+						<li class="infooItem">
+							<strong class="infooLabel">공연정보</strong>
+							<div class="infooDesc">
+							<p class="infooText">${tk.tkinfo}</p>
+							</div>
+						</li>
+
+					</ul>
+					<!--
 					<p>${tk.tktitle}</p>
 					<p>${tk.tkartist}</p>
 					<p id="tkplace">${tk.tkplace}</p>
 					<p>${tk.tktime}</p>
 					<p>${tk.tkdate}</p>
 					<p>${tk.tkinfo}</p>
+					-->
 				</div>
 
 
