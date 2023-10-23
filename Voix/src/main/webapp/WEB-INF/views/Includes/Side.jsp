@@ -1,9 +1,18 @@
 
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<style>
+.img-profile{
+	width: 60%;
+    border-radius: 100%;
+}
+</style>
+
+
 <!-- Side widgets-->
 <div class="col-lg-3">
 
@@ -24,43 +33,41 @@
 		<c:otherwise>
 			<!-- Search widget-->
 			<div class="card mb-4">
-				<div class="card-header" style="text-align: center;">환영합니다.</div>
+				<div class="card-header" style="text-align: center;">${sessionScope.loginId} ${sessionScope.loginName }</div>
 				<div class="card-body">
 					<div class="loginInfo">
-						<div class="d-flex mb-4">
+						<div class="d-flex justify-content-between">
 
 							<c:choose>
 								<c:when test="${sessionScope.loginState == 'YC' }">
 									<c:choose>
 										<c:when test="${sessionScope.loginProfile == null}">
 											<%-- 등록된 프로필이 없는 경우 sessionScope.loginProfile --%>
-											<img class="img-profile w-50"
+											<img class="img-profile"
 												src="${pageContext.request.contextPath }/resources/users/memberProfile/기본프로필.jpg">
 										</c:when>
 										<c:otherwise>
 											<%-- 등록된 프로필이 있는 경우 --%>
-											<img class="img-profile w-50"
+											<img class="img-profile" 
 												src="${pageContext.request.contextPath }/resources/users/memberProfile/${sessionScope.loginProfile }">
 										</c:otherwise>
 									</c:choose>
 								</c:when>
 								<c:otherwise>
-									<img class="img-profile w-50 "
+									<img class="img-profile "
 										src="${sessionScope.loginProfile }">
 								</c:otherwise>
 							</c:choose>
-							<div class="w-50 text-center">
-								<h2 class="card-title mb-0">${sessionScope.loginName }</h2>
-								<p class="card-text">${sessionScope.loginId }</p>
-							</div>
-						</div>
-						<div class="d-flex justify-content-center">
-							<div class="">
+							<div class="" style="text-align: center;align-self: center;width: 40%;">
+							<div class="mb-3">
 								<a class="nav-link" href="/memberLogout">로그아웃</a>
-
 							</div>
-							<div class="ms-sm-5">
+							<div class="mb-3">
 								<a class="nav-link" href="/MyInfoPage">내정보</a>
+							</div>
+							<div class="mb-3">
+								<a class="nav-link" href="/CartPage">장바구니</a>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -221,7 +228,6 @@
 			player.playVideo();
 		}
 	}
-</script>
 </script>
 <script type="text/javascript">
 if (${sessionScope.rankState == 'NW'}) {
