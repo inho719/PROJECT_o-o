@@ -86,15 +86,13 @@
 					<hr>
 
 					<div class="card mb-4">
-						<div class="NewsDiv" style="display: flex;">
-
-							<c:forEach items="${newsLikeList}" var="news">
+						<c:forEach items="${newsLikeList}" var="news">
+							<div class="NewsDiv" style="display: flex;">
 								<div class="NewsImg">
 									<a href="#뉴스코드"><img style="width: 350px; height: 200px;" src="${news.NWIMG}" alt="..." /></a>
 								</div>
 								<div class="NewsText" style="flex: 1;">
 									<div class="NewsTitle">
-
 										<h4>${news.NWTITLE}</h4>
 									</div>
 									<div class="NewsContents p-2">
@@ -104,11 +102,8 @@
 										<a href="찜"><img alt="" src="/resources/assets/heart.png"></a> <a class="Views" style="text-decoration-line: none; color: gray;">조회수:${news.NWBIGHIT }</a>
 									</div>
 								</div>
-
-							</c:forEach>
-
-
-						</div>
+							</div>
+						</c:forEach>
 					</div>
 					<a>블로그에서 만든 형식(해야함 디비가 안들어가 해줘)</a>
 				</div>
