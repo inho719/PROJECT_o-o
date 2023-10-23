@@ -40,7 +40,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Blog entries-->
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 				<!-- Featured blog post-->
 
 				<div class="card mb-4">
