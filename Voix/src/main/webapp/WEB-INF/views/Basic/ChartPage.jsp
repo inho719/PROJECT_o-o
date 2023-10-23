@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Blog entries-->
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 				<div class="card m-2">예스, 알라딘, 교보</div>
 				<c:forEach items="${ChartListMap}" var="ChartMap">
 					<div class="card m-2">
