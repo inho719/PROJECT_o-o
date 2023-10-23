@@ -37,7 +37,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Ticket entries-->
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 				<div class="w-100">
 					<div class="list-group">
 						<ul class="list-group list-group-horizontal"
