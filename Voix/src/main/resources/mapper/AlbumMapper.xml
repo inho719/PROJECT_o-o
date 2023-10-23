@@ -93,4 +93,9 @@
 	<insert id="insertAlbumsKpop">
 		INSERT INTO ALBUMS VALUES(#{alcode}, #{alimg}, #{altitle}, #{alprice}, #{alsaleprice}, #{alartist}, TO_DATE(#{aldate}, 'YYYY-MM-DD'), #{alinfo}, '가요', #{alscore}, #{allist}, 'Y')
 	</insert>
+	
+	<insert id="likeAlbum">
+   		INSERT INTO LIKES (LIMID, LILIST)
+    	VALUES (#{mid}, #{like})
+	</insert>
 </mapper>
