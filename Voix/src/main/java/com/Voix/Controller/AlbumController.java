@@ -79,6 +79,15 @@ public class AlbumController {
 		return mav;
 	}
 
+	@RequestMapping(value="/likeAlbum")
+	public @ResponseBody int likeAlbum(String like, HttpSession session) {
+		System.out.println("엘범 찜 기능");
+		String mid = session.getAttribute("loginId").toString();
+		System.out.println("엘범- 아이디 확인:"+mid);
+		System.out.println("엘범-   찜 확인:"+like);
+		return asvc.likeAlbum(like,mid);
+	}
+		
 	@RequestMapping(value = "/albumRegistReview")
 	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
 		String rewriter = (String) session.getAttribute("loginId");
