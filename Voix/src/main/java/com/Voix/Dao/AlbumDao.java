@@ -55,4 +55,6 @@ public interface AlbumDao {
 
 	int insertAlbumsKpop(Album al);
 
+	int likeAlbum(@Param("like")String like,@Param("mid")String mid);
+
 }
