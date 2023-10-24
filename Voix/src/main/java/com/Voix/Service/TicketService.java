@@ -135,6 +135,34 @@ public class TicketService {
 		System.out.println("SERVICE - 티켓 찜");
 		return tdao.likeTicket(like,mid);
 	}
-	
+	public int getTicket_melon(Ticket tK) throws IOException {
+		System.out.println("SERVICE - getTicket_melon 호출");
+		return tdao.getTicket_melon(tK);
+	}
+
+	public String getMaxTkCode() {
+		return tdao.getMaxTkCode();
+	}
+
+	public int getTicket_Interticket(Ticket TK) {
+		// TODO Auto-generated method stub
+		return tdao.getTicket_Interticket(TK);
+	}
+
+	public int getTicket_Yes24ticket(Ticket TK) {
+		// TODO Auto-generated method stub
+		return tdao.getTicket_Yes24ticket(TK);
+	}
+
+	public int getTicket_11bungaTicket(Ticket TK) {
+		// TODO Auto-generated method stub
+		return tdao.getTicket_11bungaTicket(TK);
+	}
+
+	public ArrayList<HashMap<String, String>> getTicketList_ChooseSite(String siteVal) {
+		System.out.println("서비스 사이트선택");
+		return tdao.getTicketList_ChooseSite(siteVal);
+	}
+
 
 }
