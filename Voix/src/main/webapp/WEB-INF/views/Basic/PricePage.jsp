@@ -16,6 +16,19 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 
 <style type="text/css">
+
+.Melon{
+	background:white !important;;
+}
+.Vibe{
+	background:black !important;;
+}
+.Bugs{
+	background:#ff3c28 !important;;
+}
+.Genie{
+	background:white !important;;	
+}
 </style>
 </head>
 
@@ -28,123 +41,23 @@
 	<!-- Responsive navbar-->
 	<!-- Page content-->
 	<div class="container">
-		<div class="row">
+		<div class="row text-center">
 			<div class="col-lg-9">
-
-				<div class="card mb-2">
-					<div class="card-body">
+			
+			
+			<c:forEach items="${PriceList}" var="PriceList">
+				<div class="mb-2">
 						<div class="row">
-							<div class="card col-md-1">
-								<p>로고</p>
+							<div class="card col-md-4 justify-content-center ${PriceList.page}" style="height: 220px;	">
+								<img alt="" src="${PriceList.pageimg}" class="w-100 ${PriceList.page}">
 							</div>
-
-							<div class="card col-md-8">
-								<p>정액권 설명</p>
-							</div>
-
-							<div class="card col-md-2">
-								<p>가격</p>
-							</div>
-
-							<div class="card col-md-1 small text-mute" style="display: flex; justify-content: center; align-items: center;">
-								<a href="찜"><img alt="" src="${pageContext.request.contextPath}/resources/assets/heart.png"></a>
+							<div class="card col-md-8 justify-content-center">
+								<h2>${PriceList.pricename}</h2>
+								<p style="font-size: 18px; margin-top: 3px;">${PriceList.strprice}</p>
 							</div>
 						</div>
-					</div>
 				</div>
-
-
-
-				<div class="card mb-2">
-					<div class="card-body">
-						<div class="row">
-							<div class="card col-md-1">
-								<p>로고</p>
-							</div>
-
-							<div class="card col-md-8">
-								<p>정액권 설명</p>
-							</div>
-
-							<div class="card col-md-2">
-								<p>가격</p>
-							</div>
-
-							<div class="card col-md-1 small text-mute" style="display: flex; justify-content: center; align-items: center;">
-								<a href="찜"><img alt="" src="${pageContext.request.contextPath}/resources/assets/heart.png"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="card mb-2">
-					<div class="card-body">
-						<div class="row">
-							<div class="card col-md-1">
-								<p>로고</p>
-							</div>
-
-							<div class="card col-md-8">
-								<p>정액권 설명</p>
-							</div>
-
-							<div class="card col-md-2">
-								<p>가격</p>
-							</div>
-
-							<div class="card col-md-1 small text-mute" style="display: flex; justify-content: center; align-items: center;">
-								<a href="찜"><img alt="" src="${pageContext.request.contextPath}/resources/assets/heart.png"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="card mb-2">
-					<div class="card-body">
-						<div class="row">
-							<div class="card col-md-1">
-								<p>로고</p>
-							</div>
-
-							<div class="card col-md-8">
-								<p>정액권 설명</p>
-							</div>
-
-							<div class="card col-md-2">
-								<p>가격</p>
-							</div>
-
-							<div class="card col-md-1 small text-mute" style="display: flex; justify-content: center; align-items: center;">
-								<a href="찜"><img alt="" src="${pageContext.request.contextPath}/resources/assets/heart.png"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="card mb-2">
-					<div class="card-body">
-						<div class="row">
-							<div class="card col-md-1">
-								<p>로고</p>
-							</div>
-
-							<div class="card col-md-8">
-								<p>정액권 설명</p>
-							</div>
-
-							<div class="card col-md-2">
-								<p>가격</p>
-							</div>
-
-							<div class="card col-md-1 small text-mute" style="display: flex; justify-content: center; align-items: center;">
-								<a href="찜"><img alt="" src="${pageContext.request.contextPath}/resources/assets/heart.png"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-
+			</c:forEach>
 			</div>
 
 			<%@ include file="/WEB-INF/views/Includes/Side.jsp"%>
