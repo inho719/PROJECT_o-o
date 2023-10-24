@@ -30,14 +30,15 @@ button {
 .Disnone {
 	display: none;
 }
-.infoo {
-  list-style-type: none;
-  word-break: break-all;
-  margin-left: -42px;
- 
-}
-.infooItem{
 
+.infoo {
+	list-style-type: none;
+	word-break: break-all;
+	margin-left: -42px;
+}
+
+.infooItem {
+	
 }
 </style>
 </head>
@@ -54,43 +55,31 @@ button {
 				</div>
 				<div class="card col-md-8 mb-4">
 					<ul class="infoo">
-						<li class="infooItem">
-							<strong class="infooLabel">공연제목</strong>
+						<li class="infooItem"><strong class="infooLabel">공연제목</strong>
 							<div class="infooDesc">
-							<p class="infooText">${tk.tktitle}</p>
-							</div>							
-						</li>
-					
-						<li class="infooItem">
-							<strong class="infooLabel">출연진</strong>
+								<p class="infooText">${tk.tktitle}</p>
+							</div></li>
+
+						<li class="infooItem"><strong class="infooLabel">출연진</strong>
 							<div class="infooDesc">
-							<p class="infooText">${tk.tkartist}</p>
-							</div>
-						</li>
-						<li class="infooItem">
-							<strong class="infooLabel">장소</strong>
+								<p class="infooText">${tk.tkartist}</p>
+							</div></li>
+						<li class="infooItem"><strong class="infooLabel">장소</strong>
 							<div class="infooDesc">
-							<p class="infooText"id="tkplace">${tk.tkplace}</p>
-							</div>
-						</li>
-						<li class="infooItem">
-							<strong class="infooLabel">공연기간</strong>
+								<p class="infooText" id="tkplace">${tk.tkplace}</p>
+							</div></li>
+						<li class="infooItem"><strong class="infooLabel">공연기간</strong>
 							<div class="infooDesc">
-							<p class="infooText">${tk.tkdate}</p>
-							</div>
-						</li>
-						<li class="infooItem">
-							<strong class="infooLabel">공연시간</strong>
+								<p class="infooText">${tk.tkdate}</p>
+							</div></li>
+						<li class="infooItem"><strong class="infooLabel">공연시간</strong>
 							<div class="infooDesc">
-							<p class="infooText"> ${tk.tktime}</p>
-							</div>
-						</li>
-						<li class="infooItem">
-							<strong class="infooLabel">공연정보</strong>
+								<p class="infooText">${tk.tktime}</p>
+							</div></li>
+						<li class="infooItem"><strong class="infooLabel">공연정보</strong>
 							<div class="infooDesc">
-							<p class="infooText">${tk.tkinfo}</p>
-							</div>
-						</li>
+								<p class="infooText">${tk.tkinfo}</p>
+							</div></li>
 
 					</ul>
 					<!--
@@ -144,7 +133,6 @@ button {
 								<button type="button" onclick="location.href='/deleteReview?recode=${re.RECODE}&tkcode=${tk.tkcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
 							</c:if>
 							<div class="small text-muted">작성시간: ${re.REDATE}</div>
-
 						</div>
 						<hr>
 					</c:forEach>
@@ -153,7 +141,14 @@ button {
 			</div>
 		</div>
 	</div>
+
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+		</div>
 	</footer>
+
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://kit.fontawesome.com/acc1ccb443.js" crossorigin="anonymous"></script>
