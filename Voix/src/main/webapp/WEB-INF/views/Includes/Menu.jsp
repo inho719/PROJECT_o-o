@@ -201,7 +201,7 @@ th:hover {
 				<a class="navbar-brand-click" id="news"  href="/NewsPage">뉴스</a> 
 				<a class="navbar-brand" id="blog"  href="/BlogPage">블로그</a> 
 				<a class="navbar-brand" id="ticket"href="/TicketPage">티켓</a> 
-				<a class="navbar-brand" id="album" href="/AlbumPage">엘범</a> 
+				<a class="navbar-brand" id="album" href="/AlbumPage">앨범</a> 
 				<a class="navbar-brand" id="chart" href="/ChartPage">랭킹비교</a> 
 				<a class="navbar-brand" id="price" href="/PricePage">가격비교</a>
 			-->
