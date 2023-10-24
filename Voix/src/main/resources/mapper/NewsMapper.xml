@@ -63,4 +63,9 @@
 		ORDER BY NWDATE DESC)
 		WHERE ROWNUM = 1
 	</select>
+	<update id="UpdateNewsBigHit">
+	UPDATE NEWS
+	SET NWBIGHIT = NWBIGHIT+'1'
+	WHERE NWCODE = #{nwcode}
+	</update>
 </mapper>
