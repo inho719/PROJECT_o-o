@@ -75,7 +75,7 @@
 								</div>
 								<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
 									<!-- ---------------------------------------------------------------------------- -->
-									<a class="Views" style="text-decoration-line: none; color: gray;">${NewsMap.NWBIGHIT}</a>
+									<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${NewsMap.NWBIGHIT}</a>
 									<a class="Views" style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
 									<div class="like_article" onclick="like('${NewsMap.NWCODE}')">
 										<a href="#" class="prdLike">
