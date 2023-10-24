@@ -1,13 +1,21 @@
 package com.Voix.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Voix.Dao.ChartDao;
 import com.Voix.Dto.Chart;
+import com.Voix.Dto.Song;
 
 @Service
 public class ChartService {
