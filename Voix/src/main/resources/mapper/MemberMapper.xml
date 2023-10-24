@@ -97,4 +97,39 @@
 		WHERE OD.ODMID = #{mid}
 		ORDER BY ODDATE DESC
 	</select>
+	<select id="newsReviewList" resultType="hashmap">
+		SELECT *
+		FROM NEWS N
+		INNER JOIN REVIEWS R
+		ON N.NWCODE = R.RESTATE
+		WHERE REWRITER = #{loginId}
+	</select>
+		<select id="blogReviewList" resultType="hashmap">
+		SELECT *
+		FROM BLOGS B
+		INNER JOIN REVIEWS R
+		ON B.BGCODE = R.RESTATE
+		WHERE REWRITER = #{loginId}
+	</select>
+		<select id="albumsReviewList" resultType="hashmap">
+		SELECT *
+		FROM ALBUMS A
+		INNER JOIN REVIEWS R
+		ON A.ALCODE = R.RESTATE
+		WHERE REWRITER = #{loginId}
+	</select>
+		<select id="ticketReviewList" resultType="hashmap">
+		SELECT *
+		FROM TICKETS T
+		INNER JOIN REVIEWS R
+		ON T.TKCODE = R.RESTATE
+		WHERE REWRITER = #{loginId}
+	</select>
+		<select id="songsReviewList" resultType="hashmap">
+		SELECT *
+		FROM SONGS S
+		INNER JOIN REVIEWS R
+		ON S.SGCODE = R.RESTATE
+		WHERE REWRITER = #{loginId}
+	</select>
 </mapper>
