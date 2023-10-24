@@ -17,4 +17,7 @@ public interface ChartDao {
 
 	HashMap<String, String> selectMainChart();
 
+	String selectMaxSgCode();
+
+	int insertSong(Song song);
 }
