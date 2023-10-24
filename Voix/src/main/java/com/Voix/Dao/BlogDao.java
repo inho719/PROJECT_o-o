@@ -27,4 +27,6 @@ public interface BlogDao {
 
 	ArrayList<HashMap<String, String>> selectBlogHitList();
 
+	int UpdateBlogBigHit(String bgcode);
+
 }
