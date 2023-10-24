@@ -45,19 +45,32 @@
 			<div class="col-lg-9">
 			
 			
-			<c:forEach items="${PriceList}" var="PriceList">
-				<div class="mb-2">
-						<div class="row">
-							<div class="card col-md-4 justify-content-center ${PriceList.page}" style="height: 220px;	">
-								<img alt="" src="${PriceList.pageimg}" class="w-100 ${PriceList.page}">
-							</div>
-							<div class="card col-md-8 justify-content-center" style="background: #fafafa;">
-								<h2>${PriceList.pricename}</h2>
-								<p style="font-size: 18px; margin-top: 3px;">${PriceList.strprice}</p>
-							</div>
-						</div>
-				</div>
-			</c:forEach>
+<c:forEach items="${PriceList}" var="priceList">
+    <div class="mb-2">
+        <div class="row">
+            <div class="card col-md-4 justify-content-center ${priceList.page}" style="height: 220px;">
+                <c:choose>
+                    <c:when test="${priceList.page eq 'Melon'}">
+                        <a href="https://www.melon.com/buy/pamphlet/all.htm"><img alt="" src="${priceList.pageimg}" class="w-100 ${priceList.page}"></a>
+                    </c:when>
+                    <c:when test="${priceList.page eq 'Bugs'}">
+                        <a href="https://music.bugs.co.kr/pay/public"><img alt="" src="${priceList.pageimg}" class="w-100 ${priceList.page}"></a>
+                    </c:when>
+                    <c:when test="${priceList.page eq 'Genie'}">
+                        <a href="https://pay.genie.co.kr/buy/thirtyDays"><img alt="" src="${priceList.pageimg}" class="w-100 ${priceList.page}"></a>
+                    </c:when>
+                    <c:when test="${priceList.page eq 'Vibe'}">
+                        <a href="https://vibe.naver.com/membership/vibe"><img alt="" src="${priceList.pageimg}" class="w-100 ${priceList.page}"></a>
+                    </c:when>
+                </c:choose>
+            </div>
+            <div class="card col-md-8 justify-content-center" style="background: #fafafa;">
+                <h2>${priceList.pricename}</h2>
+                <p style="font-size: 18px; margin-top: 3px;">${priceList.strprice}</p>
+            </div>
+        </div>
+    </div>
+</c:forEach>
 			</div>
 
 			<%@ include file="/WEB-INF/views/Includes/Side.jsp"%>
