@@ -62,7 +62,7 @@
 				<div class="reviewWrite">
 					<form action="newsRegistReview" class="my-3" method="post">
 							<input type="text" name="restate" value="${nw.nwcode }" style="display:none">
-							<textarea class="w-100 reviewComment" name="recontent"></textarea>
+							<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
 							<input class="btn btn-success w-100" type="submit" value="댓글 등록">
 						</form>
 				</div>
