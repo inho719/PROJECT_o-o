@@ -28,4 +28,12 @@
 		ORDER BY SGARTIST DESC)
 		WHERE ROWNUM = 1
 	</select>
+
+	<select id="selectMaxSgCode" resultType="String">
+		SELECT NVL(MAX(SGCODE), 'S0000') FROM SONGS
+	</select>
+	
+	<insert id="insertSong">
+		INSERT INTO SONGS VALUES(#{sgcode}, #{sgtitle}, #{sgaltitle}, #{sgartist}, #{sgmvurl}, #{sginfo}, #{sgimg}, #{sglyric})
+	</insert>
 </mapper>
