@@ -189,6 +189,7 @@ public class MemberController {
 		} else {
 			System.out.println("로그인 성공");
 			session.setAttribute("loginId", loginMember.getMid());
+			session.setAttribute("loginPw", loginMember.getMpw());
 			session.setAttribute("loginProfile", loginMember.getMimg());
 			session.setAttribute("loginState", loginMember.getMstate());
 			session.setAttribute("loginName", loginMember.getMname());
