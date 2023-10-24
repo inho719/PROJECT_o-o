@@ -163,6 +163,9 @@ public class MemberController {
 		ArrayList<HashMap<String, String>> songsLike = msvc.songsLike(loginId);
 		mav.addObject("songsLikeList", songsLike);
 
+		ArrayList<HashMap<String, String>> blogLike = msvc.blogLike(loginId);
+		mav.addObject("blogLikeList", blogLike);
+
 		mav.setViewName("/Member/MyInfoPage");
 		return mav;
 
