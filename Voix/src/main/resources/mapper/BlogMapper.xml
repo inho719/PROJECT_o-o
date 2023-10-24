@@ -22,7 +22,7 @@
 </select>
 
 <select id="selectReviewList" resultType="hashmap">
-		SELECT * FROM REVIEWS WHERE RESTATE = #{bgcode}
+		SELECT * FROM REVIEWS WHERE RESTATE = #{bgcode} ORDER BY REDATE DESC
 </select>
 
 <select id="selectMaxReCode">
