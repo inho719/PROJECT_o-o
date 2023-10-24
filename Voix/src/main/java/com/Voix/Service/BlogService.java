@@ -69,4 +69,9 @@ public class BlogService {
 		return bdao.selectBlogHitList();
 	}
 
+
+	public int UpdateBlogBigHit(String bgcode) {
+		return bdao.UpdateBlogBigHit(bgcode);
+	}
+
 }
