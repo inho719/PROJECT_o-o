@@ -46,4 +46,9 @@
 		ORDER BY TKDATE DESC)
 		WHERE ROWNUM = 1
 	</select>
+
+	<insert id="likeTicket">
+		INSERT INTO LIKES (LIMID, LILIST)
+		VALUES (#{mid}, #{like})
+	</insert>
 </mapper>
