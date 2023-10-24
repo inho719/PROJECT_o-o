@@ -162,6 +162,16 @@
 						</div>
 					</div>
 					</c:when>
+					<c:when test="${sessionScope.rankState == 'BL'}" >
+					<div class="card mb-4">
+						<div class="card-header">높은 조회수</div>
+						<div class="card-body">
+							<div class="" style="border-bottom: 2px solid black;" id = "BlogHit">
+							
+							</div>
+						</div>
+					</div>
+					</c:when>
 					</c:choose>
 
 				</c:when>
@@ -265,6 +275,45 @@ if (${sessionScope.rankState == 'NW'}) {
                 newsHitItemDiv.appendChild(newsHitItem);
                 // Append the div to the NewsHit div
                 newsHitDiv.appendChild(newsHitItemDiv);
+            }
+        },
+    });
+}
+if (${sessionScope.rankState == 'BL'}) {
+    $.ajax({
+        type: "GET",
+        url: "BlogHitList",
+        dataType: 'json',
+        success: function (result) {
+            var BlogHitDiv = document.getElementById("BlogHit");
+
+            for (let i = 0; i < result.length; i++) {
+                var hitBlog = result[i];
+
+                // Create a new div element
+                var BlogHitItemDiv = document.createElement("div");
+                BlogHitItemDiv.className = "Blog-hit-item";
+
+                // Create a new anchor link
+                var BlogHitItem = document.createElement("a");
+                BlogHitItem.href = "javascript:void(0);"; // Set a dummy href
+
+                // Set data-nwcode as a custom data attribute
+                BlogHitItem.setAttribute("data-bgcode", hitBlog.BGCODE);
+
+                BlogHitItem.textContent = (i + 1) + ". " + hitBlog.BGTITLE; // Adding the number
+                BlogHitItem.onclick = function () {
+                    // Define an onclick function
+                    // Get the NWCODE from the data attribute
+                    var bgcode = this.getAttribute("data-bgcode");
+                    // Redirect to the NewsInfoPage with the NWCODE
+                    window.location.href = "BlogInfoPage?bgcode=" + bgcode;
+                };
+
+                // Append the anchor link to the div
+                BlogHitItemDiv.appendChild(BlogHitItem);
+                // Append the div to the NewsHit div
+                BlogHitDiv.appendChild(BlogHitItemDiv);
             }
         },
     });
