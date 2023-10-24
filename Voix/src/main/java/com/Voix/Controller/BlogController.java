@@ -38,6 +38,7 @@ public class BlogController {
 	@RequestMapping(value ="/BlogInfoPage")
 	public ModelAndView NewsInfoPage(String bgcode) {
 		ModelAndView mav = new ModelAndView();
+		int blogupdate = bsvc.UpdateBlogBigHit(bgcode);
 		Blog bg = bsvc.getbgInfo(bgcode);
 		mav.addObject("bg", bg);
 		ArrayList<HashMap<String,String>> reviewList = bsvc.selectReviewList(bgcode);
