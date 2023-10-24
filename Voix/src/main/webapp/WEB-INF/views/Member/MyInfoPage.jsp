@@ -91,6 +91,7 @@
 
 					<br>
 					<hr>
+					<div id="">
 					<div>뉴스</div>
 					<div class="card mb-4">
 						<c:forEach items="${newsLikeList}" var="news">
@@ -173,7 +174,7 @@
 									</div>
 								</c:forEach>
 							</div>
-						</div>
+					</div>
 					</div>
 					
 					<div>랭킹</div>
@@ -239,6 +240,121 @@
 						</div>
 					</div>
 
+					</div>
+					
+					<div id="">
+					<div>뉴스</div>
+					<div class="card mb-4">
+						<c:forEach items="${newsReviewList}" var="news">
+							<div class="NewsDiv" style="display: flex;">
+								<div class="NewsText" style="flex: 1;">
+								<h4>${news.NWTITLE}</h4>
+									<div class="NewsTitle">
+										<h4>${news.REWRITER}</h4>
+									</div>
+									<div class="NewsContents p-2">
+										<p class="card-text">${news.RECONTENT}</p>
+									</div>
+									<div class="small text-mute m-2"
+										style="display: flex; justify-content: space-between; align-items: flex-end;">
+										<a class="Views"
+											style="text-decoration-line: none; color: gray;">${news.REDATE }</a>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+
+					<div>블로그</div>
+					<div class="card mb-4">
+						<c:forEach items="${blogReviewList}" var="blog">
+							<div class="NewsDiv" style="display: flex;">
+								<div class="NewsText" style="flex: 1;">
+									<h4>${blog.BGTITLE }</h4>
+									<div class="NewsTitle">
+										<h4>${blog.REWRITER}</h4>
+									</div>
+									<div class="NewsContents p-2">
+										<p class="card-text">${blog.RECONTENT}</p>
+									</div>
+									<div class="small text-mute m-2"
+										style="display: flex; justify-content: space-between; align-items: flex-end;">
+										<a class="Views"
+											style="text-decoration-line: none; color: gray;">${blog.REDATE }</a>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					
+					<div>앨범</div>
+					<div class="card mb-4">
+						<c:forEach items="${albumsReviewList}" var="album">
+							<div class="NewsDiv" style="display: flex;">
+								<div class="NewsText" style="flex: 1;">
+								<h4>${album.ALTITLE}</h4>
+									<div class="NewsTitle">
+										<h4>${album.REWRITER}</h4>
+									</div>
+									<div class="NewsContents p-2">
+										<p class="card-text">${album.RECONTENT}</p>
+									</div>
+									<div class="small text-mute m-2"
+										style="display: flex; justify-content: space-between; align-items: flex-end;">
+										<a class="Views"
+											style="text-decoration-line: none; color: gray;">${album.REDATE }</a>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					
+					<div>티켓</div>
+					<div class="card mb-4">
+						<c:forEach items="${ticketReviewList}" var="ticket">
+							<div class="NewsDiv" style="display: flex;">
+								<div class="NewsText" style="flex: 1;">
+								<h4>${ticket.TKTITLE}</h4>
+									<div class="NewsTitle">
+										<h4>${ticket.REWRITER}</h4>
+									</div>
+									<div class="NewsContents p-2">
+										<p class="card-text">${ticket.RECONTENT}</p>
+									</div>
+									<div class="small text-mute m-2"
+										style="display: flex; justify-content: space-between; align-items: flex-end;">
+										<a class="Views"
+											style="text-decoration-line: none; color: gray;">${ticket.REDATE }</a>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					
+					<div>랭킹</div>
+					<div class="card mb-4">
+						<c:forEach items="${songsReviewList}" var="song">
+							<div class="NewsDiv" style="display: flex;">
+								<div class="NewsText" style="flex: 1;">
+								<h4>${song.SGTITLE}</h4>
+									<div class="NewsTitle">
+										<h4>${song.REWRITER}</h4>
+									</div>
+									<div class="NewsContents p-2">
+										<p class="card-text">${song.RECONTENT}</p>
+									</div>
+									<div class="small text-mute m-2"
+										style="display: flex; justify-content: space-between; align-items: flex-end;">
+										<a class="Views"
+											style="text-decoration-line: none; color: gray;">${song.REDATE }</a>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+
+					</div>
+					
 				</div>
 			</div>
 		</div>
