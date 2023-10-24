@@ -42,10 +42,10 @@
 					<div class="list-group">
 						<ul class="list-group list-group-horizontal"
 							style="list-style: none;">
-							<li class="w-25"><a class="list-group-item">멜론</a></li>
-							<li class="w-25"><a class="list-group-item">인터파크</a></li>
-							<li class="w-25"><a class="list-group-item">예스24</a></li>
-							<li class="w-25"><a class="list-group-item">벅스</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=melon">멜론</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=interpark">인터파크</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=yes24">예스24</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=11bunga">11번가</a></li>
 						</ul>
 					</div>
 				</div>
