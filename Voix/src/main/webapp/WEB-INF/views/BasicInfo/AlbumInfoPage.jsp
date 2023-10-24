@@ -61,8 +61,8 @@ button {
 			<div class="row">
 
 				<c:if test="${ALInfo.alimg != null }">
-					<div class="col mb-4">
-						<img class="AlbumImg" src="${ALInfo.alimg}" alt="..." />
+					<div class="col-md-4 mb-4" style="width: 490px; height: 490px; margin-right: 7px;">
+						<img style="width: 480px; height: 480px;" class="AlbumImg" src="${ALInfo.alimg}" alt="..." />
 					</div>
 				</c:if>
 				<c:if test="${ALInfo.alimg == null }">
@@ -70,15 +70,15 @@ button {
 						<img class="AlbumImg" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
 					</div>
 				</c:if>
-				<div class="card col-md-5 mb-4" style="font-size: x-large;">
-					<div class="card-title text-lg-center">
-						<p style="font-size: xx-large;">${ALInfo.alartist}</p>
+				<div class="card col-md-7 mb-4" style="font-size: x-large; height: 480px; width: 800px;">
+					<div class="card-title text-lg-center" style="height: 65px;">
+						<p style="font-size: xx-large; margin-top: 15px;">${ALInfo.alartist}</p>
 					</div>
 					<div class="card-body infoBox">
 						<p style="font-size:">${ALInfo.alinfo}</p>
 					</div>
 					<div class="card-footer text-lg-center" style="background-color: unset;">
-						<p>${ALInfo.aldate}</p>
+						<p style="font-size: 15px; margin-top: 10px;">${ALInfo.aldate}</p>
 					</div>
 				</div>
 
@@ -98,7 +98,8 @@ button {
 							할인가 : ${AlbumInfoList.alsaleprice}원
 							<!--내일 이거 해야함 체크 표시 해야 나오게  -->
 							<input id="selectQty_${AlbumInfoList.alcode}" type="number" value="1" min="1" placeholder="수량" class="disNone selectbox">
-							<a href="#" class="prdLike" onclick="like('${AlbumInfoList.alcode}')"> <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+							<a href="#" class="prdLike" onclick="like('${AlbumInfoList.alcode}')">
+								<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
 							</a>
 						</div>
 					</c:forEach>
