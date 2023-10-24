@@ -130,6 +130,7 @@
 	console.log(loginId);
 	console.log(blogCode);
 	if(loginId.length === 0){
+		alert("로그인을 먼저 해주세요.");
 		location.href="/LoginPage";
 		
 	} else {
