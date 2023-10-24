@@ -29,5 +29,5 @@ public interface TicketDao {
 
 	HashMap<String, String> selectMainTicket();
 
-
+	int likeTicket(@Param("like")String like,@Param("mid")String mid);
 }
