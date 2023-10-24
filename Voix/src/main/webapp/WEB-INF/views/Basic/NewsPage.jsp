@@ -129,8 +129,8 @@
 	console.log(loginId);
 	console.log(newsCode);
 	if(loginId.length === 0){
-		location.href="/LoginPage";
-		
+		alert("로그인을 먼저 해주세요.");
+		location.href="/LoginPage";	
 	} else {
 	
 		$.ajax({
