@@ -72,6 +72,15 @@
 		WHERE LIMID = #{loginId}
 	</select>
 
+	<select id="blogLikeList" resultType="hashmap">
+		SELECT *
+		FROM BLOGS B
+		INNER JOIN LIKES L
+		ON B.BGCODE = L.LILIST
+		WHERE LIMID = #{loginId}
+	</select>
+	
+
 	<update id="updateMemberInfo">
 		UPDATE MEMBERS SET MNAME = #{mname}, MADDR = #{maddr}, MEMAIL = #{memail}, MIMG = #{mimg} WHERE MID = #{mid}
 	</update>
