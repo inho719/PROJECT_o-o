@@ -34,4 +34,6 @@ public interface NewsDao {
 	int insertNews(News news);
 
 	HashMap<String, String> selectMainNews(String t);
+
+	int UpdateNewsBigHit(String nwcode);
 }
