@@ -36,11 +36,10 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="newsTitle col-md-12 mb-2">
-				<h2>${nw.nwtitle}</h2>
-			</div>
-
 			<div class="card col-md-12 mb-2">
+				<div class="newsTitle col-md-12 mb-2" style="margin-top: 10px;">
+					<h2>${nw.nwtitle}</h2>
+				</div>
 				<div class="row">
 					<img style="width: 380px; height: 200px; margin-top: 4px;" alt="뉴스사진" src="${nw.nwimg }">
 					<div class="card col-md-8 my-md-2 mx-md-3 ">
