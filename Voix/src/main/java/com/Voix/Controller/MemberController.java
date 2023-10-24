@@ -166,6 +166,21 @@ public class MemberController {
 		ArrayList<HashMap<String, String>> blogLike = msvc.blogLike(loginId);
 		mav.addObject("blogLikeList", blogLike);
 
+		ArrayList<HashMap<String, String>> newsReview = msvc.newsReview(loginId);
+		mav.addObject("newsReviewList", newsReview);
+		
+		ArrayList<HashMap<String, String>> blogReview = msvc.blogReview(loginId);
+		mav.addObject("blogReviewList", blogReview);
+		
+		ArrayList<HashMap<String, String>> albumsReview = msvc.albumsReview(loginId);
+		mav.addObject("albumsReviewList", albumsReview);
+		
+		ArrayList<HashMap<String, String>> ticketReview = msvc.ticketReview(loginId);
+		mav.addObject("ticketReviewList", ticketReview);
+		
+		ArrayList<HashMap<String, String>> songsReview = msvc.songsReview(loginId);
+		mav.addObject("songsReviewList", songsReview);
+
 		mav.setViewName("/Member/MyInfoPage");
 		return mav;
 
