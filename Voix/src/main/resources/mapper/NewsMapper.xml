@@ -22,7 +22,7 @@
 	</insert>
 	
 	<select id="selectReviewList" resultType="hashmap">
-		SELECT * FROM REVIEWS WHERE RESTATE = #{nwcode}
+		SELECT * FROM REVIEWS WHERE RESTATE = #{nwcode} ORDER BY REDATE DESC
 	</select>
 	
 	<delete id="deleteNewsReview">
