@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>News Page</title>
@@ -28,17 +26,18 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
+
 .news-hit-item {
-    white-space: nowrap; /* 줄 바꿈 방지 */
-    overflow: hidden; /* 내용 숨기기 */
-    text-overflow: ellipsis; /* 긴 내용에 대한 생략 부호 (...) */
-    margin-bottom: 5px; /* 아래 여백 추가 (선택적) */
-}
-.news-hit-item a {
-    color: black; /* 링크 텍스트 색상을 검은색으로 설정 */
-    text-decoration: none; /* 밑줄 제거 */
+	white-space: nowrap; /* 줄 바꿈 방지 */
+	overflow: hidden; /* 내용 숨기기 */
+	text-overflow: ellipsis; /* 긴 내용에 대한 생략 부호 (...) */
+	margin-bottom: 5px; /* 아래 여백 추가 (선택적) */
 }
 
+.news-hit-item a {
+	color: black; /* 링크 텍스트 색상을 검은색으로 설정 */
+	text-decoration: none; /* 밑줄 제거 */
+}
 </style>
 
 </head>
@@ -55,37 +54,34 @@
 						<div class="NewsDiv" style="display: flex;">
 							<c:if test="${NewsMap.NWIMG != null }">
 								<div class="NewsImg">
-									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class="" src="${NewsMap.NWIMG}"
-										alt="..." style="width: 350px; height:300px; object-fit: cover;" /></a>
+									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
+										<img class="" src="${NewsMap.NWIMG}" alt="..." style="width: 350px; height: 300px; object-fit: cover;" />
+									</a>
 								</div>
 							</c:if>
 							<c:if test="${NewsMap.NWIMG == null }">
 								<div class="NewsImg">
-									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}"><img class=""
-										src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" 
-										style="width: 350px; height:300px; object-fit: cover;" 	
-										alt="..." /></a>
+									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
+										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="width: 350px; height: 300px; object-fit: cover;" alt="..." />
+									</a>
 								</div>
 							</c:if>
-							<div class="NewsText" style="flex: 1;" >
+							<div class="NewsText" style="flex: 1;">
 								<div class="NewsTitle">
-									<h2 class="card-title m-2" style ="overflow: hidden; height: 75px;">${NewsMap.NWTITLE}</h2>
+									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${NewsMap.NWTITLE}</h2>
 								</div>
-								<div class="NewsContents p-2"  style="height: 150px; overflow: hidden;">
+								<div class="NewsContents p-2" style="height: 150px; overflow: hidden;">
 									<p class="card-text">${NewsMap.NWCONTENT}</p>
 								</div>
-								<div class="small text-mute m-2"style="display: flex; justify-content: space-between; align-items: flex-end;">
-		<!-- ---------------------------------------------------------------------------- -->
+								<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
+									<!-- ---------------------------------------------------------------------------- -->
+									<a class="Views" style="text-decoration-line: none; color: gray;">${NewsMap.NWBIGHIT}</a>
+									<a class="Views" style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
 									<div class="like_article" onclick="like('${NewsMap.NWCODE}')">
-										<a href="#" class="prdLike">	
-										<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
+										<a href="#" class="prdLike">
+											<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
 										</a>
 									</div>
-									
-									<a class="Views"
-										style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
-									<a class="Views"
-										style="text-decoration-line: none; color: gray;">${NewsMap.NWBIGHIT}</a>
 								</div>
 							</div>
 						</div>
@@ -111,48 +107,45 @@
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
-				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
-		<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	
+
 	<!-- if(loginId.length === 0){ -->
 	<script type="text/javascript">
-	let loginId = '${sessionScope.loginId}';
-	function like(newsCode){
-	console.log(loginId);
-	console.log(newsCode);
-	if(loginId.length === 0){
-		alert("로그인을 먼저 해주세요.");
-		location.href="/LoginPage";	
-	} else {
-	
-		$.ajax({
-			type : "GET",
-			url : "likeNews",
-			data : {
-				"like" : newsCode
-			},
-			async : false,
-			success : function(response) {
-				alert("찜하기가 되었습니다.");
-			},
-			error: function(){
-				console.error("찜하기 요청 중 오류 발생");
-				alert("이미 찜이 되어있습니다.");
+		let loginId = '${sessionScope.loginId}';
+		function like(newsCode) {
+			console.log(loginId);
+			console.log(newsCode);
+			if (loginId.length === 0) {
+				alert("로그인을 먼저 해주세요.");
+				location.href = "/LoginPage";
+			} else {
+
+				$.ajax({
+					type : "GET",
+					url : "likeNews",
+					data : {
+						"like" : newsCode
+					},
+					async : false,
+					success : function(response) {
+						alert("찜하기가 되었습니다.");
+					},
+					error : function() {
+						console.error("찜하기 요청 중 오류 발생");
+						alert("이미 찜이 되어있습니다.");
+					}
+				});
+
 			}
-		});
-	
-	}
-}   
-   </script>
-	
+		}
+	</script>
+
 </body>
 
 
