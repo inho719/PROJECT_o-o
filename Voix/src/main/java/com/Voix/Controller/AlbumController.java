@@ -94,18 +94,17 @@ public class AlbumController {
 		int registResult = asvc.albumRegistReview(restate, recontent, rewriter);
 		ModelAndView mav = new ModelAndView();
 		ra.addFlashAttribute("msg", "댓글이 등록 되었습니다.");
-		mav.setViewName("redirect:/AlbumInfoPage?altitle=" + restate);
+		mav.setViewName("redirect:/AlbumInfoPage?alcode=" + restate);
 		return mav;
-
 	}
 
 	@RequestMapping(value = "/albumDeleteReview")
-	public ModelAndView deleteReivew(String recode, String altitle, RedirectAttributes ra) {
+	public ModelAndView deleteReivew(String recode, String alcode, RedirectAttributes ra) {
 		System.out.println("리뷰 삭제 요청");
 		ModelAndView mav = new ModelAndView();
 		int Result = asvc.deleteReview(recode);
 		ra.addFlashAttribute("msg", "댓글 삭제 완료 되었습니다.");
-		mav.setViewName("redirect:/AlbumInfoPage?altitle=" + altitle);
+		mav.setViewName("redirect:/AlbumInfoPage?alcode=" + alcode);
 
 		return mav;
 	}
@@ -315,5 +314,9 @@ public class AlbumController {
 
 		return mav;
 	}
+	
+
+	
+	
 
 }
