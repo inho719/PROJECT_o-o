@@ -163,6 +163,11 @@ public class MemberService {
 	public ArrayList<HashMap<String, String>> songsLike(String loginId) {
 		return mdao.songsLikeList(loginId);
 	}
+	
+	public ArrayList<HashMap<String, String>> blogLike(String loginId) {
+		
+		return mdao.blogLikeList(loginId);
+	}
 
 	public Member memberInfo(String loginId) {
 		Member memInfo = mdao.selectMemberInfo(loginId);
