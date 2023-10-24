@@ -47,4 +47,9 @@
 	FROM BLOGS
 	ORDER BY BGBIGHIT DESC
 </select>
+<update id="UpdateBlogBigHit">
+	UPDATE BLOGS
+	SET BGBIGHIT = BGBIGHIT+'1'
+	WHERE BGCODE = #{bgcode}
+	</update>
 </mapper>
