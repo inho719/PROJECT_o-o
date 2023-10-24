@@ -28,9 +28,17 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
-.BlogDiv{
-	height:200px;
+.blog-hit-item {
+    white-space: nowrap; /* 줄 바꿈 방지 */
+    overflow: hidden; /* 내용 숨기기 */
+    text-overflow: ellipsis; /* 긴 내용에 대한 생략 부호 (...) */
+    margin-bottom: 5px; /* 아래 여백 추가 (선택적) */
 }
+.blog-hit-item a {
+    color: black; /* 링크 텍스트 색상을 검은색으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
 </style>
 
 </head>
@@ -42,103 +50,65 @@
 			<!-- Blog entries-->
 			<div class="col-lg-9">
 				<!-- Featured blog post-->
+				<c:forEach items="${BlogListMap}" var="BlogListMap">
+					<div class="card mb-4">
+						<div class="BlogDiv" style="display: flex;">
+							<c:if test="${BlogListMap.BGIMG != null }">
+								<div class="BlogImg">
+									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}"><img class="" src="${BlogListMap.BGIMG}"
+										alt="..." style="width: 350px; height:300p object-fit: cover;" /></a>
+								</div>
+							</c:if>
+							<c:if test="${BlogListMap.BGIMG == null }">
+								<div class="BlogImg">
+									<a href="/BlogInfoPage?nwcode=${BlogListMap.BGCODE}"><img class=""
+										src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" 
+										style="width: 350px; height:300px; object-fit: cover;" 	
+										alt="..." /></a>
+								</div>
+							</c:if>
+							<div class="BlogText" style="flex: 1;" >
+								<div class="BlogTitle">
+									<h2 class="card-title m-2" style ="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
+								</div>
+								<div class="BlogContents p-2"  style="height: 150px; overflow: hidden;">
+									<p class="card-text">${BlogListMap.BGCONTENT}</p>
+								</div>
+								<div class="small text-mute m-2"style="display: flex; justify-content: space-between; align-items: flex-end;">
+		<!-- ---------------------------------------------------------------------------- -->
+									<div class="like_article" onclick="like('${BlogListMap.BGCODE}')">
+										<a href="#" class="prdLike">	
+										<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
+										</a>
+									</div>
+									<a class="Views"
+										style="text-decoration-line: none; color: gray;">${BlogListMap.BGWRITER}</a>
+									<a class="Views"
+										style="text-decoration-line: none; color: gray;">${BlogListMap.BGDATE}</a>
+									<a class="Views"
+										style="text-decoration-line: none; color: gray;">${BlogListMap.BGBIGHIT}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 
-				<div class="card mb-4">
-					<div class="BlogDiv" style="display: flex;">
-						<div class="BlogImg">
-							<a href="#블로그코드"><img class=""
-								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="BlogText">
-							<div class="small text-mute m-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a>작성자 1대1 채팅</a> <a>찜하기</a>
-							</div>
-							<div class="BlogTitle">
-								<h2 class="card-title m-2">블로그제목</h2>
-							</div>
-							<!-- 새로운 div 추가 -->
-							<div class="BlogContentsWrapper">
-								<div class="BlogContents  p-2">
-									<p class="card-text">블로그내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
-								</div>
-							</div>
-							<!-- 내용을 감싼 div에 스타일 적용 -->
-							<div class="small text-mute mx-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views"
-									style="text-decoration-line: none; color: gray;">조회수</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="BlogDiv" style="display: flex;">
-						<div class="BlogImg">
-							<a href="#블로그코드"><img class=""
-								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="BlogText">
-							<div class="small text-mute m-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a>작성자 1대1 채팅</a> <a>찜하기</a>
-							</div>
-							<div class="BlogTitle">
-								<h2 class="card-title m-2">블로그제목</h2>
-							</div>
-							<!-- 새로운 div 추가 -->
-							<div class="BlogContentsWrapper">
-								<div class="BlogContents  p-2">
-									<p class="card-text">블로그내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
-								</div>
-							</div>
-							<!-- 내용을 감싼 div에 스타일 적용 -->
-							<div class="small text-mute mx-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views"
-									style="text-decoration-line: none; color: gray;">조회수</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="BlogDiv" style="display: flex;">
-						<div class="BlogImg">
-							<a href="#블로그코드"><img class=""
-								src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." /></a>
-						</div>
-						<div class="BlogText">
-							<div class="small text-mute m-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a>작성자 1대1 채팅</a> <a>찜하기</a>
-							</div>
-							<div class="BlogTitle">
-								<h2 class="card-title m-2">블로그제목</h2>
-							</div>
-							<!-- 새로운 div 추가 -->
-							<div class="BlogContentsWrapper">
-								<div class="BlogContents  p-2">
-									<p class="card-text">블로그내용블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
-								</div>
-							</div>
-							<!-- 내용을 감싼 div에 스타일 적용 -->
-							<div class="small text-mute m-2"
-								style="display: flex; justify-content: space-between; align-items: flex-end;">
-								<a href="찜"><img alt="" src="/resources/assets/heart.png"></a>
-								<a class="Views"
-									style="text-decoration-line: none; color: gray;">조회수</a>
-							</div>
-						</div>
-					</div>
-				</div>
+
 			</div>
 			<!-- end Page content-->
 			<%@ include file="/WEB-INF/views/Includes/Side.jsp"%>
 		</div>
 	</div>
-
+	<ul class="pagination" style="place-content: center;">
+		<li><a href="?page=1">1</a></li>
+		<li><a href="?page=2">2</a></li>
+		<li><a href="?page=3">3</a></li>
+		<li><a href="?page=4">4</a></li>
+		<li><a href="?page=5">5</a></li>
+		<li><a href="?page=6">6</a></li>
+		<li><a href="?page=7">7</a></li>
+		<!-- 다른 페이지 번호들을 추가하세요 -->
+	</ul>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
@@ -147,9 +117,44 @@
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="/resources/js/scripts.js"></script>
+	
+	<!-- if(loginId.length === 0){ -->
+	<script type="text/javascript">
+	let loginId = '${sessionScope.loginId}';
+	function like(blogCode){
+	console.log(loginId);
+	console.log(blogCode);
+	if(loginId.length === 0){
+		location.href="/LoginPage";
+		
+	} else {
+	
+		$.ajax({
+			type : "GET",
+			url : "likeNews",
+			data : {
+				"like" : blogCode
+			},
+			async : false,
+			success : function(response) {
+				alert("찜하기가 되었습니다.");
+			},
+			error: function(){
+				console.error("찜하기 요청 중 오류 발생");
+				alert("이미 찜이 되어있습니다.");
+			}
+		});
+	
+	}
+}   
+   </script>
+	
 </body>
+
+
 </html>
