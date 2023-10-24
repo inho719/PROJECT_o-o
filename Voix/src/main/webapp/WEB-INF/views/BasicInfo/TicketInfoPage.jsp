@@ -122,10 +122,9 @@ button {
 
 		<c:if test="${sessionScope.loginId != null }">
 			<div class="replyWrite">
-				<h3>댓글 작성 양식 - 로그인한 경우 출력</h3>
 				<form action="registReview" class="my-3" method="post">
 					<input type="text" name="restate" value="${tk.tkcode }" style="display: none">
-					<textarea class="w-100 reviewComment" name="recontent"></textarea>
+					<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
 					<input class="btn btn-success w-100" type="submit" value="댓글 등록">
 				</form>
 			</div>
