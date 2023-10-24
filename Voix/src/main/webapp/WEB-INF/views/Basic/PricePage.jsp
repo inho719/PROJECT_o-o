@@ -51,7 +51,7 @@
 							<div class="card col-md-4 justify-content-center ${PriceList.page}" style="height: 220px;	">
 								<img alt="" src="${PriceList.pageimg}" class="w-100 ${PriceList.page}">
 							</div>
-							<div class="card col-md-8 justify-content-center">
+							<div class="card col-md-8 justify-content-center" style="background: #fafafa;">
 								<h2>${PriceList.pricename}</h2>
 								<p style="font-size: 18px; margin-top: 3px;">${PriceList.strprice}</p>
 							</div>
