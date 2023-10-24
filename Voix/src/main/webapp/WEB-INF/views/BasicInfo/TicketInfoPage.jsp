@@ -142,7 +142,7 @@ button {
 								<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
 							</div>
 							<c:if test="${sessionScope.loginId == re.REWRITER}">
-								<button type="button" onclick="location.href='/deleteReview?recode=${re.RECODE}&tkcode=${tk.tkcode}'" class="btn btn-danger" style="font-size: 10px; margin-bottom: 4px; width: 70px; height: 30px; float: right;">댓글 삭제</button>
+								<button type="button" onclick="location.href='/deleteReview?recode=${re.RECODE}&tkcode=${tk.tkcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
 							</c:if>
 							<div class="small text-muted">작성시간: ${re.REDATE}</div>
 
