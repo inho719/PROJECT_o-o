@@ -131,7 +131,10 @@ public class TicketService {
 		HashMap<String, String> result = tdao.selectMainTicket();
 		return result;
 	}
-
+	public int likeTicket(String like, String mid) {
+		System.out.println("SERVICE - 티켓 찜");
+		return tdao.likeTicket(like,mid);
+	}
 	
 
 }
