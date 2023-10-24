@@ -74,7 +74,7 @@ public class TicketService {
 
 	public String genCode(String currentCode) {
 		System.out.println("genCode()호출: " + currentCode);
-		String strCode = currentCode.substring(0,2);
+		String strCode = currentCode.substring(0,1);
 		int numCode = Integer.parseInt(currentCode.substring(2));
 		
 		
@@ -144,6 +144,11 @@ public class TicketService {
 
 	public String getMaxTkCode() {
 		return tdao.getMaxTkCode();
+	}
+
+	public int getTicket_Interticket(Ticket tK) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

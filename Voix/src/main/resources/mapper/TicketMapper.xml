@@ -52,6 +52,7 @@
 	</select>
 	
 	<insert id="getTicket_melon">
-		INSERT INTO TICKETS(TKCODE, TKIMG, TKARTIST, TKDATE, TKPLACE, TKTIME, TKINFO, TKTITLE, TKURL, TKSTATE)
+		INSERT INTO TICKETS(TKCODE, TKIMG, TKARTIST, TKDATE, TKPLACE, TKTIME, TKTITLE, TKURL, TKSTATE)
+		VALUES (#{tkcode},#{tkimg},#{tkartist},#{tkdate},#{tkplace},#{tktime},#{tktitle},#{tkurl},'M')
 	</insert>
 </mapper>

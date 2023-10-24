@@ -122,7 +122,7 @@
 	<script type="text/javascript">
 	function crowwclick(){
 		$.ajax({
-			url : "/getTicket_melon",
+			url : "/getTicket_Inter",
 			type : 'get',
 			success : function(result) {
 				console.log(result);

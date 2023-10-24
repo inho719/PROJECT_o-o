@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,58 +96,181 @@ public class TicketController {
 	@RequestMapping(value = "/getTicket_melon")
 	public ModelAndView getTicket_melon() throws IOException, InterruptedException {
 		ModelAndView mav = new ModelAndView();
-		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\Application\\chromedriver-win64\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Program Files\\Google\\Chrome\\Application\\chromedriver-win64\\chromedriver.exe");
+		ArrayList<String> MelonticketUrls = getMelonTicketUrls();
+		ChromeOptions options = new ChromeOptions();
+		options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+		options.addArguments("headless");
 		WebDriver driver = new ChromeDriver();
+		ArrayList<Ticket> TicketList = new ArrayList<Ticket>();
+		
+			
+		for (String item : MelonticketUrls) {
+			driver.get(item);
+			try {
+			Ticket TK = new Ticket();
+			WebElement dateElement = driver.findElement(By.cssSelector("#periodInfo"));
+			String date = dateElement.getText();
+			System.out.println(date);
+			TK.setTkdate(date);
+			
+			String title = driver.findElement(By.cssSelector("#conts > div > div.wrap_consert_product > div.wrap_consert_cont > div.box_consert_txt > p.tit"))
+					.getText();
+			System.out.println(title);
+			TK.setTktitle(title);
+			
+			String place = driver.findElement(By.cssSelector("#performanceHallBtn > span.place")).getText();
+			System.out.println(place);
+			TK.setTkplace(place);
+			
+			String img = driver.findElement(By.cssSelector("#conts > div > div.wrap_consert_product > div.wrap_consert_cont > div.box_consert_thumb.thumb_180x254 > img"))
+					.getAttribute("src");
+			System.out.println(img);
+			TK.setTkimg(img);
+			
+			String artist = driver.findElement(By.cssSelector("#conts > div > div:nth-child(3) > div.wrap_detail_left_cont > div.box_artist_checking > div > ul > li.first > a > strong"))
+					.getText();
+			System.out.println(artist);
+			TK.setTkartist(artist);
+			
+			String url = item;
+			System.out.println(url);
+			TK.setTkurl(url);
+			String time = driver.findElement(By.cssSelector("#conts > div > div.wrap_consert_product > div.wrap_consert_cont > div.box_consert_txt > div.box_consert_info > dl.info_left > dd:nth-child(4)")).getText();
+			System.out.println(time);
+			TK.setTktime(time);
+			
 
-		List<Ticket> TicketList = new ArrayList<>();
-
-		String melonTicketUrl = "https://ticket.melon.com/concert/index.htm?genreType=GENRE_CON";
-
-		driver.get(melonTicketUrl);
-		Thread.sleep(2000);
-		List<WebElement> aLinks = driver.findElements(By.cssSelector("#perf_poster > li>a"));
-		for (WebElement aLink : aLinks) {
-			String itemhref = aLink.getAttribute("href");
-			String detailUrl = itemhref;
-			driver.get(detailUrl);
-			List<WebElement> items = driver.findElements(By.cssSelector("#conts"));
-			for (WebElement item : items) {
-				Ticket TK = new Ticket();
-				WebElement dateElement = item.findElement(By.cssSelector("#periodInfo"));
-				JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-//      jsExecutor.executeScript("arguments[0].classList.remove('none');", dateElement);
-				String date = dateElement.getText();
-      System.out.println(date);
-				TK.setTkdate(date);
-				String title = item.findElement(By.cssSelector("#conts > div > div.wrap_consert_product > div.wrap_consert_cont > div.box_consert_txt > p.tit")).getText();
-      System.out.println(title);
-				TK.setTktitle(title);
-				String place = item.findElement(By.cssSelector("#performanceHallBtn > span.place")).getText();
-      System.out.println(place);
-				TK.setTkplace(place);
-				String img = item.findElement(By.cssSelector("#conts > div > div.wrap_consert_product > div.wrap_consert_cont > div.box_consert_thumb.thumb_180x254 > img")).getAttribute("src");
-      System.out.println(img);
-      TK.setTkimg(img);
-				String artist = item.findElement(By.cssSelector("#conts > div > div:nth-child(3) > div.wrap_detail_left_cont > div.box_artist_checking > div > ul > li.first > a > strong")).getText();
-				System.out.println(artist);
-				TicketList.add(TK);
+			TicketList.add(TK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				continue;
 			}
 		}
+
 		// 추가된 앨범 개수 받아올 거
-//    for(Ticket TK : TicketList) {
-//    	String MaxTkCode = tsvc.getMaxTkCode();
-//    	String newTkCode = tsvc.genCode(MaxTkCode);
-//    	TK.setTkcode(newTkCode);
-//    	int insertCount = 0;
-//    	try {
-//    		int insertResult = tsvc.getTicket_melon(TK);
-//				insertCount += insertResult;
-//			} catch (Exception e) {
-//				// TODO: handle exception
-//			}
-//    }
-		System.out.println("추가: " + TicketList.size());
+    for(Ticket TK : TicketList) {
+    	String MaxTkCode = tsvc.getMaxTkCode();
+    	String newTkCode = tsvc.genCode(MaxTkCode);
+    	TK.setTkcode(newTkCode);
+    	int insertCount = 0;
+    	try {
+    		int insertResult = tsvc.getTicket_melon(TK);
+				insertCount += insertResult;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    	System.out.println("추가: " +insertCount);
+    }
+		driver.quit();
 		return mav;
 	}
 
-}
+	private ArrayList<String> getMelonTicketUrls() {
+		ChromeOptions options = new ChromeOptions();
+		options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+		options.addArguments("headless");
+		WebDriver driver = new ChromeDriver();
+		String melonTicketUrl = "https://ticket.melon.com/concert/index.htm?genreType=GENRE_CON";
+		driver.get(melonTicketUrl);
+		List<WebElement> aLinks = driver.findElements(By.cssSelector("#perf_poster > li>a"));
+		ArrayList<String> thUrls = new ArrayList<String>();
+		for (WebElement aLink : aLinks) {
+			thUrls.add(aLink.getAttribute("href"));
+		}
+		driver.quit();
+		return thUrls;
+	}
+	@RequestMapping(value="/getTicket_Inter")
+	public ModelAndView getTicket_Inter() throws IOException, InterruptedException {
+		ModelAndView mav = new ModelAndView();
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Program Files\\Google\\Chrome\\Application\\chromedriver-win64\\chromedriver.exe");
+		ArrayList<String> InterticketUrls = getInterTicketUrls();
+		ChromeOptions options = new ChromeOptions();
+		options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+//		options.addArguments("headless");
+		WebDriver driver = new ChromeDriver();
+		ArrayList<Ticket> TicketList = new ArrayList<Ticket>();
+		
+			
+		for (String item : InterticketUrls) {
+			driver.get(item);
+			try {
+			Ticket TK = new Ticket();
+			WebElement dateElement = driver.findElement(By.cssSelector("#container > div.contents > div.productWrapper > div.productMain > div.productMainTop > div > div.summaryBody > ul > li:nth-child(2) > div > p"));
+			String date = dateElement.getText();
+			System.out.println(date);
+			TK.setTkdate(date);
+			
+			String title = driver.findElement(By.cssSelector("#container > div.contents > div.productWrapper > div.productMain > div.productMainTop > div > div.summaryTop > h2"))
+					.getText();
+			System.out.println(title);
+			TK.setTktitle(title);
+			
+			String place = driver.findElement(By.cssSelector("#container > div.contents > div.productWrapper > div.productMain > div.productMainTop > div > div.summaryBody > ul > li:nth-child(1) > div > a")).getText();
+			System.out.println(place);
+			TK.setTkplace(place);
+			
+			String img = driver.findElement(By.cssSelector("#container > div.contents > div.productWrapper > div.productMain > div.productMainTop > div > div.summaryBody > div > div.posterBoxTop > img"))
+					.getAttribute("src");
+			System.out.println(img);
+			TK.setTkimg(img);
+			
+			String artist = driver.findElement(By.cssSelector("#productMainBody > div > div > div.content.casting > div > ul > li > div.castingInfo > div.castingName"))
+					.getText();
+			System.out.println(artist);
+			TK.setTkartist(artist);
+			
+			String url = item;
+			System.out.println(url);
+			TK.setTkurl(url);
+			String time = driver.findElement(By.cssSelector("#conts > div > div.wrap_consert_product > div.wrap_consert_cont > div.box_consert_txt > div.box_consert_info > dl.info_left > dd:nth-child(4)")).getText();
+			System.out.println(time);
+			TK.setTktime(time);
+			
+
+			TicketList.add(TK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				continue;
+			}
+		}
+
+		// 추가된 앨범 개수 받아올 거
+    for(Ticket TK : TicketList) {
+    	String MaxTkCode = tsvc.getMaxTkCode();
+    	String newTkCode = tsvc.genCode(MaxTkCode);
+    	TK.setTkcode(newTkCode);
+    	int insertCount = 0;
+    	try {
+//    		int insertResult = tsvc.getTicket_Interticket(TK);
+//				insertCount += insertResult;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+    	System.out.println("추가: " +insertCount);
+    }
+		driver.quit();
+		return mav;
+	}
+
+	private ArrayList<String> getInterTicketUrls() {
+		ChromeOptions options = new ChromeOptions();
+		options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+//		options.addArguments("headless");
+		WebDriver driver = new ChromeDriver();
+		String InterTicketUrl = "https://mticket.interpark.com/genre?Genre=CO";
+		driver.get(InterTicketUrl);
+		List<WebElement> aLinks = driver.findElements(By.cssSelector("body > main > div.displayListWrapper > div.swiper-container-2.swiper-container-horizontal.swiper-container-autoheight > div > div.swiper-slide.swiper-slide-active > div > ul > li > a"));
+		ArrayList<String> thUrls = new ArrayList<String>();
+		for (WebElement aLink : aLinks) {
+			thUrls.add(aLink.getAttribute("href"));
+		}
+		driver.quit();
+		return thUrls;
+	}
+		
+	}
+
