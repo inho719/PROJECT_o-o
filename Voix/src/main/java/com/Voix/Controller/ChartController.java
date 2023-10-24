@@ -53,5 +53,17 @@ public class ChartController {
 	    
 	    return "Song added to playlist successfully";
 	}
+
+	@RequestMapping(value="/melonCrawling")
+	public ModelAndView getMelonInfo() throws IOException {
+		System.out.println("멜론차트 수집요청 - /getMelonInfo");
+		//추가된 영화 개수
+		int addCount = csvc.melonCrawling();
+		System.out.println("추가: " + addCount);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
 	
 }
