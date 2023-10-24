@@ -74,15 +74,15 @@ public class ChartService {
 			Song song = new Song();
 			String sgtitle = detailDoc.select("#downloadfrm > div > div > div.entry > div.info > div.song_name").text();
 			sgtitle = sgtitle.replace("곡명", "").trim();
-			System.out.println("제목: " + sgtitle);	
+			
 			song.setSgtitle(sgtitle);
 			
 			String sgaltitle = detailDoc.select("#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(2) > a").text();
-			System.out.println("앨범제목: " + sgaltitle);
+			
 			song.setSgaltitle(sgaltitle);
 			
 			String sgartist = detailDoc.select("#downloadfrm > div > div > div.entry > div.info > div.artist > a > span:nth-child(1)").text();
-			System.out.println("가수: " + sgartist);
+			
 			song.setSgartist(sgartist);
 			
 			String sgmvurl = detailDoc.select("#conts > div.section_movie > div.service_list_video.type03.d_video_list > ul > li > div.thumb > a").attr("href");
@@ -97,7 +97,7 @@ public class ChartService {
 			}
 
 			if (menuId != null && mvId != null) {
-			    System.out.println("mvurl: " + "https://www.melon.com/video/detail2.htm?mvId=" + mvId + "&menuId=" + menuId);
+			   
 			    song.setSgmvurl("https://www.melon.com/video/detail2.htm?mvId=" + mvId + "&menuId=" + menuId);
 			}else {
 				song.setSgmvurl("");
@@ -106,15 +106,15 @@ public class ChartService {
 			String sginfo1 = detailDoc.select("#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(4)").text();
 			String sginfo2 = detailDoc.select("#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)").text();
 			 String sginfo = "발매일:" + sginfo1 + " | " + "장르:" + sginfo2;
-			System.out.println("곡정보: " + sginfo);
+			
 			song.setSginfo(sginfo);
 			
 			String sgimg = detailDoc.select("#d_song_org > a > img").attr("src");
-			System.out.println("이미지: " + sgimg);
+			
 			song.setSgimg(sgimg);
 			
 			String sglyric = detailDoc.select("#d_video_summary").text();
-			System.out.println("가사: " + sglyric);
+			
 			 if (sglyric.length() > 2000) {
 		            sglyric = sglyric.substring(0, 2000);
 		        }
@@ -125,13 +125,13 @@ public class ChartService {
 		}
 		
 		String maxSgcode = cdao.selectMaxSgCode();
-		System.out.println("maxSgcode: " + maxSgcode);
+		
 		
 		int insertCount = 0;
 		for(Song song : songList) {
 		
 			String sgcode = genCode(maxSgcode);
-			System.out.println("sgcode: " + sgcode);
+			
 			song.setSgcode(sgcode);;
 			System.out.println(song);
 			
@@ -145,7 +145,7 @@ public class ChartService {
 	}
 	
 	public String genCode(String currentCode) {
-		System.out.println("genCode()호출: " + currentCode);
+		
 		String strCode = currentCode.substring(0,2);
 		int numCode = Integer.parseInt(currentCode.substring(2));
 		
