@@ -40,4 +40,14 @@ public interface MemberDao {
 	int insertNaverLogin(Member navergetInfo);
 
 	ArrayList<HashMap<String, String>> selectOrderInfo(String mid);
+
+	ArrayList<HashMap<String, String>> newsReviewList(String loginId);
+
+	ArrayList<HashMap<String, String>> blogReviewList(String loginId);
+
+	ArrayList<HashMap<String, String>> albumsReviewList(String loginId);
+
+	ArrayList<HashMap<String, String>> ticketReviewList(String loginId);
+
+	ArrayList<HashMap<String, String>> songsReviewList(String loginId);
 }
