@@ -26,6 +26,8 @@ public interface MemberDao {
 	ArrayList<HashMap<String, String>> ticketsLikeList(String loginId);
 
 	ArrayList<HashMap<String, String>> songsLikeList(String loginId);
+	
+	ArrayList<HashMap<String, String>> blogLikeList(String loginId);
 
 	public Member loginMember(@Param("mid") String inputId, @Param("inputPw") String inputPw);
 
