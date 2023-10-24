@@ -28,7 +28,6 @@ public class ChartController {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> ChartList_map = csvc.getChartList_map();
 		session.setAttribute("sideState", "M");
-		System.out.println(ChartList_map);
 		mav.addObject("ChartListMap",ChartList_map);
 		mav.setViewName("Basic/ChartPage");
 		return mav;
@@ -38,7 +37,6 @@ public class ChartController {
 	public ModelAndView ChartInfoPage(String sgcode) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Chart> ChartInfoList = csvc.getChartInfoList(sgcode);
-		System.out.println(ChartInfoList);
 		mav.addObject("ChartInfoList", ChartInfoList);
 		mav.setViewName("BasicInfo/ChartInfoPage");
 		return mav;
@@ -60,7 +58,6 @@ public class ChartController {
 		System.out.println("멜론차트 수집요청 - /getMelonInfo");
 		//추가된 영화 개수
 		int addCount = csvc.melonCrawling();
-		System.out.println("추가: " + addCount);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/");
