@@ -6,7 +6,7 @@
 
 <mapper namespace="com.Voix.Dao.ChartDao">
 	<select id="selectChart_map">
-		SELECT * FROM SONGS ORDER BY SGCODE DESC 
+		SELECT * FROM SONGS ORDER BY SGCODE ASC 
 	</select>
 	
 	<select id="selectChartInfo_map">
