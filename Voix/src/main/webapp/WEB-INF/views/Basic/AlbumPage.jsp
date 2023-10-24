@@ -90,7 +90,7 @@
 															</div>
 														</div>
 														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0">
-															<a href="찜" class=""><img alt="" src="/resources/assets/heart.png"></a>
+															
 														</div>
 													</div>
 												</div>
@@ -131,7 +131,7 @@
 															</div>
 														</div>
 														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0">
-															<a href="찜" class=""><img alt="" src="/resources/assets/heart.png"></a>
+															
 														</div>
 													</div>
 												</div>
