@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.Voix.Dto.Chart;
+import com.Voix.Dto.Song;
 
 public interface ChartDao {
 
