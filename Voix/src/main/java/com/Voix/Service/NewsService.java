@@ -109,5 +109,14 @@ public class NewsService {
 	public int unlikeNews(String like, String mid) {
 		return ndao.unlikeNews(like,mid);
 	}
+
+	//페이징	총조회
+	public int countBoardListTotal() {
+		return ndao.countBoard();
+	}
+	//페이징 넘길때 코드
+	public List<Map<String, Object>> selectBoardList(String startNWCODE, String endNWCODE) {
+		return ndao.selectBoardList(startNWCODE, endNWCODE);
+	}
 	
 }
