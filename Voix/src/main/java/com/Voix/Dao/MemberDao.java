@@ -50,4 +50,6 @@ public interface MemberDao {
 	ArrayList<HashMap<String, String>> ticketReviewList(String loginId);
 
 	ArrayList<HashMap<String, String>> songsReviewList(String loginId);
+
+	ArrayList<HashMap<String, String>> AlbumOrderList(String loginId);
 }
