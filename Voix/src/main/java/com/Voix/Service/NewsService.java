@@ -89,7 +89,6 @@ public class NewsService {
 	}
 
 	public int insertNews(News news) {
-		// TODO Auto-generated method stub
 		return ndao.insertNews(news);
 	}
 
@@ -101,4 +100,14 @@ public class NewsService {
 	public int UpdateNewsBigHit(String nwcode) {
 		return ndao.UpdateNewsBigHit(nwcode);
 	}
+	
+	//찜조회
+	public ArrayList<String> getLikedNewsList(String mid) {
+	    return ndao.getLikedNewsList(mid);
+	}
+	//찜취소
+	public int unlikeNews(String like, String mid) {
+		return ndao.unlikeNews(like,mid);
+	}
+	
 }
