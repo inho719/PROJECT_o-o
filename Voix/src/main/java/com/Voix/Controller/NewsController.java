@@ -29,12 +29,16 @@ public class NewsController {
 	private NewsService nsvc;
 	
 	@RequestMapping(value = "/NewsPage")
-	public ModelAndView News(HttpSession session){
+	public ModelAndView News(HttpSession session, Criteria cri)throws Exception{
 		ModelAndView mav = new ModelAndView();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "NW");
+		int perPageNum = cri.getPerPageNum();
+		int page = cri.getPage();
+		String startNWCODE = String.format("N%04d", (page - 1) * perPageNum + 1);
+	   	String endNWCODE = String.format("N%04d", page * perPageNum);
 		ArrayList<HashMap<String, String>> NewsList_map = nsvc.getNewsList_map();
-		System.out.println(NewsList_map);
+		//System.out.println(NewsList_map);
 		// 현재 사용자가 어떤 뉴스를 '찜'햇는지 가져옴 
 		String loginId = (String) session.getAttribute("loginId");
 		System.out.println("loginId:"+loginId);
@@ -46,8 +50,16 @@ public class NewsController {
 	        //System.out.println("nwcode"+nwcode); nwcode 확인됨
 	        boolean isLiked = likedNewsList.contains(nwcode);
 	        newsMap.put("NWLIKED", String.valueOf(isLiked));
-	    }
-		mav.addObject("NewsListMap",NewsList_map);
+	    }	
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(nsvc.countBoardListTotal());
+		List<Map<String, Object>> list = nsvc.selectBoardList(startNWCODE, endNWCODE);
+		mav.addObject("list", list);
+		mav.addObject("pageMaker", pageMaker);
+		System.out.println(list);
+		System.out.println(pageMaker);
+		//mav.addObject("NewsListMap",NewsList_map);
 		mav.setViewName("Basic/NewsPage");
 		return mav;
 		
