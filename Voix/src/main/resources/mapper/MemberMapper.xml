@@ -132,4 +132,12 @@
 		ON S.SGCODE = R.RESTATE
 		WHERE REWRITER = #{loginId}
 	</select>
+
+	<select id="AlbumOrderList" resultType="hashmap">
+		SELECT *
+		FROM  ALBUMS A
+		INNER JOIN ORDERS O
+		ON A.ALCODE = O.ODALCODE
+		WHERE ODMID = #{loginId}
+	</select>
 </mapper>
