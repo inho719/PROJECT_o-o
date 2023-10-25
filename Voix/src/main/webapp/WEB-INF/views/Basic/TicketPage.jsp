@@ -37,18 +37,17 @@
 	<div class="container">
 		<div class="row">
 			<!-- Ticket entries-->
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 				<div class="w-100">
 					<div class="list-group">
 						<ul class="list-group list-group-horizontal"
 							style="list-style: none;">
-							<li class="w-25"><a class="list-group-item">멜론</a></li>
-							<li class="w-25"><a class="list-group-item">인터파크</a></li>
-							<li class="w-25"><a class="list-group-item">예스24</a></li>
-							<li class="w-25"><a class="list-group-item">벅스</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=melon">멜론</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=interpark">인터파크</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=yes24">예스24</a></li>
+							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=11bunga">11번가</a></li>
 						</ul>
 					</div>
-					<button onclick="crowwclick()" >크롤ㄹ링 고고</button>
 				</div>
 
 
@@ -91,8 +90,11 @@
 									</div>
 								</div>
 								<div class="small text-mute m-2" style="text-align: end;">
-									<a href="찜" class=""><img alt=""
-										src="/resources/assets/heart.png"></a>
+									<div class="like_article" onclick="like('${TkMap.TKCODE}')">
+										<a href="#" class="prdLike">	
+										<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
+										</a>
+									</div>	
 								</div>
 							</div>
 						</div>
@@ -119,17 +121,34 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+
 	<script type="text/javascript">
-	function crowwclick(){
+	let loginId = '${sessionScope.loginId}';
+	function like(ticketCode){
+	console.log(loginId);
+	console.log(ticketCode);
+	if(loginId.length === 0){
+		alert("로그인을 먼저 해주세요.");
+		location.href="/LoginPage";		
+	} else {	
 		$.ajax({
-			url : "/getTicket_Inter",
-			type : 'get',
-			success : function(result) {
-				console.log(result);
+			type : "GET",
+			url : "likeTicket",
+			data : {
+				"like" : ticketCode
+			},
+			async : false,
+			success : function(response) {
+				alert("찜하기가 되었습니다.");
+			},
+			error: function(){
+				console.error("찜하기 요청 중 오류 발생");
+				alert("이미 찜이 되어있습니다.");
 			}
 		});
-	}
 	
-	</script>
+	}
+}   
+   </script>
 </body>
 </html>

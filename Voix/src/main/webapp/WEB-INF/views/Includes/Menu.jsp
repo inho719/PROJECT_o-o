@@ -172,7 +172,7 @@ th:hover {
 				<th class="navbar-brand p-3  fs-4" id="news" onClick="location.href='NewsPage'">뉴스</th>
 				<th class="navbar-brand p-3  fs-4" id="blog" onClick="location.href='BlogPage'">블로그</th>
 				<th class="navbar-brand p-3  fs-4" id="ticket" onClick="location.href='TicketPage'">티켓</th>
-				<th class="navbar-brand p-3  fs-4" id="album" onClick="location.href='AlbumPage'">엘범</th>
+				<th class="navbar-brand p-3  fs-4" id="album" onClick="location.href='AlbumPage'">앨범</th>
 				<th class="navbar-brand p-3  fs-4" id="chart" onClick="location.href='ChartPage'">랭킹비교</th>
 				<th class="navbar-brand p-3  fs-4" id="price" onClick="location.href='PricePage'">가격비교</th>
 			</tr>
@@ -201,7 +201,7 @@ th:hover {
 				<a class="navbar-brand-click" id="news"  href="/NewsPage">뉴스</a> 
 				<a class="navbar-brand" id="blog"  href="/BlogPage">블로그</a> 
 				<a class="navbar-brand" id="ticket"href="/TicketPage">티켓</a> 
-				<a class="navbar-brand" id="album" href="/AlbumPage">엘범</a> 
+				<a class="navbar-brand" id="album" href="/AlbumPage">앨범</a> 
 				<a class="navbar-brand" id="chart" href="/ChartPage">랭킹비교</a> 
 				<a class="navbar-brand" id="price" href="/PricePage">가격비교</a>
 			-->

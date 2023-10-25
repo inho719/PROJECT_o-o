@@ -13,4 +13,43 @@
 	WHERE ROWNUM = 1
 </select>
 
+<select id="selectBlog_map">
+		SELECT BGCODE, BGTITLE, BGCONTENT, BGWRITER, BGIMG, BGBIGHIT, TO_CHAR(BGDATE,'YYYY-MM-DD') AS BGDATE  FROM BLOGS ORDER BY BGDATE DESC
+</select>
+
+<select id="getBlogInfo">
+		SELECT * FROM BLOGS WHERE BGCODE = #{bgcode}
+</select>
+
+<select id="selectReviewList" resultType="hashmap">
+		SELECT * FROM REVIEWS WHERE RESTATE = #{bgcode} ORDER BY REDATE DESC
+</select>
+
+<select id="selectMaxReCode">
+		SELECT NVL(MAX(RECODE), 'RE0000') FROM REVIEWS
+</select>
+
+<insert id="BlogRegistReview">
+		INSERT INTO REVIEWS(RECODE,REWRITER,RECONTENT,REDATE,RESTATE) VALUES(#{recode},#{rewriter},#{recontent},SYSDATE,#{restate})
+</insert>
+
+<delete id="deleteBlogReview">
+		DELETE FROM REVIEWS WHERE RECODE = #{recode}
+</delete>
+
+<insert id="likeBlog">
+   		INSERT INTO LIKES (LIMID, LILIST)
+    	VALUES (#{mid}, #{like})
+</insert>
+
+<select id="selectBlogHitList">
+	SELECT BGTITLE,BGCODE
+	FROM BLOGS
+	ORDER BY BGBIGHIT DESC
+</select>
+<update id="UpdateBlogBigHit">
+	UPDATE BLOGS
+	SET BGBIGHIT = BGBIGHIT+'1'
+	WHERE BGCODE = #{bgcode}
+	</update>
 </mapper>

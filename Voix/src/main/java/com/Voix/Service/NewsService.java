@@ -97,4 +97,8 @@ public class NewsService {
 		HashMap<String, String> result = ndao.selectMainNews(t);
 		return result;
 	}
+
+	public int UpdateNewsBigHit(String nwcode) {
+		return ndao.UpdateNewsBigHit(nwcode);
+	}
 }

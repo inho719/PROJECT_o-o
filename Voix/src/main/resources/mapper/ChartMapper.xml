@@ -6,7 +6,7 @@
 
 <mapper namespace="com.Voix.Dao.ChartDao">
 	<select id="selectChart_map">
-		SELECT * FROM SONGS ORDER BY SGCODE DESC 
+		SELECT * FROM SONGS ORDER BY SGCODE ASC 
 	</select>
 	
 	<select id="selectChartInfo_map">
@@ -28,4 +28,12 @@
 		ORDER BY SGARTIST DESC)
 		WHERE ROWNUM = 1
 	</select>
+
+	<select id="selectMaxSgCode" resultType="String">
+		SELECT NVL(MAX(SGCODE), 'S0000') FROM SONGS
+	</select>
+	
+	<insert id="insertSong">
+		INSERT INTO SONGS VALUES(#{sgcode}, #{sgtitle}, #{sgaltitle}, #{sgartist}, #{sgmvurl}, #{sginfo}, #{sgimg}, #{sglyric})
+	</insert>
 </mapper>

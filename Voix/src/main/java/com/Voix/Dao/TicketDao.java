@@ -29,9 +29,17 @@ public interface TicketDao {
 
 	HashMap<String, String> selectMainTicket();
 
+	int likeTicket(@Param("like")String like,@Param("mid")String mid);
+
 	String getMaxTkCode();
 
 	int getTicket_melon(Ticket tK);
 
+	int getTicket_Interticket(Ticket tK);
 
+	int getTicket_Yes24ticket(Ticket tK);
+
+	int getTicket_11bungaTicket(Ticket tK);
+
+	ArrayList<HashMap<String, String>> getTicketList_ChooseSite(String siteVal);
 }

@@ -79,24 +79,32 @@ public class AlbumController {
 		return mav;
 	}
 
+	@RequestMapping(value="/likeAlbum")
+	public @ResponseBody int likeAlbum(String like, HttpSession session) {
+		System.out.println("엘범 찜 기능");
+		String mid = session.getAttribute("loginId").toString();
+		System.out.println("엘범- 아이디 확인:"+mid);
+		System.out.println("엘범-   찜 확인:"+like);
+		return asvc.likeAlbum(like,mid);
+	}
+		
 	@RequestMapping(value = "/albumRegistReview")
 	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
 		String rewriter = (String) session.getAttribute("loginId");
 		int registResult = asvc.albumRegistReview(restate, recontent, rewriter);
 		ModelAndView mav = new ModelAndView();
 		ra.addFlashAttribute("msg", "댓글이 등록 되었습니다.");
-		mav.setViewName("redirect:/AlbumInfoPage?altitle=" + restate);
+		mav.setViewName("redirect:/AlbumInfoPage?alcode=" + restate);
 		return mav;
-
 	}
 
 	@RequestMapping(value = "/albumDeleteReview")
-	public ModelAndView deleteReivew(String recode, String altitle, RedirectAttributes ra) {
+	public ModelAndView deleteReivew(String recode, String alcode, RedirectAttributes ra) {
 		System.out.println("리뷰 삭제 요청");
 		ModelAndView mav = new ModelAndView();
 		int Result = asvc.deleteReview(recode);
 		ra.addFlashAttribute("msg", "댓글 삭제 완료 되었습니다.");
-		mav.setViewName("redirect:/AlbumInfoPage?altitle=" + altitle);
+		mav.setViewName("redirect:/AlbumInfoPage?alcode=" + alcode);
 
 		return mav;
 	}
@@ -306,5 +314,9 @@ public class AlbumController {
 
 		return mav;
 	}
+	
+
+	
+	
 
 }

@@ -13,7 +13,6 @@
 <style type="text/css">
 .popup {
 	margin: 20%;
-	margin-left: 30%;
 }
 
 .image {
@@ -53,7 +52,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Blog entries-->
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 				<!-- Featured blog post-->
 			<div id="mainContents" class="d-none">
 				
@@ -97,7 +96,7 @@
 	</div>
 	<!-- 모달부분  -->
 	<div class="modal" id="myModal" tabindex="-1">
-		<div class="modal-dialog modal-lg modal-dialog-centered " style="margin-left: 0 !important;">
+		<div class="modal-dialog modal-lg modal-dialog-centered "style="width: 100%; justify-content: center;">
 			<!-- Blog post-->
 			<div class="popup modal-content">
 				<div class="modal-header">

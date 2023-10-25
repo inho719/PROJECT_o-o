@@ -163,6 +163,27 @@ public class MemberController {
 		ArrayList<HashMap<String, String>> songsLike = msvc.songsLike(loginId);
 		mav.addObject("songsLikeList", songsLike);
 
+		ArrayList<HashMap<String, String>> blogLike = msvc.blogLike(loginId);
+		mav.addObject("blogLikeList", blogLike);
+
+		ArrayList<HashMap<String, String>> newsReview = msvc.newsReview(loginId);
+		mav.addObject("newsReviewList", newsReview);
+		
+		ArrayList<HashMap<String, String>> blogReview = msvc.blogReview(loginId);
+		mav.addObject("blogReviewList", blogReview);
+		
+		ArrayList<HashMap<String, String>> albumsReview = msvc.albumsReview(loginId);
+		mav.addObject("albumsReviewList", albumsReview);
+		
+		ArrayList<HashMap<String, String>> ticketReview = msvc.ticketReview(loginId);
+		mav.addObject("ticketReviewList", ticketReview);
+		
+		ArrayList<HashMap<String, String>> songsReview = msvc.songsReview(loginId);
+		mav.addObject("songsReviewList", songsReview);
+
+		ArrayList<HashMap<String, String>> AlbumOrderList = msvc.AlbumOrderList(loginId);
+		mav.addObject("AlbumOrderList", AlbumOrderList);
+
 		mav.setViewName("/Member/MyInfoPage");
 		return mav;
 
@@ -189,6 +210,7 @@ public class MemberController {
 		} else {
 			System.out.println("로그인 성공");
 			session.setAttribute("loginId", loginMember.getMid());
+			session.setAttribute("loginPw", loginMember.getMpw());
 			session.setAttribute("loginProfile", loginMember.getMimg());
 			session.setAttribute("loginState", loginMember.getMstate());
 			session.setAttribute("loginName", loginMember.getMname());

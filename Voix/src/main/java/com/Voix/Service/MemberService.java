@@ -163,6 +163,11 @@ public class MemberService {
 	public ArrayList<HashMap<String, String>> songsLike(String loginId) {
 		return mdao.songsLikeList(loginId);
 	}
+	
+	public ArrayList<HashMap<String, String>> blogLike(String loginId) {
+		
+		return mdao.blogLikeList(loginId);
+	}
 
 	public Member memberInfo(String loginId) {
 		Member memInfo = mdao.selectMemberInfo(loginId);
@@ -313,6 +318,35 @@ public class MemberService {
 		
 		return mdao.selectOrderInfo(mid);
 	}
+	
+	public ArrayList<HashMap<String, String>> newsReview(String loginId) {
+		// TODO Auto-generated method stub
+		return mdao.newsReviewList(loginId);
+	}
 
+	public ArrayList<HashMap<String, String>> blogReview(String loginId) {
+		// TODO Auto-generated method stub
+		return mdao.blogReviewList(loginId);
+	}
+
+	public ArrayList<HashMap<String, String>> albumsReview(String loginId) {
+		// TODO Auto-generated method stub
+		return mdao.albumsReviewList(loginId);
+	}
+
+	public ArrayList<HashMap<String, String>> ticketReview(String loginId) {
+		// TODO Auto-generated method stub
+		return mdao.ticketReviewList(loginId);
+	}
+
+	public ArrayList<HashMap<String, String>> songsReview(String loginId) {
+		// TODO Auto-generated method stub
+		return mdao.songsReviewList(loginId);
+	}
+
+	public ArrayList<HashMap<String, String>> AlbumOrderList(String loginId) {
+		
+		return mdao.AlbumOrderList(loginId);
+	}
 
 }

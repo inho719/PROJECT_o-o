@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.Voix.Dto.Chart;
+import com.Voix.Dto.Song;
 
 public interface ChartDao {
 
@@ -17,4 +18,7 @@ public interface ChartDao {
 
 	HashMap<String, String> selectMainChart();
 
+	String selectMaxSgCode();
+
+	int insertSong(Song song);
 }

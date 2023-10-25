@@ -25,31 +25,6 @@ import com.Voix.Dto.Order;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/* 오류대비 백업용 - 정원
-package com.Voix.Service;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.servlet.http.HttpSession;
-
-import org.jsoup.Jsoup;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Service;
-
-import com.Voix.Dao.AlbumDao;
-import com.Voix.Dto.Album;
-import com.Voix.Dto.Cart;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-*/
 @Service
 public class AlbumService {
 	@Autowired
@@ -240,7 +215,12 @@ public class AlbumService {
 		searchList.addAll(contentList);
 		return searchList;
 	}
-
+	
+	public int likeAlbum(String like, String mid) {
+		System.out.println("SERVICE- 엘범 찜");
+		return adao.likeAlbum(like,mid);
+	}
+	
 	public ArrayList<HashMap<String, String>> selectReviewList(String alcode) {
 		System.out.println("selectReivewList  호출");
 		ArrayList<HashMap<String, String>> Resultre = adao.selectReviewList(alcode);

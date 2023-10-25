@@ -44,6 +44,7 @@ public class NewsController {
 	@RequestMapping(value ="/NewsInfoPage")
 	public ModelAndView NewsInfoPage(String nwcode) {
 		ModelAndView mav = new ModelAndView();
+		int nuwsupdate = nsvc.UpdateNewsBigHit(nwcode);
 		News nw = nsvc.getNwInfo(nwcode);
 		mav.addObject("nw", nw);
 		ArrayList<HashMap<String,String>> reviewList = nsvc.selectReviewList(nwcode);
