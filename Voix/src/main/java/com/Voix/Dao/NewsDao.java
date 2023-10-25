@@ -34,6 +34,13 @@ public interface NewsDao {
 	int insertNews(News news);
 
 	HashMap<String, String> selectMainNews(String t);
-
+	
 	int UpdateNewsBigHit(String nwcode);
+
+	//찜조회
+	ArrayList<String> getLikedNewsList(@Param("mid") String mid);
+	//찜삭제
+	int unlikeNews(@Param("like")String like,@Param("mid")String mid);
+
+	
 }
