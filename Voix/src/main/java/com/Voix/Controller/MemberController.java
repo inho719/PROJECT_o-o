@@ -181,6 +181,9 @@ public class MemberController {
 		ArrayList<HashMap<String, String>> songsReview = msvc.songsReview(loginId);
 		mav.addObject("songsReviewList", songsReview);
 
+		ArrayList<HashMap<String, String>> AlbumOrderList = msvc.AlbumOrderList(loginId);
+		mav.addObject("AlbumOrderList", AlbumOrderList);
+
 		mav.setViewName("/Member/MyInfoPage");
 		return mav;
 
