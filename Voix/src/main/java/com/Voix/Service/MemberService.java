@@ -344,4 +344,9 @@ public class MemberService {
 		return mdao.songsReviewList(loginId);
 	}
 
+	public ArrayList<HashMap<String, String>> AlbumOrderList(String loginId) {
+		
+		return mdao.AlbumOrderList(loginId);
+	}
+
 }
