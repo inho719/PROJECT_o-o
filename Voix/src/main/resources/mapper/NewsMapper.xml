@@ -78,4 +78,14 @@
 	WHERE LIMID = #{mid}
 	AND LILIST = #{like}
 	</delete>	
+
+	<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM NEWS
+	</select>
+
+	<select id="selectBoardList" resultType="hashmap" parameterType="hashmap">
+    	SELECT * FROM NEWS
+	WHERE NWCODE BETWEEN #{pageStart} AND #{perPageNum}
+	ORDER BY NWCODE DESC
+	</select>
 </mapper>
