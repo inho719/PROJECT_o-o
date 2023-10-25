@@ -69,10 +69,13 @@
 	WHERE NWCODE = #{nwcode}
 	</update>
 
+	<select id="getLikedNewsList" resultType="String">
+   	 SELECT LILIST FROM LIKES WHERE LIMID = #{mid}
+	</select>
+	
 	<delete id="unlikeNews">
 	DELETE FROM LIKES
 	WHERE LIMID = #{mid}
 	AND LILIST = #{like}
-	</delete>
-	
+	</delete>	
 </mapper>
