@@ -68,4 +68,11 @@
 	SET NWBIGHIT = NWBIGHIT+'1'
 	WHERE NWCODE = #{nwcode}
 	</update>
+
+	<delete id="unlikeNews">
+	DELETE FROM LIKES
+	WHERE LIMID = #{mid}
+	AND LILIST = #{like}
+	</delete>
+	
 </mapper>
