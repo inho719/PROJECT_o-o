@@ -35,6 +35,18 @@ public class NewsController {
 		session.setAttribute("rankState", "NW");
 		ArrayList<HashMap<String, String>> NewsList_map = nsvc.getNewsList_map();
 		System.out.println(NewsList_map);
+		// 현재 사용자가 어떤 뉴스를 '찜'햇는지 가져옴 
+		String loginId = (String) session.getAttribute("loginId");
+		System.out.println("loginId:"+loginId);
+		ArrayList<String> likedNewsList = nsvc.getLikedNewsList(loginId);
+		System.out.println("likedNewsList"+likedNewsList);
+		 // 뉴스 목록을 반복하면서 '찜' 상태에 따라 이미지 URL설정.
+	    for (HashMap<String, String> newsMap : NewsList_map) {
+	        String nwcode = newsMap.get("NWCODE");
+	        //System.out.println("nwcode"+nwcode); nwcode 확인됨
+	        boolean isLiked = likedNewsList.contains(nwcode);
+	        newsMap.put("NWLIKED", String.valueOf(isLiked));
+	    }
 		mav.addObject("NewsListMap",NewsList_map);
 		mav.setViewName("Basic/NewsPage");
 		return mav;
@@ -83,7 +95,34 @@ public class NewsController {
 		System.out.println("뉴스- 아이디 확인:"+mid);
 		System.out.println("뉴스-   찜 확인:"+like);
 		
-	return nsvc.likeNews(like,mid);
+		
+		 // 사용자가 이미 해당 뉴스를 '찜'했는지 확인
+	    ArrayList<String> likedNewsList = nsvc.getLikedNewsList(mid);
+	    if (likedNewsList.contains(like)) {
+	        // 이미 '찜'한 경우 '찜' 취소
+	        int result = nsvc.unlikeNews(like, mid);
+	        System.out.println(like);
+	        System.out.println(mid);
+	        if (result > 0) {
+	            System.out.println("뉴스 '찜' 취소 완료");
+	            return 0; // 클라이언트에게 '찜'이 취소되었음을 알립니다.
+	        } else {
+	            System.out.println("뉴스 '찜' 취소 실패");
+	            return -1; // '찜' 취소 실패를 클라이언트에게 알립니다.
+	        }
+	    } else {
+	        // '찜'하지 않은 경우 '찜' 처리
+	        int result = nsvc.likeNews(like, mid);
+	        if (result > 0) {
+	            System.out.println("뉴스 '찜' 완료");
+	            return 1; // 클라이언트에게 '찜' 완료를 알립니다.
+	        } else {
+	            System.out.println("뉴스 '찜' 실패");
+	            return -1; // '찜' 실패를 클라이언트에게 알립니다.
+	        }
+	    }
+		   
+		//return nsvc.likeNews(like,mid);
 	}
 	@RequestMapping(value = "/NewsHitList")
 	public  @ResponseBody String NewsHitList() {
