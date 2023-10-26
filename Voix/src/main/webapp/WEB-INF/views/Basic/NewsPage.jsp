@@ -80,14 +80,14 @@
 									<c:choose>
 									    <c:when test="${NewsMap.NWLIKED eq 'true'}">
 									        <div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
-									            <a href="#" class="prdLike">
+									            <a class="prdLike" style="cursor: pointer;">
 									                <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
 									            </a>
 									        </div>
 									    </c:when>
 									    <c:otherwise>
 									        <div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
-									            <a href="#" class="prdLike">
+									            <a class="prdLike" style="cursor: pointer;">
 									                <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
 									            </a>
 									        </div>
