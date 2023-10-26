@@ -74,13 +74,14 @@ public class BlogService {
 		return bdao.UpdateBlogBigHit(bgcode);
 	}
 
-	//찜조회
+	
 	public ArrayList<String> getLikedBlogList(String mid) {
+		System.out.println("SERVEICE - 찜 조회");
 		 return bdao.getLikedBlogList(mid);
 	}
-
-	//찜삭제
+	
 	public int unlikeBlog(String like, String mid) {
+		 System.out.println("SERVEICE - 찜 삭제");
 		 return bdao.unlikeBlog(like, mid);
 	}
 
