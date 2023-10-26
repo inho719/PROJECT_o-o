@@ -28,5 +28,9 @@ public interface BlogDao {
 	ArrayList<HashMap<String, String>> selectBlogHitList();
 
 	int UpdateBlogBigHit(String bgcode);
-
+	
+	//찜조회
+	ArrayList<String> getLikedBlogList(@Param("mid") String mid);
+	//찜삭제
+	int unlikeBlog(@Param("like")String like,@Param("mid")String mid);
 }
