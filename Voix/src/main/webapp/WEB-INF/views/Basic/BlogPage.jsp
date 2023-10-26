@@ -49,7 +49,7 @@
 			<!-- Blog entries-->
 			<div class="col-lg-9">
 				<!-- Featured blog post-->
-				<c:forEach items="${BlogListMap}" var="BlogListMap">
+				<c:forEach items="${BlogList}" var="BlogListMap">
 					<div class="card mb-4">
 						<div class="BlogDiv" style="display: flex;">
 							<c:if test="${BlogListMap.BGIMG != null }">
@@ -110,14 +110,24 @@
 		</div>
 	</div>
 	<ul class="pagination" style="place-content: center;">
-		<li><a href="?page=1">1</a></li>
-		<li><a href="?page=2">2</a></li>
-		<li><a href="?page=3">3</a></li>
-		<li><a href="?page=4">4</a></li>
-		<li><a href="?page=5">5</a></li>
-		<li><a href="?page=6">6</a></li>
-		<li><a href="?page=7">7</a></li>
-		<!-- 다른 페이지 번호들을 추가하세요 -->
+		    <c:if test="${pageMaker.prev }">
+		    <li>
+		        <a href="/BlogPage?page=${pageMaker.startPage-1}">
+		   			<i class="fa fa-chevron-left"></i>
+		   		</a>
+		    </li>
+		    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
+		    </c:if>
+		    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+		    <li>
+		        <a href='<c:url value="/BlogPage?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+		    </li>
+		    </c:forEach>
+		    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+		    <li>
+		        <a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+		    </li>
+		    </c:if>
 	</ul>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
