@@ -35,10 +35,29 @@ button {
 	list-style-type: none;
 	word-break: break-all;
 	margin-left: -42px;
+	font-size: larger;
+    display: grid;
+    height: 100%;
 }
 
-.infooItem {
-	
+.textdiv {
+	height: 150px;
+    border: 1px solid gray;
+    background: #f8f9fa;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.textdiv::-webkit-scrollbar {
+  width: 10px;
+}
+
+.textdiv::-webkit-scrollbar-track {
+  background: #f8f9fa; /* Track color */
+}
+
+.textdiv::-webkit-scrollbar-thumb {
+  background-color: #888; /* Thumb color */
+  border-radius: 10px	; /* Rounded thumb */
 }
 </style>
 </head>
@@ -50,10 +69,10 @@ button {
 		<div>
 			<div class="row">
 
-				<div class="card col-md-4 mb-4">
+				<div class="col-md-5 mb-4">
 					<img alt="공연포스터" src="${tk.tkimg}" style="width: 100%;" class="card-img-top">
 				</div>
-				<div class="card col-md-8 mb-4">
+				<div class="card col-md-7 mb-4">
 					<ul class="infoo">
 						<li class="infooItem"><strong class="infooLabel">공연제목</strong>
 							<div class="infooDesc">
@@ -102,8 +121,8 @@ button {
 					<div id="map" style="width: 100%; height: 350px; margin-left: 5px; margin-top: 5px; border: 5px solid bisque; border-radius: 10px;"></div>
 				</div>
 				<div class="card col-md-4 mb-2 " style="display: inline-block;">
-					<div>
-						<button class="button mb-4 mt-4" onclick="location.href='공연페이지'">바로가기</button>
+					<div style="height: 100%;display: grid;place-items: center;">
+						<button class="btn btn-success mb-4 mt-4" style="font-size: x-large;height: 100%;"onclick="location.href='공연페이지'">바로가기</button>
 					</div>
 				</div>
 			</div>
@@ -120,14 +139,14 @@ button {
 			<hr>
 		</c:if>
 
-		<div class="borderline" style="overflow: scroll; height: 500px; width: 100%;">
+		<div class="borderline textdiv" style="overflow: scroll; height: 500px; width: 100%; overflow-x: hidden; background: white;">
 			<div class="replyArea">
 				<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 					<c:forEach items="${reviewList}" var="re">
 						<div class="meminfo">
-							<span>작성자: ${re.REWRITER} </span>
+							<span style="font-size: larger;">작성자: ${re.REWRITER} </span>
 							<div style="margin-top: 5px; margin-bottom: 5px;">
-								<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
+								<div class="textdiv w-100" style="font-size: large;">${re.RECONTENT}</div>
 							</div>
 							<c:if test="${sessionScope.loginId == re.REWRITER}">
 								<button type="button" onclick="location.href='/deleteReview?recode=${re.RECODE}&tkcode=${tk.tkcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
