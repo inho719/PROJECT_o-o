@@ -74,4 +74,15 @@ public class BlogService {
 		return bdao.UpdateBlogBigHit(bgcode);
 	}
 
+	//찜조회
+	public ArrayList<String> getLikedBlogList(String mid) {
+		 return bdao.getLikedBlogList(mid);
+	}
+
+	//찜삭제
+	public int unlikeBlog(String like, String mid) {
+		 return bdao.unlikeBlog(like, mid);
+	}
+
+	
 }
