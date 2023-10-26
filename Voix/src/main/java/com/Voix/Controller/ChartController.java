@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.Voix.Dto.Chart;
 import com.Voix.Dto.playL;
+import com.Voix.Paging.Criteria;
+import com.Voix.Paging.PageMaker;
 import com.Voix.Service.ChartService;
 
 @Controller
@@ -24,11 +27,23 @@ public class ChartController {
 	private ChartService csvc;
 	
 	@RequestMapping(value = "/ChartPage")
-	public ModelAndView ChartPage(HttpSession session) {
+	public ModelAndView ChartPage(HttpSession session, Criteria cri) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> ChartList_map = csvc.getChartList_map();
 		session.setAttribute("sideState", "M");
-		mav.addObject("ChartListMap",ChartList_map);
+		int perPageNum = cri.getPerPageNum();
+		int page = cri.getPage();
+		String startSGCODE = String.format("S%04d", (page - 1) * perPageNum + 1);
+	    String endSGCODE = String.format("S%04d", page * perPageNum);
+	    PageMaker pageMaker = new PageMaker();
+	    pageMaker.setCri(cri);
+	    pageMaker.setTotalCount(csvc.countBoardListTotal());
+	    List<Map<String, Object>> list = csvc.selectBoardList(startSGCODE, endSGCODE);
+	    mav.addObject("ChartList", list);
+	    mav.addObject("pageMaker", pageMaker);
+	    System.out.println(list);
+	    System.out.println(pageMaker);
+		//mav.addObject("ChartListMap",ChartList_map);
 		mav.setViewName("Basic/ChartPage");
 		return mav;
 	}
