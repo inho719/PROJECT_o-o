@@ -85,5 +85,16 @@ public class BlogService {
 		 return bdao.unlikeBlog(like, mid);
 	}
 
+	public int countBoardListTotal() {
+		System.out.println("SERVICE - 페이징 총 조회");
+		return bdao.countBoard();
+	}
+
+
+	public List<Map<String, Object>> selectBoardList(String startBGCODE, String endBGCODE) {
+		System.out.println("SERVICE - 페이징 넘길 때 코드");
+		return bdao.selectBoardList(startBGCODE, endBGCODE);
+	}
+
 	
 }
