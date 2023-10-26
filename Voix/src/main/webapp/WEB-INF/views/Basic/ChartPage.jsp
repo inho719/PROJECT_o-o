@@ -8,6 +8,24 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Blog Home - Start Bootstrap Template</title>
+<style type="text/css">
+.pagination {
+	list-style-type: none;
+	display: inline-block;
+}
+
+.pagination li {
+	display: inline;
+	margin-right: 5px;
+}
+
+.pagination li a {
+	text-decoration: none;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	background-color: #f7f7f7;
+}
+</style>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
