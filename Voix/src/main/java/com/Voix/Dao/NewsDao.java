@@ -42,8 +42,8 @@ public interface NewsDao {
 	//찜삭제
 	int unlikeNews(@Param("like")String like,@Param("mid")String mid);
 
-	// 페이징 처리 게시글 조회
-	public List<News> selectBoard(PagingVO vo);
+	//public List<News> getListWithPaging(paging paging);
+	public int countBoard();
 
 	//페이징 처리 코드조회
 	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startNWCODE, @Param("perPageNum")String endNWCODE);
