@@ -69,6 +69,7 @@
 							<div class="BlogText" style="flex: 1;">
 								<div class="BlogTitle">
 									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
+<button onclick="chatPage()">채팅페이지</button>
 								</div>
 								<div class="BlogContents p-2" style="height: 150px; overflow: hidden;">
 									<p class="card-text">${BlogListMap.BGCONTENT}</p>
@@ -184,7 +185,17 @@
         }
     }
 </script>	
-
+<script type="text/javascript">
+		function chatPage() {
+			let chatId = '${sessionScope.loginId}';
+			console.log(chatId);
+			window.open("/chatPage?chatId="+chatId, "chatbot",
+					"width=400, height=600");
+		if (chatId == null) {
+			window.close();
+		}
+		}
+	</script>
 </body>
 
 
