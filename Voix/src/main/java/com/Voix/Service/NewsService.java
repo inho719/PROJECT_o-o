@@ -103,21 +103,23 @@ public class NewsService {
 		return ndao.UpdateNewsBigHit(nwcode);
 	}
 	
-	//찜조회
 	public ArrayList<String> getLikedNewsList(String mid) {
-	    return ndao.getLikedNewsList(mid);
+	    System.out.println("SERVICE - 찜조회");
+		return ndao.getLikedNewsList(mid);
 	}
-	//찜취소
+	
 	public int unlikeNews(String like, String mid) {
+		System.out.println("SERVICE - 찜취소");
 		return ndao.unlikeNews(like,mid);
 	}
 
-	//페이징	총조회
 	public int countBoardListTotal() {
+		System.out.println("SERVICE - 페이징 총 조회");
 		return ndao.countBoard();
 	}
-	//페이징 넘길때 코드
+	
 	public List<Map<String, Object>> selectBoardList(String startNWCODE, String endNWCODE) {
+		System.out.println("SERVICE - 페이징 넘길 때 코드");
 		return ndao.selectBoardList(startNWCODE, endNWCODE);
 	}
 	
