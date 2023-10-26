@@ -1,4 +1,4 @@
-package com.Voix.Paging;
+package com.Voix.Dto;
 
 import lombok.Data;
 
