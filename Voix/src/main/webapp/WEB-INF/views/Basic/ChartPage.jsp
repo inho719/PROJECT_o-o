@@ -67,14 +67,25 @@
 
 
 
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				<ul class="pagination" style="place-content: center;">
+				    <c:if test="${pageMaker.prev }">
+				    <li>
+				        <a href="/ChartPage?page=${pageMaker.startPage-1}">
+				   			<i class="fa fa-chevron-left"></i>
+				   		</a>
+				    </li>
+				    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
+				    </c:if>
+				    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+				    <li>
+				        <a href='<c:url value="/ChartPage?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+				    </li>
+				    </c:forEach>
+				    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				    <li>
+				        <a href='<c:url value="/ChartPage?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+				    </li>
+				    </c:if>
 				</ul>
 
 			</div>
