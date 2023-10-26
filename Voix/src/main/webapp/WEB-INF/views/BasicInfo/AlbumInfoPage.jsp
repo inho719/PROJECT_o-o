@@ -98,9 +98,25 @@ button {
 							할인가 : ${AlbumInfoList.alsaleprice}원
 							<!--내일 이거 해야함 체크 표시 해야 나오게  -->
 							<input id="selectQty_${AlbumInfoList.alcode}" type="number" value="1" min="1" placeholder="수량" class="disNone selectbox">
-							<a href="#" class="prdLike" onclick="like('${AlbumInfoList.alcode}')">
-								<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-							</a>
+							<c:choose>
+									<c:when test="${AlbumInfoList1.ALLIKED eq 'true'}">
+										<div class="like_article"
+											onclick="like('${AlbumInfoList.alcode}', this)">
+											<a class="prdLike" style="cursor: pointer;"> <img alt=""
+												src="/resources/assets/heart.png" style="width: 30px;">
+											</a>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="like_article"
+											onclick="like('${AlbumInfoList.alcode}', this)">
+											<a class="prdLike" style="cursor: pointer;"> <img alt=""
+												src="/resources/assets/blankheart.png" style="width: 30px;">
+											</a>
+										</div>
+
+									</c:otherwise>
+								</c:choose>
 						</div>
 					</c:forEach>
 				</div>
@@ -206,34 +222,48 @@ button {
       }
    </script>
 	<script type="text/javascript">
-	let loginId = '${sessionScope.loginId}';
-	function like(alCode){
-	console.log(loginId);
-	console.log(alCode);
-	if(loginId.length === 0){
-		location.href="/LoginPage";
-		
-	} else {
-	
-		$.ajax({
-			type : "GET",
-			url : "likeAlbum",
-			data : {
-				"like" : alCode
-			},
-			async : false,
-			success : function(response) {
-				alert("찜하기가 되었습니다.");
-			},
-			error: function(){
-				console.error("찜하기 요청 중 오류 발생");
-				alert("이미 찜이 되어있습니다.");
-			}
-		});
-	
-	}
-}   
-   </script>
+    let loginId = '${sessionScope.loginId}';
+    function like(alcode, element) {
+        console.log(loginId);
+        console.log(alcode);
+        if (loginId.length === 0) {
+            alert("로그인을 먼저 해주세요.");
+            location.href = "/LoginPage";
+        } else {
+
+        	$.ajax({
+        	    type: "GET",
+        	    url: "likeAlbum",
+        	    data: {
+        	        "like": alcode
+        	    },
+        	    //async: false,
+        	    success: function(response) {
+        	        if (response === 1) {
+        	            // '찜' 성공
+        	            alert("찜하기가 되었습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/heart.png';
+        	        } else if (response === 0) {
+        	            // '찜' 취소
+        	            alert("찜하기가 취소되었습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
+        	        } else {
+        	            // 이미 '찜'한 경우
+        	            alert("이미 찜이 되어있습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/blankheart.png'; // 이 부분을 추가
+        	        }
+        	    },
+        	    error: function() {
+        	        console.error("찜하기 요청 중 오류 발생");
+        	        alert("찜하기에 실패했습니다.");
+        	    }
+        	});
+        }
+    }
+</script>
 
 </body>
 </html>
