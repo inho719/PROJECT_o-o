@@ -43,15 +43,17 @@ public class NewsController {
 		// 현재 사용자가 어떤 뉴스를 '찜'햇는지 가져옴 
 		String loginId = (String) session.getAttribute("loginId");
 		System.out.println("loginId:"+loginId);
+		if(loginId != null){
 		ArrayList<String> likedNewsList = nsvc.getLikedNewsList(loginId);
 		System.out.println("likedNewsList"+likedNewsList);
 		 // 뉴스 목록을 반복하면서 '찜' 상태에 따라 이미지 URL설정.
-	    for (HashMap<String, String> newsMap : NewsList_map) {
-	        String nwcode = newsMap.get("NWCODE");
-	        //System.out.println("nwcode"+nwcode); nwcode 확인됨
-	        boolean isLiked = likedNewsList.contains(nwcode);
-	        newsMap.put("NWLIKED", String.valueOf(isLiked));
-	    }	
+	   	 for (HashMap<String, String> newsMap : NewsList_map) {
+		        String nwcode = newsMap.get("NWCODE");
+		        //System.out.println("nwcode"+nwcode); nwcode 확인됨
+		        boolean isLiked = likedNewsList.contains(nwcode);
+		        newsMap.put("NWLIKED", String.valueOf(isLiked));
+	  	  }
+		}
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(nsvc.countBoardListTotal());
