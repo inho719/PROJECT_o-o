@@ -52,4 +52,16 @@
 	SET BGBIGHIT = BGBIGHIT+'1'
 	WHERE BGCODE = #{bgcode}
 	</update>
+
+<select id="getLikedBlogList" resultType="String">
+    SELECT LILIST FROM LIKES WHERE LIMID = #{mid}
+</select>
+	
+<delete id="unlikeBlog">
+    DELETE FROM LIKES
+    WHERE LIMID = #{mid}
+    AND LILIST = #{like}
+</delete>	
+
+	
 </mapper>
