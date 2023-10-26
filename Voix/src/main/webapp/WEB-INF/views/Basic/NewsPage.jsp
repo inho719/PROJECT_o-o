@@ -74,7 +74,6 @@
 									<p class="card-text">${NewsMap.NWCONTENT}</p>
 								</div>
 								<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-									<!-- ---------------------------------------------------------------------------- -->
 									<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${NewsMap.NWBIGHIT}</a>
 									<a class="Views" style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
 									<c:choose>
@@ -169,7 +168,7 @@
         	            // 이미 '찜'한 경우
         	            alert("이미 찜이 되어있습니다.");
         	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/blankheart.png'; // 이 부분을 추가
+        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
         	        }
         	    },
         	    error: function() {
