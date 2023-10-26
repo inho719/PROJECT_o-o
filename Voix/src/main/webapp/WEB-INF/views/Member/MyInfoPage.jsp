@@ -76,13 +76,13 @@
 
 					<div class="row">
 						<div class="col" style="text-align: center;">
-							<a href="#" onclick="OrberClick()">구매내역</a>
+							<a class="btn" onclick="OrberClick()">구매내역</a>
 						</div>
 						<div class="col" style="text-align: center;">
-							<a href="#" onclick="LickClick()">찜목록</a>
+							<a class="btn" onclick="LickClick()">찜목록</a>
 						</div>
 						<div class="col" style="text-align: center;">
-							<a href="#" onclick="CommentClick()">내가쓴 댓글 목록</a>
+							<a class="btn" onclick="CommentClick()">내가쓴 댓글 목록</a>	
 						</div>
 					</div>
 
@@ -374,7 +374,7 @@
 						<div>구매내역</div>
 						<div class="card mb-4">
 							<c:forEach items="${AlbumOrderList}" var="order">
-								<div class="NewsDiv" style="display: flex;">
+								<div class="NewsDiv" style="display: flex; height: 200px;overflow: hidden;">
 									<div class="NewsImg">
 										<a href="#뉴스코드">
 											<img style="width: 350px; height: 200px;" src="${order.ALIMG}" alt="..." />
