@@ -34,15 +34,17 @@ public class BlogController {
 		// 현재 사용자가 어떤 블로그를 '찜'햇는지 가져옴 
 		String loginId = (String) session.getAttribute("loginId");
 		System.out.println("loginId:"+loginId);
-		ArrayList<String> likedBlogList = bsvc.getLikedBlogList(loginId);
-		System.out.println("likedBlogList"+likedBlogList);
-		// 블로그 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정합니다.
-		for (HashMap<String, String> blogMap : BlogList_map) {
-		String bgcode = blogMap.get("BGCODE");
-		System.out.println("bgcode"+bgcode); //nwcode 나오냐?
-		boolean isLiked = likedBlogList.contains(bgcode);
-		blogMap.put("BGLIKED", String.valueOf(isLiked));
-	        }
+		if(loginId != null){
+			ArrayList<String> likedBlogList = bsvc.getLikedBlogList(loginId);
+			System.out.println("likedBlogList"+likedBlogList);
+			// 블로그 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정합니다.
+			for (HashMap<String, String> blogMap : BlogList_map) {
+			String bgcode = blogMap.get("BGCODE");
+			System.out.println("bgcode"+bgcode); //nwcode 나오냐?
+			boolean isLiked = likedBlogList.contains(bgcode);
+			blogMap.put("BGLIKED", String.valueOf(isLiked));
+		        }
+		}
 		mav.setViewName("Basic/BlogPage");
 		return mav;		
 	}
