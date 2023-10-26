@@ -23,13 +23,27 @@ public class BlogController {
 	private BlogService bsvc;
 
 	@RequestMapping(value = "/BlogPage")
-	public ModelAndView Blog(HttpSession session){
+	public ModelAndView Blog(HttpSession session, Criteria cri)throws Exception{
 		ModelAndView mav = new ModelAndView();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "BL");
 		ArrayList<HashMap<String, String>> BlogList_map = bsvc.getBlogList_map();
-		System.out.println(BlogList_map);
-		mav.addObject("BlogListMap",BlogList_map);
+		int perPageNum = cri.getPerPageNum();
+		int page = cri.getPage();
+		String startBGCODE = String.format("B%04d", (page - 1) * perPageNum + 1);
+	   	String endBGCODE = String.format("B%04d", page * perPageNum);
+		ArrayList<HashMap<String, String>> BlogList_map = bsvc.getBlogList_map();
+		//System.out.println(BlogList_map);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(bsvc.countBoardListTotal());
+		List<Map<String, Object>> list = bsvc.selectBoardList(startBGCODE, endBGCODE);
+		mav.addObject("BlogList", list);
+		mav.addObject("pageMaker", pageMaker);
+		System.out.println(list);
+		System.out.println(pageMaker);
+		//System.out.println(BlogList_map);
+		//mav.addObject("BlogListMap",BlogList_map);
 
 		// 현재 사용자가 어떤 블로그를 '찜'햇는지 가져옴 
 		String loginId = (String) session.getAttribute("loginId");
