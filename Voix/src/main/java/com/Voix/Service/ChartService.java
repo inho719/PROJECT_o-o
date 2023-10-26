@@ -153,5 +153,13 @@ public class ChartService {
 		String newCode = strCode + String.format("%03d", numCode+1);
 		return newCode;
 	}
+
+	public int countBoardListTotal() {
+		return cdao.countBoard();
+	}
+
+	public List<Map<String, Object>> selectBoardList(String startSGCODE, String endSGCODE) {
+		return cdao.selectBoardList(startSGCODE, endSGCODE);
+	}
 	
 }
