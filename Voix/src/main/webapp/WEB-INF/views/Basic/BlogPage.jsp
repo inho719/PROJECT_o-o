@@ -78,11 +78,25 @@
 									<a class="Views" style="text-decoration-line: none; color: gray;">작성자: ${BlogListMap.BGWRITER}</a>
 									<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${BlogListMap.BGBIGHIT}</a>
 									<a class="Views" style="text-decoration-line: none; color: gray;">${BlogListMap.BGDATE}</a>
-									<div class="like_article" onclick="like('${BlogListMap.BGCODE}')">
-										<a href="#" class="prdLike">
-											<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-										</a>
-									</div>
+									
+									<c:choose>
+									    <c:when test="${BlogListMap.BGLIKED eq 'true'}">
+									        <div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
+									            <a href="#" class="prdLike">
+									                <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+									            </a>
+									        </div>
+									    </c:when>
+									    <c:otherwise>
+									        <div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
+									            <a href="#" class="prdLike">
+									                <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
+									            </a>
+									        </div>
+									      
+									    </c:otherwise>
+									</c:choose>
+									
 								</div>
 							</div>
 						</div>
@@ -118,35 +132,48 @@
 
 	<!-- if(loginId.length === 0){ -->
 	<script type="text/javascript">
-		let loginId = '${sessionScope.loginId}';
-		function like(blogCode) {
-			console.log(loginId);
-			console.log(blogCode);
-			if (loginId.length === 0) {
-				alert("로그인을 먼저 해주세요.");
-				location.href = "/LoginPage";
+    let loginId = '${sessionScope.loginId}';
+    function like(blogCode, element) {
+        console.log(loginId);
+        console.log(blogCode);
+        if (loginId.length === 0) {
+            alert("로그인을 먼저 해주세요.");
+            location.href = "/LoginPage";
+        } else {
 
-			} else {
-
-				$.ajax({
-					type : "GET",
-					url : "likeNews",
-					data : {
-						"like" : blogCode
-					},
-					async : false,
-					success : function(response) {
-						alert("찜하기가 되었습니다.");
-					},
-					error : function() {
-						console.error("찜하기 요청 중 오류 발생");
-						alert("이미 찜이 되어있습니다.");
-					}
-				});
-
-			}
-		}
-	</script>
+        	$.ajax({
+        	    type: "GET",
+        	    url: "likeBlog",
+        	    data: {
+        	        "like": blogCode
+        	    },
+        	    //async: false,
+        	    success: function(response) {
+        	        if (response === 1) {
+        	            // '찜' 성공
+        	            alert("찜하기가 되었습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/heart.png';
+        	        } else if (response === 0) {
+        	            // '찜' 취소
+        	            alert("찜하기가 취소되었습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
+        	        } else {
+        	            // 이미 '찜'한 경우
+        	            alert("이미 찜이 되어있습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/blankheart.png'; // 이 부분을 추가
+        	        }
+        	    },
+        	    error: function() {
+        	        console.error("찜하기 요청 중 오류 발생");
+        	        alert("찜하기에 실패했습니다.");
+        	    }
+        	});
+        }
+    }
+</script>	
 
 </body>
 
