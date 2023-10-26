@@ -94,4 +94,14 @@
 	</choose>
 	ORDER BY TKDATE DESC
 	</select>
+
+	<select id="getLikedTicketList" resultType="String">
+    	SELECT LILIST FROM LIKES WHERE LIMID = #{mid}
+	</select>
+	
+	<delete id="unlikeTicket">
+	DELETE FROM LIKES
+	WHERE LIMID = #{mid}
+	AND LILIST = #{like}
+	</delete>
 </mapper>
