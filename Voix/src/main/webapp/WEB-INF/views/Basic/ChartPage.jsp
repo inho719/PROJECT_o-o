@@ -24,7 +24,7 @@
 			<div class="col-lg-9">
 				<div class="card m-2">예스24, 알라딘, 교보</div>
 
-				<c:forEach items="${ChartListMap}" var="ChartMap">
+				<c:forEach items="${ChartList}" var="ChartMap">
 					<div class="card m-2">
 						<div class="col-md-2">?순위</div>
 						<div class="row">
