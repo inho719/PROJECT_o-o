@@ -43,10 +43,10 @@ public class TicketController {
 		if (loginId != null) {
 			ArrayList<String> likedTicketList = tsvc.getLikedTicketList(loginId);
 			System.out.println("likedTicketList" + likedTicketList);
-			// 티켓 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정합니다.
+			// 티켓 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정
 			for (HashMap<String, String> ticketMap : TkList_map) {
 				String tkcode = ticketMap.get("TKCODE");
-				System.out.println("tkcode" + tkcode); // nwcode
+				//System.out.println("tkcode" + tkcode);
 				boolean isLiked = likedTicketList.contains(tkcode);
 				ticketMap.put("TKLIKED", String.valueOf(isLiked));
 			}
