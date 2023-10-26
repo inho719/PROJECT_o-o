@@ -140,4 +140,21 @@ public class BlogController {
 		
 		return new Gson().toJson(BlogHitList);
 	}
+	@RequestMapping(value = "/chatPage")
+	public ModelAndView chatPage2(String chatId, HttpServletRequest request) {
+		System.out.println("채팅페이지 이동 요청 - /chatPage");
+		System.out.println("사용할 아이디: " + chatId);
+		ModelAndView mav = new ModelAndView();
+		request.getAttribute("loginId");
+		mav.setViewName("/BasicInfo/ChatPage");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/chatbotSend" ,produces = "application/text; charset=UTF-8")
+  public @ResponseBody String chatbotSend(String inputText,String mid) throws UnsupportedEncodingException {
+      System.out.println("작성내용"+inputText);
+			String msg = "";
+      msg = bsvc.chatbotAPI(inputText,mid);
+      return  msg;
+  }
 }
