@@ -164,5 +164,16 @@ public class TicketService {
 		return tdao.getTicketList_ChooseSite(siteVal);
 	}
 
+	public ArrayList<String> getLikedTicketList(String mid) {
+		System.out.println("SERVICE - 찜 조회");
+		return tdao.getLikedTicketList(mid);
+	}
+	
+	public int unlikeTicket(String like, String mid) {
+		System.out.println("SERVICE - 찜 취소");
+		return tdao.unlikeTicket(like,mid);
+	}
+	
+
 
 }
