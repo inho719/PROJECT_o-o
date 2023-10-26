@@ -30,9 +30,21 @@ public class BlogController {
 		ArrayList<HashMap<String, String>> BlogList_map = bsvc.getBlogList_map();
 		System.out.println(BlogList_map);
 		mav.addObject("BlogListMap",BlogList_map);
+
+		// 현재 사용자가 어떤 블로그를 '찜'햇는지 가져옴 
+		String loginId = (String) session.getAttribute("loginId");
+		System.out.println("loginId:"+loginId);
+		ArrayList<String> likedBlogList = bsvc.getLikedBlogList(loginId);
+		System.out.println("likedBlogList"+likedBlogList);
+		// 블로그 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정합니다.
+		for (HashMap<String, String> blogMap : BlogList_map) {
+		String bgcode = blogMap.get("BGCODE");
+		System.out.println("bgcode"+bgcode); //nwcode 나오냐?
+		boolean isLiked = likedBlogList.contains(bgcode);
+		blogMap.put("BGLIKED", String.valueOf(isLiked));
+	        }
 		mav.setViewName("Basic/BlogPage");
-		return mav;
-		
+		return mav;		
 	}
 	
 	@RequestMapping(value ="/BlogInfoPage")
@@ -74,9 +86,35 @@ public class BlogController {
 		String mid = session.getAttribute("loginId").toString();
 		System.out.println("블로그- 아이디 확인:"+mid);
 		System.out.println("블로그-   찜 확인:"+like);
-		
-	return bsvc.likeBlog(like,mid);
-	}
+
+	    // 사용자가 이미 해당 블로그를 '찜'했는지 확인
+	    ArrayList<String> likedBlogList = bsvc.getLikedBlogList(mid);
+	    if (likedBlogList.contains(like)) {
+	        // 이미 '찜'한 경우 '찜' 취소
+	        int result = bsvc.unlikeBlog(like, mid);
+	        System.out.println(like);
+	        System.out.println(mid);
+	        if (result > 0) {
+	            System.out.println("블로그 '찜' 취소 완료");
+	            return 0; // 클라이언트에게 '찜'이 취소되었음을 알립니다.
+	        } else {
+	            System.out.println("블로그 '찜' 취소 실패");
+	            return -1; // '찜' 취소 실패를 클라이언트에게 알립니다.
+	        }
+	    } else {
+	        // '찜'하지 않은 경우 '찜' 처리
+	        int result = bsvc.likeBlog(like, mid);
+	        if (result > 0) {
+	            System.out.println("블로그 '찜' 완료");
+	            return 1; // 클라이언트에게 '찜' 완료를 알립니다.
+	        } else {
+	            System.out.println("블로그 '찜' 실패");
+	            return -1; // '찜' 실패를 클라이언트에게 알립니다.
+	        }
+	    }	
+	}			
+	//return bsvc.likeBlog(like,mid);
+	//}
 	
 	@RequestMapping(value = "/BlogHitList")
 	public  @ResponseBody String BlogHitList() {
