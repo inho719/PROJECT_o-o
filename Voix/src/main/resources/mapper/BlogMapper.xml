@@ -62,6 +62,15 @@
     WHERE LIMID = #{mid}
     AND LILIST = #{like}
 </delete>	
+<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM BLOGS
+</select>
+
+<select id="selectBoardList" resultType="hashmap" parameterType="hashmap">
+   	SELECT * FROM BLOGS
+	WHERE BGCODE BETWEEN #{pageStart} AND #{perPageNum}
+	ORDER BY BGDATE DESC
+</select>
 
 	
 </mapper>
