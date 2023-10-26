@@ -33,4 +33,10 @@ public interface BlogDao {
 	ArrayList<String> getLikedBlogList(@Param("mid") String mid);
 	//찜삭제
 	int unlikeBlog(@Param("like")String like,@Param("mid")String mid);
+
+	int countBoard();
+
+	//페이징 처리 코드조회
+	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startBGCODE, @Param("perPageNum")String endBGCODE);
+	
 }
