@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Ticket Page</title>
@@ -26,6 +28,19 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
+.TicketList{
+    border: 1px solid #adb5bd !important;
+    border-radius: 101px !important;
+    display: grid !important;
+    height: 100%;
+    align-content: center;
+    
+}
+.TicketList:hover{
+    border-bottom: 1px solid #e8ec74 !important;
+    background-color: #e6e7e94d;
+    padding: 4px;
+}
 </style>
 
 </head>
@@ -38,19 +53,33 @@
 			<div class="col-lg-9">
 				<div class="w-100">
 					<div class="list-group">
-						<ul class="list-group list-group-horizontal" style="list-style: none;">
-							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=melon">멜론</a></li>
-							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=interpark">인터파크</a></li>
-							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=yes24">예스24</a></li>
-							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=11bunga">11번가</a></li>
+						<ul class="list-group list-group-horizontal mb-3"
+							style="list-style: none;">
+							<li class="w-25" style="height: 115px;">
+								<a class="list-group-item TicketList" href="/choosSite?siteVal=melon">
+									<img class="w-100"alt="" src="https://i.namu.wiki/i/fUSKDJ8EaufclMExoypN7w22t7C4C5FwwIKo40DnMnqsPi8WvuyzQiyBT4xrV-ZJNDjvDICaJ5EDwqIBesI9QPJLStccA4LA37GUmspj_QcbcJao2NievXqvjLPbs1O0d4UO3_4tnjhzzDHwZOVdtA.svg">
+								</a>
+							</li>
+							<li class="w-25">
+								<a class="list-group-item TicketList" href="/choosSite?siteVal=interpark">
+									<img class="w-100"alt="" src="https://i.namu.wiki/i/4K3uJkDrWzPfyCtjiJqoFCMtPo4KxMKN3PN3ECH9EHnHaSP7aEgDNMw2bboyadG5GLjZm3um1BUZGFt552TurMAun23usmsyauMrqv7vkHgOQVGs2mNIQsT0NTDsDps5RJ5_NFBMzOlpOA0nUp_AbQ.webp">
+								</a>
+							</li>
+							<li class="w-25">
+								<a class="list-group-item TicketList" href="/choosSite?siteVal=yes24">
+									<img class="w-100"alt="" src="https://i.namu.wiki/i/KsHBIVQ9WT3p8A852Jouv53m5EyazOLq3Tzqk49PSBmUhthoL0RPDgfPiB9sjYlNslB9csTwNl4gJ3QHS7CQJ4DaSLZhpsRbNz8-M7L-kHyW2h2cIWxCUifTM3ls9d1RdaIOS52J1Wg72sBjyPbTSA.svg">
+								</a>
+							</li>
+							<li class="w-25">
+								<a class="list-group-item TicketList" href="/choosSite?siteVal=11bunga">
+									<img class="w-100"alt="" src="https://i.namu.wiki/i/-KZsLc7EVpwSGwPbXck8NidnKq1iD3ZJFcab0G6lsWKVZFij3T330QdJHSDs_fk4Stzk1gdmwkYic52yMxXWr617SrObpQOFJghx2xOkt2dA3AfMyjKNmIxYIVxUCtV7wBAzCangnNsAKJZBd96j9w.svg">
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
-
-
-
-				<!-- Featured Ticket post-->
-				<c:forEach items="${TkListMap}" var="TkMap">
+				
+		<c:forEach items="${TkListMap}" var="TkMap">
 					<div class="card mb-3">
 						<div class="TicketDiv" style="display: flex;">
 							<c:if test="${TkMap.TKIMG != null }">
@@ -107,8 +136,6 @@
 						</div>
 					</div>
 				</c:forEach>
-
-
 
 			</div>
 			<!-- end Page content-->
