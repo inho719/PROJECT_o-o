@@ -32,7 +32,6 @@ public class BlogController {
 		int page = cri.getPage();
 		String startBGCODE = String.format("B%04d", (page - 1) * perPageNum + 1);
 	   	String endBGCODE = String.format("B%04d", page * perPageNum);
-		ArrayList<HashMap<String, String>> BlogList_map = bsvc.getBlogList_map();
 		//System.out.println(BlogList_map);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
