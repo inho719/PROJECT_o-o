@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Voix.Dto.Chart;
+import com.Voix.Dto.Criteria;
+import com.Voix.Dto.PageMaker;
 import com.Voix.Dto.playL;
-import com.Voix.Paging.Criteria;
-import com.Voix.Paging.PageMaker;
 import com.Voix.Service.ChartService;
 
 @Controller
