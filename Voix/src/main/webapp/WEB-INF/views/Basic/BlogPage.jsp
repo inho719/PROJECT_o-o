@@ -114,7 +114,7 @@
 		    <c:if test="${pageMaker.prev }">
 		    <li>
 		        <a href="/BlogPage?page=${pageMaker.startPage-1}">
-		   			<i class="fa fa-chevron-left"></i>
+		   			<i class="fa fa-chevron-left"></i>◀
 		   		</a>
 		    </li>
 		    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
@@ -126,7 +126,7 @@
 		    </c:forEach>
 		    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 		    <li>
-		        <a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+		        <a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>'>▶<i class="fa fa-chevron-right"></i></a>
 		    </li>
 		    </c:if>
 	</ul>
