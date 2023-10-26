@@ -106,25 +106,26 @@
 		</div>
 	</div>
 	<ul class="pagination" style="place-content: center;">
-    <c:if test="${pageMaker.prev }">
-    <li>
-        <a href="/NewsPage?page=${pageMaker.startPage-1}">
-   			<i class="fa fa-chevron-left"></i>
-   		</a>
-    </li>
-    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
-    </c:if>
-    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-    <li>
-        <a href='<c:url value="/NewsPage?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
-    </li>
-    </c:forEach>
-    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-    <li>
-        <a href='<c:url value="/NewsPage?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
-    </li>
-    </c:if>
-</ul>
+	    <c:if test="${pageMaker.prev }">
+	    <li>
+	        <a href="/NewsPage?page=${pageMaker.startPage-1}">
+	   			<i class="fa fa-chevron-left"></i>◀ 
+	   		</a>
+	   		
+	    </li>
+	    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
+	    </c:if>
+	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+	    <li>
+	        <a href='<c:url value="/NewsPage?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+	    </li>
+	    </c:forEach>
+	    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+	    <li>
+	        <a href='<c:url value="/NewsPage?page=${pageMaker.endPage+1 }"/>'> ▶ <i class="fa fa-chevron-right"></i></a>
+	    </li>
+	    </c:if>
+	</ul>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
