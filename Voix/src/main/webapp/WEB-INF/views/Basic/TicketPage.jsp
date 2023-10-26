@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Ticket Page</title>
@@ -40,8 +38,7 @@
 			<div class="col-lg-9">
 				<div class="w-100">
 					<div class="list-group">
-						<ul class="list-group list-group-horizontal"
-							style="list-style: none;">
+						<ul class="list-group list-group-horizontal" style="list-style: none;">
 							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=melon">멜론</a></li>
 							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=interpark">인터파크</a></li>
 							<li class="w-25"><a class="list-group-item" href="/choosSite?siteVal=yes24">예스24</a></li>
@@ -54,47 +51,45 @@
 
 				<!-- Featured Ticket post-->
 				<c:forEach items="${TkListMap}" var="TkMap">
-					<div class="card mb-4">
+					<div class="card mb-3">
 						<div class="TicketDiv" style="display: flex;">
 							<c:if test="${TkMap.TKIMG != null }">
-								<div class="TicketImg">
-									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}"><img class=""
-										src="${TkMap.TKIMG}" alt="..." /></a>
+								<div class="TicketImg" style="margin-right: 4px;">
+									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}">
+										<img style="width: 240px; height: 340px;" class="" src="${TkMap.TKIMG}" alt="..." />
+									</a>
 								</div>
 							</c:if>
 							<c:if test="${TkMap.TKIMG == null }">
 								<div class="TicketImg">
-									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}"><img class=""
-										src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
-										alt="..." /></a>
+									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}">
+										<img style="width: 240px; height: 340px;" class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
+									</a>
 								</div>
 							</c:if>
 							<div class="TicketContents w-100">
 								<div class="TicketTitle">
-									<h2 class="card-title m-2">${TkMap.TKTITLE}</h2>
+									<h3 class="card-title m-2">${TkMap.TKTITLE}</h3>
 								</div>
 								<div class="TicketContentsWrapper">
-									<div class="TicketText p-2 d-flex"
-										style="justify-content: space-between;">
-										<p class="card-text">${TkMap.TKINFO}</p>
-										
+									<div class="TicketText p-2 d-flex" style="justify-content: space-between;">
 										<div>
-										<p class="card-text small">${TkMap.TKDATE}</p>
-										<br>
-										<p class="card-text small">${TkMap.TKPLACE}</p>
-										<br>
-										<p class="card-text small">${TkMap.TKTIME}</p>
-										<br>
-										<p class="card-text small">${TkMap.TKARTIST}</p>
+											<p class="card-text small"><br>${TkMap.TKDATE}</p>
+											<br>
+											<p class="card-text small">${TkMap.TKPLACE}</p>
+											<br>
+											<p class="card-text small">${TkMap.TKTIME}</p>
+											<br>
+											<p class="card-text small">${TkMap.TKARTIST}</p>
 										</div>
 									</div>
 								</div>
 								<div class="small text-mute m-2" style="text-align: end;">
 									<div class="like_article" onclick="like('${TkMap.TKCODE}')">
-										<a href="#" class="prdLike">	
-										<img alt="" src="/resources/assets/heart.png" style="width:30px;">									
+										<a href="#" class="prdLike">
+											<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
 										</a>
-									</div>	
+									</div>
 								</div>
 							</div>
 						</div>
@@ -112,43 +107,41 @@
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
-				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
 
 	<script type="text/javascript">
-	let loginId = '${sessionScope.loginId}';
-	function like(ticketCode){
-	console.log(loginId);
-	console.log(ticketCode);
-	if(loginId.length === 0){
-		alert("로그인을 먼저 해주세요.");
-		location.href="/LoginPage";		
-	} else {	
-		$.ajax({
-			type : "GET",
-			url : "likeTicket",
-			data : {
-				"like" : ticketCode
-			},
-			async : false,
-			success : function(response) {
-				alert("찜하기가 되었습니다.");
-			},
-			error: function(){
-				console.error("찜하기 요청 중 오류 발생");
-				alert("이미 찜이 되어있습니다.");
+		let loginId = '${sessionScope.loginId}';
+		function like(ticketCode) {
+			console.log(loginId);
+			console.log(ticketCode);
+			if (loginId.length === 0) {
+				alert("로그인을 먼저 해주세요.");
+				location.href = "/LoginPage";
+			} else {
+				$.ajax({
+					type : "GET",
+					url : "likeTicket",
+					data : {
+						"like" : ticketCode
+					},
+					async : false,
+					success : function(response) {
+						alert("찜하기가 되었습니다.");
+					},
+					error : function() {
+						console.error("찜하기 요청 중 오류 발생");
+						alert("이미 찜이 되어있습니다.");
+					}
+				});
+
 			}
-		});
-	
-	}
-}   
-   </script>
+		}
+	</script>
 </body>
 </html>
