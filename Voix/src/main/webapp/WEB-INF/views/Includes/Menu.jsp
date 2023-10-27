@@ -50,7 +50,7 @@
 
 .navbar-brand {
 	cursor: pointer;
-	border-top: 1px solid black;
+	border-top: 1px solid #d9f0de;
 }
 
 .navbar-brand.click {
@@ -99,7 +99,7 @@
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
-	color: #212529;
+	color: white;
 	border: none; /* 테두리 삭제 */
 	border-left: 4px solid #e8ec74;
 	border-right: 4px solid #e8ec74;
@@ -127,6 +127,9 @@ th {
 th:hover {
 	background: #484848;
 	border-top: 1px solid yellow;
+}
+body{
+	background: rgb(217 240 222) !important;
 }
 </style>
 
@@ -157,24 +160,22 @@ th:hover {
 	</div>
 </nav>
 <!-- Page header with logo and tagline-->
-<header class="py-5 border-bottom mb-4" style="background-color: #D9F0DE;">
+<header class="mb-4" style="background-color: #D9F0DE;">
 	<div class="container">
-		<div class="text-center my-5 VoixImg">
-			<!-- 이미지 클릭하면 메인페이지로 이동 -->
-			<a href="/" id="clickImg"> <img class="w-100" alt="" src="/resources/assets/VoixImg5.png">
-			</a>
-			<h1 class="fw-bolder">VOIX</h1>
-			<p class="lead mb-0"></p>
-		</div>
 
-		<table class="navbar-dark bg-dark">
+		<table class="navbar-dark">
 			<tr>
-				<th class="navbar-brand p-3  fs-4" id="news" onClick="location.href='NewsPage'">뉴스</th>
-				<th class="navbar-brand p-3  fs-4" id="blog" onClick="location.href='BlogPage'">블로그</th>
-				<th class="navbar-brand p-3  fs-4" id="ticket" onClick="location.href='TicketPage'">티켓</th>
-				<th class="navbar-brand p-3  fs-4" id="album" onClick="location.href='AlbumPage'">앨범</th>
-				<th class="navbar-brand p-3  fs-4" id="chart" onClick="location.href='ChartPage'">랭킹비교</th>
-				<th class="navbar-brand p-3  fs-4" id="price" onClick="location.href='PricePage'">가격비교</th>
+				<th class="navbar-brand fs-4" style="width: 200px;">
+					<a href="/" id="clickImg">
+			 			<img class="w-100" alt="" src="/resources/assets/VoixImg5.png">
+			 		</a>
+			 	</th>
+				<th class="navbar-brand p-3  fs-4" id="news" onClick="location.href='NewsPage'" style="color:black;">뉴스</th>
+				<th class="navbar-brand p-3  fs-4" id="blog" onClick="location.href='BlogPage'" style="color:black;">블로그</th>
+				<th class="navbar-brand p-3  fs-4" id="ticket" onClick="location.href='TicketPage'" style="color:black;">티켓</th>
+				<th class="navbar-brand p-3  fs-4" id="album" onClick="location.href='AlbumPage'" style="color:black;">앨범</th>
+				<th class="navbar-brand p-3  fs-4" id="chart" onClick="location.href='ChartPage'" style="color:black;">랭킹비교</th>
+				<th class="navbar-brand p-3  fs-4" id="price" onClick="location.href='PricePage'" style="color:black;">가격비교</th>
 			</tr>
 			<!--  
 			<tr>
@@ -187,16 +188,16 @@ th:hover {
 				</td>			
 			</tr>
 			  -->
-
 		</table>
-		<div class="searchbar mb-4">
+		<div class="searchbar" style="margin-bottom: 7rem !important;">
 			<form action="/getSearch">
 				<input type="hidden" id="pageType" name="pageType" value=""> 
-				<input class="navbar-brand form-control2" id="searchKeyword" name="searchKeyword" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" />
-				<button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+				<input class="navbar-brand form-control2" id="searchKeyword" name="searchKeyword" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" 
+				style="width:85%;"/>
+				<button class="btn btn-primary" id="button-search" type="submit" style="width:15%">Go!</button>
 			</form>
 		</div>
-
+	
 		<!--  
 				<a class="navbar-brand-click" id="news"  href="/NewsPage">뉴스</a> 
 				<a class="navbar-brand" id="blog"  href="/BlogPage">블로그</a> 
