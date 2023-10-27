@@ -59,7 +59,7 @@
 				<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
 					<div class="card m-2" style="height: 215px;">
 
-						<div class="rankChart">No.${status.index + 1}</div>
+						<div class="rankChart">No.${(param.page-1)*10 + status.index + 1}</div>
 						<div style="display: flex;">
 							<c:if test="${ChartMap.SGIMG != null }">
 								<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
