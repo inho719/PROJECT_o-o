@@ -280,7 +280,7 @@ body{
 
 	<script type="text/javascript">
 		let currentURL = window.location.href;
-		let currentPath = currentURL.split("/")[3];	
+		let currentPath = currentURL.split("/")[3].split('?')[0];	//BlogPage?	
 		pageId = document.querySelector('#pageType');
 		pageId.value = currentPath;		
 		console.log(pageId.value);
