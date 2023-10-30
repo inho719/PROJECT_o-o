@@ -88,7 +88,7 @@
 		function memberLogin_kakao(){
 			console.log('카카오 로그인 호출()');
 			 Kakao.Auth.authorize({
-		      redirectUri: 'http://localhost:8083/LoginPage',
+		      redirectUri: 'http://localhost:8080/LoginPage',
 		    });
 		}
 			let authCode = '${param.code}';	
@@ -102,7 +102,7 @@
 					contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 					data : {'grant_type' : 'authorization_code', 
 							'client_id' : 'db72247804d6b569e5f4b3aab6bcaa83',
-							'redirect_uri' : 'http://localhost:8083/LoginPage',
+							'redirect_uri' : 'http://localhost:8080/LoginPage',
 							'code' : authCode
 							},
 					success : function(response){
