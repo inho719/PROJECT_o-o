@@ -137,5 +137,15 @@ public class HomeController {
 
 		return mav;
 	}
+	@RequestMapping("/getSearchRank")
+		public ModelAndView searchRank(String searchKeyword, String Sitevalue) {
+			ModelAndView mav = new ModelAndView();
+			System.out.println("이게 맞음 :"+Sitevalue);
+			String siteValue = Sitevalue.split("=")[1];
+			ArrayList<HashMap<String, String>> ChooseList = tsvc.selectTitle(searchKeyword,siteValue);
+			mav.addObject("TkListMap", ChooseList);
+			mav.setViewName("Basic/TicketPage");
+			return mav;
+		}
 
 }
