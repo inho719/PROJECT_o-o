@@ -6,10 +6,44 @@
 
 <mapper namespace="com.Voix.Dao.ChartDao">
 	<select id="selectChart_map">
-		SELECT * FROM SONGS ORDER BY SGCODE DESC 
+		SELECT * FROM SONGS ORDER BY SGCODE ASC 
 	</select>
 	
 	<select id="selectChartInfo_map">
 		SELECT * FROM SONGS WHERE SGCODE = #{sgcode} ORDER BY SGCODE DESC 
+	</select>
+
+	<select id="selectSearch_Title">
+	SELECT * FROM SONGS WHERE SGTITLE like '%${sgtitle}%'
+	</select>
+	
+	<select id="selectSearch_Content">
+	SELECT * FROM ALBUMS WHERE SGARTIST like '%${sgtitle}%'
+	</select>
+
+	<select id="selectMainChart">
+	SELECT *
+		FROM (SELECT SGCODE AS code, SGTITLE AS title , SGINFO AS content , SGIMG AS img , SGARTIST AS dat2
+		FROM SONGS
+		ORDER BY SGARTIST DESC)
+		WHERE ROWNUM = 1
+	</select>
+
+	<select id="selectMaxSgCode" resultType="String">
+		SELECT NVL(MAX(SGCODE), 'S0000') FROM SONGS
+	</select>
+	
+	<insert id="insertSong">
+		INSERT INTO SONGS VALUES(#{sgcode}, #{sgtitle}, #{sgaltitle}, #{sgartist}, #{sgmvurl}, #{sginfo}, #{sgimg}, #{sglyric})
+	</insert>
+
+	<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM SONGS
+	</select>
+
+	<select id="selectBoardList" resultType="hashmap" parameterType="hashmap">
+    SELECT * FROM SONGS
+	WHERE SGCODE BETWEEN #{pageStart} AND #{perPageNum}
+	ORDER BY SGCODE DESC
 	</select>
 </mapper>
