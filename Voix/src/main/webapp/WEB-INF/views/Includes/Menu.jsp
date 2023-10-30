@@ -191,12 +191,22 @@ body{
 		</table>
 		<c:if test="${sessionScope.SerchState == 'Y'}">
 		<div class="searchbar" style="margin-bottom: 7rem !important;">
-			<form action="/getSearch">
-				<input type="hidden" id="pageType" name="pageType" value=""> 
+				<c:if test="${param.siteVal != null}">
+				<form action="/getSearchRank">
+				<input type="hidden" id=Sitevalue name="Sitevalue" value="">
 				<input class="navbar-brand form-control2" id="searchKeyword" name="searchKeyword" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" 
 				style="width:85%;"/>
 				<button class="btn btn-primary" id="button-search" type="submit" style="width:15%">Go!</button>
-			</form>
+				</form>
+				</c:if>
+				<c:if test="${param.siteVal == null}">
+				<form action="/getSearch">
+				<input type="hidden" id="pageType" name="pageType" value="">
+				<input class="navbar-brand form-control2" id="searchKeyword" name="searchKeyword" type="text" placeholder="검색어 입력" aria-label="검색어 입력..." aria-describedby="button-search" 
+				style="width:85%;"/>
+				<button class="btn btn-primary" id="button-search" type="submit" style="width:15%">Go!</button>
+				</form>
+				</c:if>
 		</div>
 		</c:if>
 		<!--  
@@ -270,13 +280,20 @@ body{
 
 	<script type="text/javascript">
 		let currentURL = window.location.href;
-		let currentPath = currentURL.split("/")[3];
+		let currentPath = currentURL.split("/")[3];	
 		pageId = document.querySelector('#pageType');
 		pageId.value = currentPath;		
 		console.log(pageId.value);
 	</script>
 
+	<script type="text/javascript">
+		let currentURLFUCK = window.location.href;
+		let currentPathFUCK = currentURLFUCK.split("/")[3];
 
+		pageId = document.querySelector('#Sitevalue');
+		pageId.value = currentPathFUCK;	
+		console.log(pageId.value);
+	</script>
 
 
 
