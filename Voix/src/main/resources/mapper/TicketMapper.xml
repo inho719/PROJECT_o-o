@@ -104,7 +104,6 @@
 	WHERE LIMID = #{mid}
 	AND LILIST = #{like}
 	</delete>
-
 	<select id="selectSearch_TitleSite">
 	SELECT * FROM TICKETS WHERE TKTITLE like '%${sk}%' AND TKSTATE =
 	<choose>
@@ -139,4 +138,5 @@
 	</when> 
 	</choose>
 	</select>
+	
 </mapper>

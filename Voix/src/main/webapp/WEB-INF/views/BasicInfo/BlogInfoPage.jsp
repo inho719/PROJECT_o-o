@@ -42,12 +42,7 @@
 					<h2>${bg.bgtitle}</h2>
 				</div>
 				<div class="row">
-				<c:if test="${bg.bgimg != null }">
 					<img style="width: 350px; height: 200px; margin-top: 4px;" alt="블로그사진" src="${bg.bgimg }">
-				</c:if>
-				<c:if test="${bg.bgimg == null }">
-					<img style="width: 350px; height: 200px; margin-top: 4px;" alt="블로그사진" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg">
-				</c:if>
 					<div class="card col-md-8 my-md-2 mx-md-3 ">
 						<p>${bg.bgcontent }</p>
 					</div>

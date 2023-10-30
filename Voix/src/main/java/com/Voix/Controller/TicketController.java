@@ -470,18 +470,6 @@ public class TicketController {
 	@RequestMapping(value = "/choosSite")
 	public ModelAndView choosSite(String siteVal , HttpSession session) {
 		System.out.println("사이트선택"+siteVal);
-		session.setAttribute("SerchState", "Y");
-		ModelAndView mav = new ModelAndView();
-		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_ChooseSite(siteVal);
-		System.out.println(TkList_map);
-		mav.addObject("TkListMap", TkList_map);
-		mav.setViewName("Basic/TicketPage");
-
-		return mav;
-	}
-	@RequestMapping(value = "/choosSite")
-	public ModelAndView choosSite(String siteVal , HttpSession session) {
-		System.out.println("사이트선택"+siteVal);
 		
 		session.setAttribute("SerchState", "Y");
 		ModelAndView mav = new ModelAndView();
@@ -492,5 +480,6 @@ public class TicketController {
 
 		return mav;
 	}
+	
 	
 }

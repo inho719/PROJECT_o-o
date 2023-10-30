@@ -107,6 +107,8 @@ public class HomeController {
 	@RequestMapping("/getSearch")
 	public ModelAndView search(String searchKeyword, String pageType) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println(pageType);
+		
 		switch (pageType) {
 		case "AlbumPage":
 			ArrayList<HashMap<String, String>> AlbumList = asvc.selectTitle(searchKeyword);
@@ -133,11 +135,11 @@ public class HomeController {
 			mav.addObject("BlogList", BlogList);
 			mav.setViewName("Basic/" + pageType);
 			break;
+		
 		}
-
 		return mav;
 	}
-	@RequestMapping("/getSearchRank")
+		@RequestMapping("/getSearchRank")
 		public ModelAndView searchRank(String searchKeyword, String Sitevalue) {
 			ModelAndView mav = new ModelAndView();
 			System.out.println("이게 맞음 :"+Sitevalue);
@@ -147,5 +149,4 @@ public class HomeController {
 			mav.setViewName("Basic/TicketPage");
 			return mav;
 		}
-
 }

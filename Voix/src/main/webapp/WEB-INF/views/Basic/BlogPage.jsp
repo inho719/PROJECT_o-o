@@ -61,7 +61,7 @@
 							</c:if>
 							<c:if test="${BlogListMap.BGIMG == null }">
 								<div class="BlogImg">
-									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
+									<a href="/BlogInfoPage?nwcode=${BlogListMap.BGCODE}">
 										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="width: 350px; height: 300px; object-fit: cover;" alt="..." />
 									</a>
 								</div>

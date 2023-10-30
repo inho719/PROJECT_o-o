@@ -47,26 +47,9 @@ public interface TicketDao {
 	ArrayList<String> getLikedTicketList(@Param("mid") String mid);
 	//찜삭제
 	int unlikeTicket(@Param("like")String like,@Param("mid")String mid);
+
 	ArrayList<HashMap<String, String>> selectSearch_TitleSite(@Param("sk")String searchKeyword,@Param("sv") String siteValue);
 
 	ArrayList<HashMap<String, String>> selectSearch_ContentSite(@Param("sk")String searchKeyword,@Param("sv") String siteValue);
-	public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword, String siteValue) {
-		System.out.println("ㅗ"+siteValue);
-		System.out.println("ㅗ"+searchKeyword);
-		ArrayList<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
-		ArrayList<HashMap<String, String>> titleList = new ArrayList<HashMap<String, String>>();
-		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
-			try {
-				titleList = tdao.selectSearch_TitleSite(searchKeyword,siteValue);				
-			} catch (Exception e) {
-			}
-			System.out.println(titleList);
-			try {
-				contentList = tdao.selectSearch_ContentSite(searchKeyword,siteValue);				
-			} catch (Exception e) {
-			}
-			searchList.addAll(titleList);
-			searchList.addAll(contentList);
-		return searchList;
-	}
+	
 }
