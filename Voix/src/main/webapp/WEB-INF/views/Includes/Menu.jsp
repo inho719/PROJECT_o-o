@@ -57,7 +57,7 @@
 	border-left: 4px solid #e8ec74;
 	border-top: 4px solid #e8ec74;
 	border-right: 4px solid #e8ec74;
-	background: #484848;
+	background: darkseagreen;
 }
 
 .navbar-brand.unclicked {
