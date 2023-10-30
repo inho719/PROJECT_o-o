@@ -104,4 +104,39 @@
 	WHERE LIMID = #{mid}
 	AND LILIST = #{like}
 	</delete>
+	<select id="selectSearch_TitleSite">
+	SELECT * FROM TICKETS WHERE TKTITLE like '%${sk}%' AND TKSTATE =
+	<choose>
+	<when test="sv == 'melon'">
+		'M'
+	</when> 
+	<when test="sv == 'interpark'">
+		'I'
+	</when> 
+	<when test="sv == 'yes24'">
+		'Y'
+	</when> 
+	<when test="sv == '11bunga'">
+		'B'
+	</when> 
+	</choose>
+	</select>
+	<select id="selectSearch_ContentSite">
+	SELECT * FROM TICKETS WHERE TKCONTENT like '%${sk}%' AND TKSTATE =
+	<choose>
+	<when test="sv == 'melon'">
+		'M'
+	</when> 
+	<when test="sv == 'interpark'">
+		'I'
+	</when> 
+	<when test="sv == 'yes24'">
+		'Y'
+	</when> 
+	<when test="sv == '11bunga'">
+		'B'
+	</when> 
+	</choose>
+	</select>
+	
 </mapper>
