@@ -18,6 +18,7 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 
 <style type="text/css">
+
 </style>
 
 </head>
@@ -42,30 +43,29 @@
 
 			<div class="card col-md-8 mb-4">
 				<p>${ChartInfoList.sgartitle}</p>
-				<p>${ChartInfoList.sgtitle}</p>
+				<p>타이틀:${ChartInfoList.sgtitle}</p>
 				<p>${ChartInfoList.sginfo}</p>
+				<p>아티스트:${ChartInfoList.sgartist}</p>
+				
 			</div>
 		</div>
 
 
 		<div class="row">
-
-			<div class="col mb-4">
-				${ChartInfoList.sgmvurl}
+		
+			<div class="col mb-4" style="margin-right: -10px;">
+    			<iframe id="scroller" src="${ChartInfoList.sgmvurl}" width="1000" height="515"></iframe>		
 			</div>
-
-			<div class="card col mb-4">
-				<div style="height: 415px; overflow: scroll; margin-left: 10px;">
+			
+			<div class="card col mb-4" style="height:515px;">
+				<div style="text-align: center; background-color: darkgrey;">가사</div>
+				<div style="height: 515px; overflow: scroll; margin-left: 10px;">
 					${ChartInfoList.sglyric}
 				</div>
 			</div>
-			<div class="card col mb-4">
-				<p>${ChartInfoList.sgartist}</p>
-			</div>
+			
 		</div>
 	</c:forEach>
-
-
 
 		<div class="card col mb-4">
 			<p>댓글 영역</p>
@@ -106,7 +106,44 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- 스크롤바 설정 못함
+	 // 데이터 전송
+		     // data: 전달할 메시지나 데이터
+		     // ports: 메시지 포트(생략가능)
+		     // targetOrigin: 타겟 도메인, 특정 도메인이 아니면 * 사용 가능
+		     window.postMessage(data, [ports], targerOrigin)
+		
+		     // 데이터 수신
+		     window.onmessage = function(e){
+		     	if(e.origin === "https://보낸곳의도메인주소"){
+		     		// 처리
+		     		console.log(e.data);
+		     	}
+		     }
+		     // 그외 데이터 수신
+		     // window.addEventListener("message", 컨트롤함수, true);
+		     // window.attachEvent("onmessage", 컨트롤함수);
+	
+	 -->
+	<!--  
+	<script>
+        var iframe = document.getElementById('scroller'); 
+        var iframeContentWindow = iframe.contentWindow;
 
+        //스크롤 위치 지정
+        var targetScrollX = 200; 
+        var targetScrollY = 300; 
+
+        iframe.onload = function() {
+            // 로드될 때 위치 설정
+            console.log(iframe)
+            iframe.scrollTo(targetScrollX, targetScrollY);
+        };
+
+    </script>
+	-->
+	
 </body>
 
 </html>
