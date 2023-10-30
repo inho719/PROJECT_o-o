@@ -173,6 +173,26 @@ public class TicketService {
 		System.out.println("SERVICE - 찜 취소");
 		return tdao.unlikeTicket(like,mid);
 	}
+
+	public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword, String siteValue) {
+		System.out.println("ㅗ"+siteValue);
+		System.out.println("ㅗ"+searchKeyword);
+		ArrayList<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> titleList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
+			try {
+				titleList = tdao.selectSearch_TitleSite(searchKeyword,siteValue);				
+			} catch (Exception e) {
+			}
+			System.out.println(titleList);
+			try {
+				contentList = tdao.selectSearch_ContentSite(searchKeyword,siteValue);				
+			} catch (Exception e) {
+			}
+			searchList.addAll(titleList);
+			searchList.addAll(contentList);
+		return searchList;
+	}
 	
 
 
