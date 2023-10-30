@@ -72,6 +72,7 @@ public class AlbumController {
 			mav.setViewName("BasicInfo/AlbumInfoPage");
 			return mav;
 		}
+		mav.setViewName("BasicInfo/AlbumInfoPage");
 			return mav;
 		
 	}
