@@ -56,20 +56,10 @@
 			<div class="col-lg-9">
 				<div class="card m-2">예스24, 알라딘, 교보</div>
 
-				<c:choose>
-					<c:when test="${param.page != null }">
-						<c:set value="${param.page }" var="pageNumber" />
-					</c:when>
-					<c:otherwise>
-						<c:set value="1" var="pageNumber" />
-					</c:otherwise>
-				</c:choose>
-
 				<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
 					<div class="card m-2" style="height: 215px;">
 
-						<div class="rankChart">No.${(pageNumber-1)*10 + status.index + 1}</div>
-
+						<div class="rankChart">No.${(param.page-1)*10 + status.index + 1}</div>
 						<div style="display: flex;">
 							<c:if test="${ChartMap.SGIMG != null }">
 								<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">

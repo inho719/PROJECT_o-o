@@ -40,5 +40,10 @@ public interface BlogDao {
 
 	//페이징 처리 코드조회
 	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startBGCODE, @Param("perPageNum")String endBGCODE);
+
+	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
+
+	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
+	
 	
 }

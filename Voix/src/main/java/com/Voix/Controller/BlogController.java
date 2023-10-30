@@ -33,6 +33,7 @@ public class BlogController {
 		ModelAndView mav = new ModelAndView();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "BL");
+		session.setAttribute("SerchState", "Y");
 		ArrayList<HashMap<String, String>> BlogList_map = bsvc.getBlogList_map();
 		int perPageNum = cri.getPerPageNum();
 		int page = cri.getPage();

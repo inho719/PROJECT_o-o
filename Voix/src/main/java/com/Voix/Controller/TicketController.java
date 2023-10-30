@@ -35,6 +35,7 @@ public class TicketController {
 		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_map();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "TK");
+		session.setAttribute("SerchState", "Y");
 		System.out.println(TkList_map);
 
 		// 현재 사용자가 어떤 티켓를 '찜'햇는지 가져옴
@@ -467,8 +468,9 @@ public class TicketController {
 	}
 
 	@RequestMapping(value = "/choosSite")
-	public ModelAndView choosSite(String siteVal) {
+	public ModelAndView choosSite(String siteVal , HttpSession session) {
 		System.out.println("사이트선택"+siteVal);
+		session.setAttribute("SerchState", "Y");
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_ChooseSite(siteVal);
 		System.out.println(TkList_map);

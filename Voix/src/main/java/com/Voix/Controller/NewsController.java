@@ -36,6 +36,7 @@ public class NewsController {
 		ModelAndView mav = new ModelAndView();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "NW");
+		session.setAttribute("SerchState", "Y");
 		int perPageNum = cri.getPerPageNum();
 		int page = cri.getPage();
 		String startNWCODE = String.format("N%04d", (page - 1) * perPageNum + 1);

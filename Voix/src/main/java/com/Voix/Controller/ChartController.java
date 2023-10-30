@@ -31,6 +31,8 @@ public class ChartController {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> ChartList_map = csvc.getChartList_map();
 		session.setAttribute("sideState", "M");
+		session.setAttribute("rankState", "CH");
+		session.setAttribute("SerchState", "Y");
 		int perPageNum = cri.getPerPageNum();
 		int page = cri.getPage();
 		String startSGCODE = String.format("S%04d", (page - 1) * perPageNum + 1);

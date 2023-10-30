@@ -107,7 +107,6 @@ public class HomeController {
 	@RequestMapping("/getSearch")
 	public ModelAndView search(String searchKeyword, String pageType) {
 		ModelAndView mav = new ModelAndView();
-
 		switch (pageType) {
 		case "AlbumPage":
 			ArrayList<HashMap<String, String>> AlbumList = asvc.selectTitle(searchKeyword);
@@ -116,17 +115,22 @@ public class HomeController {
 			break;
 		case "ChartPage":
 			ArrayList<HashMap<String, String>> ChartList = csvc.selectTitle(searchKeyword);
-			mav.addObject("ChartListMap", ChartList);
+			mav.addObject("ChartList", ChartList);
 			mav.setViewName("Basic/" + pageType);
 			break;
 		case "NewsPage":
 			ArrayList<HashMap<String, String>> NewsList = nsvc.selectTitle(searchKeyword);
-			mav.addObject("NewsListMap", NewsList);
+			mav.addObject("list", NewsList);
 			mav.setViewName("Basic/" + pageType);
 			break;
 		case "TicketPage":
 			ArrayList<HashMap<String, String>> TicketList = tsvc.selectTitle(searchKeyword);
 			mav.addObject("TkListMap", TicketList);
+			mav.setViewName("Basic/" + pageType);
+			break;
+		case "BlogPage":
+			ArrayList<HashMap<String, String>> BlogList = bsvc.selectTitle(searchKeyword);
+			mav.addObject("BlogList", BlogList);
 			mav.setViewName("Basic/" + pageType);
 			break;
 		}

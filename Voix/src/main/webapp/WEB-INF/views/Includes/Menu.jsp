@@ -57,7 +57,7 @@
 	border-left: 4px solid #e8ec74;
 	border-top: 4px solid #e8ec74;
 	border-right: 4px solid #e8ec74;
-	background: darkseagreen;
+	background: #484848;
 }
 
 .navbar-brand.unclicked {
@@ -125,7 +125,7 @@ th {
 }
 
 th:hover {
-	background: darkseagreen;
+	background: #484848;
 	border-top: 1px solid yellow;
 }
 body{
@@ -189,6 +189,7 @@ body{
 			</tr>
 			  -->
 		</table>
+		<c:if test="${sessionScope.SerchState == 'Y'}">
 		<div class="searchbar" style="margin-bottom: 7rem !important;">
 			<form action="/getSearch">
 				<input type="hidden" id="pageType" name="pageType" value=""> 
@@ -197,7 +198,7 @@ body{
 				<button class="btn btn-primary" id="button-search" type="submit" style="width:15%">Go!</button>
 			</form>
 		</div>
-	
+		</c:if>
 		<!--  
 				<a class="navbar-brand-click" id="news"  href="/NewsPage">뉴스</a> 
 				<a class="navbar-brand" id="blog"  href="/BlogPage">블로그</a> 
@@ -273,9 +274,7 @@ body{
 		pageId = document.querySelector('#pageType');
 		pageId.value = currentPath;		
 		console.log(pageId.value);
-
-
-</script>
+	</script>
 
 
 

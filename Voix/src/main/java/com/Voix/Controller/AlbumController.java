@@ -35,7 +35,7 @@ public class AlbumController {
 		ArrayList<HashMap<String, String>> AlbumList_map = asvc.getAlbumtList_map();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "AB");
-
+		session.setAttribute("SerchState", "Y");
 		System.out.println(AlbumList_map);
 		mav.addObject("AlbumListMap", AlbumList_map);
 		mav.setViewName("Basic/AlbumPage");
