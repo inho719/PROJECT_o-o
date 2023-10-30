@@ -47,5 +47,8 @@ public interface TicketDao {
 	ArrayList<String> getLikedTicketList(@Param("mid") String mid);
 	//찜삭제
 	int unlikeTicket(@Param("like")String like,@Param("mid")String mid);
+	ArrayList<HashMap<String, String>> selectSearch_TitleSite(@Param("sk")String searchKeyword,@Param("sv") String siteValue);
+
+	ArrayList<HashMap<String, String>> selectSearch_ContentSite(@Param("sk")String searchKeyword,@Param("sv") String siteValue);
 	
 }
