@@ -50,6 +50,25 @@ button {
 .infoBox::-webkit-scrollbar {
 	width: 10px;
 }
+.textdiv {
+	height: 100%;
+	max-height:150px;
+    background: #f8f9fa;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.textdiv::-webkit-scrollbar {
+  width: 10px;
+}
+
+.textdiv::-webkit-scrollbar-track {
+  background: #f8f9fa; /* Track color */
+}
+
+.textdiv::-webkit-scrollbar-thumb {
+  background-color: #888; /* Thumb color */
+  border-radius: 10px	; /* Rounded thumb */
+}
 </style>
 </head>
 <body>
@@ -153,7 +172,10 @@ button {
 						<div class="meminfo">
 							<span>작성자: ${re.REWRITER} </span>
 							<div style="margin-top: 5px; margin-bottom: 5px;">
+								<div class="textdiv w-100" style="font-size: large; border:1px solid #cccc;">${re.RECONTENT}</div>
+								<!--
 								<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
+								-->
 							</div>
 							<c:if test="${sessionScope.loginId == re.REWRITER}">
 								<button type="button" onclick="location.href='/albumDeleteReview?recode=${re.RECODE}&alcode=${ALInfo.alcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
