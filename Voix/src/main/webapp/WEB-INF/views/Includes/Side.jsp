@@ -10,6 +10,9 @@
 	width: 60%;
     border-radius: 100%;
 }
+.nav-link{
+	color: #5e504e;
+}
 </style>
 
 
