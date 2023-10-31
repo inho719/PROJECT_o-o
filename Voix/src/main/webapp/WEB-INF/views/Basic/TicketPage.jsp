@@ -55,22 +55,22 @@
 					<div class="list-group">
 						<ul class="list-group list-group-horizontal mb-3"
 							style="list-style: none;">
-							<li class="w-25" style="height: 115px;">
+							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
 								<a class="list-group-item TicketList" href="/choosSite?siteVal=melon">
-									<img class="w-100"alt="" src="https://i.namu.wiki/i/fUSKDJ8EaufclMExoypN7w22t7C4C5FwwIKo40DnMnqsPi8WvuyzQiyBT4xrV-ZJNDjvDICaJ5EDwqIBesI9QPJLStccA4LA37GUmspj_QcbcJao2NievXqvjLPbs1O0d4UO3_4tnjhzzDHwZOVdtA.svg">
+									<img class="w-100 "alt="" src="https://i.namu.wiki/i/fUSKDJ8EaufclMExoypN7w22t7C4C5FwwIKo40DnMnqsPi8WvuyzQiyBT4xrV-ZJNDjvDICaJ5EDwqIBesI9QPJLStccA4LA37GUmspj_QcbcJao2NievXqvjLPbs1O0d4UO3_4tnjhzzDHwZOVdtA.svg">
 								</a>
 							</li>
-							<li class="w-25">
+							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
 								<a class="list-group-item TicketList" href="/choosSite?siteVal=interpark">
 									<img class="w-100"alt="" src="https://i.namu.wiki/i/4K3uJkDrWzPfyCtjiJqoFCMtPo4KxMKN3PN3ECH9EHnHaSP7aEgDNMw2bboyadG5GLjZm3um1BUZGFt552TurMAun23usmsyauMrqv7vkHgOQVGs2mNIQsT0NTDsDps5RJ5_NFBMzOlpOA0nUp_AbQ.webp">
 								</a>
 							</li>
-							<li class="w-25">
+							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
 								<a class="list-group-item TicketList" href="/choosSite?siteVal=yes24">
 									<img class="w-100"alt="" src="https://i.namu.wiki/i/KsHBIVQ9WT3p8A852Jouv53m5EyazOLq3Tzqk49PSBmUhthoL0RPDgfPiB9sjYlNslB9csTwNl4gJ3QHS7CQJ4DaSLZhpsRbNz8-M7L-kHyW2h2cIWxCUifTM3ls9d1RdaIOS52J1Wg72sBjyPbTSA.svg">
 								</a>
 							</li>
-							<li class="w-25">
+							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
 								<a class="list-group-item TicketList" href="/choosSite?siteVal=11bunga">
 									<img class="w-100"alt="" src="https://i.namu.wiki/i/-KZsLc7EVpwSGwPbXck8NidnKq1iD3ZJFcab0G6lsWKVZFij3T330QdJHSDs_fk4Stzk1gdmwkYic52yMxXWr617SrObpQOFJghx2xOkt2dA3AfMyjKNmIxYIVxUCtV7wBAzCangnNsAKJZBd96j9w.svg">
 								</a>
@@ -79,36 +79,39 @@
 					</div>
 				</div>
 				
+				<div class="row">
+				
 		<c:forEach items="${TkListMap}" var="TkMap">
+				<div class="col-md-6" >
 					<div class="card mb-3">
-						<div class="TicketDiv" style="display: flex;">
+						<div class="TicketDiv VOIXBODERLINE" style="height: 950px;">
 							<c:if test="${TkMap.TKIMG != null }">
-								<div class="TicketImg" style="margin-right: 4px;">
+								<div class="TicketImg">
 									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}">
-										<img style="width: 240px; height: 340px;" class="" src="${TkMap.TKIMG}" alt="..." />
+										<img style="width: 100%; height: auto;" class="" src="${TkMap.TKIMG}" alt="..." />
 									</a>
 								</div>
 							</c:if>
 							<c:if test="${TkMap.TKIMG == null }">
 								<div class="TicketImg">
 									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}">
-										<img style="width: 240px; height: 340px;" class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
+										<img style="width: 100%; height: auto;" class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
 									</a>
 								</div>
 							</c:if>
 							<div class="TicketContents w-100">
 								<div class="TicketTitle">
-									<h3 class="card-title m-2">${TkMap.TKTITLE}</h3>
+									<h4 class="card-title m-2">${TkMap.TKTITLE}</h4>
 								</div>
-								<div class="TicketContentsWrapper">
+								<div style="margin: 0px !important; padding: 0px !important; ">
 									<div class="TicketText p-2 d-flex" style="justify-content: space-between;">
 										<div>
 											<p class="card-text small"><br>${TkMap.TKDATE}</p>
-											<br>
+											
 											<p class="card-text small">${TkMap.TKPLACE}</p>
-											<br>
+											
 											<p class="card-text small">${TkMap.TKTIME}</p>
-											<br>
+											
 											<p class="card-text small">${TkMap.TKARTIST}</p>
 										</div>
 									</div>
@@ -135,7 +138,11 @@
 							</div>
 						</div>
 					</div>
+				</div>
 				</c:forEach>
+					
+				</div>
+
 
 			</div>
 			<!-- end Page content-->
