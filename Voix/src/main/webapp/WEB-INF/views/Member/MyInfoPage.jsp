@@ -82,7 +82,7 @@
 							<a class="btn" onclick="LickClick()">찜목록</a>
 						</div>
 						<div class="col" style="text-align: center;">
-							<a class="btn" onclick="CommentClick()">내가쓴 댓글 목록</a>	
+							<a class="btn" onclick="CommentClick()">내가쓴 댓글 목록</a>
 						</div>
 					</div>
 
@@ -113,6 +113,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 
@@ -140,6 +141,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 
@@ -170,6 +172,7 @@
 												</a>
 											</div>
 										</div>
+										<hr>
 									</c:forEach>
 								</div>
 							</div>
@@ -201,7 +204,7 @@
 												<a class="Views" style="text-decoration-line: none; color: gray;"></a>
 											</div>
 										</div>
-
+										<hr>
 									</c:forEach>
 
 
@@ -235,6 +238,7 @@
 												</a>
 											</div>
 										</div>
+										<hr>
 									</c:forEach>
 								</div>
 							</div>
@@ -265,6 +269,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 
@@ -290,6 +295,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 
@@ -315,6 +321,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 
@@ -340,6 +347,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 
@@ -365,6 +373,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 
@@ -374,7 +383,7 @@
 						<div>구매내역</div>
 						<div class="card mb-4">
 							<c:forEach items="${AlbumOrderList}" var="order">
-								<div class="NewsDiv" style="display: flex; height: 200px;overflow: hidden;">
+								<div class="NewsDiv" style="display: flex; height: 200px; overflow: hidden;">
 									<div class="NewsImg">
 										<a href="#뉴스코드">
 											<img style="width: 350px; height: 200px;" src="${order.ALIMG}" alt="..." />
@@ -392,6 +401,7 @@
 										</div>
 									</div>
 								</div>
+								<hr>
 							</c:forEach>
 						</div>
 					</div>
