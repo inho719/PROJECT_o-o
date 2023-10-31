@@ -29,4 +29,12 @@ public interface ChartDao {
 	int countBoard();
 	
 	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startSGCODE, @Param("perPageNum")String endSGCODE);
+
+	String selectMaxReCode();
+
+	int ChartRegistReview(@Param("recode")String recode, @Param("restate")String restate, @Param("recontent")String recontent, @Param("rewriter")String rewriter);
+
+	ArrayList<HashMap<String, String>> selectReviewList(String sgcode);
+
+	int deleteReview(String recode);
 }
