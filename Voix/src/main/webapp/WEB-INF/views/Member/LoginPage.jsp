@@ -43,7 +43,7 @@
 						<img src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.1" height="60">
 
 					</div>
-					<button onclick="memberLogin_kakao()" class="btn btn-warning">구글 로그인</button>
+					
 				</div>
 			</div>
 		</div>
