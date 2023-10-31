@@ -61,7 +61,7 @@
 							</c:if>
 							<c:if test="${BlogListMap.BGIMG == null }">
 								<div class="BlogImg">
-									<a href="/BlogInfoPage?nwcode=${BlogListMap.BGCODE}">
+									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
 										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="width: 350px; height: 300px; object-fit: cover;" alt="..." />
 									</a>
 								</div>
@@ -70,7 +70,7 @@
 								<div class="BlogTitle">
 									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
 <button style="margin-left: 7px; border-radius: 7px; background-color: #ede9e7;" onclick="chatPage()">채팅페이지</button>
-<button onclick="chatPage()">채팅페이지</button>
+
 								</div>
 								<div class="BlogContents p-2" style="height: 150px; overflow: hidden;">
 									<p class="card-text">${BlogListMap.BGCONTENT}</p>
