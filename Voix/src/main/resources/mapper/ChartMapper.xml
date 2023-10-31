@@ -46,4 +46,20 @@
 	WHERE SGCODE BETWEEN #{pageStart} AND #{perPageNum}
 	ORDER BY SGCODE DESC
 	</select>
+
+	<select id="selectMaxReCode">
+		SELECT NVL(MAX(RECODE), 'RE0000') FROM REVIEWS
+	</select>
+	
+	<insert id="ChartRegistReview">
+		INSERT INTO REVIEWS(RECODE,REWRITER,RECONTENT,REDATE,RESTATE) VALUES(#{recode},#{rewriter},#{recontent},SYSDATE,#{restate})
+	</insert>
+	
+	<select id="selectReviewList" resultType="hashmap">
+		SELECT * FROM REVIEWS WHERE RESTATE = #{sgcode} ORDER BY REDATE DESC
+	</select>
+	
+	<delete id="deleteReview">
+		DELETE FROM REVIEWS WHERE RECODE = #{recode}
+	</delete>
 </mapper>
