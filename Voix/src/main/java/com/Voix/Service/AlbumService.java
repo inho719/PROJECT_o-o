@@ -478,5 +478,15 @@ public class AlbumService {
 		}
 		return insertCount;
 	}
+	public ArrayList<String> getLikedAlbumList(String mid) {
+		   System.out.println("SERVICE - 찜조회");
+			return adao.getLikedAlbumList(mid);
+		}
+
+	public int unlikeAlbum(String like, String mid) {
+		System.out.println("SERVICE - 찜취소");
+		return adao.unlikeAlbum(like,mid);
+	}
+
 
 }

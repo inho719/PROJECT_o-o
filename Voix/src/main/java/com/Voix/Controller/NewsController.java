@@ -3,6 +3,7 @@ package com.Voix.Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.Voix.Dto.Criteria;
 import com.Voix.Dto.News;
+import com.Voix.Dto.PageMaker;
 import com.Voix.Service.NewsService;
 import com.google.gson.Gson;
 
@@ -29,13 +32,43 @@ public class NewsController {
 	private NewsService nsvc;
 	
 	@RequestMapping(value = "/NewsPage")
-	public ModelAndView News(HttpSession session){
+	public ModelAndView News(HttpSession session, Criteria cri)throws Exception{
 		ModelAndView mav = new ModelAndView();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "NW");
+		session.setAttribute("SerchState", "Y");
+		int perPageNum = cri.getPerPageNum();
+		int page = cri.getPage();
+		String startNWCODE = String.format("N%04d", (page - 1) * perPageNum + 1);
+	   	String endNWCODE = String.format("N%04d", page * perPageNum);
 		ArrayList<HashMap<String, String>> NewsList_map = nsvc.getNewsList_map();
-		System.out.println(NewsList_map);
-		mav.addObject("NewsListMap",NewsList_map);
+		//System.out.println(NewsList_map);
+		
+		// 현재 사용자가 어떤 뉴스를 '찜'햇는지 가져옴
+		String loginId = (String) session.getAttribute("loginId");
+		System.out.println("loginId:" + loginId);
+		if (loginId != null) {
+			ArrayList<String> likedNewsList = nsvc.getLikedNewsList(loginId);
+			System.out.println("likedNewsList" + likedNewsList);
+			// 뉴스 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정
+			for (HashMap<String, String> newsMap : NewsList_map) {
+				String nwcode = newsMap.get("NWCODE");
+				// System.out.println("nwcode"+nwcode); 
+				boolean isLiked = likedNewsList.contains(nwcode);
+				newsMap.put("NWLIKED", String.valueOf(isLiked));
+			}
+		}
+
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(nsvc.countBoardListTotal());
+		List<Map<String, Object>> list = nsvc.selectBoardList(startNWCODE, endNWCODE);
+		mav.addObject("list", list);
+		mav.addObject("pageMaker", pageMaker);
+		System.out.println(list);
+		System.out.println(pageMaker);
+		//mav.addObject("NewsListMap",NewsList_map);
 		mav.setViewName("Basic/NewsPage");
 		return mav;
 		
@@ -83,8 +116,34 @@ public class NewsController {
 		System.out.println("뉴스- 아이디 확인:"+mid);
 		System.out.println("뉴스-   찜 확인:"+like);
 		
-	return nsvc.likeNews(like,mid);
+		// 사용자가 이미 해당 뉴스를 '찜'했는지 확인
+		ArrayList<String> likedNewsList = nsvc.getLikedNewsList(mid);
+		if (likedNewsList.contains(like)) {
+			// 이미 '찜'한 경우 '찜' 취소
+			int result = nsvc.unlikeNews(like, mid);
+			System.out.println(like);
+			System.out.println(mid);
+			if (result > 0) {
+				System.out.println("뉴스 '찜' 취소 완료");
+				return 0; 
+			} else {
+				System.out.println("뉴스 '찜' 취소 실패");
+				return -1; 
+			}
+		} else {
+			// '찜'하지 않은 경우 '찜' 처리
+			int result = nsvc.likeNews(like, mid);
+			if (result > 0) {
+				System.out.println("뉴스 '찜' 완료");
+				return 1;
+			} else {
+				System.out.println("뉴스 '찜' 실패");
+				return -1; 
+			}
+		}	
 	}
+		
+	
 	@RequestMapping(value = "/NewsHitList")
 	public  @ResponseBody String NewsHitList() {
 		System.out.println("사이드바 조회수 목록 출력");

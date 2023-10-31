@@ -36,4 +36,14 @@
 	<insert id="insertSong">
 		INSERT INTO SONGS VALUES(#{sgcode}, #{sgtitle}, #{sgaltitle}, #{sgartist}, #{sgmvurl}, #{sginfo}, #{sgimg}, #{sglyric})
 	</insert>
+
+	<select id="countBoard" resultType="int">
+	SELECT COUNT(*) FROM SONGS
+	</select>
+
+	<select id="selectBoardList" resultType="hashmap" parameterType="hashmap">
+    SELECT * FROM SONGS
+	WHERE SGCODE BETWEEN #{pageStart} AND #{perPageNum}
+	ORDER BY SGCODE DESC
+	</select>
 </mapper>

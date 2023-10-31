@@ -3,6 +3,8 @@ package com.Voix.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -152,6 +154,14 @@ public class ChartService {
 		
 		String newCode = strCode + String.format("%03d", numCode+1);
 		return newCode;
+	}
+
+	public int countBoardListTotal() {
+		return cdao.countBoard();
+	}
+
+	public List<Map<String, Object>> selectBoardList(String startSGCODE, String endSGCODE) {
+		return cdao.selectBoardList(startSGCODE, endSGCODE);
 	}
 	
 }

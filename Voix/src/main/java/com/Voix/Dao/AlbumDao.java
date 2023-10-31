@@ -57,4 +57,10 @@ public interface AlbumDao {
 
 	int likeAlbum(@Param("like")String like,@Param("mid")String mid);
 
+	//찜조회
+	ArrayList<String> getLikedAlbumList(@Param("mid") String mid);
+	//찜삭제
+	int unlikeAlbum(@Param("like")String like,@Param("mid")String mid);
+	
+
 }

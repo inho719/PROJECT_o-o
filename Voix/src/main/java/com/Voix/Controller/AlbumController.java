@@ -22,28 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-/* 오류대비 백업용
-package com.Voix.Controller;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.Voix.Dto.Album;
-import com.Voix.Service.AlbumService;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-*/
+
 @Controller
 public class AlbumController {
 
@@ -56,7 +35,7 @@ public class AlbumController {
 		ArrayList<HashMap<String, String>> AlbumList_map = asvc.getAlbumtList_map();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "AB");
-
+		session.setAttribute("SerchState", "Y");
 		System.out.println(AlbumList_map);
 		mav.addObject("AlbumListMap", AlbumList_map);
 		mav.setViewName("Basic/AlbumPage");
@@ -64,19 +43,38 @@ public class AlbumController {
 	}
 
 	@RequestMapping(value = "/AlbumInfoPage")
-	public ModelAndView NewsInfoPage(String alcode) {
+	public ModelAndView NewsInfoPage(String alcode, HttpSession session) { 
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Album> AlbumInfoList = asvc.getAlbumInfoList(alcode);
 		Album ALInfo = AlbumInfoList.get(0);
 		System.out.println(AlbumInfoList);
 		mav.addObject("ALInfo", ALInfo);
 		mav.addObject("AlbumInfoList", AlbumInfoList);
+		HashMap<String, String> AlbumList_map = new HashMap<String, String>(); 
 
-		ArrayList<HashMap<String, String>> reviewList = asvc.selectReviewList(alcode);
-		mav.addObject("reviewList", reviewList);
+		// 현재 사용자가 어떤 엘범을 '찜'햇는지 가져옴
+		String loginId = (String) session.getAttribute("loginId");
+		System.out.println("loginId:" + loginId);
+		if (loginId != null) {
+			ArrayList<String> likedAlbumList = asvc.getLikedAlbumList(loginId);
+			System.out.println("likedAlbumList" + likedAlbumList);
+			// 엘범 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정
+			String alcode1 = ALInfo.getAlcode();
+			System.out.println("alcode1" + alcode1);
+			boolean isLiked = likedAlbumList.contains(alcode1);
+			AlbumList_map.put("ALLIKED", String.valueOf(isLiked));		
+			System.out.println("AlbumList_map:!!!!!!!!!!"+AlbumList_map);
+			mav.addObject("AlbumInfoList1", AlbumList_map);
 
+			ArrayList<HashMap<String, String>> reviewList = asvc.selectReviewList(alcode);
+			mav.addObject("reviewList", reviewList);
+
+			mav.setViewName("BasicInfo/AlbumInfoPage");
+			return mav;
+		}
 		mav.setViewName("BasicInfo/AlbumInfoPage");
-		return mav;
+			return mav;
+		
 	}
 
 	@RequestMapping(value="/likeAlbum")
@@ -85,8 +83,33 @@ public class AlbumController {
 		String mid = session.getAttribute("loginId").toString();
 		System.out.println("엘범- 아이디 확인:"+mid);
 		System.out.println("엘범-   찜 확인:"+like);
-		return asvc.likeAlbum(like,mid);
-	}
+		// 사용자가 이미 해당 엘범을 '찜'했는지 확인
+		ArrayList<String> likedAlbumList = asvc.getLikedAlbumList(mid);
+				if (likedAlbumList.contains(like)) {
+					// 이미 '찜'한 경우 '찜' 취소
+					int result = asvc.unlikeAlbum(like, mid);
+					System.out.println(like);
+					System.out.println(mid);
+					if (result > 0) {
+						System.out.println("엘범 '찜' 취소 완료");
+						return 0;
+					} else {
+						System.out.println("엘범 '찜' 취소 실패");
+						return -1; 
+					}
+				} else {
+					// '찜'하지 않은 경우 '찜' 처리
+					int result = asvc.likeAlbum(like, mid);
+					if (result > 0) {
+						System.out.println("엘범 '찜' 완료");
+						return 1;
+					} else {
+						System.out.println("엘범 '찜' 실패");
+						return -1; 
+					}
+				}
+			}
+
 		
 	@RequestMapping(value = "/albumRegistReview")
 	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {

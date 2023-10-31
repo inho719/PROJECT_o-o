@@ -31,46 +31,54 @@ public class HomeController {
 
 	@Autowired
 	private AlbumService asvc;
-	
+
 	@Autowired
 	private ChartService csvc;
-	
+
 	@Autowired
 	private NewsService nsvc;
-	
+
 	@Autowired
 	private TicketService tsvc;
 
 	@Autowired
 	private BlogService bsvc;
-	
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpSession session) {
+	public ModelAndView home(Locale locale, Model model, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		System.out.println("메인페이지 이동");
+		Object sessionST = session.getAttribute("selThemas");
+		System.out.println(sessionST);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("serverTime", formattedDate);
+		mav.addObject("ST", sessionST);
 		session.setAttribute("sideState", "M");
-		return "MainPage";
+		mav.setViewName("MainPage");
+		return mav;
 	}
-	//@RequestParam(value = "selThemas", defaultValue = "N") String selThemas,
+
+	// @RequestParam(value = "selThemas", defaultValue = "N") String selThemas,
 	@RequestMapping(value = "/getSelContents")
-	public @ResponseBody String getSelContents(String selThemas) {
-		System.out.println(selThemas);
+	public @ResponseBody String getSelContents(String selThemas, HttpSession session) {
+		System.out.println("팝업 컨텐츠 : "+selThemas);
+		Object sessionST = session.getAttribute("selThemas");
+		if(sessionST == null) {
+			session.setAttribute("selThemas", selThemas);
+		}
 		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
-		
-		//ArrayList<String> themas = new ArrayList<String>();
-		
+
+		// ArrayList<String> themas = new ArrayList<String>();
 		JsonArray themasArr = JsonParser.parseString(selThemas).getAsJsonArray();
-		for( JsonElement themaEl : themasArr ) {
-			//themas.add(   themaEl.getAsJsonObject().get("thema").getAsString() );
+		for (JsonElement themaEl : themasArr) {
+			// themas.add( themaEl.getAsJsonObject().get("thema").getAsString() );
 			String themaStr = themaEl.getAsJsonObject().get("thema").getAsString();
 			HashMap<String, String> content = null;
-			switch(themaStr) {
+			switch (themaStr) {
 			case "news":
-				content = nsvc.selectMainNews(themaStr); //SELECT NEWSTITLE AS TITLE
+				content = nsvc.selectMainNews(themaStr); // SELECT NEWSTITLE AS TITLE
 				break;
 			case "ticket":
 				content = tsvc.selectMainTicket(themaStr); // SELECT TKTITLE AS TITLE
@@ -89,41 +97,56 @@ public class HomeController {
 				break;
 			}
 			contentList.add(content);
+
 		}
 		System.out.println(contentList);
 		return new Gson().toJson(contentList);
+
 	}
-	
 
 	@RequestMapping("/getSearch")
 	public ModelAndView search(String searchKeyword, String pageType) {
-		ModelAndView mav= new ModelAndView();
+		ModelAndView mav = new ModelAndView();
+		System.out.println(pageType);
 		
-		switch(pageType) {
+		switch (pageType) {
 		case "AlbumPage":
 			ArrayList<HashMap<String, String>> AlbumList = asvc.selectTitle(searchKeyword);
-			mav.addObject("AlbumListMap",AlbumList);
-			mav.setViewName("Basic/"+pageType);
+			mav.addObject("AlbumListMap", AlbumList);
+			mav.setViewName("Basic/" + pageType);
 			break;
 		case "ChartPage":
 			ArrayList<HashMap<String, String>> ChartList = csvc.selectTitle(searchKeyword);
-			mav.addObject("ChartListMap",ChartList);
-			mav.setViewName("Basic/"+pageType);
+			mav.addObject("ChartList", ChartList);
+			mav.setViewName("Basic/" + pageType);
 			break;
 		case "NewsPage":
 			ArrayList<HashMap<String, String>> NewsList = nsvc.selectTitle(searchKeyword);
-			mav.addObject("NewsListMap",NewsList);
-			mav.setViewName("Basic/"+pageType);
+			mav.addObject("list", NewsList);
+			mav.setViewName("Basic/" + pageType);
 			break;
 		case "TicketPage":
 			ArrayList<HashMap<String, String>> TicketList = tsvc.selectTitle(searchKeyword);
-			mav.addObject("TkListMap",TicketList);
-			mav.setViewName("Basic/"+pageType);
+			mav.addObject("TkListMap", TicketList);
+			mav.setViewName("Basic/" + pageType);
 			break;
+		case "BlogPage":
+			ArrayList<HashMap<String, String>> BlogList = bsvc.selectTitle(searchKeyword);
+			mav.addObject("BlogList", BlogList);
+			mav.setViewName("Basic/" + pageType);
+			break;
+		
 		}
-		
-		
 		return mav;
 	}
-	
+		@RequestMapping("/getSearchRank")
+		public ModelAndView searchRank(String searchKeyword, String Sitevalue) {
+			ModelAndView mav = new ModelAndView();
+			System.out.println("이게 맞음 :"+Sitevalue);
+			String siteValue = Sitevalue.split("=")[1];
+			ArrayList<HashMap<String, String>> ChooseList = tsvc.selectTitle(searchKeyword,siteValue);
+			mav.addObject("TkListMap", ChooseList);
+			mav.setViewName("Basic/TicketPage");
+			return mav;
+		}
 }

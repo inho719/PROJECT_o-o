@@ -86,7 +86,7 @@ button {
 			</div>
 		</div>
 
-		<div class="col-md-12 mb-2" style="font-size: xxx-large;">${ALInfo.allist}</div>
+		<div class="col-md-12 mb-2" style="font-size: x-large;">${ALInfo.allist.replace("A2", "<br>A2").replace("A3", "<br>A3").replace("A4", "<br>A4").replace("A5", "<br>A5").replace("A6", "<br>A6").replace("A7", "<br>A7").replace("B1", "<br><br>B1").replace("B2", "<br>B2").replace("B3", "<br>B3").replace("B4", "<br>B4").replace("B5", "<br>B5").replace("B6", "<br>B6").replace("B7", "<br>B7").replace("C1", "<br><br>C1").replace("C2", "<br>C2").replace("C3", "<br>C3").replace("C4", "<br>C4").replace("C5", "<br>C5").replace("C6", "<br>C6").replace("C7", "<br>C7").replace("D1", "<br><br>D1").replace("D2", "<br>D2").replace("D3", "<br>D3").replace("D4", "<br>D4").replace("D5", "<br>D5").replace("D6", "<br>D6").replace("D7", "<br>D7").replace(" 01", "<br><br>01").replace("02", "<br>02").replace(" 03", "<br>03").replace("04", "<br>04").replace("05", "<br>05").replace("06", "<br>06").replace("07", "<br>07").replace(" 08", "<br>08").replace(" 09", "<br>09").replace("10", "<br>10").replace(" 11", "<br>11").replace("12", "<br>12").replace("13", "<br>13").replace("14", "<br>14").replace("15", "<br>15").replace(" 16", "<br>16").replace(" 17", "<br>17").replace("18", "<br>18").replace("19 ", "<br>19 ").replace("20 ", "<br>20 ").replace("21", "<br>21").replace(" 22", "<br>22").replace("23", "<br>23").replace("24 ", "<br>24 ").replace(" 25", "<br>25").replace(" 26", "<br>26").replace("27", "<br>27").replace("28", "<br>28").replace("29", "<br>29").replace(" 30", "<br>30").replace("31", "<br>31").replace(" 32", "<br>32").replace("33", "<br>33").replace("34", "<br>34").replace(" 35", "<br>35").replace(" 36", "<br>36").replace(" 37", "<br>37").replace(" 38", "<br>38").replace(" 39", "<br>39").replace(" 40", "<br>40").replace(" 41", "<br>41").replace("42", "<br>42").replace("43", "<br>43").replace("44", "<br>44").replace("45", "<br>45").replace("46", "<br>46").replace("47", "<br>47").replace("48", "<br>48").replace(" 49", "<br>49").replace("50", "<br>50").replace(" 51", "<br>51").replace("52", "<br>52").replace("53", "<br>53").replace(" 54", "<br>54").replace("55", "<br>55").replace("56", "<br>56").replace(" 57", "<br>57").replace(" 58", "<br>58").replace(" 59", "<br>59").replace("60", "<br>60").replace("61", "<br>61").replace("62", "<br>62").replace("63", "<br>63").replace("선택듣기", "")}</div>
 
 		<div>
 			<div class="row">
@@ -98,9 +98,25 @@ button {
 							할인가 : ${AlbumInfoList.alsaleprice}원
 							<!--내일 이거 해야함 체크 표시 해야 나오게  -->
 							<input id="selectQty_${AlbumInfoList.alcode}" type="number" value="1" min="1" placeholder="수량" class="disNone selectbox">
-							<a href="#" class="prdLike" onclick="like('${AlbumInfoList.alcode}')">
-								<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-							</a>
+							<c:choose>
+									<c:when test="${AlbumInfoList1.ALLIKED eq 'true'}">
+										<div class="like_article"
+											onclick="like('${AlbumInfoList.alcode}', this)">
+											<a class="prdLike" style="cursor: pointer;"> <img alt=""
+												src="/resources/assets/heart.png" style="width: 30px;">
+											</a>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="like_article"
+											onclick="like('${AlbumInfoList.alcode}', this)">
+											<a class="prdLike" style="cursor: pointer;"> <img alt=""
+												src="/resources/assets/blankheart.png" style="width: 30px;">
+											</a>
+										</div>
+
+									</c:otherwise>
+								</c:choose>
 						</div>
 					</c:forEach>
 				</div>
@@ -206,34 +222,48 @@ button {
       }
    </script>
 	<script type="text/javascript">
-	let loginId = '${sessionScope.loginId}';
-	function like(alCode){
-	console.log(loginId);
-	console.log(alCode);
-	if(loginId.length === 0){
-		location.href="/LoginPage";
-		
-	} else {
-	
-		$.ajax({
-			type : "GET",
-			url : "likeAlbum",
-			data : {
-				"like" : alCode
-			},
-			async : false,
-			success : function(response) {
-				alert("찜하기가 되었습니다.");
-			},
-			error: function(){
-				console.error("찜하기 요청 중 오류 발생");
-				alert("이미 찜이 되어있습니다.");
-			}
-		});
-	
-	}
-}   
-   </script>
+    let loginId = '${sessionScope.loginId}';
+    function like(alcode, element) {
+        console.log(loginId);
+        console.log(alcode);
+        if (loginId.length === 0) {
+            alert("로그인을 먼저 해주세요.");
+            location.href = "/LoginPage";
+        } else {
+
+        	$.ajax({
+        	    type: "GET",
+        	    url: "likeAlbum",
+        	    data: {
+        	        "like": alcode
+        	    },
+        	    //async: false,
+        	    success: function(response) {
+        	        if (response === 1) {
+        	            // '찜' 성공
+        	            alert("찜하기가 되었습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/heart.png';
+        	        } else if (response === 0) {
+        	            // '찜' 취소
+        	            alert("찜하기가 취소되었습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
+        	        } else {
+        	            // 이미 '찜'한 경우
+        	            alert("이미 찜이 되어있습니다.");
+        	            // 이미지 업데이트
+        	            element.querySelector('img').src = '/resources/assets/blankheart.png'; // 이 부분을 추가
+        	        }
+        	    },
+        	    error: function() {
+        	        console.error("찜하기 요청 중 오류 발생");
+        	        alert("찜하기에 실패했습니다.");
+        	    }
+        	});
+        }
+    }
+</script>
 
 </body>
 </html>

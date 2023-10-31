@@ -3,6 +3,8 @@ package com.Voix.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,7 +91,6 @@ public class NewsService {
 	}
 
 	public int insertNews(News news) {
-		// TODO Auto-generated method stub
 		return ndao.insertNews(news);
 	}
 
@@ -101,4 +102,25 @@ public class NewsService {
 	public int UpdateNewsBigHit(String nwcode) {
 		return ndao.UpdateNewsBigHit(nwcode);
 	}
+	
+	public ArrayList<String> getLikedNewsList(String mid) {
+	    System.out.println("SERVICE - 찜조회");
+		return ndao.getLikedNewsList(mid);
+	}
+	
+	public int unlikeNews(String like, String mid) {
+		System.out.println("SERVICE - 찜취소");
+		return ndao.unlikeNews(like,mid);
+	}
+
+	public int countBoardListTotal() {
+		System.out.println("SERVICE - 페이징 총 조회");
+		return ndao.countBoard();
+	}
+	
+	public List<Map<String, Object>> selectBoardList(String startNWCODE, String endNWCODE) {
+		System.out.println("SERVICE - 페이징 넘길 때 코드");
+		return ndao.selectBoardList(startNWCODE, endNWCODE);
+	}
+	
 }

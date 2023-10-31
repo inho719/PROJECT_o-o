@@ -35,12 +35,26 @@ public class TicketController {
 		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_map();
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "TK");
+		session.setAttribute("SerchState", "Y");
 		System.out.println(TkList_map);
+
+		// 현재 사용자가 어떤 티켓를 '찜'햇는지 가져옴
+		String loginId = (String) session.getAttribute("loginId");
+		System.out.println("loginId:" + loginId);
+		if (loginId != null) {
+			ArrayList<String> likedTicketList = tsvc.getLikedTicketList(loginId);
+			System.out.println("likedTicketList" + likedTicketList);
+			// 티켓 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정
+			for (HashMap<String, String> ticketMap : TkList_map) {
+				String tkcode = ticketMap.get("TKCODE");
+				//System.out.println("tkcode" + tkcode);
+				boolean isLiked = likedTicketList.contains(tkcode);
+				ticketMap.put("TKLIKED", String.valueOf(isLiked));
+			}
+		}	
 		mav.addObject("TkListMap",TkList_map);
 		mav.setViewName("Basic/TicketPage");
-		return mav;
-		
-		
+		return mav;	
 	}
 	@RequestMapping(value="/likeTicket")
 	public @ResponseBody int likeNews(String like, HttpSession session) {
@@ -48,9 +62,34 @@ public class TicketController {
 		String mid = session.getAttribute("loginId").toString();
 		System.out.println("티켓- 아이디 확인:"+mid);
 		System.out.println("티켓-   찜 확인:"+like);
-		
-	return tsvc.likeTicket(like,mid);
+
+		// 사용자가 이미 해당 뉴스를 '찜'했는지 확인
+		ArrayList<String> likedTicketList = tsvc.getLikedTicketList(mid);
+		if (likedTicketList.contains(like)) {
+			// 이미 '찜'한 경우 '찜' 취소
+			int result = tsvc.unlikeTicket(like, mid);
+			System.out.println(like);
+			System.out.println(mid);
+			if (result > 0) {
+				System.out.println("티켓 '찜' 취소 완료");
+				return 0;
+			} else {
+				System.out.println("티켓 '찜' 취소 실패");
+				return -1; 
+			}
+		} else {
+			// '찜'하지 않은 경우 '찜' 처리
+			int result = tsvc.likeTicket(like, mid);
+			if (result > 0) {
+				System.out.println("티켓 '찜' 완료");
+				return 1; 
+			} else {
+				System.out.println("티켓 '찜' 실패");
+				return -1; 
+			}
+		}		
 	}
+	
 	@RequestMapping(value ="/TicketInfoPage")
 	public ModelAndView TicketInfoPage(String tkcode) {
 		ModelAndView mav = new ModelAndView();
@@ -429,8 +468,10 @@ public class TicketController {
 	}
 
 	@RequestMapping(value = "/choosSite")
-	public ModelAndView choosSite(String siteVal) {
+	public ModelAndView choosSite(String siteVal , HttpSession session) {
 		System.out.println("사이트선택"+siteVal);
+		
+		session.setAttribute("SerchState", "Y");
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_ChooseSite(siteVal);
 		System.out.println(TkList_map);

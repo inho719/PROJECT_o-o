@@ -42,4 +42,14 @@ public interface TicketDao {
 	int getTicket_11bungaTicket(Ticket tK);
 
 	ArrayList<HashMap<String, String>> getTicketList_ChooseSite(String siteVal);
+
+	//찜조회
+	ArrayList<String> getLikedTicketList(@Param("mid") String mid);
+	//찜삭제
+	int unlikeTicket(@Param("like")String like,@Param("mid")String mid);
+
+	ArrayList<HashMap<String, String>> selectSearch_TitleSite(@Param("sk")String searchKeyword,@Param("sv") String siteValue);
+
+	ArrayList<HashMap<String, String>> selectSearch_ContentSite(@Param("sk")String searchKeyword,@Param("sv") String siteValue);
+	
 }

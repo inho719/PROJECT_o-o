@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -20,7 +22,6 @@ import com.Voix.Dao.BlogDao;
 import com.Voix.Dto.Blog;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -29,29 +30,33 @@ public class BlogService {
 
 	@Autowired
 	private BlogDao bdao;
-
+	
 	@Autowired
 	private TicketService tsvc;
-
+	
 	public HashMap<String, String> selectMainBlog(String themaStr) {
 		return bdao.selectMainBlog();
 	}
+
 
 	public ArrayList<HashMap<String, String>> getBlogList_map() {
 
 		return bdao.selectBlog_map();
 	}
 
+
 	public Blog getbgInfo(String bgcode) {
 		System.out.println("SERVICE - 블로그정보 출력");
 		return bdao.getBlogInfo(bgcode);
 	}
+
 
 	public ArrayList<HashMap<String, String>> selectReviewList(String bgcode) {
 		System.out.println("selectReivewList  호출");
 		ArrayList<HashMap<String, String>> Resultre = bdao.selectReviewList(bgcode);
 		return Resultre;
 	}
+
 
 	public int BlogRegistReview(String restate, String recontent, String rewriter) {
 		System.out.println("service - registReview()");
@@ -62,26 +67,51 @@ public class BlogService {
 		return registReview;
 	}
 
+
 	public int deleteBlogReview(String recode) {
 		System.out.println("SERVEICE - deleteReview 호출");
 		return bdao.deleteBlogReview(recode);
 	}
 
+
 	public int likeBlog(String like, String mid) {
 		System.out.println("SERVICE- 블로그 찜");
-		return bdao.likeBlog(like, mid);
+		return bdao.likeBlog(like,mid);
 	}
+
 
 	public ArrayList<HashMap<String, String>> selectBlogHitList() {
 		System.out.println("조회수 목록 조회");
 		return bdao.selectBlogHitList();
 	}
 
+
 	public int UpdateBlogBigHit(String bgcode) {
 		return bdao.UpdateBlogBigHit(bgcode);
 	}
 
-	public String chatbotAPI(String inputText,String mid) {
+	
+	public ArrayList<String> getLikedBlogList(String mid) {
+		System.out.println("SERVEICE - 찜 조회");
+		 return bdao.getLikedBlogList(mid);
+	}
+	
+	public int unlikeBlog(String like, String mid) {
+		 System.out.println("SERVEICE - 찜 삭제");
+		 return bdao.unlikeBlog(like, mid);
+	}
+
+	public int countBoardListTotal() {
+		System.out.println("SERVICE - 페이징 총 조회");
+		return bdao.countBoard();
+	}
+
+
+	public List<Map<String, Object>> selectBoardList(String startBGCODE, String endBGCODE) {
+		System.out.println("SERVICE - 페이징 넘길 때 코드");
+		return bdao.selectBoardList(startBGCODE, endBGCODE);
+	}
+public String chatbotAPI(String inputText,String mid) {
 		String secretKey = "cUlaRmRJSlNVYWVXY0NMb2tFdUtxUldEVWdRa1pPRU4=";
 		String apiURL = "https://7mfycmpb8n.apigw.ntruss.com/VOIX/VOIX/";
 
@@ -121,8 +151,10 @@ public class BlogService {
 				}
 				in.close();
 				con.disconnect();
+				System.out.println(sb.toString());
 				String data1 = JsonParser.parseString(sb.toString())
 						.getAsJsonObject().get("bubbles").getAsJsonArray().get(0).getAsJsonObject().get("data").getAsJsonObject().get("description").getAsString();
+				System.out.println(data1);
 				chatbotMessage = data1;
 			} else { // Error occurred
 				chatbotMessage = con.getResponseMessage();
@@ -215,4 +247,24 @@ public class BlogService {
 		}
 		return resultText;
 	}
+
+
+	public ArrayList<HashMap<String, String>> selectTitle(String searchKeyword) {
+		ArrayList<HashMap<String, String>> searchList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> titleList = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> contentList = new ArrayList<HashMap<String, String>>();
+			try {
+				titleList = bdao.selectSearch_Title(searchKeyword);				
+			} catch (Exception e) {
+			}
+			System.out.println(titleList);
+			try {
+				contentList = bdao.selectSearch_Content(searchKeyword);				
+			} catch (Exception e) {
+			}
+			searchList.addAll(titleList);
+			searchList.addAll(contentList);
+		return searchList;
+	}
+	
 }

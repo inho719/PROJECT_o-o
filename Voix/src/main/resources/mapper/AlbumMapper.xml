@@ -98,4 +98,14 @@
 		INSERT INTO LIKES (LIMID, LILIST)
 		VALUES (#{mid}, #{like})
 	</insert>
+
+	<select id="getLikedAlbumList" resultType="String">
+   	 SELECT LILIST FROM LIKES WHERE LIMID = #{mid}
+	</select>
+	
+	<delete id="unlikeAlbum">
+	    DELETE FROM LIKES
+	    WHERE LIMID = #{mid}
+	    AND LILIST = #{like}
+	</delete>
 </mapper>

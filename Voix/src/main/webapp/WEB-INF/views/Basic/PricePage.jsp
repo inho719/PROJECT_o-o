@@ -47,7 +47,7 @@
 			
 <c:forEach items="${PriceList}" var="priceList">
     <div class="mb-2">
-        <div class="row">
+        <div class="row VOIXBODERLINE">
             <div class="card col-md-4 justify-content-center ${priceList.page}" style="height: 220px;">
                 <c:choose>
                     <c:when test="${priceList.page eq 'Melon'}">

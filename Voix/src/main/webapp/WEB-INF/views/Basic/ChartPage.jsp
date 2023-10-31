@@ -13,6 +13,38 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script src="https://kit.fontawesome.com/acc1ccb443.js" crossorigin="anonymous"></script>
+
+<style type="text/css">
+.pagination {
+	list-style-type: none;
+	display: inline-block;
+}
+
+.pagination li {
+	display: inline;
+	margin-right: 5px;
+}
+
+.pagination li a {
+	text-decoration: none;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	background-color: #f7f7f7;
+}
+
+.rankChart {
+	background-color: #5e504e;
+	margin-left: 7px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	text-align: center;
+	color: #ede9e7;
+	font-weight: bold;
+	font-size: 18px;
+	width: 170px;
+}
+</style>
 </head>
 <body>
 	<!-- Responsive navbar-->
@@ -22,38 +54,47 @@
 		<div class="row">
 			<!-- Blog entries-->
 			<div class="col-lg-9">
-				<div class="card m-2">예스24, 알라딘, 교보</div>
+				
+				<c:choose>
+					<c:when test="${param.page != null }">
+						<c:set value="${param.page }" var="pageNumber" />
+					</c:when>
+					<c:otherwise>
+						<c:set value="1" var="pageNumber" />
+					</c:otherwise>
+				</c:choose>
 
-				<c:forEach items="${ChartListMap}" var="ChartMap">
-					<div class="card m-2">
-						<div class="col-md-2">?순위</div>
-						<div class="row">
+				<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
+					<div class="card m-2 VOIXBODERLINE" style="height: 215px;">
 
+						<div class="rankChart">No.${(pageNumber-1)*10 + status.index + 1}</div>
+						<div style="display: flex;">
 							<c:if test="${ChartMap.SGIMG != null }">
-								<div class="col-md-4 ChartImg align-items-center">
+								<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
 									<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
-										<img class="" src="${ChartMap.SGIMG}" alt="..." />
+										<img style="width: 170px; height: 170px;" src="${ChartMap.SGIMG}" class="VOIXBODERLINE" />
 									</a>
 								</div>
 							</c:if>
 							<c:if test="${ChartMap.SGIMG == null }">
-								<div class="col-md-4 ChartImg align-items-center">
+								<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
 									<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
-										<img class="" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" alt="..." />
+										<img style="width: 170px; height: 170px;" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" alt="..." />
 									</a>
 								</div>
 							</c:if>
 
-							<div class="col-md-5">
-								<div class="pt-2 ps-2" style="width: 100%; display: -webkit-inline-box;">
+
+							<div class="">
+								<div class="pt-2 ps-2" style="width: 550px; display: -webkit-inline-box;">
 									<h2>${ChartMap.SGTITLE }</h2>
 								</div>
-								<div class="card m-2 pt-2 ps-2" style="width: 70%; display: -webkit-inline-box;">
+								<div class="pt-2 ps-2" style="width: 70%; display: -webkit-inline-box;">
 									<p>${ChartMap.SGINFO }</p>
 								</div>
 							</div>
 
-							<div class="col-md-3">
+							<div class="" style="display: flex;">
 								<div class="card m-2 pt-2 ps-2" style="width: 30%;">
 									<i class="fa-solid fa-play"></i>
 								</div>
@@ -62,19 +103,27 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 				</c:forEach>
 
-
-
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				<ul class="pagination" style="place-content: center;">
+					<c:if test="${pageMaker.prev }">
+						<li><a href="/ChartPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
+								<i class="fa fa-chevron-left"></i>
+							</a></li>
+						<!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+						<li><a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e">
+								<i class="fa">${pageNum }</i>
+							</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+						<li><a href='<c:url value="/ChartPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
+								<i class="fa fa-chevron-right"></i>
+							</a></li>
+					</c:if>
 				</ul>
 
 			</div>

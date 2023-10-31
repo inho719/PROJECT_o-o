@@ -13,19 +13,23 @@
 	width: 400px;
 	padding: 10px;
 	background-color: #9bbbd4;
-	height: 510px;
-	overflow: scroll;
+	height: 470px;
+	margin-bottom: 10px;
+
 }
 
 .sendMsg {
-	text-align: right;
+
 }
 
 .msgComment {
+	width: 700px;
+	margin-bottom: 25px;
 	display: inline-block;
 	padding: 7px;
 	border-radius: 7px;
-	max-width: 220px;
+	max-width: 95%;
+	height: 180px;
 }
 
 .receiveMsg>.msgComment {
@@ -79,19 +83,18 @@
 </head>
 
 <body>
-	<h1>ChatPage.jsp - ${sessionScope.loginId}</h1>
+	<h1>${sessionScope.loginId}</h1>
 
-	<hr>
 	<div id="chatArea">
 
+		<div class="sendMsg">
+			<div class="msgComment">보낸메세지</div>
+		</div>
 		<div class="receiveMsg">
 			<div class="msgId">AI챗봇</div>
 			<div id="resultDiv" class="msgComment">받은메세지</div>
 		</div>
 
-		<div class="sendMsg">
-			<div class="msgComment">보낸메세지</div>
-		</div>
 
 	</div>
 
@@ -109,7 +112,7 @@
 			// submit 했을 때 처리
 		function chatbotSend(){
 				let inputText = document.querySelector('#sendMsg').value;
-				console.log(inputText);
+				$('.msgComment').text(inputText);
 			$.ajax({
 				type : "get",
 				url : "chatbotSend",

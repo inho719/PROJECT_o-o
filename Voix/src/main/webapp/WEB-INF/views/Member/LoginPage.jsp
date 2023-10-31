@@ -18,9 +18,9 @@
 	<div class="container">
 
 		<!-- 컨텐츠 시작 -->
-		<div class="card mb-4 mx-auto" style="width: 500px;">
-			<div class="card-body">
-				<div>로그인</div>
+		<div class="card mb-4 mx-auto " style="width: 500px;">
+			<div class="card-body VOIXBODERLINE">
+				<div style="font-size: 30px; font-weight: bold; color: #5e504e; justify-content: center; text-align: center;">로그인</div>
 				<form action="/memberLogin" method="post" onsubmit="return formCheck(this);">
 					<div class="row m-1">
 						<input placeholder="아이디" class="formInput p-1" type="text" name="mid" id="inputId">
@@ -35,7 +35,7 @@
 						<a href="IdFindPage">아이디</a> / <a href="PwFindPage">비밀번호</a> 찾기
 					</p>
 				</form>
-				<p>간편로그인</p>
+				<p style="font-size: 20px; font-weight: bold; color: #5e504e; text-align: center; ">간편로그인</p>
 				<div class="row m-1">
 					<button onclick="memberLogin_kakao()" class="btn btn-warning">카카오 로그인</button>
 
@@ -43,7 +43,7 @@
 						<img src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.1" height="60">
 
 					</div>
-					<button onclick="memberLogin_kakao()" class="btn btn-warning">구글 로그인</button>
+					
 				</div>
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 		function memberLogin_kakao(){
 			console.log('카카오 로그인 호출()');
 			 Kakao.Auth.authorize({
-		      redirectUri: 'http://localhost:8083/LoginPage',
+		      redirectUri: 'http://localhost:8080/LoginPage',
 		    });
 		}
 			let authCode = '${param.code}';	
@@ -102,7 +102,7 @@
 					contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 					data : {'grant_type' : 'authorization_code', 
 							'client_id' : 'db72247804d6b569e5f4b3aab6bcaa83',
-							'redirect_uri' : 'http://localhost:8083/LoginPage',
+							'redirect_uri' : 'http://localhost:8080/LoginPage',
 							'code' : authCode
 							},
 					success : function(response){

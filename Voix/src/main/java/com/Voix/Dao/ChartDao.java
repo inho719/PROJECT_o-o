@@ -2,6 +2,10 @@ package com.Voix.Dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.Voix.Dto.Chart;
 import com.Voix.Dto.Song;
@@ -21,4 +25,8 @@ public interface ChartDao {
 	String selectMaxSgCode();
 
 	int insertSong(Song song);
+
+	int countBoard();
+	
+	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startSGCODE, @Param("perPageNum")String endSGCODE);
 }

@@ -2,6 +2,8 @@ package com.Voix.Dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -34,6 +36,18 @@ public interface NewsDao {
 	int insertNews(News news);
 
 	HashMap<String, String> selectMainNews(String t);
-
+	
 	int UpdateNewsBigHit(String nwcode);
+
+	//찜조회
+	ArrayList<String> getLikedNewsList(@Param("mid") String mid);
+	//찜삭제
+	int unlikeNews(@Param("like")String like,@Param("mid")String mid);
+
+	//public List<News> getListWithPaging(paging paging);
+	public int countBoard();
+
+	//페이징 처리 코드조회
+	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startNWCODE, @Param("perPageNum")String endNWCODE);
+	
 }
