@@ -163,5 +163,25 @@ public class ChartService {
 	public List<Map<String, Object>> selectBoardList(String startSGCODE, String endSGCODE) {
 		return cdao.selectBoardList(startSGCODE, endSGCODE);
 	}
+
+	public int ChartRegistReview(String restate, String recontent, String rewriter) {
+		System.out.println("service - registReview()");
+		String maxRvCode = cdao.selectMaxReCode();
+		String recode = tsvc.genCode(maxRvCode);
+		int registReview = cdao.ChartRegistReview(recode, restate, recontent, rewriter);
+		System.out.println(registReview);
+		return registReview;
+	}
+
+	public ArrayList<HashMap<String, String>> selectReviewList(String sgcode) {
+		System.out.println("selectReivewList  호출");
+		ArrayList<HashMap<String, String>> Resultre = cdao.selectReviewList(sgcode);
+		return Resultre;
+	}
+
+	public int deleteReview(String recode) {
+		System.out.println("SERVEICE - deleteReview 호출");
+		return cdao.deleteReview(recode);
+	}
 	
 }
