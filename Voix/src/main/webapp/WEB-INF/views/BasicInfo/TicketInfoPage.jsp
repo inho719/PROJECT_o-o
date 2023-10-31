@@ -122,7 +122,7 @@ button {
 				</div>
 				<div class="col-md-2 mb-2 " style="display: inline-block;">
 					<div style="height: 100%;display: grid;place-items: center;">
-						<button class="btn btn-success" style="font-size: x-large;height: 100%;"onclick="location.href='공연페이지'">바로가기</button>
+						<button class="btn btn-success" style="font-size: x-large;height: 100%;"onclick="location.href='${tk.tkurl}'">바로가기</button>
 					</div>
 				</div>
 			</div>
