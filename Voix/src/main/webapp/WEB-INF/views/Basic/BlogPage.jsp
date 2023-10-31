@@ -51,7 +51,7 @@
 				<!-- Featured blog post-->
 				<c:forEach items="${BlogList}" var="BlogListMap">
 					<div class="card mb-4">
-						<div class="BlogDiv VOIXBODERLINE" style="display: flex;">
+						<div class="BlogDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;">
 							<c:if test="${BlogListMap.BGIMG != null }">
 								<div class="BlogImg">
 									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">

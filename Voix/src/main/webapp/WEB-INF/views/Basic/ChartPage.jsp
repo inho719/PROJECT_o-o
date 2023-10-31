@@ -54,59 +54,54 @@
 		<div class="row">
 			<!-- Blog entries-->
 			<div class="col-lg-9">
-				
-				<c:choose>
-					<c:when test="${param.page != null }">
-						<c:set value="${param.page }" var="pageNumber" />
-					</c:when>
-					<c:otherwise>
-						<c:set value="1" var="pageNumber" />
-					</c:otherwise>
-				</c:choose>
-
-				<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
-					<div class="card m-2 VOIXBODERLINE" style="height: 215px;">
-
-						<div class="rankChart">No.${(pageNumber-1)*10 + status.index + 1}</div>
-						<div style="display: flex;">
-							<c:if test="${ChartMap.SGIMG != null }">
-								<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
-									<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
-										<img style="width: 170px; height: 170px;" src="${ChartMap.SGIMG}" class="VOIXBODERLINE" />
-									</a>
-								</div>
-							</c:if>
-							<c:if test="${ChartMap.SGIMG == null }">
-								<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
-									<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
-										<img style="width: 170px; height: 170px;" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" alt="..." />
-									</a>
-								</div>
-							</c:if>
+				<div class="row">
+					
 
 
-							<div class="">
-								<div class="pt-2 ps-2" style="width: 550px; display: -webkit-inline-box;">
-									<h2>${ChartMap.SGTITLE }</h2>
-								</div>
-								<div class="pt-2 ps-2" style="width: 70%; display: -webkit-inline-box;">
-									<p>${ChartMap.SGINFO }</p>
-								</div>
-							</div>
+						<c:choose>
+							<c:when test="${param.page != null }">
+								<c:set value="${param.page }" var="pageNumber" />
+							</c:when>
+							<c:otherwise>
+								<c:set value="1" var="pageNumber" />
+							</c:otherwise>
+						</c:choose>
 
-							<div class="" style="display: flex;">
-								<div class="card m-2 pt-2 ps-2" style="width: 30%;">
-									<i class="fa-solid fa-play"></i>
-								</div>
-								<div class="card m-2 pt-2 ps-2" style="width: 30%;">
-									<i class="fa-solid fa-stop"></i>
+						<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
+							<div class="card col-md-6 m-2 VOIXBODERLINE" style="height: 215px; width: 48%; overflow: hidden;">
+
+								<div class="rankChart">No.${(pageNumber-1)*10 + status.index + 1}</div>
+								<div style="display: flex;">
+									<c:if test="${ChartMap.SGIMG != null }">
+										<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
+											<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
+												<img style="width: 170px; height: 170px;" src="${ChartMap.SGIMG}" class="VOIXBODERLINE" />
+											</a>
+										</div>
+									</c:if>
+									<c:if test="${ChartMap.SGIMG == null }">
+										<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
+											<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
+												<img style="width: 170px; height: 170px;" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" alt="..." />
+											</a>
+										</div>
+									</c:if>
+
+
+									<div class="">
+										<div class="pt-2 ps-2" style="width: 550px; display: -webkit-inline-box;">
+											<h2>${ChartMap.SGTITLE }</h2>
+										</div>
+										<div class="pt-2 ps-2" style="width: 70%; display: -webkit-inline-box;">
+											<p>${ChartMap.SGINFO }</p>
+										</div>
+									</div>
+
 								</div>
 							</div>
-						</div>
-
-					</div>
-				</c:forEach>
-
+					</c:forEach>
+					
+				</div>
 				<ul class="pagination" style="place-content: center;">
 					<c:if test="${pageMaker.prev }">
 						<li><a href="/ChartPage?page=${pageMaker.startPage-1}" style="color: #5e504e">

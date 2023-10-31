@@ -84,7 +84,7 @@
 		<c:forEach items="${TkListMap}" var="TkMap">
 				<div class="col-md-6" >
 					<div class="card mb-3">
-						<div class="TicketDiv VOIXBODERLINE" style="height: 900px;">
+						<div class="TicketDiv VOIXBODERLINE" style="height: 950px;">
 							<c:if test="${TkMap.TKIMG != null }">
 								<div class="TicketImg">
 									<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}">
@@ -101,9 +101,9 @@
 							</c:if>
 							<div class="TicketContents w-100">
 								<div class="TicketTitle">
-									<h3 class="card-title mt-2">${TkMap.TKTITLE}</h3>
+									<h4 class="card-title m-2">${TkMap.TKTITLE}</h4>
 								</div>
-								<div class="TicketContentsWrapper">
+								<div style="margin: 0px !important; padding: 0px !important; ">
 									<div class="TicketText p-2 d-flex" style="justify-content: space-between;">
 										<div>
 											<p class="card-text small"><br>${TkMap.TKDATE}</p>

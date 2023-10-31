@@ -52,7 +52,7 @@
 				<!-- Featured blog post-->
 				<c:forEach items="${list}" var="NewsMap">
 					<div class="card mb-4">
-						<div class="NewsDiv VOIXBODERLINE" style="display: flex;">
+						<div class="NewsDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;" >
 							<c:if test="${NewsMap.NWIMG != null }">
 								<div class="NewsImg">
 									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
