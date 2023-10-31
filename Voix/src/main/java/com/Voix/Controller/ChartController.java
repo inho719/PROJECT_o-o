@@ -80,5 +80,26 @@ public class ChartController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
+
+	@RequestMapping(value = "/ChartRegistReview")
+	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
+		String rewriter = (String)session.getAttribute("loginId");
+		int registResult = csvc.ChartRegistReview(restate, recontent, rewriter);
+		ModelAndView mav = new ModelAndView();
+		ra.addFlashAttribute("msg", "댓글이 등록 되었습니다.");
+		mav.setViewName("redirect:/ChartInfoPage?sgcode="+restate);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/deleteChartReview")
+	public ModelAndView deleteReivew(String recode, String sgcode, RedirectAttributes ra) {
+		System.out.println("리뷰 삭제 요청");
+		ModelAndView mav = new ModelAndView();
+		int Result = csvc.deleteReview(recode);
+		ra.addFlashAttribute("msg", "댓글 삭제 완료 되었습니다.");
+		mav.setViewName("redirect:/ChartInfoPage?sgcode=" + sgcode);
+
+		return mav;
+	}
 	
 }
