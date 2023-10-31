@@ -30,33 +30,32 @@
 
 		<!-- Featured blog post-->
 
-	<c:forEach items="${alList }" var="al">
-		<div class="row">
+		<c:forEach items="${alList }" var="al">
+			<div class="row">
 
-			<div class="col-md-4 mb-4">
-				<input id="alList1" type="hidden" value="${al.alcode }">
-				<input type="hidden" value="${al.alqty}">
-				<span class="d-none alcode_qty_price">${al.alcode }_${al.alqty}_${al.alsaleprice}</span>
-				<img alt="" src="${al.alimg}" style="width: 100%; height: 315px;">
-			</div>
+				<div class="col-md-4 mb-4">
+					<input id="alList1" type="hidden" value="${al.alcode }">
+					<input type="hidden" value="${al.alqty}">
+					<span class="d-none alcode_qty_price">${al.alcode }_${al.alqty}_${al.alsaleprice}</span> <img alt="" src="${al.alimg}" style="width: 100%; height: 315px;">
+				</div>
 
-			<div class="card col-md-8 mb-4" style="width: 65.666667% !important;">
-				<div style="height: 315px; margin-left: 10px;">
-					<p>${al.altitle}</p>
-					<p>${al.alartist}</p>
-					<p>${al.algenre}</p>
-					<p>${al.alprice}</p>
-					<p>${al.alsaleprice}</p>
-					<p>${al.aldate}</p>
-					<p>${al.alinfo}</p>
-				<!-- 
+				<div class="card col-md-8 mb-4" style="width: 65.666667% !important;">
+					<div style="height: 315px; margin-left: 10px; overflow: scroll;">
+						<h2>제목: ${al.altitle}</h2>
+						<h5>아티스트: ${al.alartist}</h5>
+						<p>장르: ${al.algenre}</p>
+						<p>판매가: ${al.alprice}원</p>
+						<p>할인가: ${al.alsaleprice}원</p>
+						<p>발매일: ${al.aldate}</p>
+						<p>${al.alinfo}</p>
+						<!-- 
 				 <p>${al.alqty}</p>
-				 -->	
+				 -->
 
+					</div>
 				</div>
 			</div>
-		</div>
-	</c:forEach>
+		</c:forEach>
 
 		<div class="card col mb-8">
 
@@ -69,7 +68,7 @@
 			<input type="text" placeholder="받는사람" class="m-2" value="${mid}" style="width: 80%;">
 
 		</div>
-		
+
 		<button type="button" style="align-items: center;" onclick="goPay()">결제하기</button>
 
 	</div>
