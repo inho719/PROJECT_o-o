@@ -51,7 +51,7 @@
 				<!-- Featured blog post-->
 				<c:forEach items="${BlogList}" var="BlogListMap">
 					<div class="card mb-4">
-						<div class="BlogDiv" style="display: flex;">
+						<div class="BlogDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;">
 							<c:if test="${BlogListMap.BGIMG != null }">
 								<div class="BlogImg">
 									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
@@ -61,7 +61,7 @@
 							</c:if>
 							<c:if test="${BlogListMap.BGIMG == null }">
 								<div class="BlogImg">
-									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
+									<a href="/BlogInfoPage?nwcode=${BlogListMap.BGCODE}">
 										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="width: 350px; height: 300px; object-fit: cover;" alt="..." />
 									</a>
 								</div>
@@ -69,7 +69,8 @@
 							<div class="BlogText" style="flex: 1;">
 								<div class="BlogTitle">
 									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
-									<button style="margin-left: 7px; border-radius: 7px; background-color: #ede9e7;" onclick="chatPage()">채팅페이지</button>
+<button style="margin-left: 7px; border-radius: 7px; background-color: #ede9e7;" onclick="chatPage()">채팅페이지</button>
+<button onclick="chatPage()">채팅페이지</button>
 								</div>
 								<div class="BlogContents p-2" style="height: 150px; overflow: hidden;">
 									<p class="card-text">${BlogListMap.BGCONTENT}</p>
@@ -113,20 +114,20 @@
 	<ul class="pagination" style="place-content: center;">
 		    <c:if test="${pageMaker.prev }">
 		    <li>
-		        <a href="/BlogPage?page=${pageMaker.startPage-1}">
+		        <a href="/BlogPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
 		   			<i class="fa fa-chevron-left"></i>◀
 		   		</a>
 		    </li>
 		    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
 		    </c:if>
-		    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+		    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum" >
 		    <li>
-		        <a href='<c:url value="/BlogPage?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+		        <a href='<c:url value="/BlogPage?page=${pageNum }"/>' style="color: #5e504e"><i class="fa">${pageNum }</i></a>
 		    </li>
 		    </c:forEach>
 		    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 		    <li>
-		        <a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>'>▶<i class="fa fa-chevron-right"></i></a>
+		        <a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">▶<i class="fa fa-chevron-right"></i></a>
 		    </li>
 		    </c:if>
 	</ul>
