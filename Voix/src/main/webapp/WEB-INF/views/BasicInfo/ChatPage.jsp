@@ -92,7 +92,7 @@
 		</div>
 		<div class="receiveMsg">
 			<div class="msgId">AI챗봇</div>
-			<div id="resultDiv" class="msgComment">받은메세지</div>
+			<div id="resultDiv" class="msgComment">답변은 여기에 작성됩니다.</div>
 		</div>
 
 
