@@ -69,7 +69,7 @@
 							<div class="BlogText" style="flex: 1;">
 								<div class="BlogTitle">
 									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
-<button onclick="chatPage()">채팅페이지</button>
+									<button style="margin-left: 7px; border-radius: 7px; background-color: #ede9e7;" onclick="chatPage()">채팅페이지</button>
 								</div>
 								<div class="BlogContents p-2" style="height: 150px; overflow: hidden;">
 									<p class="card-text">${BlogListMap.BGCONTENT}</p>
