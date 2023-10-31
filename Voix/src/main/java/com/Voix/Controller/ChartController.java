@@ -54,10 +54,15 @@ public class ChartController {
 	public ModelAndView ChartInfoPage(String sgcode) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Chart> ChartInfoList = csvc.getChartInfoList(sgcode);
+		Chart SgInfo = ChartInfoList.get(0);
+		mav.addObject("SgInfo", SgInfo);
 		mav.addObject("ChartInfoList", ChartInfoList);
+		ArrayList<HashMap<String,String>> reviewList = csvc.selectReviewList(sgcode);
+		mav.addObject("reviewList",reviewList);
 		mav.setViewName("BasicInfo/ChartInfoPage");
 		return mav;
 	}
+	
 	@RequestMapping(value="/PlayListAdd")
 	public @ResponseBody String PlayListAdd(HttpSession session,String sgcode){
 	    List<playL> playlist = new ArrayList<playL>();
