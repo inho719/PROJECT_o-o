@@ -40,10 +40,10 @@
 
 .btn-primary {
 	width: 100%;
-	background-color: #e8ec74;
-	border: 1px solid #e8ec74;
+	background-color: #5e504e;
+	border: 1px solid #5e504e;
 	color: #000;
-	border-radius: 0.375rem;
+ 	border-radius: 0.375rem;
 	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 	float: right;
 }
@@ -54,14 +54,14 @@
 }
 
 .navbar-brand.click {
-	border-left: 4px solid #e8ec74;
-	border-top: 4px solid #e8ec74;
-	border-right: 4px solid #e8ec74;
-	background: #484848;
+	border-left: 4px solid #5e504e;
+	border-top: 4px solid #5e504e;
+	border-right: 4px solid #5e504e;
+	background: #ede9e7;
 }
 
 .navbar-brand.unclicked {
-	border-bottom: 2px solid #e8ec74;
+	border-bottom: 4px solid #5e504e;
 }
 
 .navbar-brand.form-control2.click {
@@ -73,9 +73,9 @@
 	line-height: 1.5;
 	color: #212529;
 	border: none; /* 테두리 삭제 */
-	border-left: 4px solid #e8ec74;
-	border-right: 4px solid #e8ec74;
-	border-bottom: 4px solid #e8ec74;
+	border-left: 4px solid #5e504e;
+	border-right: 4px solid #5e504e;
+	border-bottom: 4px solid #5e504e;
 }
 
 .navbar-brand.form-control2.unclicked {
@@ -87,9 +87,9 @@
 	line-height: 1.5;
 	color: #212529;
 	border: none;
-	border-left: 4px solid #e8ec74;
-	border-right: 4px solid #e8ec74;
-	border-bottom: 4px solid #e8ec74;
+	border-left: 4px solid #5e504e;
+	border-right: 4px solid #5e504e;
+	border-bottom: 4px solid #5e504e;
 }
 
 .navbar-brand.form-control2.unclicked.click {
@@ -101,9 +101,9 @@
 	line-height: 1.5;
 	color: white;
 	border: none; /* 테두리 삭제 */
-	border-left: 4px solid #e8ec74;
-	border-right: 4px solid #e8ec74;
-	border-bottom: 4px solid #e8ec74;
+	border-left: 4px solid #5e504e;
+	border-right: 4px solid #5e504e;
+	border-bottom: 4px solid #5e504e;
 	outline: none;
 }
 
@@ -125,17 +125,17 @@ th {
 }
 
 th:hover {
-	background: #484848;
-	border-top: 1px solid yellow;
+	background: #5e504e;
+	border-top: 1px solid #5e504e;
 }
 body{
-	background: rgb(217 240 222) !important;
+	background: #ede9e7 !important;
 }
 </style>
 
 <!-- white-space: nowrap; -->
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5e504e;">
 
 	<div class="container">
 		<a class="homePageLink" href="https://www.melon.com/">멜론</a> <a class="homePageLink" href="https://vibe.naver.com/today">바이브</a> <a class="homePageLink" href="https://music.bugs.co.kr/">벅스</a> <a class="homePageLink" href="https://www.genie.co.kr/">지니</a> <a class="homePageLink" href="https://www.billboard.com/charts/hot-100/">빌보드</a> <a class="homePageLink" href="http://ticket.yes24.com/">예스24</a> <a class="homePageLink" href="https://www.interpark.com/">인터파크</a> <a class="homePageLink" href="https://www.aladin.co.kr/m/main.aspx">알라딘</a> <a class="homePageLink" href="https://product.kyobobook.co.kr/detail/S000001913217">교보문고</a> <a class="homePageLink" href="https://www.youtube.com/">유튜브</a>
@@ -160,7 +160,7 @@ body{
 	</div>
 </nav>
 <!-- Page header with logo and tagline-->
-<header class="mb-4" style="background-color: #D9F0DE;">
+<header class="mb-4" style="background-color: #ede9e7;">
 	<div class="container">
 
 		<table class="navbar-dark">
