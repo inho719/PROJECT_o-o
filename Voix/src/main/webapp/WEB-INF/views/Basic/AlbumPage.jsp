@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="resources/css/styles.css" rel="stylesheet" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Album Page</title>
+
 <!-- Favicon-->
 <style type="text/css">
 .pagination {
@@ -33,8 +35,8 @@
 	padding: 10px;
 	font-size: 30px;
 	text-align: center;
-	background-color: black;
-	color: white;
+	background-color: #5e504e;
+	color: #ede9e7;
 }
 
 .likeImg {
@@ -67,8 +69,8 @@
 								<table>
 									<tr>
 										<td>
-											<div class="card mb-2" style="height: 173px;">
-												<div class="AlbumDiv" style="display: flex;">
+											<div class="card mb-2 " style="height: 173px;">
+												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden;">
 													<div class="AlbumImg">
 														<c:if test="${AlbumMap.ALIMG != null }">
 															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
@@ -77,7 +79,7 @@
 															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
 														</c:if>
 													</div>
-													<div class="AlbumContents">
+													<div class="AlbumContents" >
 														<div class="AlbumTitle">
 															<h5 class="card-title m-2">${AlbumMap.ALTITLE}</h5>
 														</div>
@@ -109,7 +111,7 @@
 									<tr>
 										<td>
 											<div class="card mb-2" style="height: 173px;">
-												<div class="AlbumDiv" style="display: flex;">
+												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden;">
 													<div class="AlbumImg">
 														<c:if test="${AlbumMap.ALIMG != null }">
 															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
