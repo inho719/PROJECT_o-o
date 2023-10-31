@@ -10,7 +10,7 @@
 	width: 60%;
     border-radius: 100%;
 }
-.nav-link{
+.fontcolor{
 	color: #5e504e;
 }
 </style>
@@ -36,7 +36,7 @@
 		<c:otherwise>
 			<!-- Search widget-->
 			<div class="card mb-4">
-				<div class="card-header" style="text-align: center;">${sessionScope.loginId} ${sessionScope.loginName }</div>
+				<div class="card-header fontcolor" style="text-align: center;">${sessionScope.loginId} ${sessionScope.loginName }</div>
 				<div class="card-body">
 					<div class="loginInfo">
 						<div class="d-flex justify-content-between">
@@ -63,13 +63,13 @@
 							</c:choose>
 							<div class="" style="text-align: center;align-self: center;width: 40%;">
 							<div class="mb-3">
-								<a class="nav-link" href="/memberLogout">로그아웃</a>
+								<a class="nav-link fontcolor" href="/memberLogout">로그아웃</a>
 							</div>
 							<div class="mb-3">
-								<a class="nav-link" href="/MyInfoPage">내정보</a>
+								<a class="nav-link fontcolor" href="/MyInfoPage">내정보</a>
 							</div>
 							<div class="mb-3">
-								<a class="nav-link" href="/CartPage">장바구니</a>
+								<a class="nav-link fontcolor" href="/CartPage">장바구니</a>
 							</div>
 							</div>
 						</div>
@@ -79,7 +79,7 @@
 
 			<!-- Categories widget-->
 			<div class="card mb-4">
-				<div class="card-header">플레이리스트</div>
+				<div class="card-header fontcolor">플레이리스트</div>
 				<div class="">
 					<div class="row">
 						<div class="">
@@ -97,7 +97,7 @@
 										</a>
 									</div>
 								</div>
-								<div class="card-text card-body text-lg-center">
+								<div class="card-text card-body text-lg-center fontcolor">
 									<a>뜨거운 여름밤은 가고 남은건 볼품..</a> <br> <a>잔나비</a>
 								</div>
 
@@ -157,7 +157,7 @@
 					<c:choose>
 					<c:when test="${sessionScope.rankState == 'NW'}" >
 					<div class="card mb-4">
-						<div class="card-header">높은 조회수</div>
+						<div class="card-header fontcolor">높은 조회수</div>
 						<div class="card-body">
 							<div class="" style="border-bottom: 2px solid black;" id = "NewsHit">
 							
@@ -167,7 +167,7 @@
 					</c:when>
 					<c:when test="${sessionScope.rankState == 'BL'}" >
 					<div class="card mb-4">
-						<div class="card-header">높은 조회수</div>
+						<div class="card-header fontcolor">높은 조회수</div>
 						<div class="card-body">
 							<div class="" style="border-bottom: 2px solid black;" id = "BlogHit">
 							
