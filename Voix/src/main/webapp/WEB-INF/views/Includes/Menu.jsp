@@ -42,7 +42,7 @@
 	width: 100%;
 	background-color: #5e504e;
 	border: 1px solid #5e504e;
-	color: #000;
+	color: ##ccc;
  	border-radius: 0.375rem;
 	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 	float: right;
@@ -124,7 +124,7 @@ th {
 	font-size: 80px;
 }
 
-th:hover {
+.hover:hover {
 	background: #5e504e;
 	border-top: 1px solid #5e504e;
 }
@@ -170,12 +170,12 @@ body{
 			 			<img class="w-100" alt="" src="/resources/assets/VoixImg5.png">
 			 		</a>
 			 	</th>
-				<th class="navbar-brand p-3  fs-4" id="news" onClick="location.href='NewsPage'" style="color:black;">뉴스</th>
-				<th class="navbar-brand p-3  fs-4" id="blog" onClick="location.href='BlogPage'" style="color:black;">블로그</th>
-				<th class="navbar-brand p-3  fs-4" id="ticket" onClick="location.href='TicketPage'" style="color:black;">티켓</th>
-				<th class="navbar-brand p-3  fs-4" id="album" onClick="location.href='AlbumPage'" style="color:black;">앨범</th>
-				<th class="navbar-brand p-3  fs-4" id="chart" onClick="location.href='ChartPage'" style="color:black;">랭킹비교</th>
-				<th class="navbar-brand p-3  fs-4" id="price" onClick="location.href='PricePage'" style="color:black;">가격비교</th>
+				<th class="navbar-brand p-3 hover  fs-4" id="news" onClick="location.href='NewsPage'" style="color:black;">뉴스</th>
+				<th class="navbar-brand p-3 hover fs-4" id="blog" onClick="location.href='BlogPage'" style="color:black;">블로그</th>
+				<th class="navbar-brand p-3 hover fs-4" id="ticket" onClick="location.href='TicketPage'" style="color:black;">티켓</th>
+				<th class="navbar-brand p-3 hover fs-4" id="album" onClick="location.href='AlbumPage'" style="color:black;">앨범</th>
+				<th class="navbar-brand p-3 hover fs-4" id="chart" onClick="location.href='ChartPage'" style="color:black;">랭킹비교</th>
+				<th class="navbar-brand p-3 hover fs-4" id="price" onClick="location.href='PricePage'" style="color:black;">가격비교</th>
 			</tr>
 			<!--  
 			<tr>
