@@ -25,6 +25,9 @@ public class ChartService {
 	@Autowired
 	private ChartDao cdao;
 
+	@Autowired
+	private TicketService tsvc;
+
 	public ArrayList<HashMap<String, String>> getChartList_map() {
 		
 		return cdao.selectChart_map();
