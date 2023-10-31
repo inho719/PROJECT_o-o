@@ -18,7 +18,7 @@
 	</select>
 	
 	<select id="selectSearch_Content">
-	SELECT * FROM ALBUMS WHERE SGARTIST like '%${sgtitle}%'
+	SELECT * FROM SONGS WHERE SGARTIST like '%${sgtitle}%'
 	</select>
 
 	<select id="selectMainChart">
