@@ -107,14 +107,14 @@ public class BlogService {
 	}
 
 
-	public List<Map<String, Object>> selectBoardList(String startBGCODE, String endBGCODE) {
+	public List<Map<String, String>> selectBoardList(String startBGCODE, String endBGCODE) {
 		System.out.println("SERVICE - 페이징 넘길 때 코드");
 		return bdao.selectBoardList(startBGCODE, endBGCODE);
 	}
-public String chatbotAPI(String inputText,String mid) {
+	
+	public String chatbotAPI(String inputText,String mid) {
 		String secretKey = "cUlaRmRJSlNVYWVXY0NMb2tFdUtxUldEVWdRa1pPRU4=";
 		String apiURL = "https://7mfycmpb8n.apigw.ntruss.com/VOIX/VOIX/";
-
 		String chatbotMessage = ""; // 응답 메세지
 		try {
 			// String apiURL = "https://ex9av8bv0e.apigw.ntruss.com/custom_chatbot/prod/";
