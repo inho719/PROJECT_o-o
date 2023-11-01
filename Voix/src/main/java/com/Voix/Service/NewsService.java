@@ -118,7 +118,7 @@ public class NewsService {
 		return ndao.countBoard();
 	}
 	
-	public List<Map<String, Object>> selectBoardList(String startNWCODE, String endNWCODE) {
+	public List<Map<String, String>> selectBoardList(String startNWCODE, String endNWCODE) {
 		System.out.println("SERVICE - 페이징 넘길 때 코드");
 		return ndao.selectBoardList(startNWCODE, endNWCODE);
 	}
