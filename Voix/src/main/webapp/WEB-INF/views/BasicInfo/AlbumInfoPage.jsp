@@ -50,24 +50,40 @@ button {
 .infoBox::-webkit-scrollbar {
 	width: 10px;
 }
+.textdiv2 {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.textdiv2::-webkit-scrollbar-thumb {
+	background-color: whitesmoke; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
+}
+
+.textdiv2::-webkit-scrollbar {
+	width: 10px;
+}
+
 .textdiv {
 	height: 100%;
-	max-height:150px;
-    background: #f8f9fa;
-    overflow: scroll;
-    overflow-x: hidden;
+	max-height: 150px;
+	background: whitesmoke;
+	overflow: scroll;
+	overflow-x: hidden;
 }
+
 .textdiv::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 .textdiv::-webkit-scrollbar-track {
-  background: #f8f9fa; /* Track color */
+	background: whitesmoke; /* Track color */
 }
 
 .textdiv::-webkit-scrollbar-thumb {
-  background-color: #888; /* Thumb color */
-  border-radius: 10px	; /* Rounded thumb */
+	background-color: #ede9e7; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
 }
 </style>
 </head>
@@ -151,21 +167,9 @@ button {
 			</div>
 		</div>
 
+		<div class="row">
 
-
-
-		<c:if test="${sessionScope.loginId != null }">
-			<div class="replyWrite">
-				<form action="albumRegistReview" class="my-3" method="post">
-					<input type="text" name="restate" value="${ALInfo.alcode }" style="display: none">
-					<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
-					<input class="btn btn-success w-100" type="submit" value="댓글 등록">
-				</form>
-			</div>
-			<hr>
-		</c:if>
-
-		<div class="borderline" style="overflow: scroll; height: 500px; width: 100%;">
+		<div class="textdiv2" style="overflow: scroll; height: 500px; width: 50%;">
 			<div class="replyArea">
 				<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 					<c:forEach items="${reviewList}" var="re">
@@ -186,6 +190,17 @@ button {
 					</c:forEach>
 				</div>
 			</div>
+		</div>
+		<c:if test="${sessionScope.loginId != null }">
+			<div class="replyWrite" style="width: 50%">
+				<form action="albumRegistReview" class="my-3" method="post">
+					<input type="text" name="restate" value="${ALInfo.alcode }" style="display: none">
+					<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
+					<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+				</form>
+			</div>
+			<hr>
+		</c:if>
 		</div>
 
 
