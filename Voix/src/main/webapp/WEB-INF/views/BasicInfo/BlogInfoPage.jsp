@@ -78,7 +78,12 @@
 					<h2>${bg.bgtitle}</h2>
 				</div>
 				<div class="row">
-					<img style="width: 350px; height: 300p object-fit: cover; margin-top: 4px;" alt="블로그사진" src="${bg.bgimg }">
+				<c:if test="${bg.bgimg != null }">
+					<img style="width: 350px; height: 300px object-fit: cover; margin-top: 4px;" alt="블로그사진" src="${bg.bgimg }">
+				</c:if>
+				<c:if test="${bg.bgimg == null }">
+					<img class="AlbumImg" style="width: 350px; height: 300px;" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
+				</c:if>
 					<div class="card col-md-8 my-md-2 mx-md-3 ">
 						<p>${bg.bgcontent }</p>
 					</div>
