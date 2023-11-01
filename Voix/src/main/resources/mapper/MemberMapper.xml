@@ -134,7 +134,7 @@
 	</select>
 
 	<select id="AlbumOrderList" resultType="hashmap">
-		SELECT *
+		SELECT A.*, O.ODCODE, O.ODMID, O.ODALCODE, O.ODQTY, O.ODPRICE, TO_CHAR(O.ODDATE,'YYYY-MM-DD') AS ODDATE, O.ODADDR
 		FROM  ALBUMS A
 		INNER JOIN ORDERS O
 		ON A.ALCODE = O.ODALCODE
