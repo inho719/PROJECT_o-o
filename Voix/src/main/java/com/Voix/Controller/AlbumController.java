@@ -25,7 +25,9 @@ import com.google.gson.JsonParser;
 
 @Controller
 public class AlbumController {
-
+	@Autowired
+	private ChartService csvc;
+	
 	@Autowired
 	private AlbumService asvc;
 
