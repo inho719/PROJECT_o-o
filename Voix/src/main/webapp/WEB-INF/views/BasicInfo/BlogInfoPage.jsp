@@ -39,22 +39,23 @@
 
 .textdiv {
 	height: 100%;
-	max-height:150px;
-    background: #f8f9fa;
-    overflow: scroll;
-    overflow-x: hidden;
+	max-height: 150px;
+	background: whitesmoke;
+	overflow: scroll;
+	overflow-x: hidden;
 }
+
 .textdiv::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 .textdiv::-webkit-scrollbar-track {
-  background: #f8f9fa; /* Track color */
+	background: whitesmoke; /* Track color */
 }
 
 .textdiv::-webkit-scrollbar-thumb {
-  background-color: #888; /* Thumb color */
-  border-radius: 10px	; /* Rounded thumb */
+	background-color: #ede9e7; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
 }
 </style>
 
