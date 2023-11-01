@@ -63,7 +63,7 @@
 							<c:if test="${NewsMap.NWIMG == null }">
 								<div class="NewsImg">
 									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
-										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="width: 350px; height: 300px; object-fit: cover;" alt="..." />
+										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="border-radius: 7px; width: 350px; height: 300px; object-fit: cover;" alt="..." />
 									</a>
 								</div>
 							</c:if>
