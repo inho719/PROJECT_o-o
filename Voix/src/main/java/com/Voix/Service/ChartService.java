@@ -181,10 +181,25 @@ public class ChartService {
 		ArrayList<HashMap<String, String>> Resultre = cdao.selectReviewList(sgcode);
 		return Resultre;
 	}
-
 	public int deleteReview(String recode) {
 		System.out.println("SERVEICE - deleteReview 호출");
 		return cdao.deleteReview(recode);
+	}
+	public int likeSong(String like, String mid) {
+		System.out.println("SERVICE- Song 찜");
+		return cdao.likeSong(like,mid);
+	}	
+	public ArrayList<String> getLikedSongList(String mid) {
+		System.out.println("SERVEICE - 찜 조회");
+		return cdao.getLikedSongList(mid);
+	}
+	public ArrayList<HashMap<String, String>> getPlayList(String mid) {
+		System.out.println("SERVEICE - 픓레이 리스트 조회");
+		return cdao.getPlayList(mid);
+	}
+	public int unlikeSong(String like, String mid) {
+		 System.out.println("SERVEICE - 찜 삭제");
+		return cdao.unlikeSong(like, mid);
 	}
 	
 }
