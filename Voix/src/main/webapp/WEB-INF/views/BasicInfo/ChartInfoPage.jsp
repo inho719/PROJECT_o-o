@@ -109,12 +109,12 @@
 					<form action="ChartRegistReview" class="my-3" method="post">
 						<input type="text" name="restate" value="${SgInfo.sgcode }" style="display: none">
 						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
-						<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+						<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
 					</form>
 				</div>
 				<hr>
 			</c:if>
-		<div class="borderline" style="overflow: scroll; height: 500px; width: 100%;">
+			<div class="textdiv2" style="height: 500px; width: 50%;">
 				<div class="replyArea">
 					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 						<c:forEach items="${reviewList}" var="re">
