@@ -73,7 +73,7 @@
 
 		<div class="row">
 
-			<div class="card col-md-12 mb-2">
+			<div class="card col-md-12 mb-2 VOIXBODERLINE" style="background-color: whitesmoke;">
 				<div class="blogTitle col-md-12 mb-2" style="margin-top: 10px;">
 					<h2>${bg.bgtitle}</h2>
 				</div>
