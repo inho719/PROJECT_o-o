@@ -21,27 +21,45 @@
 	font-weight: bold;
 	letter-spacing: -0.08em;
 }
+
+
+
+.textdiv2 {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.textdiv2::-webkit-scrollbar-thumb {
+	background-color: whitesmoke; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
+}
+
+.textdiv2::-webkit-scrollbar {
+	width: 10px;
+}
+
 .textdiv {
 	height: 100%;
-	max-height:150px;
-    background: #f8f9fa;
-    overflow: scroll;
-    overflow-x: hidden;
+	max-height: 150px;
+	background: whitesmoke;
+	overflow: scroll;
+	overflow-x: hidden;
 }
+
 .textdiv::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 .textdiv::-webkit-scrollbar-track {
-  background: #f8f9fa; /* Track color */
+	background: whitesmoke; /* Track color */
 }
 
 .textdiv::-webkit-scrollbar-thumb {
-  background-color: #888; /* Thumb color */
-  border-radius: 10px	; /* Rounded thumb */
+	background-color: #ede9e7; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
 }
 </style>
-
 </head>
 
 
@@ -55,13 +73,13 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="card col-md-12 mb-2">
+			<div class="card col-md-12 mb-2 VOIXBODERLINE" style="height: 400px; background-color: whitesmoke;">
 				<div class="newsTitle col-md-12 mb-2" style="margin-top: 10px;">
 					<h2>${nw.nwtitle}</h2>
 				</div>
 				<div class="row">
-					<img style="width: 380px; height: 200px; margin-top: 4px;" alt="뉴스사진" src="${nw.nwimg }">
-					<div class="card col-md-8 my-md-2 mx-md-3 ">
+					<img style="width: 450px; height: 300px; margin-top: 4px; border-radius: 30px;" alt="뉴스사진" src="${nw.nwimg }">
+					<div class="col-md-6">
 						<p>${nw.nwcontent }</p>
 					</div>
 				</div>
@@ -70,40 +88,44 @@
 
 
 
-			<!-- 댓글 관련 부분 시작 -->
-			<c:if test="${sessionScope.loginId != null }">
-				<div class="reviewWrite">
-					<form action="newsRegistReview" class="my-3" method="post">
-						<input type="text" name="restate" value="${nw.nwcode }" style="display: none">
-						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
-						<input class="btn btn-success w-100" type="submit" value="댓글 등록">
-					</form>
-				</div>
-				<hr>
-			</c:if>
 
-			<div class="borderline" style="overflow: scroll; height: 500px; width: 100%;">
-				<div class="replyArea">
-					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
-						<c:forEach items="${reviewList}" var="re">
-							<div class="meminfo">
-								<span>작성자: ${re.REWRITER} </span>
-								<div style="margin-top: 5px; margin-bottom: 5px;">
-									<!--
-									<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
-									-->
-									<div class="textdiv w-100" style="font-size: large; border:1px solid #cccc;">${re.RECONTENT}</div>
+
+			<div class="row">
+
+				<div class="textdiv2" style="height: 500px; width: 50%;">
+					<div class="replyArea">
+						<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
+							<c:forEach items="${reviewList}" var="re">
+								<div class="meminfo">
+									<span style="font-style: italic;">작성자: ${re.REWRITER} </span>
+									<div style="margin-top: 5px; margin-bottom: 5px;">
+										<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; background-color: whitesmoke;">${re.RECONTENT}</div>
+									</div>
+									<c:if test="${sessionScope.loginId == re.REWRITER}">
+										<button type="button" onclick="location.href='/deleteNewsReview?recode=${re.RECODE}&nwcode=${nw.nwcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
+									</c:if>
+									<div class="small text-muted" style="font-size: 12px;">작성시간: ${re.REDATE}</div>
 								</div>
-								<c:if test="${sessionScope.loginId == re.REWRITER}">
-									<button type="button" onclick="location.href='/deleteNewsReview?recode=${re.RECODE}&nwcode=${nw.nwcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
-								</c:if>
-								<div class="small text-muted">작성시간: ${re.REDATE}</div>
-							</div>
-							<hr>
-						</c:forEach>
+								<hr>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
+
+				<!-- 댓글 관련 부분 시작 -->
+				<c:if test="${sessionScope.loginId != null }">
+					<div class="reviewWrite" style="width: 50%">
+						<form action="newsRegistReview" class="my-3" method="post">
+							<input type="text" name="restate" value="${nw.nwcode }" style="display: none">
+							<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
+							<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+						</form>
+					</div>
+					<hr>
+				</c:if>
+				
 			</div>
+
 		</div>
 	</div>
 	<!-- 댓글 관련 부분 끝 -->
