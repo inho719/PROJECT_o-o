@@ -266,5 +266,8 @@ public String chatbotAPI(String inputText,String mid) {
 			searchList.addAll(contentList);
 		return searchList;
 	}
-	
+		public ArrayList<HashMap<String, String>> selectAllImg() {
+		
+		return bdao.selectAllImg();
+	}
 }
