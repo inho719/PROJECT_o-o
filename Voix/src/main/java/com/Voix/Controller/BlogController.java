@@ -97,7 +97,7 @@ public class BlogController {
 		System.out.println("리뷰 삭제 요청");
 		ModelAndView mav = new ModelAndView();
 		int Result = bsvc.deleteBlogReview(recode);
-		ra.addFlashAttribute("msg", "관람평 삭제 완료 되었습니다.");
+		ra.addFlashAttribute("msg", "댓글이 삭제 완료 되었습니다.");
 		mav.setViewName("redirect:/BlogInfoPage?bgcode="+bgcode);
 		return mav;
 	}
