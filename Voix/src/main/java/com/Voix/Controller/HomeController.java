@@ -56,6 +56,12 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate);
 		mav.addObject("ST", sessionST);
 		session.setAttribute("sideState", "M");
+		String mid = (String) session.getAttribute("loginId");
+		if(mid != null) {
+			ArrayList<HashMap<String,String>> playlist = csvc.getPlayList(mid);
+			System.out.println(playlist);
+			mav.addObject("playlist", playlist);
+		}
 		mav.setViewName("MainPage");
 		return mav;
 	}
