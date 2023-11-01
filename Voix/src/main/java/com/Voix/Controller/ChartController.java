@@ -47,14 +47,35 @@ public class ChartController {
 	    System.out.println(list);
 	    System.out.println(pageMaker);
 		//mav.addObject("ChartListMap",ChartList_map);
+		String mid = (String) session.getAttribute("loginId");
+		if(mid != null) {
+			ArrayList<HashMap<String,String>> playlist = csvc.getPlayList(mid);
+			System.out.println(playlist);
+			mav.addObject("playlist", playlist);
+		}
 		mav.setViewName("Basic/ChartPage");
 		return mav;
 	}
 	
 	@RequestMapping(value ="/ChartInfoPage")
-	public ModelAndView ChartInfoPage(String sgcode) {
+	public ModelAndView ChartInfoPage(String sgcode,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Chart> ChartInfoList = csvc.getChartInfoList(sgcode);
+		String loginId = (String) session.getAttribute("loginId");
+		System.out.println("loginId:" + loginId);
+		if (loginId != null) {
+			ArrayList<String> likedSongList = csvc.getLikedSongList(loginId);
+			System.out.println("likedNewsList" + likedSongList);
+			for (Chart ChartInfo : ChartInfoList) {
+				String sgcode1 = ChartInfo.getSgcode();
+				boolean isLiked = likedSongList.contains(sgcode1);
+				String Liked = null ;
+				if(isLiked) {
+					 Liked = "true";
+				}
+				session.setAttribute("SGLIKED", Liked);
+			}
+		}		
 		Chart SgInfo = ChartInfoList.get(0);
 		mav.addObject("SgInfo", SgInfo);
 		mav.addObject("ChartInfoList", ChartInfoList);
@@ -106,6 +127,37 @@ public class ChartController {
 		mav.setViewName("redirect:/ChartInfoPage?sgcode=" + sgcode);
 
 		return mav;
+	}
+		@RequestMapping(value="/likeSong")
+	public @ResponseBody int likeNews(String like, HttpSession session) {
+		System.out.println("Song 찜 기능");
+		String mid = session.getAttribute("loginId").toString();
+		System.out.println("Song- 아이디 확인:"+mid);
+		System.out.println("Song-   찜 확인:"+like);
+	    ArrayList<String> likedSongList = csvc.getLikedSongList(mid);
+	    if (likedSongList.contains(like)) {
+	        // 이미 '찜'한 경우 '찜' 취소
+	        int result = csvc.unlikeSong(like, mid);
+	        System.out.println(like);
+	        System.out.println(mid);
+	        if (result > 0) {
+	            System.out.println("Song '찜' 취소 완료");
+	            return 0; // 클라이언트에게 '찜'이 취소되었음을 알립니다.
+	        } else {
+	            System.out.println("Song '찜' 취소 실패");
+	            return -1; // '찜' 취소 실패를 클라이언트에게 알립니다.
+	        }
+	    } else {
+	        // '찜'하지 않은 경우 '찜' 처리
+	        int result = csvc.likeSong(like, mid);
+	        if (result > 0) {
+	            System.out.println("Song '찜' 완료");
+	            return 1; // 클라이언트에게 '찜' 완료를 알립니다.
+	        } else {
+	            System.out.println("Song '찜' 실패");
+	            return -1; // '찜' 실패를 클라이언트에게 알립니다.
+	        }
+	    }	
 	}
 	
 }
