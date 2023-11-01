@@ -48,6 +48,6 @@ public interface NewsDao {
 	public int countBoard();
 
 	//페이징 처리 코드조회
-	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startNWCODE, @Param("perPageNum")String endNWCODE);
+	List<Map<String, String>> selectBoardList(@Param("pageStart") String startNWCODE, @Param("perPageNum")String endNWCODE);
 	
 }
