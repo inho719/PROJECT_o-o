@@ -21,6 +21,22 @@
 	font-weight: bold;
 	letter-spacing: -0.08em;
 }
+
+.textdiv2 {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.textdiv2::-webkit-scrollbar-thumb {
+	background-color: whitesmoke; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
+}
+
+.textdiv2::-webkit-scrollbar {
+	width: 10px;
+}
+
 .textdiv {
 	height: 100%;
 	max-height:150px;
@@ -61,7 +77,7 @@
 					<h2>${bg.bgtitle}</h2>
 				</div>
 				<div class="row">
-					<img style="width: 350px; height: 200px; margin-top: 4px;" alt="블로그사진" src="${bg.bgimg }">
+					<img style="width: 350px; height: 300p object-fit: cover; margin-top: 4px;" alt="블로그사진" src="${bg.bgimg }">
 					<div class="card col-md-8 my-md-2 mx-md-3 ">
 						<p>${bg.bgcontent }</p>
 					</div>
@@ -69,19 +85,9 @@
 				<span style="font-size: 13px;">작성자: ${bg.bgwriter } // 작성일: ${bg.bgdate } // 조회수: ${bg.bgbighit }</span>
 			</div>
 
+		<div class="row">
 
-			<c:if test="${sessionScope.loginId != null }">
-				<div class="reviewWrite">
-					<form action="BlogRegistReview" class="my-3" method="post">
-						<input type="text" name="restate" value="${bg.bgcode }" style="display: none">
-						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
-						<input class="btn btn-success w-100" type="submit" value="댓글 등록">
-					</form>
-				</div>
-				<hr>
-			</c:if>
-
-			<div class="borderline" style="overflow: scroll; height: 500px; width: 100%;">
+			<div class="textdiv2" style=" height: 500px; width: 50%;">
 				<div class="replyArea">
 					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 						<c:forEach items="${reviewList}" var="re">
@@ -103,7 +109,18 @@
 					</div>
 				</div>
 			</div>
-
+			
+			<c:if test="${sessionScope.loginId != null }">
+				<div class="reviewWrite" style="width: 50%">
+					<form action="BlogRegistReview" class="my-3" method="post">
+						<input type="text" name="restate" value="${bg.bgcode }" style="display: none">
+						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
+						<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+					</form>
+				</div>
+				<hr>
+			</c:if>
+	</div>
 		</div>
 	</div>
 
