@@ -39,7 +39,7 @@ public interface BlogDao {
 	int countBoard();
 
 	//페이징 처리 코드조회
-	List<Map<String, Object>> selectBoardList(@Param("pageStart") String startBGCODE, @Param("perPageNum")String endBGCODE);
+	List<Map<String, String>> selectBoardList(@Param("pageStart") String startBGCODE, @Param("perPageNum")String endBGCODE);
 
 	ArrayList<HashMap<String, String>> selectSearch_Title(String searchKeyword);
 
