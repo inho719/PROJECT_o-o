@@ -35,11 +35,11 @@
 	<div class="container">
 
 		<!-- 컨텐츠 시작 -->
-		<div class="card mb-4 mx-auto" style="width: 1000px;">
+		<div class="VOIXBODERLINE mb-4 mx-auto" style="width: 1000px; border-radius: 7px; background-color: whitesmoke;">
 			<div class="card-body">
 				<div>
 
-					<div class="row">
+					<div class="row" style="margin-top: 10px; margin-left: 1px;">
 
 						<c:choose>
 							<c:when test="${sessionScope.loginState == 'YC'}">
@@ -65,14 +65,14 @@
 							<p class="mb-1">이름: ${mInfo.mname}</p>
 							<p class="mb-1">이메일: ${mInfo.memail}</p>
 							<p class="mb-3">주소: ${mInfo.maddr}</p>
-							<a class="btn btn-danger" href="#" onclick="PwCheck()">내정보변경하기</a>
+							<a class="btn" href="#" onclick="PwCheck()" style="background-color: #5e504e; color: white;">내정보변경하기</a>
 						</div>
 
 
 					</div>
 
 					<hr>
-					<br>
+
 
 					<div class="row">
 						<div class="col" style="text-align: center;">
@@ -86,10 +86,10 @@
 						</div>
 					</div>
 
-					<br>
+
 					<hr>
 					<div id="LickList" style="display: none;">
-						<div>뉴스</div>
+						<h4>뉴스</h4>
 						<div class="card mb-4">
 							<c:forEach items="${newsLikeList}" var="news">
 								<div class="NewsDiv" style="display: flex;">
@@ -117,7 +117,7 @@
 							</c:forEach>
 						</div>
 
-						<div>블로그</div>
+						<h4>블로그</h4>
 						<div class="card mb-4">
 							<c:forEach items="${blogLikeList}" var="blog">
 								<div class="blogDiv" style="display: flex;">
@@ -145,7 +145,7 @@
 							</c:forEach>
 						</div>
 
-						<div>앨범</div>
+						<h4>앨범</h4>
 						<div>
 							<div class="card mb-4">
 								<div class="AlbumDiv" style="display: flex;">
@@ -178,7 +178,7 @@
 							</div>
 						</div>
 
-						<div>랭킹</div>
+						<h4>랭킹</h4>
 						<div>
 							<div class="card mb-4">
 								<div class="NewsDiv" style="display: flex;">
@@ -212,7 +212,7 @@
 							</div>
 						</div>
 
-						<div>티켓</div>
+						<h4>티켓</h4>
 						<div>
 							<div class="card mb-4">
 								<div class="TicketDiv" style="display: flex;">
@@ -247,7 +247,7 @@
 					</div>
 
 					<div id="CommentList" style="display: none;">
-						<div>뉴스</div>
+						<h4>뉴스</h4>
 						<div class="card mb-4">
 							<c:forEach items="${newsReviewList}" var="news">
 								<div class="NewsImg">
@@ -273,7 +273,7 @@
 							</c:forEach>
 						</div>
 
-						<div>블로그</div>
+						<h4>블로그</h4>
 						<div class="card mb-4">
 							<c:forEach items="${blogReviewList}" var="blog">
 								<div class="BlogImg">
@@ -299,7 +299,7 @@
 							</c:forEach>
 						</div>
 
-						<div>앨범</div>
+						<h4>앨범</h4>
 						<div class="card mb-4">
 							<c:forEach items="${albumsReviewList}" var="album">
 								<div class="AlbumImg">
@@ -325,7 +325,7 @@
 							</c:forEach>
 						</div>
 
-						<div>티켓</div>
+						<h4>티켓</h4>
 						<div class="card mb-4">
 							<c:forEach items="${ticketReviewList}" var="ticket">
 								<div class="TicketImg">
@@ -351,7 +351,7 @@
 							</c:forEach>
 						</div>
 
-						<div>랭킹</div>
+						<h4>랭킹</h4>
 						<div class="card mb-4">
 							<c:forEach items="${songsReviewList}" var="song">
 								<div class="SongsImg">
@@ -380,28 +380,27 @@
 					</div>
 
 					<div id="OrderList" style="display: none;">
-						<div>구매내역</div>
-						<div class="card mb-4">
+						<h4 style="margin-left: 7px;">구매내역</h4>
+						<div class="">
 							<c:forEach items="${AlbumOrderList}" var="order">
-								<div class="NewsDiv" style="display: flex; height: 200px; overflow: hidden;">
+								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 220px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="NewsImg">
 										<a href="#뉴스코드">
-											<img style="width: 350px; height: 200px;" src="${order.ALIMG}" alt="..." />
+											<img style="width: 200px; height: 200px; border-radius: 7px;" src="${order.ALIMG}" alt="..." />
 										</a>
 									</div>
 									<div class="NewsText" style="flex: 1;">
-										<div class="NewsTitle">
+										<div class="NewsTitle" style="margin-left: 7px; margin-top: 5px;">
 											<h4>${order.ALTITLE}</h4>
 										</div>
 										<div class="NewsContents p-2">
-											<p class="card-text">${order.ODQTY}</p>
-											<p class="card-text">${order.ODPRICE}</p>
-											<p class="card-text">${order.ODADDR}</p>
-											<p class="card-text">${order.ODDATE}</p>
+											<p class="card-text" style="line-height: 1;">주문수량: ${order.ODQTY}개</p>
+											<p class="card-text" style="line-height: 1;">주문가격: ${order.ODPRICE}원</p>
+											<p class="card-text" style="line-height: 1;">배송주소: ${order.ODADDR}</p>
+											<p class="card-text" style="line-height: 1;">주문날짜: ${order.ODDATE}</p>
 										</div>
 									</div>
 								</div>
-								<hr>
 							</c:forEach>
 						</div>
 					</div>
