@@ -104,7 +104,7 @@ public class NewsController {
 		System.out.println("리뷰 삭제 요청");
 		ModelAndView mav = new ModelAndView();
 		int Result = nsvc.deleteNewsReview(recode);
-		ra.addFlashAttribute("msg", "관람평 삭제 완료 되었습니다.");
+		ra.addFlashAttribute("msg", "댓글이 삭제 완료 되었습니다.");
 		mav.setViewName("redirect:/NewsInfoPage?nwcode="+nwcode);
 	
 		return mav;
