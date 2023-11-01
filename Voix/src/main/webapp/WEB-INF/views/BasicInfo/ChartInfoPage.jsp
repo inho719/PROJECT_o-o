@@ -18,24 +18,40 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 
 <style type="text/css">
+.textdiv2 {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.textdiv2::-webkit-scrollbar-thumb {
+	background-color: whitesmoke; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
+}
+
+.textdiv2::-webkit-scrollbar {
+	width: 10px;
+}
+
 .textdiv {
 	height: 100%;
-	max-height:150px;
-    background: #f8f9fa;
-    overflow: scroll;
-    overflow-x: hidden;
+	max-height: 150px;
+	background: whitesmoke;
+	overflow: scroll;
+	overflow-x: hidden;
 }
+
 .textdiv::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 .textdiv::-webkit-scrollbar-track {
-  background: #f8f9fa; /* Track color */
+	background: whitesmoke; /* Track color */
 }
 
 .textdiv::-webkit-scrollbar-thumb {
-  background-color: #888; /* Thumb color */
-  border-radius: 10px	; /* Rounded thumb */
+	background-color: #ede9e7; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
 }
 </style>
 
@@ -55,18 +71,20 @@
 
 	<c:forEach items="${ChartInfoList}" var="ChartInfoList">
 		<div class="row">
-			<div class="card col-md-4 mb-4 ">
-				<img alt="랭킹 포스터" src="${ChartInfoList.sgimg}">
+		
+			
+		
+		<div class="card col-md-12 mb-2 VOIXBODERLINE" style="height: 400px; background-color: whitesmoke;">		
+				<div class="row">
+					<img style="width: 450px; height: 90%; margin-top: 4px; border-radius: 30px;" alt="랭킹 포스터" src="${ChartInfoList.sgimg}">
+					<div class="col-md-6">
+						<p>${ChartInfoList.sgartitle}</p>
+						<p>타이틀:${ChartInfoList.sgtitle}</p>
+						<p>${ChartInfoList.sginfo}</p>
+						<p>아티스트:${ChartInfoList.sgartist}</p>
+					</div>
+				</div>
 			</div>
-
-			<div class="card col-md-8 mb-4">
-				<p>${ChartInfoList.sgartitle}</p>
-				<p>타이틀:${ChartInfoList.sgtitle}</p>
-				<p>${ChartInfoList.sginfo}</p>
-				<p>아티스트:${ChartInfoList.sgartist}</p>
-				
-			</div>
-		</div>
 
 
 		<div class="row">
@@ -85,17 +103,9 @@
 		</div>
 	</c:forEach>
 		
-		<c:if test="${sessionScope.loginId != null }">
-				<div class="reviewWrite">
-					<form action="ChartRegistReview" class="my-3" method="post">
-						<input type="text" name="restate" value="${SgInfo.sgcode }" style="display: none">
-						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
-						<input class="btn btn-success w-100" type="submit" value="댓글 등록">
-					</form>
-				</div>
-				<hr>
-			</c:if>
-		<div class="borderline" style="overflow: scroll; height: 500px; width: 100%;">
+		<div class="row">
+	
+		<div class="textdiv2" style="overflow: scroll; height: 500px; width: 50%;">
 				<div class="replyArea">
 					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 						<c:forEach items="${reviewList}" var="re">
@@ -117,7 +127,18 @@
 					</div>
 				</div>
 			</div>
-
+			
+			<c:if test="${sessionScope.loginId != null }">
+				<div class="reviewWrite" style="width: 50%;">
+					<form action="ChartRegistReview" class="my-3" method="post">
+						<input type="text" name="restate" value="${SgInfo.sgcode }" style="display: none">
+						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
+						<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+					</form>
+				</div>
+				<hr>
+			</c:if>
+		</div>
 
 		<!-- 				<div class="card mb-4">
 					<a href="#!"><img class="card-img-top"
