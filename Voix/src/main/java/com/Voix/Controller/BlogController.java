@@ -34,40 +34,42 @@ public class BlogController {
 		session.setAttribute("sideState", "N");
 		session.setAttribute("rankState", "BL");
 		session.setAttribute("SerchState", "Y");
-		ArrayList<HashMap<String, String>> BlogList_map = bsvc.getBlogList_map();
 		int perPageNum = cri.getPerPageNum();
 		int page = cri.getPage();
 		String startBGCODE = String.format("B%04d", (page - 1) * perPageNum + 1);
 	   	String endBGCODE = String.format("B%04d", page * perPageNum);
-		//System.out.println(BlogList_map);
+	   	ArrayList<HashMap<String, String>> BlogList_map = bsvc.getBlogList_map();
+	   	//System.out.println("BlogList_map"+BlogList_map);
+	   	String loginId = (String) session.getAttribute("loginId");
+	   	System.out.println("loginId:"+loginId);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(bsvc.countBoardListTotal());
-		List<Map<String, Object>> list = bsvc.selectBoardList(startBGCODE, endBGCODE);
+		List<Map<String, String>> list = bsvc.selectBoardList(startBGCODE, endBGCODE);		
+		
+		// 현재 사용자가 어떤 블로그를 '찜'햇는지 가져옴 
+		if(loginId != null){
+			ArrayList<String> likedBlogList = bsvc.getLikedBlogList(loginId);
+			System.out.println("likedBlogList"+likedBlogList);
+			// 블로그 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정
+			for (Map<String, String> blogMap : list) {
+				String bgcode = blogMap.get("BGCODE");
+				System.out.println("bgcode"+bgcode); 
+				boolean isLiked = likedBlogList.contains(bgcode);
+				blogMap.put("BGLIKED", String.valueOf(isLiked));
+			}
+		}
+
 		mav.addObject("BlogList", list);
 		mav.addObject("pageMaker", pageMaker);
 		System.out.println(list);
 		System.out.println(pageMaker);
 		//System.out.println(BlogList_map);
-		//mav.addObject("BlogListMap",BlogList_map);
-
-		// 현재 사용자가 어떤 블로그를 '찜'햇는지 가져옴 
-		String loginId = (String) session.getAttribute("loginId");
-		System.out.println("loginId:"+loginId);
-		if(loginId != null){
-			ArrayList<String> likedBlogList = bsvc.getLikedBlogList(loginId);
-			System.out.println("likedBlogList"+likedBlogList);
-			// 블로그 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정합니다.
-			for (HashMap<String, String> blogMap : BlogList_map) {
-			String bgcode = blogMap.get("BGCODE");
-			System.out.println("bgcode"+bgcode); //nwcode 나오냐?
-			boolean isLiked = likedBlogList.contains(bgcode);
-			blogMap.put("BGLIKED", String.valueOf(isLiked));
-		        }
-		}
+		mav.addObject("BlogListMap",BlogList_map);
 		mav.setViewName("Basic/BlogPage");
 		return mav;		
 	}
+	
 	
 	@RequestMapping(value ="/BlogInfoPage")
 	public ModelAndView NewsInfoPage(String bgcode) {
