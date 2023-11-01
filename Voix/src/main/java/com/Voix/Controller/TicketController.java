@@ -25,7 +25,9 @@ import com.Voix.Service.TicketService;
 
 @Controller
 public class TicketController {
-
+	@Autowired
+	private ChartService csvc;
+	
 	@Autowired
 	private TicketService tsvc;
 	
@@ -53,6 +55,12 @@ public class TicketController {
 			}
 		}	
 		mav.addObject("TkListMap",TkList_map);
+		String mid = (String) session.getAttribute("loginId");
+		if(mid != null) {
+			ArrayList<HashMap<String,String>> playlist = csvc.getPlayList(mid);
+			System.out.println(playlist);
+			mav.addObject("playlist", playlist);
+		}
 		mav.setViewName("Basic/TicketPage");
 		return mav;	
 	}
