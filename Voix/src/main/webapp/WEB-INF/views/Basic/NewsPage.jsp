@@ -51,12 +51,12 @@
 			<div class="col-lg-9">
 				<!-- Featured blog post-->
 				<c:forEach items="${list}" var="NewsMap">
-					<div class="card mb-4">
-						<div class="NewsDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;" >
+					<div class="mb-4" style="background-color: whitesmoke; border-radius: 10px;">
+						<div class="NewsDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;">
 							<c:if test="${NewsMap.NWIMG != null }">
 								<div class="NewsImg">
 									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
-										<img class="" src="${NewsMap.NWIMG}" alt="..." style="width: 350px; height: 300px; object-fit: cover;" />
+										<img class="" src="${NewsMap.NWIMG}" alt="..." style="width: 350px; height: 300px; object-fit: cover; border-radius: 7px;" />
 									</a>
 								</div>
 							</c:if>
@@ -78,21 +78,21 @@
 									<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${NewsMap.NWBIGHIT}</a>
 									<a class="Views" style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
 									<c:choose>
-									    <c:when test="${NewsMap.NWLIKED eq 'true'}">
-									        <div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
-									            <a class="prdLike" style="cursor: pointer;">
-									                <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-									            </a>
-									        </div>
-									    </c:when>
-									    <c:otherwise>
-									        <div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
-									            <a class="prdLike" style="cursor: pointer;">
-									                <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
-									            </a>
-									        </div>
-									      
-									    </c:otherwise>
+										<c:when test="${NewsMap.NWLIKED eq 'true'}">
+											<div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
+												<a class="prdLike" style="cursor: pointer;">
+													<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+												</a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
+												<a class="prdLike" style="cursor: pointer;">
+													<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
+												</a>
+											</div>
+
+										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
@@ -107,25 +107,22 @@
 		</div>
 	</div>
 	<ul class="pagination" style="place-content: center;">
-	    <c:if test="${pageMaker.prev }">
-	    <li>
-	        <a href="/NewsPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
-	   			<i class="fa fa-chevron-left"></i>◀ 
-	   		</a>
-	   		
-	    </li>
-	    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
-	    </c:if>
-	    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-	    <li>
-	        <a href='<c:url value="/NewsPage?page=${pageNum }"/>' style="color: #5e504e"><i class="fa">${pageNum }</i></a>
-	    </li>
-	    </c:forEach>
-	    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-	    <li>
-	        <a href='<c:url value="/NewsPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e"> ▶ <i class="fa fa-chevron-right"></i></a>
-	    </li>
-	    </c:if>
+		<c:if test="${pageMaker.prev }">
+			<li><a href="/NewsPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
+					<i class="fa fa-chevron-left"></i>◀
+				</a></li>
+			<!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
+		</c:if>
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+			<li><a href='<c:url value="/NewsPage?page=${pageNum }"/>' style="color: #5e504e">
+					<i class="fa">${pageNum }</i>
+				</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+			<li><a href='<c:url value="/NewsPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
+					▶ <i class="fa fa-chevron-right"></i>
+				</a></li>
+		</c:if>
 	</ul>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
@@ -140,47 +137,48 @@
 
 	<!-- if(loginId.length === 0){ -->
 	<script type="text/javascript">
-   	 let loginId = '${sessionScope.loginId}';
-    function like(newsCode, element) {
-        console.log(loginId);
-        console.log(newsCode);
-        if (loginId.length === 0) {
-            alert("로그인을 먼저 해주세요.");
-            location.href = "/LoginPage";
-        } else {
-        	$.ajax({
-        	    type: "GET",
-        	    url: "likeNews",
-        	    data: {
-        	        "like": newsCode
-        	    },
-        	    //async: false,
-        	    success: function(response) {
-        	        if (response === 1) {
-        	            // '찜' 성공
-        	            alert("찜하기가 되었습니다.");
-        	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/heart.png';
-        	        } else if (response === 0) {
-        	            // '찜' 취소
-        	            alert("찜하기가 취소되었습니다.");
-        	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
-        	        } else {
-        	            // 이미 '찜'한 경우
-        	            alert("이미 찜이 되어있습니다.");
-        	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
-        	        }
-        	    },
-        	    error: function() {
-        	        console.error("찜하기 요청 중 오류 발생");
-        	        alert("찜하기에 실패했습니다.");
-        	    }
-        	});
-        }
-    }
-</script>	
+		let loginId = '${sessionScope.loginId}';
+		function like(newsCode, element) {
+			console.log(loginId);
+			console.log(newsCode);
+			if (loginId.length === 0) {
+				alert("로그인을 먼저 해주세요.");
+				location.href = "/LoginPage";
+			} else {
+				$
+						.ajax({
+							type : "GET",
+							url : "likeNews",
+							data : {
+								"like" : newsCode
+							},
+							//async: false,
+							success : function(response) {
+								if (response === 1) {
+									// '찜' 성공
+									alert("찜하기가 되었습니다.");
+									// 이미지 업데이트
+									element.querySelector('img').src = '/resources/assets/heart.png';
+								} else if (response === 0) {
+									// '찜' 취소
+									alert("찜하기가 취소되었습니다.");
+									// 이미지 업데이트
+									element.querySelector('img').src = '/resources/assets/blankheart.png';
+								} else {
+									// 이미 '찜'한 경우
+									alert("이미 찜이 되어있습니다.");
+									// 이미지 업데이트
+									element.querySelector('img').src = '/resources/assets/blankheart.png';
+								}
+							},
+							error : function() {
+								console.error("찜하기 요청 중 오류 발생");
+								alert("찜하기에 실패했습니다.");
+							}
+						});
+			}
+		}
+	</script>
 
 
 </body>
