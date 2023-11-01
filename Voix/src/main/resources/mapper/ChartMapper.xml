@@ -62,4 +62,27 @@
 	<delete id="deleteReview">
 		DELETE FROM REVIEWS WHERE RECODE = #{recode}
 	</delete>
+	
+	<insert id="likeSong">
+		INSERT INTO LIKES (LIMID, LILIST)
+		VALUES (#{mid}, #{like})
+	</insert>
+	
+	<select id="getLikedSongList" resultType="String">
+		SELECT LILIST FROM LIKES WHERE LIMID = #{mid}
+	</select>
+	
+	<select id="getPlayList"  resultType="hashmap">
+		SELECT *
+		FROM LIKES L INNER JOIN SONGS S
+		ON S.SGCODE = L.LILIST
+		WHERE L.LIMID = #{mid}
+	</select>
+	
+	<delete id="unlikeSong">
+		DELETE FROM LIKES
+		WHERE LIMID = #{mid}
+		AND LILIST = #{like}
+	</delete>
+	
 </mapper>
