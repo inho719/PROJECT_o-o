@@ -50,26 +50,26 @@
 			<div class="col-lg-9">
 				<!-- Featured blog post-->
 				<c:forEach items="${BlogList}" var="BlogListMap">
-					<div class="card mb-4">
+					<div class="mb-4" style="background-color: whitesmoke; border-radius: 10px;">
 						<div class="BlogDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;">
 							<c:if test="${BlogListMap.BGIMG != null }">
 								<div class="BlogImg">
 									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
-										<img class="" src="${BlogListMap.BGIMG}" alt="..." style="width: 350px; height: 300p object-fit: cover;" />
+										<img class="" src="${BlogListMap.BGIMG}" alt="..." style="width: 350px; height: 300p object-fit: cover; border-radius: 7px;" />
 									</a>
 								</div>
 							</c:if>
 							<c:if test="${BlogListMap.BGIMG == null }">
 								<div class="BlogImg">
 									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
-										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="width: 350px; height: 300px; object-fit: cover;" alt="..." />
+										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="border-radius: 7px; width: 350px; height: 300px; object-fit: cover;" alt="..." />
 									</a>
 								</div>
 							</c:if>
 							<div class="BlogText" style="flex: 1;">
 								<div class="BlogTitle">
 									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
-<button style="margin-left: 7px; border-radius: 7px; background-color: #ede9e7;" onclick="chatPage()">채팅페이지</button>
+									<button style="margin-left: 7px; border-radius: 7px; background-color: #ede9e7;" onclick="chatPage()">채팅페이지</button>
 
 								</div>
 								<div class="BlogContents p-2" style="height: 150px; overflow: hidden;">
@@ -80,25 +80,25 @@
 									<a class="Views" style="text-decoration-line: none; color: gray;">작성자: ${BlogListMap.BGWRITER}</a>
 									<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${BlogListMap.BGBIGHIT}</a>
 									<a class="Views" style="text-decoration-line: none; color: gray;">${BlogListMap.BGDATE}</a>
-									
+
 									<c:choose>
-									    <c:when test="${BlogListMap.BGLIKED eq 'true'}">
-									        <div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
-									            <a href="#" class="prdLike">
-									                <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-									            </a>
-									        </div>
-									    </c:when>
-									    <c:otherwise>
-									        <div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
-									            <a href="#" class="prdLike">
-									                <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
-									            </a>
-									        </div>
-									      
-									    </c:otherwise>
+										<c:when test="${BlogListMap.BGLIKED eq 'true'}">
+											<div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
+												<a href="#" class="prdLike">
+													<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+												</a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
+												<a href="#" class="prdLike">
+													<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
+												</a>
+											</div>
+
+										</c:otherwise>
 									</c:choose>
-									
+
 								</div>
 							</div>
 						</div>
@@ -112,24 +112,22 @@
 		</div>
 	</div>
 	<ul class="pagination" style="place-content: center;">
-		    <c:if test="${pageMaker.prev }">
-		    <li>
-		        <a href="/BlogPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
-		   			<i class="fa fa-chevron-left"></i>◀
-		   		</a>
-		    </li>
-		    <!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
-		    </c:if>
-		    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum" >
-		    <li>
-		        <a href='<c:url value="/BlogPage?page=${pageNum }"/>' style="color: #5e504e"><i class="fa">${pageNum }</i></a>
-		    </li>
-		    </c:forEach>
-		    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-		    <li>
-		        <a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">▶<i class="fa fa-chevron-right"></i></a>
-		    </li>
-		    </c:if>
+		<c:if test="${pageMaker.prev }">
+			<li><a href="/BlogPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
+					<i class="fa fa-chevron-left"></i>◀
+				</a></li>
+			<!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
+		</c:if>
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+			<li><a href='<c:url value="/BlogPage?page=${pageNum }"/>' style="color: #5e504e">
+					<i class="fa">${pageNum }</i>
+				</a></li>
+		</c:forEach>
+		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+			<li><a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
+					▶<i class="fa fa-chevron-right"></i>
+				</a></li>
+		</c:if>
 	</ul>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
@@ -144,57 +142,58 @@
 
 	<!-- if(loginId.length === 0){ -->
 	<script type="text/javascript">
-    let loginId = '${sessionScope.loginId}';
-    function like(blogCode, element) {
-        console.log(loginId);
-        console.log(blogCode);
-        if (loginId.length === 0) {
-            alert("로그인을 먼저 해주세요.");
-            location.href = "/LoginPage";
-        } else {
+		let loginId = '${sessionScope.loginId}';
+		function like(blogCode, element) {
+			console.log(loginId);
+			console.log(blogCode);
+			if (loginId.length === 0) {
+				alert("로그인을 먼저 해주세요.");
+				location.href = "/LoginPage";
+			} else {
 
-        	$.ajax({
-        	    type: "GET",
-        	    url: "likeBlog",
-        	    data: {
-        	        "like": blogCode
-        	    },
-        	    //async: false,
-        	    success: function(response) {
-        	        if (response === 1) {
-        	            // '찜' 성공
-        	            alert("찜하기가 되었습니다.");
-        	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/heart.png';
-        	        } else if (response === 0) {
-        	            // '찜' 취소
-        	            alert("찜하기가 취소되었습니다.");
-        	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
-        	        } else {
-        	            // 이미 '찜'한 경우
-        	            alert("이미 찜이 되어있습니다.");
-        	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/blankheart.png'; // 이 부분을 추가
-        	        }
-        	    },
-        	    error: function() {
-        	        console.error("찜하기 요청 중 오류 발생");
-        	        alert("찜하기에 실패했습니다.");
-        	    }
-        	});
-        }
-    }
-</script>	
-<script type="text/javascript">
+				$
+						.ajax({
+							type : "GET",
+							url : "likeBlog",
+							data : {
+								"like" : blogCode
+							},
+							//async: false,
+							success : function(response) {
+								if (response === 1) {
+									// '찜' 성공
+									alert("찜하기가 되었습니다.");
+									// 이미지 업데이트
+									element.querySelector('img').src = '/resources/assets/heart.png';
+								} else if (response === 0) {
+									// '찜' 취소
+									alert("찜하기가 취소되었습니다.");
+									// 이미지 업데이트
+									element.querySelector('img').src = '/resources/assets/blankheart.png';
+								} else {
+									// 이미 '찜'한 경우
+									alert("이미 찜이 되어있습니다.");
+									// 이미지 업데이트
+									element.querySelector('img').src = '/resources/assets/blankheart.png'; // 이 부분을 추가
+								}
+							},
+							error : function() {
+								console.error("찜하기 요청 중 오류 발생");
+								alert("찜하기에 실패했습니다.");
+							}
+						});
+			}
+		}
+	</script>
+	<script type="text/javascript">
 		function chatPage() {
 			let chatId = '${sessionScope.loginId}';
 			console.log(chatId);
-			window.open("/chatPage?chatId="+chatId, "chatbot",
+			window.open("/chatPage?chatId=" + chatId, "chatbot",
 					"width=400, height=600");
-		if (chatId == null) {
-			window.close();
-		}
+			if (chatId == null) {
+				window.close();
+			}
 		}
 	</script>
 </body>
