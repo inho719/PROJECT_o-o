@@ -130,7 +130,7 @@ public class TicketController {
 			System.out.println("리뷰 삭제 요청");
 			ModelAndView mav = new ModelAndView();
 			int Result = tsvc.deleteReview(recode);
-			ra.addFlashAttribute("msg", "관람평 삭제 완료 되었습니다.");
+			ra.addFlashAttribute("msg", "댓글이 삭제 완료 되었습니다.");
 			mav.setViewName("redirect:/TicketInfoPage?tkcode="+tkcode);
 
 			return mav;
