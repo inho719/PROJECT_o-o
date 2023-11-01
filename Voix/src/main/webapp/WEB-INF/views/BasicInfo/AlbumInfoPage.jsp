@@ -196,7 +196,7 @@ button {
 				<form action="albumRegistReview" class="my-3" method="post">
 					<input type="text" name="restate" value="${ALInfo.alcode }" style="display: none">
 					<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
-					<input class="btn btn-success w-100" type="submit" value="댓글 등록">
+					<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
 				</form>
 			</div>
 			<hr>
