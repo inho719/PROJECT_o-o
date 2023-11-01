@@ -37,4 +37,12 @@ public interface ChartDao {
 	ArrayList<HashMap<String, String>> selectReviewList(String sgcode);
 
 	int deleteReview(String recode);
+	
+	ArrayList<String> getLikedSongList(@Param("mid") String mid);
+	
+	ArrayList<HashMap<String, String>> getPlayList(@Param("mid") String mid);
+	
+	int unlikeSong(@Param("like")String like,@Param("mid")String mid);
+	
+	int likeSong(@Param("like")String like,@Param("mid")String mid);
 }
