@@ -38,6 +38,12 @@ public class AlbumController {
 		session.setAttribute("SerchState", "Y");
 		System.out.println(AlbumList_map);
 		mav.addObject("AlbumListMap", AlbumList_map);
+		String mid = (String) session.getAttribute("loginId");
+		if(mid != null) {
+			ArrayList<HashMap<String,String>> playlist = csvc.getPlayList(mid);
+			System.out.println(playlist);
+			mav.addObject("playlist", playlist);
+		}
 		mav.setViewName("Basic/AlbumPage");
 		return mav;
 	}
