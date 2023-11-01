@@ -149,4 +149,15 @@ public class HomeController {
 			mav.setViewName("Basic/TicketPage");
 			return mav;
 		}
+
+		@RequestMapping("/getAllImg")
+		public @ResponseBody ArrayList<HashMap<String, String>> getAllImg() {
+		System.out.println("GETALLIMG");
+		ArrayList<HashMap<String, String>> imgList = bsvc.selectAllImg();
+		System.out.println(imgList);
+		
+
+		return imgList;
+	}
+	
 }
