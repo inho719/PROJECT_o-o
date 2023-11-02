@@ -13,6 +13,11 @@
 .fontcolor{
 	color: #5e504e;
 }
+.playicon:hover{
+	color: #5e504e;
+
+}
+
 </style>
 
 
@@ -93,10 +98,10 @@
 											<div class="card-body d-flex">
 												<div class="card-img d-flex">
 													<img alt="" class="me-5" style="width: 35%;"
-														src="${pl.SGIMG }"> <a href=""
-														style="color:#e3af95;"><i
+														src="${pl.SGIMG }"> <a href="#"
+														style="color:#e3af95;"><i 
 														onclick="searchKey('${pl.SGTITLE}')"
-														class="bi bi-play-circle me-3" style="font-size: 35px; position: absolute; right: 123px;"></i></a>
+														class="bi bi-play-circle me-3 playicon" style="font-size: 35px; position: absolute; right: 123px;"></i></a>
 													<div class="card-text card-body text-lg-center"
 														style="padding: 0px; height: 94px; overflow: hidden;">
 														<a>${pl.SGTITLE }</a> <br> <a>${pl.SGARTIST } </a>
@@ -113,7 +118,7 @@
 											<div class="card-body d-flex">
 												<div class="card-img d-flex">
 													<img alt="" class="me-5" style="width: 35%;"
-														src="${pl.SGIMG }"> <a href=""
+														src="${pl.SGIMG }"> <a
 														style="color: #e3af95;"><i
 														onclick="searchKey('${pl.SGTITLE}')"
 														class="bi bi-play-circle me-3"
