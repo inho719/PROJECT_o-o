@@ -53,6 +53,14 @@
 .carousel-item{
 	height: 460px;
 }
+.bannerImg{
+	display: block !important;
+	width: 100%; 
+ 	position: absolute; 
+ 	top: 50%;
+ 	left: 50%; 
+ 	transform: translate(-50%, -50%);
+}
 </style>
 
 
@@ -69,27 +77,27 @@
 					<div class="carousel-inner">
 						<div class="carousel-item active" data-bs-interval="2000" >
 							<a href="/NewsPage">
-								<img src="" class="d-block w-70 sliderImg" id="img1" alt="..." >
+								<img src="" class="d-block w-70 sliderImg bannerImg" id="img1" alt="...">
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
 							<a href="/BlogPage">
-								<img src="" class="d-block w-70 sliderImg" id="img2" alt="...">
+								<img src="" class="d-block w-70 sliderImg bannerImg" id="img2" alt="...">
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
 							<a href="/AlbumPage">
-								<img src="" class="d-block w-70 sliderImg" id="img3" alt="...">
+								<img src="" class="d-block w-70 sliderImg bannerImg" id="img3" alt="...">
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
 							<a href="/TicketPage">
-								<img src="" class="d-block w-70 sliderImg" id="img4" alt="...">
+								<img src="" class="d-block w-70 sliderImg bannerImg" id="img4" alt="...">
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
 							<a href="/ChartPage">
-								<img src="" class="d-block w-70 sliderImg" id="img5" alt="...">
+								<img src="" class="d-block w-70 sliderImg bannerImg" id="img5" alt="...">
 							</a>
 						</div>
 					</div>
