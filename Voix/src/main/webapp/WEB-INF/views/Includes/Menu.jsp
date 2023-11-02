@@ -4,8 +4,8 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 <c:if test="${msg != null }">
 	<script type="text/javascript">
-    			alert('${msg}');
-   			</script>
+    		alert('${msg}');
+   	</script>
 </c:if>
 <style>
 .homePageLink {
@@ -170,12 +170,12 @@ body{
 			 			<img class="w-100" alt="" src="/resources/assets/VoixImg5.png">
 			 		</a>
 			 	</th>
-				<th class="navbar-brand p-3 hover  fs-4" id="news" onClick="location.href='NewsPage'" style="color:black;">뉴스</th>
-				<th class="navbar-brand p-3 hover fs-4" id="blog" onClick="location.href='BlogPage'" style="color:black;">블로그</th>
-				<th class="navbar-brand p-3 hover fs-4" id="ticket" onClick="location.href='TicketPage'" style="color:black;">티켓</th>
-				<th class="navbar-brand p-3 hover fs-4" id="album" onClick="location.href='AlbumPage'" style="color:black;">앨범</th>
-				<th class="navbar-brand p-3 hover fs-4" id="chart" onClick="location.href='ChartPage'" style="color:black;">랭킹비교</th>
-				<th class="navbar-brand p-3 hover fs-4" id="price" onClick="location.href='PricePage'" style="color:black;">가격비교</th>
+				<th class="navbar-brand p-3 hover fs-4 Ne" id="news" onClick="location.href='NewsPage'" style="color:black;">뉴스</th>
+				<th class="navbar-brand p-3 hover fs-4 Bl" id="blog" onClick="location.href='BlogPage'" style="color:black;">블로그</th>
+				<th class="navbar-brand p-3 hover fs-4 Ti" id="ticket" onClick="location.href='TicketPage'" style="color:black;">티켓</th>
+				<th class="navbar-brand p-3 hover fs-4 Al" id="album" onClick="location.href='AlbumPage'" style="color:black;">앨범</th>
+				<th class="navbar-brand p-3 hover fs-4 Ch" id="chart" onClick="location.href='ChartPage'" style="color:black;">랭킹비교</th>
+				<th class="navbar-brand p-3 hover fs-4 Pr" id="price" onClick="location.href='PricePage'" style="color:black;">가격비교</th>
 			</tr>
 			<!--  
 			<tr>
@@ -223,6 +223,7 @@ body{
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<!--  
 	<script type="text/javascript">
     const clickImg = document.getElementById("clickImg");
     const colorChange = document.querySelectorAll(".navbar-brand");
@@ -277,25 +278,38 @@ body{
         }
     });
 </script>
+-->
+   <!-- click, unclicked 스크립트V2  -->
+<script type="text/javascript">
+	const colorChange = document.querySelectorAll(".navbar-brand");
+	colorChange.forEach(function (otherMenu) {
+        otherMenu.classList.add("unclicked");
+         });
+	let pageUrl = '${pageContext.request.servletPath}';
+	let pageUrl_split = pageUrl.split('/');
+	let click_page = pageUrl_split[pageUrl_split.length-1].substring(0,2); // Ne, Bl, Ti, Ch, Al, Pr
+		
+	let pageMenu = document.querySelector('.'+click_page);
+	pageMenu.classList.remove("unclicked");
+	pageMenu.classList.add("click");
+</script>
 
-	<script type="text/javascript">
-		let currentURL = window.location.href;
-		let currentPath = currentURL.split("/")[3].split('?')[0];	//BlogPage?	
-		pageId = document.querySelector('#pageType');
-		pageId.value = currentPath;		
-		console.log(pageId.value);
-	</script>
+<script type="text/javascript">
+	let currentURL = window.location.href;
+	let currentPath = currentURL.split("/")[3].split('?')[0];	//BlogPage?	
+	pageId = document.querySelector('#pageType');
+	pageId.value = currentPath;		
+	console.log(pageId.value);
+</script>
 
-	<script type="text/javascript">
-		let currentURLFUCK = window.location.href;
-		let currentPathFUCK = currentURLFUCK.split("/")[3];
+<script type="text/javascript">
+	let currentURLFUCK = window.location.href;
+	let currentPathFUCK = currentURLFUCK.split("/")[3];
 
-		pageId = document.querySelector('#Sitevalue');
-		pageId.value = currentPathFUCK;	
-		console.log(pageId.value);
-	</script>
-
-
+	pageId = document.querySelector('#Sitevalue');
+	pageId.value = currentPathFUCK;	
+	console.log(pageId.value);
+</script>
 
 
 </header>
