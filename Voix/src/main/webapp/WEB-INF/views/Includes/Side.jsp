@@ -260,7 +260,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 				}
 			});
 		console.log(playerDiv)
-			setTimeout(() => player.playVideo(), 1000);
+			setTimeout(() => player.playVideo(), 1500);
 			}
 		});
 
