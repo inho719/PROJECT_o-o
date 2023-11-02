@@ -53,14 +53,6 @@
 .carousel-item{
 	height: 460px;
 }
-.bannerImg{
-	display: block !important;
-	width: 100%; 
- 	position: absolute; 
- 	top: 50%;
- 	left: 50%; 
- 	transform: translate(-50%, -50%);
-}
 </style>
 
 
@@ -76,28 +68,28 @@
 				<div id="carouselExampleInterval" class="carousel slide VOIXBODERLINE" data-bs-ride="carousel" style="margin-bottom: 30px;">
 					<div class="carousel-inner">
 						<div class="carousel-item active" data-bs-interval="2000" >
-							<a href="/NewsPage">
-								<img src="" class="d-block w-70 sliderImg bannerImg" id="img1" alt="...">
+							<a href="#" id="slide1">
+								<img src="" class="d-block w-70 sliderImg" id="img1" alt="..." >
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
-							<a href="/BlogPage">
-								<img src="" class="d-block w-70 sliderImg bannerImg" id="img2" alt="...">
+							<a href="#" id="slide2">
+								<img src="" class="d-block w-70 sliderImg" id="img2" alt="...">
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
-							<a href="/AlbumPage">
-								<img src="" class="d-block w-70 sliderImg bannerImg" id="img3" alt="...">
+							<a href="#" id="slide3">
+								<img src="" class="d-block w-70 sliderImg" id="img3" alt="...">
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
-							<a href="/TicketPage">
-								<img src="" class="d-block w-70 sliderImg bannerImg" id="img4" alt="...">
+							<a href="#" id="slide4">
+								<img src="" class="d-block w-70 sliderImg" id="img4" alt="...">
 							</a>
 						</div>
 						<div class="carousel-item" data-bs-interval="2000" >
-							<a href="/ChartPage">
-								<img src="" class="d-block w-70 sliderImg bannerImg" id="img5" alt="...">
+							<a href="#" id="slide5">
+								<img src="" class="d-block w-70 sliderImg" id="img5" alt="...">
 							</a>
 						</div>
 					</div>
@@ -253,7 +245,7 @@
 						document.querySelector("#content"+i+"> div > p").innerText = content;
 						switch (first_char) {
 						case 'N':
-							document.querySelector("#content"+i+"> a").setAttribute('href',"/NewsPage");
+							document.querySelector("#content"+i+"> a").setAttribute('href',"/NewsPage" );
 							break;
 						case 'B':
 							document.querySelector("#content"+i+"> a").setAttribute('href', "/BlogPage");
@@ -366,7 +358,31 @@
 			for(let re of results){
 				i++;
 				let imgTag = document.querySelector("#img"+i).src = re.IMG;
+				console.log(imgTag);		
+				let code = re.CODE; // CODE 정보 추출
+				console.log(code);		
 				
+				 if (code.startsWith("N")) {
+					 document.getElementById("slide1").addEventListener("click", function() {
+						    window.location.href = "/NewsInfoPage?nwcode=" + re.CODE; // 여기서 re.CODE를 사용하여 동적으로 URL을 생성
+						});
+	                } else if (code.startsWith("B")) {
+	                	document.getElementById("slide2").addEventListener("click", function() {
+	    				    window.location.href = "/BlogInfoPage?bgcode=" + re.CODE;
+	    				});
+	                } else if (code.startsWith("A")) {
+	                	document.getElementById("slide3").addEventListener("click", function() {
+	    				    window.location.href = "/AlbumInfoPage?alcode=" + re.CODE;
+	    				});
+	                } else if (code.startsWith("T")) {
+	                	document.getElementById("slide4").addEventListener("click", function() {
+	    				    window.location.href = "/TicketInfoPage?tkcode=" + re.CODE;
+	    				});
+	                } else if (code.startsWith("S")) {
+	                	document.getElementById("slide5").addEventListener("click", function() {
+	    				    window.location.href = "/ChartInfoPage?sgcode=" + re.CODE;
+	    				});
+	                }
 			}
 		}
 	});
