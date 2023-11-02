@@ -21,17 +21,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Voix.Dto.Ticket;
+import com.Voix.Service.ChartService;
 import com.Voix.Service.TicketService;
 
 @Controller
 public class TicketController {
 	@Autowired
 	private ChartService csvc;
-	
+
 	@Autowired
 	private TicketService tsvc;
-	
-	@RequestMapping(value ="/TicketPage")
+
+	@RequestMapping(value = "/TicketPage")
 	public ModelAndView TicketPage(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_map();
@@ -49,27 +50,28 @@ public class TicketController {
 			// 티켓 목록을 반복하면서 '찜' 상태에 따라 이미지 URL 설정
 			for (HashMap<String, String> ticketMap : TkList_map) {
 				String tkcode = ticketMap.get("TKCODE");
-				//System.out.println("tkcode" + tkcode);
+				// System.out.println("tkcode" + tkcode);
 				boolean isLiked = likedTicketList.contains(tkcode);
 				ticketMap.put("TKLIKED", String.valueOf(isLiked));
 			}
-		}	
-		mav.addObject("TkListMap",TkList_map);
+		}
+		mav.addObject("TkListMap", TkList_map);
 		String mid = (String) session.getAttribute("loginId");
-		if(mid != null) {
-			ArrayList<HashMap<String,String>> playlist = csvc.getPlayList(mid);
+		if (mid != null) {
+			ArrayList<HashMap<String, String>> playlist = csvc.getPlayList(mid);
 			System.out.println(playlist);
 			mav.addObject("playlist", playlist);
 		}
 		mav.setViewName("Basic/TicketPage");
-		return mav;	
+		return mav;
 	}
-	@RequestMapping(value="/likeTicket")
+
+	@RequestMapping(value = "/likeTicket")
 	public @ResponseBody int likeNews(String like, HttpSession session) {
 		System.out.println("티켓 찜 기능");
 		String mid = session.getAttribute("loginId").toString();
-		System.out.println("티켓- 아이디 확인:"+mid);
-		System.out.println("티켓-   찜 확인:"+like);
+		System.out.println("티켓- 아이디 확인:" + mid);
+		System.out.println("티켓-   찜 확인:" + like);
 
 		// 사용자가 이미 해당 뉴스를 '찜'했는지 확인
 		ArrayList<String> likedTicketList = tsvc.getLikedTicketList(mid);
@@ -83,66 +85,69 @@ public class TicketController {
 				return 0;
 			} else {
 				System.out.println("티켓 '찜' 취소 실패");
-				return -1; 
+				return -1;
 			}
 		} else {
 			// '찜'하지 않은 경우 '찜' 처리
 			int result = tsvc.likeTicket(like, mid);
 			if (result > 0) {
 				System.out.println("티켓 '찜' 완료");
-				return 1; 
+				return 1;
 			} else {
 				System.out.println("티켓 '찜' 실패");
-				return -1; 
+				return -1;
 			}
-		}		
+		}
 	}
-	
-	@RequestMapping(value ="/TicketInfoPage")
+
+	@RequestMapping(value = "/TicketInfoPage")
 	public ModelAndView TicketInfoPage(String tkcode) {
 		ModelAndView mav = new ModelAndView();
 		Ticket tk = tsvc.getTkInfo(tkcode);
 		mav.addObject("tk", tk);
-		ArrayList<HashMap<String,String>> reviewList = tsvc.selectReviewList(tkcode);
-		mav.addObject("reviewList",reviewList);
+		ArrayList<HashMap<String, String>> reviewList = tsvc.selectReviewList(tkcode);
+		mav.addObject("reviewList", reviewList);
 		mav.setViewName("BasicInfo/TicketInfoPage");
 		return mav;
 	}
-	
-	@RequestMapping(value="/getMapXY")
+
+	@RequestMapping(value = "/getMapXY")
 	public @ResponseBody String getMapXY(String tkplace) throws IOException {
 		System.out.println("지도 좌표불러오기");
 		return tsvc.getMapXY(tkplace);
 	}
-		@RequestMapping(value="/getTkTitle")
+
+	@RequestMapping(value = "/getTkTitle")
 	public @ResponseBody ArrayList<Ticket> getTkTitle(String tkplace) {
 		System.out.println("장소를 이용하여 공연제목들 불러오기");
 		return tsvc.getTkTitle(tkplace);
 	}
-		@RequestMapping(value = "/registReview")
-		public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
-			System.out.println("댓글 등록 요청 - /registReview");
-			System.out.println("티켓코드 : " + restate);
-			System.out.println("댓글내용 : " + recontent);
-			String rewriter = (String)session.getAttribute("loginId");
-			System.out.println("작성자 : " + rewriter);
-			int registResult = tsvc.registReview(restate, recontent, rewriter);
-			ModelAndView mav = new ModelAndView();
-			ra.addFlashAttribute("msg", "댓글이 등록 되었습니다.");
-			mav.setViewName("redirect:/TicketInfoPage?tkcode="+restate);
-			return mav;
 
-		}
-		@RequestMapping(value="/deleteReview")
-		public ModelAndView deleteReivew(String recode,String tkcode,RedirectAttributes ra) {
-			System.out.println("리뷰 삭제 요청");
-			ModelAndView mav = new ModelAndView();
-			int Result = tsvc.deleteReview(recode);
-			ra.addFlashAttribute("msg", "댓글이 삭제 완료 되었습니다.");
-			mav.setViewName("redirect:/TicketInfoPage?tkcode="+tkcode);
+	@RequestMapping(value = "/registReview")
+	public ModelAndView registReview(String restate, String recontent, HttpSession session, RedirectAttributes ra) {
+		System.out.println("댓글 등록 요청 - /registReview");
+		System.out.println("티켓코드 : " + restate);
+		System.out.println("댓글내용 : " + recontent);
+		String rewriter = (String) session.getAttribute("loginId");
+		System.out.println("작성자 : " + rewriter);
+		int registResult = tsvc.registReview(restate, recontent, rewriter);
+		ModelAndView mav = new ModelAndView();
+		ra.addFlashAttribute("msg", "댓글이 등록 되었습니다.");
+		mav.setViewName("redirect:/TicketInfoPage?tkcode=" + restate);
+		return mav;
 
-			return mav;
-		}
+	}
+
+	@RequestMapping(value = "/deleteReview")
+	public ModelAndView deleteReivew(String recode, String tkcode, RedirectAttributes ra) {
+		System.out.println("리뷰 삭제 요청");
+		ModelAndView mav = new ModelAndView();
+		int Result = tsvc.deleteReview(recode);
+		ra.addFlashAttribute("msg", "댓글이 삭제 완료 되었습니다.");
+		mav.setViewName("redirect:/TicketInfoPage?tkcode=" + tkcode);
+
+		return mav;
+	}
 
 	@RequestMapping(value = "/getTicket_melon")
 	public ModelAndView getTicket_melon() throws IOException, InterruptedException {
@@ -383,8 +388,7 @@ public class TicketController {
 			System.out.println("추가: " + insertCount);
 		}
 		/*
-		 * ArrayList<String> thUrls = new ArrayList<String>(); for (WebElement aLink :
-		 * aLinks) { thUrls.add(aLink.getAttribute("href")); }
+		 * ArrayList<String> thUrls = new ArrayList<String>(); for (WebElement aLink : aLinks) { thUrls.add(aLink.getAttribute("href")); }
 		 * 
 		 */
 		driver.quit();
@@ -476,9 +480,9 @@ public class TicketController {
 	}
 
 	@RequestMapping(value = "/choosSite")
-	public ModelAndView choosSite(String siteVal , HttpSession session) {
-		System.out.println("사이트선택"+siteVal);
-		
+	public ModelAndView choosSite(String siteVal, HttpSession session) {
+		System.out.println("사이트선택" + siteVal);
+
 		session.setAttribute("SerchState", "Y");
 		ModelAndView mav = new ModelAndView();
 		ArrayList<HashMap<String, String>> TkList_map = tsvc.getTicketList_ChooseSite(siteVal);
@@ -488,6 +492,5 @@ public class TicketController {
 
 		return mav;
 	}
-	
-	
+
 }
