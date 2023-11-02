@@ -170,9 +170,9 @@
 					<!-- 가격비교 페이지일때 -->
 					<div class="card mb-4">
 						<div class="card-header">가격비교</div>
-						<div class="card-body">
+						<div class="card-body" style="height: 250px;">
 							<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-								<div class="carousel-inner">
+								<div class="carousel-inner" style="height: 200px;">
 								<div class="carousel-item active" data-bs-interval="2000">
 									<a href="https://pay.genie.co.kr/buy/geniePack">
 										<img src="https://corp.kt.com/images/kt/kt-ci.png?ver=2022120801" class="d-block w-70" alt="...">
@@ -185,7 +185,7 @@
 									</div>
 									<div class="carousel-item" data-bs-interval="2000">
 										<a href="https://www.lguplus.com/pogg/main/prod-detail?dispProdNo=1052">
-										<img src="https://www.lg.co.kr/images/common/default_og_image_new.jpg" class="d-block w-70" alt="...">
+										<img src="https://www.lg.co.kr/images/common/default_og_image_new.jpg" class="d-block w-70" alt="..." style="position: absolute;left: -75px;">
 									</a>
 									</div>
 								</div>
