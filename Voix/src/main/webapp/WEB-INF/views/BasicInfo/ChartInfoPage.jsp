@@ -37,6 +37,20 @@
   background-color: #888; /* Thumb color */
   border-radius: 10px	; /* Rounded thumb */
 }
+.textdiv2 {
+	height: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.textdiv2::-webkit-scrollbar-thumb {
+	background-color: whitesmoke; /* Thumb color */
+	border-radius: 10px; /* Rounded thumb */
+}
+
+.textdiv2::-webkit-scrollbar {
+	width: 10px;
+}
 </style>
 
 </head>
@@ -104,16 +118,8 @@
 		</div>
 	</c:forEach>
 		
-		<c:if test="${sessionScope.loginId != null }">
-				<div class="reviewWrite">
-					<form action="ChartRegistReview" class="my-3" method="post">
-						<input type="text" name="restate" value="${SgInfo.sgcode }" style="display: none">
-						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요."></textarea>
-						<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
-					</form>
-				</div>
-				<hr>
-			</c:if>
+		<div class="row">
+
 			<div class="textdiv2" style="height: 500px; width: 50%;">
 				<div class="replyArea">
 					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
@@ -132,6 +138,18 @@
 						</c:forEach>
 					</div>
 				</div>
+			</div>
+			
+			<c:if test="${sessionScope.loginId != null }">
+				<div class="reviewWrite" style="width: 50%">
+					<form action="ChartRegistReview" class="my-3" method="post">
+						<input type="text" name="restate" value="${SgInfo.sgcode }" style="display: none">
+						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
+						<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
+					</form>
+				</div>
+				<hr>
+			</c:if>
 			</div>
 	</div>
 
