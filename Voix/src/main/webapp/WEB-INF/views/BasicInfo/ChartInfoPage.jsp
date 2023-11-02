@@ -190,19 +190,14 @@
         	            // '찜' 성공
         	            alert("찜하기가 되었습니다.");
         	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/heart.png';
+        	            document.querySelector('body > div > div:nth-child(1) > div.card.col-md-8.mb-4 > div > a > img').src = '/resources/assets/heart.png';
         	        } else if (response == 0) {
         	            // '찜' 취소
         	            alert("찜하기가 취소되었습니다.");
         	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/blankheart.png';
-        	        } else {
-        	            // 이미 '찜'한 경우
-        	            alert("이미 찜이 되어있습니다.");
-        	            // 이미지 업데이트
-        	            element.querySelector('img').src = '/resources/assets/blankheart.png'; // 이 부분을 추가
-        	        }
-        	    },
+        	            document.querySelector('body > div > div:nth-child(1) > div.card.col-md-8.mb-4 > div > a > img').src = '/resources/assets/blankheart.png';
+        	        } 
+        	        },
         	    error: function() {
         	        console.error("찜하기 요청 중 오류 발생");
         	        alert("찜하기에 실패했습니다.");
