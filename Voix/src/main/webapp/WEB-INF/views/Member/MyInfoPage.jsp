@@ -24,6 +24,22 @@
 	border: 1px solid #ccc;
 	background-color: #f7f7f7;
 }
+.scroll::-webkit-scrollbar {
+	width: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+	background-color: #5e504e;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+.scroll::-webkit-scrollbar-track {
+	background-color: #ede9e7;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
 </style>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -89,7 +105,7 @@
 						<h4 style="margin-left: 7px;">뉴스</h4>
 						<div class="card mb-4">
 							<c:forEach items="${newsLikeList}" var="news">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 220px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 220px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="NewsImg">
 										<a href="#뉴스코드">
 											<img style="width: 350px; height: 200px; border-radius: 7px;" src="${news.NWIMG}" alt="..." />
@@ -116,7 +132,7 @@
 						<h4 style="margin-left: 7px;">블로그</h4>
 						<div class="card mb-4">
 							<c:forEach items="${blogLikeList}" var="blog">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 280px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="blogImg">
 										<a href="#뉴스코드">
 											<c:choose>
@@ -150,7 +166,7 @@
 						<h4 style="margin-left: 7px;">앨범</h4>
 						<div class="card mb-4">
 							<c:forEach items="${albumsLikeList}" var="albums">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 215px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 215px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="AlbumImg">
 										<a href="#앨범코드">
 											<img class="" style="width: 200px; height: 200px; border-radius: 7px;" src="${albums.ALIMG}" alt="..." />
@@ -180,7 +196,7 @@
 						<h4 style="margin-left: 7px;">랭킹</h4>
 						<div class="card mb-4">
 							<c:forEach items="${songsLikeList}" var="songs">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 215px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 215px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="NewsImg">
 										<a href="#뉴스코드">
 											<img style="width: 200px; height: 200px; border-radius: 7px;" src="${songs.SGIMG}" alt="..." />
@@ -209,7 +225,7 @@
 						<h4 style="margin-left: 7px;">티켓</h4>
 						<div class="card mb-4">
 							<c:forEach items="${ticketsLikeList}" var="tickets">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 280px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="TicketImg">
 										<a href="#티켓코드">
 											<img style="width: 180px; height: 265px; border-radius: 7px;" src="${tickets.TKIMG}" alt="..." />
@@ -247,7 +263,7 @@
 						<h4 style="margin-left: 7px;">뉴스</h4>
 						<div class="card mb-4">
 							<c:forEach items="${newsReviewList}" var="news">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 220px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 220px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
 									<div class="NewsImg">
 										<a href="#뉴스코드">
 											<img class="" style="width: 350px; height: 200px; border-radius: 7px;" src="${news.NWIMG}" alt="..." />
@@ -271,7 +287,7 @@
 						<h4 style="margin-left: 7px;">블로그</h4>
 						<div class="card mb-4">
 							<c:forEach items="${blogReviewList}" var="blog">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 280px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
 									<div class="BlogImg">
 										<a href="#뉴스코드">
 											<c:choose>
@@ -302,7 +318,7 @@
 						<h4 style="margin-left: 7px;">앨범</h4>
 						<div class="card mb-4">
 							<c:forEach items="${albumsReviewList}" var="album">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 215px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 215px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
 									<div class="AlbumImg">
 										<a href="#뉴스코드">
 											<img class="" style="width: 200px; height: 200px;" src="${album.ALIMG}" alt="..." />
@@ -326,7 +342,7 @@
 						<h4 style="margin-left: 7px;">티켓</h4>
 						<div class="card mb-4">
 							<c:forEach items="${ticketReviewList}" var="ticket">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 280px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
 									<div class="TicketImg">
 										<a href="#뉴스코드">
 											<img class="" style="width: 180px; height: 265px; border-radius: 7px;" src="${ticket.TKIMG}" alt="..." />
@@ -350,7 +366,7 @@
 						<h4 style="margin-left: 7px;">랭킹</h4>
 						<div class="card mb-4">
 							<c:forEach items="${songsReviewList}" var="song">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 215px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 215px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
 									<div class="SongsImg">
 										<a href="#뉴스코드">
 											<img class="" style="width: 200px; height: 200px; border-radius: 7px;" src="${song.SGIMG}" alt="..." />
@@ -378,7 +394,7 @@
 						<h4 style="margin-left: 7px;">구매내역</h4>
 						<div class="">
 							<c:forEach items="${AlbumOrderList}" var="order">
-								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 220px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+								<div class="VOIXBODERLINE p-1 m-2 scroll" style="display: flex; height: 220px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="NewsImg">
 										<a href="#뉴스코드">
 											<img style="width: 200px; height: 200px; border-radius: 7px;" src="${order.ALIMG}" alt="..." />
