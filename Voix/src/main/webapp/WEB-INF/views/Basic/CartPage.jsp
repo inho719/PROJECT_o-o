@@ -39,7 +39,7 @@ table, tr, td {
 						<input type="checkbox" style="width: 20px;height: 20px;" name="CartCheck" id="cartCheck${loop.index}" onchange="updateTotalPrice()" value="${CartList.CACODE}">
 					</div>
 					<div class="col-md-10 m-2">
-						<table class="border">
+						<table class="borderb VOIXBODERLINE" style="border-radius: 10px;">
 							<tr>
 								<td rowspan="2" style="width: 150px;height:150px;">
 								<img alt="앨범포스터" src="${CartList.ALIMG}" 
@@ -67,7 +67,7 @@ table, tr, td {
 			</div>
 		</c:forEach>
 
-		<div class="card m-2">
+		<div class="card m-2 VOIXBODERLINE" style="border-radius: 10px;">
 			<div class="row" style="justify-content: center; align-items: center;">
 				<div class="col-md-4 m-2" id="CheckNum"style="font-size:25px;font-weight:bold;"></div>
 				<div class="col-md-4 m-2" id="AllPrice"style="font-size:25px;font-weight:bold;"></div>
