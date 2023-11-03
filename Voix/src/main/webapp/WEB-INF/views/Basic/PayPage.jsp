@@ -15,6 +15,29 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="resources/css/styles.css" rel="stylesheet" />
 </head>
+<style type="text/css">
+.scroll::-webkit-scrollbar{
+	width: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb{
+	background-color: #5e504e;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+.scroll::-webkit-scrollbar-track{
+	background-color: #ede9e7;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
+.VoixBtn {
+	background-color: #5e504e !important;
+	color: #ede9e7 !important;
+	
+}
+</style>
 
 
 
@@ -39,8 +62,8 @@
 					<span class="d-none alcode_qty_price">${al.alcode }_${al.alqty}_${al.alsaleprice}</span> <img alt="" src="${al.alimg}" style="width: 100%; height: 315px;">
 				</div>
 
-				<div class="card col-md-8 mb-4" style="width: 65.666667% !important;">
-					<div style="height: 315px; margin-left: 10px; overflow: scroll;">
+				<div class="card col-md-8 mb-4 VOIXBODERLINE" style="width: 65.666667% !important; border-radius: 10px;">
+					<div class="scroll" style="height: 315px; margin-left: 10px; overflow: scroll;">
 						<h2>제목: ${al.altitle}</h2>
 						<h5>아티스트: ${al.alartist}</h5>
 						<p>장르: ${al.algenre}</p>
@@ -57,19 +80,19 @@
 			</div>
 		</c:forEach>
 
-		<div class="card col mb-8">
+		<div class="card col mb-8 VOIXBODERLINE" style="border-radius: 10px;" >
 
 
 			<div class="m-2">
-				<input placeholder="주소" class="formInput" type="text" id="Address" name="Address" style="width: 80%;">
-				<button type="button" class="mb-2" onclick="PostCode()">주소찾기</button>
+				<input placeholder="주소" class="formInput" type="text" id="Address" name="Address" style="width: 87%; border: 1px solid; border-radius: 10px;">
+				<button type="button" class="mb-2 VoixBtn" onclick="PostCode()" style="font-size: 20px; border-radius: 10px;">주소찾기</button>
 			</div>
-			<input placeholder="상세주소" class="formInput m-2" type="text" id="DetailAddress" name="DetailAddress" style="width: 80%;">
-			<input type="text" placeholder="받는사람" class="m-2" value="${mid}" style="width: 80%;">
+			<input placeholder="상세주소" class="formInput m-2" type="text" id="DetailAddress" name="DetailAddress" style="width: 80%; border: 1px solid; border-radius: 10px;">
+			<input type="text" placeholder="받는사람" class="m-2" value="${mid}" style="width: 20%; border: 0 solid">
 
 		</div>
 
-		<button type="button" style="align-items: center;" onclick="goPay()">결제하기</button>
+		<button type="button" class="VoixBtn m-2" style="align-items: center; width: 20%; height: 20%; font-size: 20px; border-radius: 10px;" onclick="goPay()">결제하기</button>
 
 	</div>
 
