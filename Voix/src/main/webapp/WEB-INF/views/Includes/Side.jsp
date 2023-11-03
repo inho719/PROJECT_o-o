@@ -1,5 +1,3 @@
-
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,10 +15,13 @@
 	color: #5e504e;
 
 }
-.hyperLinkStyle {
-	text-decoration: none;
-	color: inherit;
+.sideBanner {
+  position: absolute;
+  right: 500px;
+  top: 300px;
 }
+
+
 </style>
 
 
@@ -28,9 +29,10 @@
 <div class="col-lg-3">
 
 	<c:choose>
+	
 		<c:when test="${sessionScope.loginId == null }">
-			<!-- Search widget-->
-			<div class="card mb-4">
+			<!-- Search widget-->			
+			<div class="card mb-3">
 				<div class="card-header" style="text-align: center;">로그인 후 이용
 					해주세요!</div>
 				<div class="card-body">
@@ -39,6 +41,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</c:when>
 
 		<c:otherwise>
@@ -165,6 +168,12 @@
 							</div>
 						</div>
 					</div>
+					<div class="sideBanner">
+					<button style="margin-left: 7px; border-radius: 50%; background-color: #ede9e7; height: 100px; width: 100px; border: 1px solid #5e504e;" onclick="chatPage()">
+					  <i class="fa-solid fa-comments  fa-3x" style="color: #44db1a;"></i>
+					</button>
+
+					</div>					
 					</c:when>
 					</c:choose>
 
@@ -205,15 +214,16 @@
 
 			</c:choose>
 
-
+			 
+			  
 		</c:otherwise>
-
 	</c:choose>
 
 </div>
 <div class="playerDiv d-none" id="playerDiv" >
 
 </div>
+<script src="https://kit.fontawesome.com/acc1ccb443.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -354,7 +364,7 @@ if (${sessionScope.rankState == 'BL'}) {
 
                 // Set data-nwcode as a custom data attribute
                 BlogHitItem.setAttribute("data-bgcode", hitBlog.BGCODE);
-                BlogHitItem.setAttribute("class","hyperLinkStyle");
+
                 BlogHitItem.textContent = (i + 1) + ". " + hitBlog.BGTITLE; // Adding the number
                 BlogHitItem.onclick = function () {
                     // Define an onclick function
@@ -373,6 +383,25 @@ if (${sessionScope.rankState == 'BL'}) {
         },
     });
 }
+</script>
+
+<script type="text/javascript">
+// 기본 위치(top)값
+var floatPosition = parseInt($(".sideBanner").css('top'))
+
+// scroll 인식
+$(window).scroll(function() {
+  
+    // 현재 스크롤 위치
+    var currentTop = $(window).scrollTop();
+    var bannerTop = currentTop + floatPosition + "px";
+
+    //이동 애니메이션
+    $(".sideBanner").stop().animate({
+      "top" : bannerTop
+    }, 500);
+
+}).scroll();
 </script>
 
 <link rel="stylesheet"
