@@ -299,7 +299,7 @@ if (${sessionScope.rankState == 'NW'}) {
         success: function (result) {
             var newsHitDiv = document.getElementById("NewsHit");
 
-            for (let i = 0; i < result.length; i++) {
+            for (let i = 0; i < Math.min(15, result.length); i++) {
                 var hitNews = result[i];
 
                 // Create a new div element
@@ -338,7 +338,7 @@ if (${sessionScope.rankState == 'BL'}) {
         success: function (result) {
             var BlogHitDiv = document.getElementById("BlogHit");
 
-            for (let i = 0; i < result.length; i++) {
+            for (let i = 0; i < Math.min(15, result.length); i++) {
                 var hitBlog = result[i];
 
                 // Create a new div element
