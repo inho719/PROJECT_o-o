@@ -33,13 +33,13 @@ table, tr, td {
     "id="cbx_chkAll" onchange="toggleAllCheckboxes()" />모두선택
 	<form action="DeleteCartList" method="post">
 		<c:forEach items="${CartList}" var="CartList" varStatus="loop">
-			<div class="card m-2 CartList" id="CartList${loop.index}" data-caqty="${CartList.CAQTY}" data-alsaleprice="${CartList.ALSALEPRICE}" data-alcode="${CartList.CAALCODE }"data-cacode="${CartList.CACODE}">
+			<div class="card m-2 CartList VOIXBODERLINE" id="CartList${loop.index}" style="border-radius: 10px;" data-caqty="${CartList.CAQTY}" data-alsaleprice="${CartList.ALSALEPRICE}" data-alcode="${CartList.CAALCODE }"data-cacode="${CartList.CACODE}">
 				<div class="row">
 					<div class="col-md-1 m-1 align-self-center text-center">
 						<input type="checkbox" style="width: 20px;height: 20px;" name="CartCheck" id="cartCheck${loop.index}" onchange="updateTotalPrice()" value="${CartList.CACODE}">
 					</div>
 					<div class="col-md-10 m-2">
-						<table class="borderb VOIXBODERLINE" style="border-radius: 10px;">
+						<table class="borderb" style="border: 0 solid;">
 							<tr>
 								<td rowspan="2" style="width: 150px;height:150px;">
 								<img alt="앨범포스터" src="${CartList.ALIMG}" 
