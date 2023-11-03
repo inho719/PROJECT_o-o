@@ -110,9 +110,26 @@
 						<!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-						<li><a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e">
-								<i class="fa">${pageNum }</i>
-							</a></li>
+						<c:choose>
+							<c:when test="${pageNum == param.page}">
+									<li>
+										<a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e; background-color: lightgray;">
+											<i class="fa">${pageNum }</i>
+										</a>
+									</li>
+							
+							</c:when>
+							<c:otherwise>
+									<li>
+										<a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e">
+											<i class="fa">${pageNum }</i>
+										</a>
+									</li>							
+							</c:otherwise>
+						</c:choose>
+						
+						
+						
 					</c:forEach>
 					<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 						<li><a href='<c:url value="/ChartPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
