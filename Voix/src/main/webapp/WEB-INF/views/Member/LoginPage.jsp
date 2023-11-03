@@ -26,7 +26,7 @@
 						<input placeholder="아이디" class="formInput p-1" type="text" name="mid" id="inputId">
 					</div>
 					<div class="row m-1">
-						<input placeholder="비밀번호" class="formInput p-1" type="text" name="mpw" id="inputPw">
+						<input placeholder="비밀번호" class="formInput p-1" type="password" name="mpw" id="inputPw">
 					</div>
 					<div class="row m-1">
 						<input class="formInput p-1 btn btn-primary" type="submit" value="로그인">
