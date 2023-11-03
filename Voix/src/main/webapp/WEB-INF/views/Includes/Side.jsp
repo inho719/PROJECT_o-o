@@ -17,7 +17,10 @@
 	color: #5e504e;
 
 }
-
+.hyperLinkStyle {
+	text-decoration: none;
+	color: inherit;
+}
 </style>
 
 
@@ -351,7 +354,7 @@ if (${sessionScope.rankState == 'BL'}) {
 
                 // Set data-nwcode as a custom data attribute
                 BlogHitItem.setAttribute("data-bgcode", hitBlog.BGCODE);
-
+                BlogHitItem.setAttribute("class","hyperLinkStyle");
                 BlogHitItem.textContent = (i + 1) + ". " + hitBlog.BGTITLE; // Adding the number
                 BlogHitItem.onclick = function () {
                     // Define an onclick function
