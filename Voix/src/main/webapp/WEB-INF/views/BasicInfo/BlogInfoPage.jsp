@@ -78,12 +78,12 @@
 					<h2>${bg.bgtitle}</h2>
 				</div>
 				<div class="row">
-				<c:if test="${bg.bgimg != null }">
-					<img style="width: 350px; height: 300px object-fit: cover; margin-top: 4px;" alt="블로그사진" src="${bg.bgimg }">
-				</c:if>
-				<c:if test="${bg.bgimg == null }">
-					<img class="AlbumImg" style="width: 350px; height: 300px;" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
-				</c:if>
+					<c:if test="${bg.bgimg != null }">
+						<img style="width: 350px; height: 300px object-fit: cover; margin-top: 4px;" alt="블로그사진" src="${bg.bgimg }">
+					</c:if>
+					<c:if test="${bg.bgimg == null }">
+						<img class="AlbumImg" style="width: 350px; height: 300px object-fit: cover; margin-top: 4px;" src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg" alt="..." />
+					</c:if>
 					<div class="card col-md-8 my-md-2 mx-md-3 ">
 						<p>${bg.bgcontent }</p>
 					</div>
@@ -91,42 +91,42 @@
 				<span style="font-size: 13px;">작성자: ${bg.bgwriter } // 작성일: ${bg.bgdate } // 조회수: ${bg.bgbighit }</span>
 			</div>
 
-		<div class="row">
+			<div class="row">
 
-			<div class="textdiv2" style=" height: 500px; width: 50%;">
-				<div class="replyArea">
-					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
-						<c:forEach items="${reviewList}" var="re">
-							<div class="meminfo">
-								<span>작성자: ${re.REWRITER} </span>
-								<div style="margin-top: 5px; margin-bottom: 5px;">
-									<!--
+				<div class="textdiv2" style="height: 500px; width: 50%;">
+					<div class="replyArea">
+						<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
+							<c:forEach items="${reviewList}" var="re">
+								<div class="meminfo">
+									<span>작성자: ${re.REWRITER} </span>
+									<div style="margin-top: 5px; margin-bottom: 5px;">
+										<!--
 									<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
-									-->	
-									<div class="textdiv w-100" style="font-size: large; border:1px solid #cccc;">${re.RECONTENT}</div>
+									-->
+										<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc;">${re.RECONTENT}</div>
+									</div>
+									<c:if test="${sessionScope.loginId == re.REWRITER}">
+										<button type="button" onclick="location.href='/deleteBlogReview?recode=${re.RECODE}&bgcode=${bg.bgcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
+									</c:if>
+									<div class="small text-muted">작성시간: ${re.REDATE}</div>
 								</div>
-								<c:if test="${sessionScope.loginId == re.REWRITER}">
-									<button type="button" onclick="location.href='/deleteBlogReview?recode=${re.RECODE}&bgcode=${bg.bgcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
-								</c:if>
-								<div class="small text-muted">작성시간: ${re.REDATE}</div>
-							</div>
-							<hr>
-						</c:forEach>
+								<hr>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
+
+				<c:if test="${sessionScope.loginId != null }">
+					<div class="reviewWrite" style="width: 50%">
+						<form action="BlogRegistReview" class="my-3" method="post">
+							<input type="text" name="restate" value="${bg.bgcode }" style="display: none">
+							<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
+							<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
+						</form>
+					</div>
+					<hr>
+				</c:if>
 			</div>
-			
-			<c:if test="${sessionScope.loginId != null }">
-				<div class="reviewWrite" style="width: 50%">
-					<form action="BlogRegistReview" class="my-3" method="post">
-						<input type="text" name="restate" value="${bg.bgcode }" style="display: none">
-						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
-						<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
-					</form>
-				</div>
-				<hr>
-			</c:if>
-	</div>
 		</div>
 	</div>
 
