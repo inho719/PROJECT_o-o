@@ -52,18 +52,18 @@
 	width: 10px;
 }
 
-.scroll::-webkit-scrollbar{
+.scroll::-webkit-scrollbar {
 	width: 10px;
 }
 
-.scroll::-webkit-scrollbar-thumb{
+.scroll::-webkit-scrollbar-thumb {
 	background-color: #5e504e;
 	border-radius: 10px;
 	background-clip: padding-box;
 	border: 2px solid transparent;
 }
 
-.scroll::-webkit-scrollbar-track{
+.scroll::-webkit-scrollbar-track {
 	background-color: #ede9e7;
 	border-radius: 10px;
 	box-shadow: inset 0px 0px 5px white;
@@ -99,13 +99,15 @@
 					<c:choose>
 						<c:when test="${sessionScope.SGLIKED eq 'true'}">
 							<div class="like_article" style="position: absolute; right: 20px; bottom: 20px;" onclick="like('${ChartInfoList.sgcode}', this)">
-								<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+								<a class="prdLike" style="cursor: pointer;">
+									<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
 								</a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="like_article" style="position: absolute; right: 20px; bottom: 20px;" onclick="like('${ChartInfoList.sgcode}', this)">
-								<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
+								<a class="prdLike" style="cursor: pointer;">
+									<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
 								</a>
 							</div>
 
@@ -122,7 +124,7 @@
 				</div>
 
 				<div class="card col mb-4 VOIXBODERLINE " style="height: 515px; border-radius: 10px;">
-					<div  style="text-align: center; background-color: #5e504e; color: #ede9e7; border: 1px solid #5e504e; border-radius: 10px;">가사</div>
+					<div style="text-align: center; background-color: #5e504e; color: #ede9e7; border: 1px solid #5e504e; border-radius: 10px;">가사</div>
 					<div class="scroll" style="height: 515px; overflow: scroll; margin-left: 10px;">${ChartInfoList.sglyric}</div>
 				</div>
 
@@ -141,7 +143,7 @@
 									<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc;">${re.RECONTENT}</div>
 								</div>
 								<c:if test="${sessionScope.loginId == re.REWRITER}">
-									<button type="button" onclick="location.href='/deleteChartReview?recode=${re.RECODE}&sgcode=${SgInfo.sgcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
+									<button type="button" onclick="location.href='/deleteChartReview?recode=${re.RECODE}&sgcode=${SgInfo.sgcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
 								</c:if>
 								<div class="small text-muted">작성시간: ${re.REDATE}</div>
 							</div>
