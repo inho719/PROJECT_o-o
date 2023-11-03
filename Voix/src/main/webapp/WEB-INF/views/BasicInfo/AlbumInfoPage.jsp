@@ -50,6 +50,7 @@ button {
 .infoBox::-webkit-scrollbar {
 	width: 10px;
 }
+
 .textdiv2 {
 	height: 100%;
 	overflow: scroll;
@@ -94,7 +95,6 @@ button {
 	<div class="container">
 		<div>
 			<div class="row">
-
 				<c:if test="${ALInfo.alimg != null }">
 					<div class="col-md-4 mb-4 " style="width: 490px; height: 490px; margin-right: 7px;">
 						<img style="width: 480px; height: 480px;" class="AlbumImg VOIXBODERLINE" src="${ALInfo.alimg}" alt="..." />
@@ -105,7 +105,7 @@ button {
 						<img class="AlbumImg" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
 					</div>
 				</c:if>
-				<div class="card col-md-7 mb-4 VOIXBODERLINE" style="font-size: x-large; height: 480px; width: 800px; border-radius: 10px;">
+				<div class="card col-md-7 mb-4 VOIXBODERLINE" style="font-size: x-large; height: 480px; width: 800px; border-radius: 10px; background-color: whitesmoke;">
 					<div class="card-title text-lg-center" style="height: 65px;">
 						<p style="font-size: xx-large; margin-top: 15px;">${ALInfo.alartist}</p>
 					</div>
@@ -125,7 +125,7 @@ button {
 
 		<div>
 			<div class="row">
-				<div class="card col-md-8 mb-2 p-3 VOIXBODERLINE" style="font-size: x-large;">
+				<div class="card col-md-8 mb-2 p-3 VOIXBODERLINE" style="font-size: x-large; background-color: whitesmoke">
 					<div class="mb-2 m-3">정가 : ${ALInfo.alprice}원</div>
 					<c:forEach items="${AlbumInfoList}" var="AlbumInfoList">
 						<div class="mb-2 m-3">
@@ -134,24 +134,22 @@ button {
 							<!--내일 이거 해야함 체크 표시 해야 나오게  -->
 							<input id="selectQty_${AlbumInfoList.alcode}" type="number" value="1" min="1" placeholder="수량" class="disNone selectbox">
 							<c:choose>
-									<c:when test="${AlbumInfoList1.ALLIKED eq 'true'}">
-										<div class="like_article"
-											onclick="like('${AlbumInfoList.alcode}', this)">
-											<a class="prdLike" style="cursor: pointer;"> <img alt=""
-												src="/resources/assets/heart.png" style="width: 30px;">
-											</a>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="like_article"
-											onclick="like('${AlbumInfoList.alcode}', this)">
-											<a class="prdLike" style="cursor: pointer;"> <img alt=""
-												src="/resources/assets/blankheart.png" style="width: 30px;">
-											</a>
-										</div>
+								<c:when test="${AlbumInfoList1.ALLIKED eq 'true'}">
+									<div class="like_article" onclick="like('${AlbumInfoList.alcode}', this)">
+										<a class="prdLike" style="cursor: pointer;">
+											<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+										</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="like_article" onclick="like('${AlbumInfoList.alcode}', this)">
+										<a class="prdLike" style="cursor: pointer;">
+											<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
+										</a>
+									</div>
 
-									</c:otherwise>
-								</c:choose>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</c:forEach>
 				</div>
@@ -169,51 +167,37 @@ button {
 
 		<div class="row">
 
-		<div class="textdiv2" style="height: 500px; width: 50%;">
-			<div class="replyArea">
-				<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
-					<c:forEach items="${reviewList}" var="re">
-						<div class="meminfo">
-							<span>작성자: ${re.REWRITER} </span>
-							<div style="margin-top: 5px; margin-bottom: 5px;">
-								<div class="textdiv w-100" style="font-size: large; border:1px solid #cccc;">${re.RECONTENT}</div>
-								<!--
-								<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
-								-->
+			<div class="textdiv2" style="height: 500px; width: 50%;">
+				<div class="replyArea">
+					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
+						<c:forEach items="${reviewList}" var="re">
+							<div class="meminfo">
+								<span>작성자: ${re.REWRITER} </span>
+								<div style="margin-top: 5px; margin-bottom: 5px;">
+									<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc;">${re.RECONTENT}</div>
+								</div>
+								<c:if test="${sessionScope.loginId == re.REWRITER}">
+									<button type="button" onclick="location.href='/albumDeleteReview?recode=${re.RECODE}&alcode=${ALInfo.alcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
+								</c:if>
+								<div class="small text-muted">작성시간: ${re.REDATE}</div>
 							</div>
-							<c:if test="${sessionScope.loginId == re.REWRITER}">
-								<button type="button" onclick="location.href='/albumDeleteReview?recode=${re.RECODE}&alcode=${ALInfo.alcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
-							</c:if>
-							<div class="small text-muted">작성시간: ${re.REDATE}</div>
-						</div>
-						<hr>
-					</c:forEach>
+							<hr>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
+			<c:if test="${sessionScope.loginId != null }">
+				<div class="replyWrite" style="width: 50%">
+					<form action="albumRegistReview" class="my-3" method="post">
+						<input type="text" name="restate" value="${ALInfo.alcode }" style="display: none">
+						<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
+						<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
+					</form>
+				</div>
+				<hr>
+			</c:if>
 		</div>
-		<c:if test="${sessionScope.loginId != null }">
-			<div class="replyWrite" style="width: 50%">
-				<form action="albumRegistReview" class="my-3" method="post">
-					<input type="text" name="restate" value="${ALInfo.alcode }" style="display: none">
-					<textarea class="w-100 reviewComment" name="recontent" placeholder="댓글을 작성해보세요." style="height: 445px; background-color: whitesmoke; border-radius: 7px;"></textarea>
-					<input class="btn w-100" style="background-color: #5e504e; color: white;" type="submit" value="댓글 등록">
-				</form>
-			</div>
-			<hr>
-		</c:if>
-		</div>
-
-
-
-
-
-
-
-
 	</div>
-
-
-
 
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
@@ -221,10 +205,14 @@ button {
 			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
+
+
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+
 	<script type="text/javascript">
       function is_checked(radio) {
 
@@ -240,7 +228,7 @@ button {
             
          }
       }
-      function formsubmit(url){ //   /장바구니, /결제
+      function formsubmit(url){ // 장바구니, 결제
         console.log(url);
         
         //let Qty = document.getElementById('').value;
@@ -253,11 +241,9 @@ button {
         }else if (url == "PayPage"){
           location.href= "/"+url+"?selAl="+checkEl.value+'_1';
         }
-          
-          
-   
       }
-   </script>
+  </script>
+
 	<script type="text/javascript">
     let loginId = '${sessionScope.loginId}';
     function like(alcode, element) {
