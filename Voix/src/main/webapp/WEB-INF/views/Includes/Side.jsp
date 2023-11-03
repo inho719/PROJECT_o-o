@@ -169,7 +169,7 @@
 						</div>
 					</div>
 					<div class="sideBanner">
-					<button style="margin-left: 7px; border-radius: 50%; background-color: #ede9e7; height: 100px; width: 100px; border: 1px solid #5e504e;" onclick="chatPage()">
+					<button style="margin-left: 7px; border-radius: 50%; background-color: #ede9e7; height: 100px; width: 100px; border: 3px solid #5e504e;" onclick="chatPage()">
 					  <i class="fa-solid fa-comments  fa-3x" style="color: #44db1a;"></i>
 					</button>
 
