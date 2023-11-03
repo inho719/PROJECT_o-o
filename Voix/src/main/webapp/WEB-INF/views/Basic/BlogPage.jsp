@@ -62,7 +62,7 @@
 							<c:if test="${BlogListMap.BGIMG == null }">
 								<div class="BlogImg">
 									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
-										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="border-radius: 7px; width: 350px; height: 300px; object-fit: cover;" alt="..." />
+										<img class="" src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg" style="width: 350px; height: 300p object-fit: cover; border-radius: 7px;" alt="..." />
 									</a>
 								</div>
 							</c:if>
