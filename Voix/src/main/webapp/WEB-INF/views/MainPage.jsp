@@ -45,14 +45,20 @@
 .sliderImg{
 	width: 100%;
 	height: auto;
-	
 	object-fit: cover;
+	display: block !important;
+	width: 100%; 
+ 	position: absolute; 
+ 	top: 50%;
+ 	left: 50%; 
+ 	transform: translate(-50%, -50%);
 	
 }
 
 .carousel-item{
 	height: 460px;
 }
+
 </style>
 
 
