@@ -92,22 +92,20 @@
 
 				<div class="card col-md-8 mb-4 VOIXBODERLINE" style="border-radius: 10px;">
 					<p>${ChartInfoList.sgartitle}</p>
-					<p>타이틀:${ChartInfoList.sgtitle}</p>
+					<p id="sgtitle">${ChartInfoList.sgtitle}</p>
 					<p>${ChartInfoList.sginfo}</p>
 					<p>아티스트:${ChartInfoList.sgartist}</p>
 
 					<c:choose>
 						<c:when test="${sessionScope.SGLIKED eq 'true'}">
 							<div class="like_article" style="position: absolute; right: 20px; bottom: 20px;" onclick="like('${ChartInfoList.sgcode}', this)">
-								<a class="prdLike" style="cursor: pointer;">
-									<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+								<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
 								</a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="like_article" style="position: absolute; right: 20px; bottom: 20px;" onclick="like('${ChartInfoList.sgcode}', this)">
-								<a class="prdLike" style="cursor: pointer;">
-									<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
+								<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
 								</a>
 							</div>
 
@@ -120,7 +118,7 @@
 			<div class="row">
 
 				<div class="col mb-4" style="margin-right: -10px;">
-					<iframe id="scroller" class="scroll" src="${ChartInfoList.sgmvurl}" width="1000" height="515"></iframe>
+					<div id="player"></div>
 				</div>
 
 				<div class="card col mb-4 VOIXBODERLINE " style="height: 515px; border-radius: 10px;">
@@ -143,7 +141,7 @@
 									<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc;">${re.RECONTENT}</div>
 								</div>
 								<c:if test="${sessionScope.loginId == re.REWRITER}">
-									<button type="button" onclick="location.href='/deleteChartReview?recode=${re.RECODE}&sgcode=${SgInfo.sgcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
+									<button type="button" onclick="location.href='/deleteChartReview?recode=${re.RECODE}&sgcode=${SgInfo.sgcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
 								</c:if>
 								<div class="small text-muted">작성시간: ${re.REDATE}</div>
 							</div>
@@ -220,44 +218,82 @@
 			}
 		}
 	</script>
+	</script>
+	<script src="https://www.youtube.com/iframe_api"></script>
 
-	<!-- 스크롤바 설정 못함
-	 // 데이터 전송
-		     // data: 전달할 메시지나 데이터
-		     // ports: 메시지 포트(생략가능)
-		     // targetOrigin: 타겟 도메인, 특정 도메인이 아니면 * 사용 가능
-		     window.postMessage(data, [ports], targerOrigin)
-		
-		     // 데이터 수신
-		     window.onmessage = function(e){
-		     	if(e.origin === "https://보낸곳의도메인주소"){
-		     		// 처리
-		     		console.log(e.data);
-		     	}
-		     }
-		     // 그외 데이터 수신
-		     // window.addEventListener("message", 컨트롤함수, true);
-		     // window.attachEvent("onmessage", 컨트롤함수);
-	
-	 -->
-	<!--  
-	<script>
-        var iframe = document.getElementById('scroller'); 
-        var iframeContentWindow = iframe.contentWindow;
+	<script type="text/javascript">
+		let videoId = null;
+		$(function() {
 
-        //스크롤 위치 지정
-        var targetScrollX = 200; 
-        var targetScrollY = 300; 
+			var player = document.querySelector("#player");
 
-        iframe.onload = function() {
-            // 로드될 때 위치 설정
-            console.log(iframe)
-            iframe.scrollTo(targetScrollX, targetScrollY);
-        };
+			var searchKeyWord = document.getElementById('sgtitle').innerText;
 
-    </script>
-	-->
+			console.log(searchKeyWord);
+			$.ajax({
+				type : 'get',
+				url : 'https://www.googleapis.com/youtube/v3/search',
+				data : ({
 
+					'part' : 'snippet',
+					'maxResult' : '1',
+					'q' : searchKeyWord,
+					'type' : 'video',
+					'key' : 'AIzaSyDwUScxFiKbqnG1VbtM33itvJtDmaIdKI8'
+				}),
+				dataType : 'json',
+				async : false,
+				success : function(result) {
+					console.log(result);
+					console.log(result.items[0].id.videoId);
+					videoId = result.items[0].id.videoId;
+					return videoId;
+				}
+			});
+		});
+		function onYouTubeIframeAPIReady(result) {
+
+			player = new YT.Player('player', {
+				height : '100%',
+				width : '1000',
+				videoId : videoId,
+				playerVars : {
+					'controls' : 0,
+				},
+				events : {
+					'onReady' : onPlayerReady,
+					'onStateChange' : onPlayerStateChange,
+					'onError' : onPlayerError
+				}
+			});
+			console.log(player);
+
+		}
+
+		function onPlayerReady(event) {
+			event.target.setVolume(100);
+		}
+
+		function onPlayerStateChange(event) {
+			if (event.data == YT.PlayerState.ENDED) {
+				// 동영상이 종료되면 필요한 작업을 수행할 수 있습니다.
+			}
+		}
+
+		function onPlayerError(event) {
+			// 동영상 재생 중에 오류가 발생한 경우 처리할 수 있습니다.
+		}
+
+		function playVideo() {
+			if (player) {
+				player.playVideo();
+			}
+		}
+
+		function stopVideo() {
+			player.stopVideo();
+		}
+	</script>
 </body>
 
 </html>
