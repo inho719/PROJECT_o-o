@@ -55,14 +55,14 @@
 							<c:if test="${BlogListMap.BGIMG != null }">
 								<div class="BlogImg">
 									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
-										<img class="" src="${BlogListMap.BGIMG}" alt="..." style="width: 350px; height: 300p object-fit: cover; border-radius: 7px;" />
+										<img class="" src="${BlogListMap.BGIMG}" alt="..." style="width: 350px; height: 300px object-fit: cover; border-radius: 7px;" />
 									</a>
 								</div>
 							</c:if>
 							<c:if test="${BlogListMap.BGIMG == null }">
 								<div class="BlogImg">
 									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
-										<img class="" src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg" style="width: 350px; height: 300p object-fit: cover; border-radius: 7px;" alt="..." />
+										<img class="" src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg" style="width: 350px; height: 300px object-fit: cover; border-radius: 7px;" alt="..." />
 									</a>
 								</div>
 							</c:if>
