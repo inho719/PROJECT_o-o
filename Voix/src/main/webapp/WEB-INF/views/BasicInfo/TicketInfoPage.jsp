@@ -86,9 +86,9 @@ button {
 			<div class="row">
 
 				<div class="col-md-5 mb-4">
-					<img alt="공연포스터" src="${tk.tkimg}" style="width: 100%;" class="card-img-top">
+					<img alt="공연포스터" src="${tk.tkimg}" style="width: 100%;" class="card-img-top VOIXBODERLINE">
 				</div>
-				<div class="card col-md-7 mb-4">
+				<div class="card col-md-7 mb-4 VOIXBODERLINE" style="border-radius: 10px;">
 					<ul class="infoo">
 						<li class="infooItem"><strong class="infooLabel">공연제목</strong>
 							<div class="infooDesc">
@@ -131,12 +131,12 @@ button {
 
 		<div>
 			<div class="row">
-				<div class="col-md-10 mb-2" id="mapInfo">
+				<div class="col-md-10 mb-2 VOIXBODERLINE" id="mapInfo">
 					<div id="map" style="width: 100%; height: 450px; border-radius: 10px;"></div>
 				</div>
 				<div class="col-md-2 mb-2 " style="display: inline-block;">
 					<div style="height: 100%; display: grid; place-items: center;">
-						<button class="btn btn-success" style="font-size: x-large; height: 100%;" onclick="location.href='${tk.tkurl}'">바로가기</button>
+						<button class="btn VOIXBODERLINE" style="font-size: x-large; height: 100%; color: #ede9e7; background-color: #5e504e" onclick="location.href='${tk.tkurl}'">바로가기</button>
 					</div>
 				</div>
 			</div>
