@@ -102,7 +102,7 @@
 										<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; background-color: whitesmoke;">${re.RECONTENT}</div>
 									</div>
 									<c:if test="${sessionScope.loginId == re.REWRITER}">
-										<button type="button" onclick="location.href='/deleteNewsReview?recode=${re.RECODE}&nwcode=${nw.nwcode}'" class="btn btn-danger" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right;">댓글 삭제</button>
+										<button type="button" onclick="location.href='/deleteNewsReview?recode=${re.RECODE}&nwcode=${nw.nwcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
 									</c:if>
 									<div class="small text-muted" style="font-size: 12px;">작성시간: ${re.REDATE}</div>
 								</div>
