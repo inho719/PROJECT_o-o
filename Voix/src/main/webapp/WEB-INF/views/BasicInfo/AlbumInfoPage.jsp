@@ -96,8 +96,8 @@ button {
 			<div class="row">
 
 				<c:if test="${ALInfo.alimg != null }">
-					<div class="col-md-4 mb-4" style="width: 490px; height: 490px; margin-right: 7px;">
-						<img style="width: 480px; height: 480px;" class="AlbumImg" src="${ALInfo.alimg}" alt="..." />
+					<div class="col-md-4 mb-4 " style="width: 490px; height: 490px; margin-right: 7px;">
+						<img style="width: 480px; height: 480px;" class="AlbumImg VOIXBODERLINE" src="${ALInfo.alimg}" alt="..." />
 					</div>
 				</c:if>
 				<c:if test="${ALInfo.alimg == null }">
@@ -105,7 +105,7 @@ button {
 						<img class="AlbumImg" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" alt="..." />
 					</div>
 				</c:if>
-				<div class="card col-md-7 mb-4" style="font-size: x-large; height: 480px; width: 800px;">
+				<div class="card col-md-7 mb-4 VOIXBODERLINE" style="font-size: x-large; height: 480px; width: 800px; border-radius: 10px;">
 					<div class="card-title text-lg-center" style="height: 65px;">
 						<p style="font-size: xx-large; margin-top: 15px;">${ALInfo.alartist}</p>
 					</div>
@@ -125,7 +125,7 @@ button {
 
 		<div>
 			<div class="row">
-				<div class="card col-md-8 mb-2 p-3" style="font-size: x-large;">
+				<div class="card col-md-8 mb-2 p-3 VOIXBODERLINE" style="font-size: x-large;">
 					<div class="mb-2 m-3">정가 : ${ALInfo.alprice}원</div>
 					<c:forEach items="${AlbumInfoList}" var="AlbumInfoList">
 						<div class="mb-2 m-3">
@@ -157,10 +157,10 @@ button {
 				</div>
 				<div class=" col-md-4 mb-2 " style="display: inline-block; align-self: center;">
 					<div>
-						<button type="submit" class="btn btn-success mb-4" style="font-size: x-large;" onclick="formsubmit('InsertCartPage')">장바구니 바로가기</button>
+						<button type="submit" class="btn mb-4" style="font-size: x-large; color: #ede9e7; background-color: #5e504e" onclick="formsubmit('InsertCartPage')">장바구니 바로가기</button>
 					</div>
 					<div>
-						<button class="btn btn-success" style="font-size: x-large;" onclick="formsubmit('PayPage')">결제 바로가기</button>
+						<button class="btn" style="font-size: x-large; color: #ede9e7; background-color: #5e504e" onclick="formsubmit('PayPage')">결제 바로가기</button>
 					</div>
 				</div>
 
