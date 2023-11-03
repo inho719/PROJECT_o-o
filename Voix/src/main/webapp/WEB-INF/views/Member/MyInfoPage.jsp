@@ -84,7 +84,6 @@
 					</div>
 					<hr>
 
-
 					<!-- 찜 목록 시작 -->
 					<div id="LickList" style="display: none;">
 						<h4 style="margin-left: 7px;">뉴스</h4>
@@ -119,8 +118,15 @@
 							<c:forEach items="${blogLikeList}" var="blog">
 								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="blogImg">
-										<a href="#블로그코드">
-											<img style="width: 175px; height: 265px; border-radius: 7px;" src="${blog.BGIMG}" alt="..." />
+										<a href="#뉴스코드">
+											<c:choose>
+												<c:when test="${empty blog.BGIMG}">
+													<img class="" style="width: 180px; height: 265px; border-radius: 7px;" src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg" alt="..." />
+												</c:when>
+												<c:otherwise>
+													<img class="" style="width: 180px; height: 265px; border-radius: 7px;" src="${blog.BGIMG}" alt="..." />
+												</c:otherwise>
+											</c:choose>
 										</a>
 									</div>
 									<div class="BlogText" style="flex: 1;">
@@ -206,7 +212,7 @@
 								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 									<div class="TicketImg">
 										<a href="#티켓코드">
-											<img style="width: 180px; height: 260px; border-radius: 7px;" src="${tickets.TKIMG}" alt="..." />
+											<img style="width: 180px; height: 265px; border-radius: 7px;" src="${tickets.TKIMG}" alt="..." />
 										</a>
 									</div>
 									<div class="TicketContents w-100">
@@ -237,123 +243,122 @@
 
 					<!-- 내가 쓴 댓글 목록 시작 -->
 					<div id="CommentList" style="display: none;">
+
 						<h4 style="margin-left: 7px;">뉴스</h4>
 						<div class="card mb-4">
 							<c:forEach items="${newsReviewList}" var="news">
-								<div class="NewsImg">
-									<a href="#뉴스코드">
-										<img class="" style="width: 350px; height: 200px;" src="${news.NWIMG}" alt="..." />
-									</a>
-								</div>
-								<div class="NewsDiv" style="display: flex;">
+								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 220px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+									<div class="NewsImg">
+										<a href="#뉴스코드">
+											<img class="" style="width: 350px; height: 200px; border-radius: 7px;" src="${news.NWIMG}" alt="..." />
+										</a>
+									</div>
 									<div class="NewsText" style="flex: 1;">
-										<h4>${news.NWTITLE}</h4>
-										<div class="NewsTitle">
-											<h4>${news.REWRITER}</h4>
+										<div class="NewsTitle" style="margin-left: 7px; margin-top: 5px;">
+											<h4>${news.NWTITLE}</h4>
 										</div>
 										<div class="NewsContents p-2">
 											<p class="card-text">${news.RECONTENT}</p>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a class="Views" style="text-decoration-line: none; color: gray;">${news.REDATE }</a>
+											<a class="Views" style="text-decoration-line: none; color: gray;">작성 시간: ${news.REDATE}</a>
 										</div>
 									</div>
 								</div>
-								<hr>
 							</c:forEach>
 						</div>
 
 						<h4 style="margin-left: 7px;">블로그</h4>
 						<div class="card mb-4">
 							<c:forEach items="${blogReviewList}" var="blog">
-								<div class="BlogImg">
-									<a href="#뉴스코드">
-										<img class="" style="width: 350px; height: 200px;" src="${blog.BGIMG}" alt="..." />
-									</a>
-								</div>
-								<div class="NewsDiv" style="display: flex;">
+								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+									<div class="BlogImg">
+										<a href="#뉴스코드">
+											<c:choose>
+												<c:when test="${empty blog.BGIMG}">
+													<img class="" style="width: 180px; height: 265px; border-radius: 7px;" src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg" alt="..." />
+												</c:when>
+												<c:otherwise>
+													<img class="" style="width: 180px; height: 265px; border-radius: 7px;" src="${blog.BGIMG}" alt="..." />
+												</c:otherwise>
+											</c:choose>
+										</a>
+									</div>
 									<div class="NewsText" style="flex: 1;">
-										<h4>${blog.BGTITLE }</h4>
-										<div class="NewsTitle">
-											<h4>${blog.REWRITER}</h4>
+										<div class="NewsTitle" style="margin-left: 7px; margin-top: 5px;">
+											<h4>${blog.BGTITLE }</h4>
 										</div>
 										<div class="NewsContents p-2">
 											<p class="card-text">${blog.RECONTENT}</p>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a class="Views" style="text-decoration-line: none; color: gray;">${blog.REDATE }</a>
+											<a class="Views" style="text-decoration-line: none; color: gray;">작성 시간: ${blog.REDATE}</a>
 										</div>
 									</div>
 								</div>
-								<hr>
 							</c:forEach>
 						</div>
 
 						<h4 style="margin-left: 7px;">앨범</h4>
 						<div class="card mb-4">
 							<c:forEach items="${albumsReviewList}" var="album">
-								<div class="AlbumImg">
-									<a href="#뉴스코드">
-										<img class="" style="width: 350px; height: 200px;" src="${album.ALIMG}" alt="..." />
-									</a>
-								</div>
-								<div class="NewsDiv" style="display: flex;">
+								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 215px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+									<div class="AlbumImg">
+										<a href="#뉴스코드">
+											<img class="" style="width: 200px; height: 200px;" src="${album.ALIMG}" alt="..." />
+										</a>
+									</div>
 									<div class="NewsText" style="flex: 1;">
-										<h4>${album.ALTITLE}</h4>
-										<div class="NewsTitle">
-											<h4>${album.REWRITER}</h4>
+										<div class="NewsTitle" style="margin-left: 7px; margin-top: 5px;">
+											<h4>${album.ALTITLE}</h4>
 										</div>
 										<div class="NewsContents p-2">
 											<p class="card-text">${album.RECONTENT}</p>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a class="Views" style="text-decoration-line: none; color: gray;">${album.REDATE }</a>
+											<a class="Views" style="text-decoration-line: none; color: gray;">작성 시간: ${album.REDATE }</a>
 										</div>
 									</div>
 								</div>
-								<hr>
 							</c:forEach>
 						</div>
 
 						<h4 style="margin-left: 7px;">티켓</h4>
 						<div class="card mb-4">
 							<c:forEach items="${ticketReviewList}" var="ticket">
-								<div class="TicketImg">
-									<a href="#뉴스코드">
-										<img class="" style="width: 350px; height: 200px;" src="${ticket.TKIMG}" alt="..." />
-									</a>
-								</div>
-								<div class="NewsDiv" style="display: flex;">
+								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 280px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+									<div class="TicketImg">
+										<a href="#뉴스코드">
+											<img class="" style="width: 180px; height: 265px; border-radius: 7px;" src="${ticket.TKIMG}" alt="..." />
+										</a>
+									</div>
 									<div class="NewsText" style="flex: 1;">
-										<h4>${ticket.TKTITLE}</h4>
-										<div class="NewsTitle">
-											<h4>${ticket.REWRITER}</h4>
+										<div class="TicketTitle" style="margin-left: 7px; margin-top: 5px;">
+											<h4>${ticket.TKTITLE}</h4>
 										</div>
 										<div class="NewsContents p-2">
 											<p class="card-text">${ticket.RECONTENT}</p>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a class="Views" style="text-decoration-line: none; color: gray;">${ticket.REDATE }</a>
+											<a class="Views" style="text-decoration-line: none; color: gray;">작성 시간: ${ticket.REDATE }</a>
 										</div>
 									</div>
 								</div>
-								<hr>
 							</c:forEach>
 						</div>
 
 						<h4 style="margin-left: 7px;">랭킹</h4>
 						<div class="card mb-4">
 							<c:forEach items="${songsReviewList}" var="song">
-								<div class="SongsImg">
-									<a href="#뉴스코드">
-										<img class="" style="width: 350px; height: 200px;" src="${song.SGIMG}" alt="..." />
-									</a>
-								</div>
-								<div class="NewsDiv" style="display: flex;">
+								<div class="VOIXBODERLINE p-1 m-2" style="display: flex; height: 215px; overflow: scroll; border-radius: 7px; background-color: whitesmoke;">
+									<div class="SongsImg">
+										<a href="#뉴스코드">
+											<img class="" style="width: 200px; height: 200px; border-radius: 7px;" src="${song.SGIMG}" alt="..." />
+										</a>
+									</div>
 									<div class="NewsText" style="flex: 1;">
-										<h4>${song.SGTITLE}</h4>
-										<div class="NewsTitle">
-											<h4>${song.REWRITER}</h4>
+										<div class="TicketTitle" style="margin-left: 7px; margin-top: 5px;">
+											<h4>${song.SGTITLE}</h4>
 										</div>
 										<div class="NewsContents p-2">
 											<p class="card-text">${song.RECONTENT}</p>
@@ -363,12 +368,12 @@
 										</div>
 									</div>
 								</div>
-								<hr>
 							</c:forEach>
 						</div>
 					</div>
 					<!-- 내가 쓴 댓글 목록 끝 -->
 
+					<!-- 구매 내역 목록 시작 -->
 					<div id="OrderList" style="display: none;">
 						<h4 style="margin-left: 7px;">구매내역</h4>
 						<div class="">
@@ -394,6 +399,7 @@
 							</c:forEach>
 						</div>
 					</div>
+					<!-- 구매 내역 목록 끝 -->
 
 				</div>
 			</div>
