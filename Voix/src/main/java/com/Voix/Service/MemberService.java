@@ -349,4 +349,31 @@ public class MemberService {
 		return mdao.AlbumOrderList(loginId);
 	}
 
+	/*	내 정보 찜 취소 기능 시작	*/ 
+	public int removeLikeNews(String newsCode, String ID) {
+		System.out.println("내 정보 - 뉴스 찜 취소");
+		return mdao.removeLikeNews(newsCode, ID);
+	}
+
+	public int removeLikeBlog(String blogCode, String ID) {
+		System.out.println("내 정보 - 블로그 찜 취소");
+		return mdao.removeLikeBlog(blogCode, ID);
+	}
+
+	public int removeLikeAlbum(String albumCode, String ID) {
+		System.out.println("내 정보 - 엘범 찜 취소");
+		return mdao.removeLikeAlbum(albumCode, ID);
+	}
+
+	public int removeLikeSongs(String songsCode, String ID) {
+		System.out.println("내 정보 - 랭킹 찜 취소");
+		return mdao.removeLikeSongs(songsCode, ID);
+	}
+
+	public int removeLikeTicket(String ticketCode, String ID) {
+		System.out.println("내 정보 - 티켓 찜 취소");
+		return mdao.removeLikeTicket(ticketCode, ID);
+	}
+	/*	내 정보 찜 취소 기능 종료	*/ 
+
 }
