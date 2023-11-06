@@ -17,7 +17,7 @@
 }
 .sideBanner {
   position: absolute;
-  right: 500px;
+  right: 100px;
   top: 300px;
 }
 
