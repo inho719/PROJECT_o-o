@@ -382,12 +382,21 @@ public class MemberController {
 		mav.setViewName("/Member/naverLoginResult");
 		return mav;
 	}
+
 	
 	@RequestMapping(value="/memberJoin_naver")
-	public @ResponseBody int memberJoin_naver() {
+	public ModelAndView memberJoin_naver(RedirectAttributes ra) {
 		System.out.println(mem);
+		ModelAndView mav = new ModelAndView();
 		int insertResult = msvc.insertNaverLogin(mem);
-		return insertResult;
+		if(insertResult>0) {
+			ra.addFlashAttribute("msg", "로그인 성공.");
+			mav.setViewName("redirect:/naverLoginResult");			
+		}else {
+			ra.addFlashAttribute("msg", "로그인 실패.");
+			mav.setViewName("redirect:/naverLoginResult");
+		}
+		return mav;
 	}
 
 	@RequestMapping(value = "/naverPopup")
