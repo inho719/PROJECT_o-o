@@ -30,6 +30,9 @@ public class NewsController {
 
 	@Autowired
 	private NewsService nsvc;
+
+@Autowired
+	private ChartService csvc;
 	
 	@RequestMapping(value = "/NewsPage")
 	public ModelAndView News(HttpSession session, Criteria cri){
@@ -64,6 +67,9 @@ public class NewsController {
 				newsMap.put("NWLIKED", String.valueOf(isLiked));
 				
 			}
+			ArrayList<HashMap<String,String>> playlist = csvc.getPlayList(loginId);
+			System.out.println(playlist);
+			mav.addObject("playlist", playlist);
 		}
 		mav.addObject("list", list);
 		mav.addObject("pageMaker", pageMaker);
