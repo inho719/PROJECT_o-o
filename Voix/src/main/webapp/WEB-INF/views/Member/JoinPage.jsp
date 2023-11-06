@@ -108,7 +108,7 @@ input[name="Code"] {
 	border-radius: 4px;
 }
 
-input[type=file]::file-selector-button{
+input[type=file]::file-selector-button {
 	background-color: #5e504e;
 	border: 1px solid #5e504e;
 	border-radius: 10px;
@@ -128,31 +128,25 @@ input[type=file]::file-selector-button{
 				<form action="${pageContext.request.contextPath}/Join" method="post" enctype="multipart/form-data" onsubmit="return formCheck(this)">
 					<div>
 						<input placeholder="아이디" class="formInput p-1" type="text" name="Id" id="inputId" style="width: 75%; margin-bottom: 0px;">
-						<button type="button" class="IdCheck" onclick="checkId(this)" style="width: 20% ;background-color: #5e504e ; font-size: 13px;" >중복확인</button>
-						<p class="checkMsg mb-2" id="idMsg" >중복확인</p>
-						<input placeholder="비밀번호" class="formInput p-1" type="text" name="RePw">
-						<input placeholder="비밀번호 확인" class="formInput p-1" type="text" name="CkPw">
+						<button type="button" class="IdCheck" onclick="checkId(this)" style="width: 20%; background-color: #5e504e; font-size: 13px;">중복확인</button>
+						<p class="checkMsg mb-2" id="idMsg">중복확인</p>
+						<input placeholder="비밀번호" class="formInput p-1" type="text" name="RePw"> <input placeholder="비밀번호 확인" class="formInput p-1" type="text" name="CkPw">
 					</div>
 
 					<div>
-						<input placeholder="이름" class="formInput p-1" type="text" name="Name">
-						<img id="preview" style="width: 70px; height: 70px;" alt="">
-						<input id="fileInput" class="formInput p-1" type="file" name="mfile" placeholder="프로필 입력" style="border: none; width: 82%;">
+						<input placeholder="이름" class="formInput p-1" type="text" name="Name"> <img id="preview" style="width: 70px; height: 70px;" alt=""> <input id="fileInput" class="formInput p-1" type="file" name="mfile" placeholder="프로필 입력" style="border: none; width: 82%;">
 					</div>
 
 
 					<div>
 						<input placeholder="주소" class="formInput p-1" type="text" id="Address" name="Address" style="width: 75%;">
-						<button type="button" class="mb-2 VOIXBODERLINE" onclick="PostCode()" style="background-color: #5e504e; border-radius: 10px;" >주소찾기</button>
+						<button type="button" class="mb-2 VOIXBODERLINE" onclick="PostCode()" style="background-color: #5e504e; border-radius: 10px;">주소찾기</button>
 						<input placeholder="상세주소" class="formInput p-1" type="text" id="DetailAddress" name="DetailAddress">
 					</div>
 					<div>
 
 						<div class="row m-1">
-							<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디">
-							@
-							<input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인">
-							<select onchange="domainSelect(this)" style="width: 75%;">
+							<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디"> @ <input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인"> <select onchange="domainSelect(this)" style="width: 75%;">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
@@ -172,7 +166,7 @@ input[type=file]::file-selector-button{
 							<button type="button" class="mb-2 VOIXBODERLINE" onclick="mailCheck()" style="background-color: #5e504e; border-radius: 10px; width: 22%;">확인</button>
 							<span id="mail-check-warn"></span>
 						</div>
-							<button type="submit" class="VOIXBODERLINE" style="background-color: #5e504e; border-radius: 10px; width: 99% !important;">회원가입하기</button>
+						<button type="submit" class="VOIXBODERLINE" style="background-color: #5e504e; border-radius: 10px; width: 99% !important;">회원가입하기</button>
 
 					</div>
 				</form>
@@ -196,7 +190,10 @@ input[type=file]::file-selector-button{
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="resources/js/scripts.js"></script>
+<script src="resources/js/scripts.js">
+
+
+</script>
 
 <script type="text/javascript">
 	function PostCode() {
@@ -279,7 +276,9 @@ input[type=file]::file-selector-button{
 		});
 
 	}
-
+			
+	
+	console.log(myCheck);
 	function formCheck(obj) {
 		let idEl = obj.Id;
 		let pwEl = obj.RePw;
@@ -288,6 +287,8 @@ input[type=file]::file-selector-button{
 		let emDoEl = obj.memailDomain;
 		let naEl = obj.Name;
 		let AdEl = obj.Address;
+		
+
 		if (idEl.value.length == 0) {
 			alert('아이디를 입력해주세요');
 			idEl.focus();
@@ -325,6 +326,9 @@ input[type=file]::file-selector-button{
 		if (AdEl.value.length == 0) {
 			alert('주소를 입력해주세요');
 			AdEl.focus();
+			return false;
+		}if (!myCheck) {
+			alert('이메일을 인증해주세요');
 			return false;
 		}
 
