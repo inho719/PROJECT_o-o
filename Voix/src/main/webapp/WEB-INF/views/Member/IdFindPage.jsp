@@ -17,16 +17,16 @@
 	<div class="container">
 
 		<!-- 컨텐츠 시작 -->
-		<div class="card mb-4 mx-auto" style="width: 500px;">
-			<div class="card-body">
+		<div class="card mb-4 mx-auto" style="width: 700px; border-radius: 10px; background-color: whitesmoke;">
+			<div class="card-body VOIXBODERLINE" style="border-radius: 7px;">
 				<div>아이디 찾기</div>
-				<form action="/memberLogin" method="post"
-					onsubmit="return formCheck(this);">
+				<form action="/memberLogin" method="post" onsubmit="return formCheck(this);">
+
 					<div class="row m-1">
-						<input type="text" name="memailId" id="inputEmailId"
-							placeholder="이메일아이디"> @ <input type="text"
-							name="memailDomain" id="inputDomain" placeholder="이메일도메인">
-						<select onchange="domainSelect(this)">
+						<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디" style="width: 240px; margin-right: 4px;">
+						@
+						<input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인" style="width: 170px; margin-left: 4px;">
+						<select onchange="domainSelect(this)" style="width: 122px; margin-left: 2px; border-radius: 5px;">
 							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="gmail.com">gmail.com</option>
@@ -38,21 +38,22 @@
 								/*document.querySelector("#inputDomain").value = selObj.value;*/
 							}
 						</script>
-						<button type="button" onclick="gomailCheck()">보내기</button>
+						<button type="button" onclick="gomailCheck()" style="background-color: #5e504e; color: #ede9e7; width: 80px; margin-left: 7px; border-radius: 7px;">보내기</button>
 					</div>
-					<div>
-						<input type="text" name="Code" id="mail-check-input"
-							placeholder="인증번호">
-						<button type="button" class="mb-2" onclick="mailCheck()">확인</button>
+					<br>
+					<span style="margin-left: 4px">
+						<input type="text" name="Code" id="mail-check-input" placeholder="인증번호">
+						<button type="button" class="mb-2" onclick="mailCheck()" style="background-color: #5e504e; color: #ede9e7; border-radius: 7px;">확인</button>
 						<span id="mail-check-warn"></span>
-					</div>
+					</span>
 					<p>
-						아이디는 <a class = "IdFind" ></a> 입니다.
+						회원님의 아이디는
+						<a class="IdFind"></a>
+						입니다.
 					</p>
 					<div>
-
-						<a type="button" href="LoginPage">로그인하기</a> <a type="button"
-							href="PwFindPage">비밀번호 찾기</a>
+						<a type="button" href="LoginPage">로그인하기</a>
+						<a type="button" href="PwFindPage">비밀번호 찾기</a>
 					</div>
 				</form>
 			</div>
@@ -66,8 +67,7 @@
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
-				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 </body>
