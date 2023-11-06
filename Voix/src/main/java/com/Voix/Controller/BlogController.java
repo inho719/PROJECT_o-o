@@ -28,6 +28,9 @@ public class BlogController {
 	@Autowired
 	private BlogService bsvc;
 
+	@Autowired
+	private ChartService csvc;
+
 	@RequestMapping(value = "/BlogPage")
 	public ModelAndView Blog(HttpSession session, Criteria cri)throws Exception{
 		ModelAndView mav = new ModelAndView();
@@ -58,6 +61,9 @@ public class BlogController {
 				boolean isLiked = likedBlogList.contains(bgcode);
 				blogMap.put("BGLIKED", String.valueOf(isLiked));
 			}
+			ArrayList<HashMap<String,String>> playlist = csvc.getPlayList(loginId);
+			System.out.println(playlist);
+			mav.addObject("playlist", playlist);
 		}
 
 		mav.addObject("BlogList", list);
