@@ -81,7 +81,14 @@
 						<div class="col mb-2">
 							<p class="mb-1">이름: ${mInfo.mname}</p>
 							<p class="mb-1">이메일: ${mInfo.memail}</p>
-							<p class="mb-3">주소: ${mInfo.maddr}</p>
+							<c:choose>
+							    <c:when test="${empty mInfo.maddr}">
+							        <p class="mb-3">주소: 미입력</p>
+							    </c:when>
+							    <c:otherwise>
+							        <p class="mb-3">주소: ${mInfo.maddr}</p>
+							    </c:otherwise>
+							</c:choose>
 							<a class="btn" href="#" onclick="PwCheck()" style="background-color: #5e504e; color: white;">내정보변경하기</a>
 						</div>
 
