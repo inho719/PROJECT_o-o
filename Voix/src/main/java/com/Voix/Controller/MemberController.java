@@ -191,6 +191,50 @@ public class MemberController {
 
 	}
 
+	/*	내 정보 페이지 - 찜 취소기능 시작	*/
+	
+	@RequestMapping("/removeLikeNews")
+	public @ResponseBody int removeLikeNews(String newsCode, HttpSession session) {
+		String ID = session.getAttribute("loginId").toString();
+		System.out.println("뉴스- 아이디 확인:"+ID);
+		System.out.println("뉴스- 코드  확인:"+newsCode);
+		return msvc.removeLikeNews(newsCode, ID);
+	}
+	
+	@RequestMapping("/removeLikeBlog")
+	public @ResponseBody int removeLikeBlog(String blogCode, HttpSession session) {
+		String ID = session.getAttribute("loginId").toString();
+		System.out.println("블로그- 아이디 확인:"+ID);
+		System.out.println("블로그- 코드  확인:"+blogCode);
+		return msvc.removeLikeBlog(blogCode, ID);
+	}
+	
+	@RequestMapping("/removeLikeAlbum")
+	public @ResponseBody int removeLikeAlbum(String albumCode, HttpSession session) {
+		String ID = session.getAttribute("loginId").toString();
+		System.out.println("앨범- 아이디 확인:"+ID);
+		System.out.println("앨범- 코드  확인:"+albumCode);
+		return msvc.removeLikeAlbum(albumCode, ID);
+	}
+	
+	@RequestMapping("/removeLikeSongs")
+	public @ResponseBody int removeLikeSongs(String songsCode, HttpSession session) {
+		String ID = session.getAttribute("loginId").toString();
+		System.out.println("랭킹- 아이디 확인:"+ID);
+		System.out.println("랭킹 - 코드  확인:"+songsCode);
+		return msvc.removeLikeSongs(songsCode, ID);
+	}
+	
+	@RequestMapping("/removeLikeTicket")
+	public @ResponseBody int removeLikeTicket(String ticketCode, HttpSession session) {
+		String ID = session.getAttribute("loginId").toString();
+		System.out.println("티켓- 아이디 확인:"+ID);
+		System.out.println("티켓 - 코드  확인:"+ticketCode);
+		return msvc.removeLikeTicket(ticketCode, ID);
+	}
+	
+	/*	내 정보 페이지 - 찜 취소기능 종료	*/
+	
 	// 로그인
 	@RequestMapping(value = "/memberLogin")
 	public ModelAndView memberLogin(String mid, String mpw, HttpSession session, RedirectAttributes ra) {
