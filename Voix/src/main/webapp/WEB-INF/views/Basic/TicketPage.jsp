@@ -56,23 +56,23 @@
 						<ul class="list-group list-group-horizontal mb-3"
 							style="list-style: none;">
 							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
-								<a class="list-group-item TicketList" href="/choosSite?siteVal=melon">
-									<img class="w-100 "alt="" src="https://i.namu.wiki/i/fUSKDJ8EaufclMExoypN7w22t7C4C5FwwIKo40DnMnqsPi8WvuyzQiyBT4xrV-ZJNDjvDICaJ5EDwqIBesI9QPJLStccA4LA37GUmspj_QcbcJao2NievXqvjLPbs1O0d4UO3_4tnjhzzDHwZOVdtA.svg">
+								<a class="list-group-item TicketList" href="/choosSite?siteVal=melon" >
+									<img class=" " style="width: 95%"alt="" src="/resources/assets/m.png">
 								</a>
 							</li>
 							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
 								<a class="list-group-item TicketList" href="/choosSite?siteVal=interpark">
-									<img class="w-100"alt="" src="https://i.namu.wiki/i/4K3uJkDrWzPfyCtjiJqoFCMtPo4KxMKN3PN3ECH9EHnHaSP7aEgDNMw2bboyadG5GLjZm3um1BUZGFt552TurMAun23usmsyauMrqv7vkHgOQVGs2mNIQsT0NTDsDps5RJ5_NFBMzOlpOA0nUp_AbQ.webp">
+									<img class="w-100"alt="" src="/resources/assets/Inter.png">
 								</a>
 							</li>
 							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
 								<a class="list-group-item TicketList" href="/choosSite?siteVal=yes24">
-									<img class="w-100"alt="" src="https://i.namu.wiki/i/KsHBIVQ9WT3p8A852Jouv53m5EyazOLq3Tzqk49PSBmUhthoL0RPDgfPiB9sjYlNslB9csTwNl4gJ3QHS7CQJ4DaSLZhpsRbNz8-M7L-kHyW2h2cIWxCUifTM3ls9d1RdaIOS52J1Wg72sBjyPbTSA.svg">
+									<img class="w-100"alt="" src="/resources/assets/yes.png">
 								</a>
 							</li>
 							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;">
 								<a class="list-group-item TicketList" href="/choosSite?siteVal=11bunga">
-									<img class="w-100"alt="" src="https://i.namu.wiki/i/-KZsLc7EVpwSGwPbXck8NidnKq1iD3ZJFcab0G6lsWKVZFij3T330QdJHSDs_fk4Stzk1gdmwkYic52yMxXWr617SrObpQOFJghx2xOkt2dA3AfMyjKNmIxYIVxUCtV7wBAzCangnNsAKJZBd96j9w.svg">
+									<img class="w-100"alt="" src="/resources/assets/11.png">
 								</a>
 							</li>
 						</ul>
