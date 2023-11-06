@@ -1,6 +1,11 @@
-let code = null;
+	let code = null;
 	let mid = null;
 	let email = null;
+
+	
+
+	 var myCheck = false;
+	window.myCheck = myCheck;
 	function gomailCheck() {
 		console.log('클릭');
 
@@ -27,8 +32,12 @@ let code = null;
 		let inputCode = $('#mail-check-input').val();
 		let $resultMsg = $('#mail-check-warn');
 		let email = $('#inputEmailId').val() + "@" + $('#inputDomain').val();
+		
 		if (inputCode == code) {
 			$resultMsg.html('인증번호가 일치합니다.');
+			myCheck = true;
+			window.myCheck = myCheck;
+			console.log(myCheck);
 			$resultMsg.css('color', 'green');
 			$('#inputEmailId').attr('readonly', true);
 			$('#inputEmailId').attr('readonly', true);
