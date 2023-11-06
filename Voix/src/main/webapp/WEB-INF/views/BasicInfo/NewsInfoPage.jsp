@@ -99,7 +99,7 @@
 								<div class="meminfo">
 									<span style="font-style: italic;">작성자: ${re.REWRITER} </span>
 									<div style="margin-top: 5px; margin-bottom: 5px;">
-										<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; background-color: whitesmoke;">${re.RECONTENT}</div>
+										<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; padding: 10px; background-color: whitesmoke;">${re.RECONTENT}</div>
 									</div>
 									<c:if test="${sessionScope.loginId == re.REWRITER}">
 										<button type="button" onclick="location.href='/deleteNewsReview?recode=${re.RECODE}&nwcode=${nw.nwcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
