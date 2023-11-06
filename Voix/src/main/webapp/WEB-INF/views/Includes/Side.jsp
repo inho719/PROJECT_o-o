@@ -90,7 +90,13 @@
 
 			<!-- Categories widget-->
 			<div class="card mb-4">
-				<div class="card-header fontcolor">플레이리스트</div>
+				<c:choose>
+			<c:when test="${sessionScope.sideState != 'P'}">
+
+						<div class="card-header fontcolor">플레이리스트</div>
+
+					</c:when>
+			</c:choose>
 				
 				<div class="">
 					<div class="row">
