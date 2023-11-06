@@ -20,6 +20,7 @@ import com.Voix.Dto.Blog;
 import com.Voix.Dto.Criteria;
 import com.Voix.Dto.PageMaker;
 import com.Voix.Service.BlogService;
+import com.Voix.Service.ChartService;
 import com.google.gson.Gson;
 
 @Controller

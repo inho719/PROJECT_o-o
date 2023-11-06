@@ -69,7 +69,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/Join")
-	public ModelAndView Login(String Id, String RePw, String Name, String Address, String DetailAddress, String memailId, String memailDomain, MultipartFile mfile, HttpSession session) {
+	public ModelAndView Login(String Id, String RePw, String Name, String Address, String DetailAddress, 
+			String memailId, String memailDomain, MultipartFile mfile, HttpSession session,RedirectAttributes ra) {
 		System.out.println("회원가입처리");
 		ModelAndView mav = new ModelAndView();
 		Member mem = new Member();

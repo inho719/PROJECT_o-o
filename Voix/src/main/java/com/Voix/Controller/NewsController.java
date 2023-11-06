@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Voix.Dto.Criteria;
 import com.Voix.Dto.News;
 import com.Voix.Dto.PageMaker;
+import com.Voix.Service.ChartService;
 import com.Voix.Service.NewsService;
 import com.google.gson.Gson;
 
