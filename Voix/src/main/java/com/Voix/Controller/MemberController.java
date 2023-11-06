@@ -286,7 +286,6 @@ public class MemberController {
 		mem.setMemail(memail);
 		mem.setMfile(mfile);
 		mem.setMstate(mstate);
-		System.out.println(mem);
 		int updateResult = msvc.modifyMemberInfo(mem, session);
 		if (updateResult > 0) {
 			System.out.println("회원정보 수정 성공");
@@ -329,6 +328,7 @@ public class MemberController {
 			session.setAttribute("loginState", navergetInfo.getMstate());
 			session.setAttribute("loginName", navergetInfo.getMname());
 		} else {
+			loginInfo = null;
 			mem = navergetInfo;
 		}
 		mav.addObject("N", loginInfo);
@@ -346,7 +346,7 @@ public class MemberController {
 	@RequestMapping(value = "/naverPopup")
 	public String naverPopup() throws UnsupportedEncodingException {
 		String clientId = "uqIAhwBYmZxJrA3aR_ze";// 애플리케이션 클라이언트 아이디값";
-		String redirectURI = URLEncoder.encode("http://localhost:8080/naverResult", "UTF-8");
+		String redirectURI = URLEncoder.encode("http://121.65.47.74:5571/naverResult", "UTF-8");
 		SecureRandom random = new SecureRandom();
 		String state = new BigInteger(130, random).toString();
 		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
