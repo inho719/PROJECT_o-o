@@ -46,6 +46,7 @@
 }
 </style>
 </head>
+
 <body>
 	<!-- Responsive navbar-->
 	<%@ include file="/WEB-INF/views/Includes/Menu.jsp"%>
@@ -55,105 +56,102 @@
 			<!-- Blog entries-->
 			<div class="col-lg-9">
 				<div class="row">
-					
 
+					<c:choose>
+						<c:when test="${param.page != null }">
+							<c:set value="${param.page }" var="pageNumber" />
+						</c:when>
+						<c:otherwise>
+							<c:set value="1" var="pageNumber" />
+						</c:otherwise>
+					</c:choose>
 
-						<c:choose>
-							<c:when test="${param.page != null }">
-								<c:set value="${param.page }" var="pageNumber" />
-							</c:when>
-							<c:otherwise>
-								<c:set value="1" var="pageNumber" />
-							</c:otherwise>
-						</c:choose>
+					<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
+						<div class="card col-md-6 m-2 VOIXBODERLINE" style="height: 220px; width: 48%; padding-left: 0px; overflow: hidden;">
 
-						<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
-							<div class="card col-md-6 m-2 VOIXBODERLINE" style="height: 215px; width: 48%; overflow: hidden;">
-
-								<div class="rankChart">No.${(pageNumber-1)*10 + status.index + 1}</div>
-								<div style="display: flex;">
-									<c:if test="${ChartMap.SGIMG != null }">
-										<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
-											<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
-												<img style="width: 170px; height: 170px;" src="${ChartMap.SGIMG}" class="VOIXBODERLINE" />
-											</a>
-										</div>
-									</c:if>
-									<c:if test="${ChartMap.SGIMG == null }">
-										<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
-											<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
-												<img style="width: 170px; height: 170px;" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" alt="..." />
-											</a>
-										</div>
-									</c:if>
-
-
-									<div class="">
-										<div class="pt-2 ps-2" style="width: 550px; display: -webkit-inline-box;">
-											<h2>${ChartMap.SGTITLE }</h2>
-										</div>
-										<div class="pt-2 ps-2" style="width: 70%; display: -webkit-inline-box;">
-											<p>${ChartMap.SGINFO }</p>
-										</div>
+							<div class="rankChart">No.${(pageNumber-1)*10 + status.index + 1}</div>
+							<div style="display: flex;">
+								<c:if test="${ChartMap.SGIMG != null }">
+									<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
+										<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
+											<img style="width: 170px; height: 170px;" src="${ChartMap.SGIMG}" class="VOIXBODERLINE" />
+										</a>
 									</div>
-
+								</c:if>
+								<c:if test="${ChartMap.SGIMG == null }">
+									<div class="ChartImg align-items-center" style="margin-left: 7px; margin-right: 10px;">
+										<a href="/ChartInfoPage?sgcode=${ChartMap.SGCODE}">
+											<img style="width: 170px; height: 170px;" src="http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg" alt="..." />
+										</a>
+									</div>
+								</c:if>
+								<div class="">
+									<div class="pt-2 ps-2" style="width: 550px; display: -webkit-inline-box;">
+										<h2 style="width: 270px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: block;" title="${ChartMap.SGTITLE}">${ChartMap.SGTITLE}</h2>
+									</div>
+									<div class="pt-2 ps-2" style="width: 70%; display: -webkit-inline-box;">
+										<p style="width: 280px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: block;" title="${ChartMap.SGINFO}">${ChartMap.SGINFO}</p>
+									</div>
 								</div>
 							</div>
+						</div>
 					</c:forEach>
-					
 				</div>
+				
 				<ul class="pagination" style="place-content: center;">
 					<c:if test="${pageMaker.prev }">
-						<li><a href="/ChartPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
+						<li>
+							<a href="/ChartPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
 								<i class="fa fa-chevron-left"></i>
-							</a></li>
-						<!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
+							</a>
+						</li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
 						<c:choose>
 							<c:when test="${pageNum == param.page}">
-									<li>
-										<a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e; background-color: lightgray;">
-											<i class="fa">${pageNum }</i>
-										</a>
-									</li>
-							
+								<li>
+									<a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e; background-color: lightgray;">
+										<i class="fa">${pageNum }</i>
+									</a>
+								</li>
 							</c:when>
 							<c:otherwise>
-									<li>
-										<a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e">
-											<i class="fa">${pageNum }</i>
-										</a>
-									</li>							
+								<li>
+									<a href='<c:url value="/ChartPage?page=${pageNum }"/>' style="color: #5e504e">
+										<i class="fa">${pageNum }</i>
+									</a>
+								</li>
 							</c:otherwise>
 						</c:choose>
-						
-						
-						
 					</c:forEach>
 					<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-						<li><a href='<c:url value="/ChartPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
+						<li>
+							<a href='<c:url value="/ChartPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
 								<i class="fa fa-chevron-right"></i>
-							</a></li>
+							</a>
+						</li>
 					</c:if>
 				</ul>
-
 			</div>
 
 			<!-- Side widgets-->
 			<%@ include file="/WEB-INF/views/Includes/Side.jsp"%>
-
+			
 		</div>
 	</div>
+	
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
+	
 	<!-- Bootstrap core JS-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
+	
 </body>
 </html>
