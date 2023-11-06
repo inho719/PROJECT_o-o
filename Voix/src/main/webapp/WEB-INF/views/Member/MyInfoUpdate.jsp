@@ -65,6 +65,7 @@
 				<form action="${pageContext.request.contextPath}/memberModify" method="post" enctype="multipart/form-data">
 
 					<h4>[내정보 변경]</h4>
+
 					<div class="mb-2">
 						내ID:&nbsp
 						<input type="text" name="mid" value="${mInfo.mid}" disabled="disabled" style="border: none; background-color: white;">
@@ -72,12 +73,13 @@
 					</div>
 
 					<table border="1" class="tbl_model mb-2">
+
 						<colgroup>
 							<col style="width: 22%;">
 							<col>
 						</colgroup>
-						<tbody>
 
+						<tbody>
 							<tr>
 								<th scope="row">
 									<div class="thcell">프로필 사진</div>
@@ -85,9 +87,7 @@
 								<td>
 									<div class="tdcell mb-3">
 										<div>
-											<%-- <img id="preview" style="width: 70px; height: 70px;" alt="" src="${mInfo.mimg}"> --%>
-
-																<c:choose>
+											<c:choose>
 												<c:when test="${sessionScope.loginState == 'YC'}">
 													<c:choose>
 														<c:when test="${sessionScope.loginProfile == null}">
@@ -100,15 +100,12 @@
 														</c:otherwise>
 													</c:choose>
 												</c:when>
-
 												<c:otherwise>
 													<img id="preview" style="width: 70px; height: 70px;" class="img-profile" src="${sessionScope.loginProfile}" alt="카카오 프로필">
 												</c:otherwise>
 											</c:choose>
-
 											<input id="fileInput" class="formInput p-1" type="file" name="mfile">
 										</div>
-
 									</div>
 								</td>
 							</tr>
@@ -130,7 +127,6 @@
 								</td>
 							</tr>
 
-
 							<tr>
 								<th scope="row">
 									<div class="thcell">
@@ -146,14 +142,12 @@
 								</td>
 							</tr>
 
-
 							<tr>
 								<th scope="row">
 									<div class="thcell">
 										<label>주소</label>
 									</div>
 								</th>
-
 								<td>
 									<div class="tdcell">
 										<p>
@@ -164,29 +158,17 @@
 									</div>
 								</td>
 							</tr>
-
 						</tbody>
 
 					</table>
 
-					<button class="btn btn-danger" type="submit">수정하기</button>
-
+					<button class="btn" style="background-color: #5e504e; color: #ede9e7;" type="submit">수정하기</button>
 				</form>
-
-
-
-
-
-
 
 			</div>
 		</div>
 		<!-- 컨텐츠 끝 -->
-
 	</div>
-
-
-
 
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
