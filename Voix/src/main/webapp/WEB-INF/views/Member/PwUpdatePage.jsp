@@ -30,7 +30,7 @@
 								placeholder="변경할 비밀번호 확인" class="formInput p-1" type="password"
 								name="CkPw" id="password2" onkeyup="checkPassword()">
 							<div id="passwordMessage"></div>
-							<button class="btn btn-info" onclick="updatePw()">변경하기</button>
+							<button class="btn" onclick="updatePw()" style="background-color:#5e504e; color: white">변경하기</button>
 						</div>
 			</div>
 		</div>
