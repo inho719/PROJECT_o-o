@@ -103,7 +103,7 @@
 										<!--
 									<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
 									-->
-										<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc;">${re.RECONTENT}</div>
+										<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; padding: 10px;">${re.RECONTENT}</div>
 									</div>
 									<c:if test="${sessionScope.loginId == re.REWRITER}">
 										<button type="button" onclick="location.href='/deleteBlogReview?recode=${re.RECODE}&bgcode=${bg.bgcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
