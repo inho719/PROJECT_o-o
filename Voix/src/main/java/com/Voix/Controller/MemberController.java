@@ -88,10 +88,12 @@ public class MemberController {
 		}
 		if (Join > 0) {
 			System.out.println("성공");
-			mav.setViewName("/Member/LoginPage");
+			ra.addFlashAttribute("msg", "회원가입이 완료되었습니다.");
+			mav.setViewName("redirect:/LoginPage");
 		} else {
 			System.out.println("실패");
-			mav.setViewName("/Member/JoinPage");
+			ra.addFlashAttribute("msg", "회원가입에 실패하였습니다");
+			mav.setViewName("redirect:/JoinPage");
 		}
 		return mav;
 	}
