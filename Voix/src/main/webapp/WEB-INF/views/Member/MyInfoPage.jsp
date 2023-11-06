@@ -127,7 +127,7 @@
 											<p class="card-text">${news.NWCONTENT}</p>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a href="찜">
+											<a href="" onclick="removeLike('${news.NWCODE}')">
 												<img alt="" src="/resources/assets/heart.png">
 											</a>
 											<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${news.NWBIGHIT}</a>
@@ -161,9 +161,9 @@
 											<p class="card-text">${blog.BGCONTENT}</p>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a href="찜">
+											<a href="" onclick="removeLikeBlog('${blog.BGCODE}')"> 
 												<img alt="" src="/resources/assets/heart.png">
-											</a>
+											</a> 
 											<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${blog.BGBIGHIT }</a>
 										</div>
 									</div>
@@ -191,9 +191,9 @@
 										</div>
 										<div class="small m-2 d-flex" style="justify-content: space-between;">
 											<p class="text-mute">${albums.ALPRICE}원</p>
-											<a href="찜" class="">
+											<a href="" onclick="removeLikeAlbum('${albums.ALCODE}')"> 
 												<img alt="" src="/resources/assets/heart.png">
-											</a>
+											</a> 
 										</div>
 									</div>
 									<hr>
@@ -219,9 +219,9 @@
 											<p class="card-text">${songs.SGINFO}</p>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a href="찜">
+											<<a href="" onclick="removeLikeSongs('${songs.SGCODE}')"> 
 												<img alt="" src="/resources/assets/heart.png">
-											</a>
+											</a> 
 											<a class="Views" style="text-decoration-line: none; color: gray;"></a>
 										</div>
 									</div>
@@ -253,7 +253,7 @@
 											</div>
 										</div>
 										<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-											<a href="찜">
+											<a href="" onclick="removeLikeTicket('${tickets.TKCODE}')"> 
 												<img alt="" src="/resources/assets/heart.png">
 											</a>
 										</div>
@@ -477,6 +477,109 @@
 			document.getElementById('LickList').style.display = 'none';
 			document.getElementById('CommentList').style.display = 'block';
 		}
+	</script>
+
+	<script type="text/javascript">
+	let loginId = '${sessionScope.loginId}';
+	function removeLike(newsCode, element) {
+		console.log(loginId);
+		console.log(newsCode);
+	    $.ajax({
+	        type: 'GET', 
+	        url: "removeLikeNews", 
+	        data:{
+	        	"newsCode" : newsCode
+	        },
+	        success: function(data) {
+	            alert("찜이 취소되었습니다.");
+	            location.reload();
+	        },
+	        error: function() {
+	        	console.error("내 정보 뉴스 찜 취소 오류발생.");
+	         	alert("오류가 발생하였습니다.");
+	        }
+	    });
+	}
+	
+	function removeLikeBlog(blogCode, element) {
+		console.log(loginId);
+		console.log(blogCode);
+	    $.ajax({
+	        type: 'GET', 
+	        url: "removeLikeBlog", 
+	        data:{
+	        	"blogCode" : blogCode
+	        },
+	        success: function(data) {
+	            alert("찜이 취소되었습니다.");       
+	            location.reload();
+	        },
+	        error: function() {
+	        	console.error("내 정보- 블로그 찜 취소 오류발생.");
+	         	alert("오류가 발생하였습니다.");
+	        }
+	    });
+	}
+	
+	function removeLikeAlbum(albumCode, element) {
+		console.log(loginId);
+		console.log(albumCode);
+	    $.ajax({
+	        type: 'GET', 
+	        url: "removeLikeAlbum", 
+	        data:{
+	        	"albumCode" : albumCode
+	        },
+	        success: function(data) {
+	            alert("찜이 취소되었습니다.");   
+	            location.reload();
+	        },
+	        error: function() {
+	        	console.error("내 정보- 엘범 찜 취소 오류발생.");
+	         	alert("오류가 발생하였습니다.");
+	        }
+	    });
+	}
+	
+	function removeLikeSongs(songsCode, element) {
+		console.log(loginId);
+		console.log(songsCode);
+	    $.ajax({
+	        type: 'GET', 
+	        url: "removeLikeSongs", 
+	        data:{
+	        	"songsCode" : songsCode
+	        },
+	        success: function(data) {
+	            alert("찜이 취소되었습니다.");
+	            location.reload();
+	        },
+	        error: function() {
+	        	console.error("내 정보- 랭킹 찜 취소 오류발생.");
+	         	alert("오류가 발생하였습니다.");
+	        }
+	    });
+	}
+	
+	function removeLikeTicket(ticketCode, element) {
+		console.log(loginId);
+		console.log(ticketCode);
+	    $.ajax({
+	        type: 'GET', 
+	        url: "removeLikeTicket", 
+	        data:{
+	        	"ticketCode" : ticketCode
+	        },
+	        success: function(data) {
+	            alert("찜이 취소되었습니다.");
+	            location.reload();
+	        },
+	        error: function() {
+	        	console.error("내 정보- 티켓 찜 취소 오류발생.");
+	         	alert("오류가 발생하였습니다.");
+	        }
+	    });
+	}
 	</script>
 </body>
 </html>
