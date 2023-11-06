@@ -99,7 +99,7 @@
 	</div>
 
 	<div id="inputMsg">
-		<input type="text" id="sendMsg"> &nbsp
+		<input type="text" id="sendMsg" onkeypress="if( event.keyCode == 13 ){chatbotSend();}"> &nbsp
 		<button onclick="chatbotSend()">전송</button>
 	</div>
 
@@ -124,6 +124,7 @@
 // 				contentType : false, // 필수
 				success : function(result) {
 					$('#resultDiv').text(result);
+					document.querySelector('#sendMsg').value = "";
 				},
 				error : function(e) {
 					alert("오류 발생" + e);
