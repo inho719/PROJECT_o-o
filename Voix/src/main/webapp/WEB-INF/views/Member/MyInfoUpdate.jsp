@@ -161,7 +161,7 @@
 						</tbody>
 
 					</table>
-
+					<a class="btn" href="PwUpdatePage" style="background-color: #5e504e; color: white;">비밀번호변경</a>
 					<button class="btn" style="background-color: #5e504e; color: #ede9e7;" type="submit">수정하기</button>
 				</form>
 
