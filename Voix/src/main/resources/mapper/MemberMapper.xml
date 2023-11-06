@@ -140,4 +140,38 @@
 		ON A.ALCODE = O.ODALCODE
 		WHERE ODMID = #{loginId}
 	</select>
+
+	<!-- 내 정보 찜 기능 시작 -->
+	<delete id="removeLikeNews">
+	DELETE FROM LIKES
+	WHERE LIMID = #{ID}
+	AND LILIST = #{newsCode}
+	</delete>
+	
+	<delete id="removeLikeBlog">
+	DELETE FROM LIKES
+	WHERE LIMID = #{ID}
+	AND LILIST = #{blogCode}
+	</delete>	
+	
+	<delete id="removeLikeAlbum">
+	DELETE FROM LIKES
+	WHERE LIMID = #{ID}
+	AND LILIST = #{albumCode}
+	</delete>	
+	
+	<delete id="removeLikeSongs">
+	DELETE FROM LIKES
+	WHERE LIMID = #{ID}
+	AND LILIST = #{songsCode}
+	</delete>	
+	
+	<delete id="removeLikeTicket">
+	DELETE FROM LIKES
+	WHERE LIMID = #{ID}
+	AND LILIST = #{ticketCode}
+	</delete>	
+	
+	<!-- 내 정보 찜 기능 종료 -->
+	
 </mapper>
