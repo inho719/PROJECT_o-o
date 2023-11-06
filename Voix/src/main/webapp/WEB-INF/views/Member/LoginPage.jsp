@@ -1,372 +1,192 @@
-package com.Voix.Controller;
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>로그인 페이지 - LoginPage</title>
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.net.URLEncoder;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashMap;
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="resources/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/Includes/Menu.jsp"%>
+	<div class="container">
 
-import javax.servlet.http.HttpSession;
+		<!-- 컨텐츠 시작 -->
+		<div class="card mb-4 mx-auto " style="width: 500px;">
+			<div class="card-body VOIXBODERLINE">
+				<div style="font-size: 30px; font-weight: bold; color: #5e504e; justify-content: center; text-align: center;">로그인</div>
+				<form action="/memberLogin" method="post" onsubmit="return formCheck(this);">
+					<div class="row m-1">
+						<input placeholder="아이디" class="formInput p-1" type="text" name="mid" id="inputId">
+					</div>
+					<div class="row m-1">
+						<input placeholder="비밀번호" class="formInput p-1" type="password" name="mpw" id="inputPw">
+					</div>
+					<div class="row m-1">
+						<input class="formInput p-1 btn btn-primary" type="submit" value="로그인">
+					</div>
+					<p>
+						<a href="IdFindPage">아이디</a> / <a href="PwFindPage">비밀번호</a> 찾기
+					</p>
+				</form>
+				<p style="font-size: 20px; font-weight: bold; color: #5e504e; text-align: center; ">간편로그인</p>
+				<div class="row m-1">
+					<button onclick="memberLogin_kakao()" class="btn btn-warning">카카오 로그인</button>
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+					<div class="btn" id="naverIdLogin_loginButton" onclick="memberLogin_naver()">
+						<img src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.1" height="60">
 
-import com.Voix.Dto.Member;
-import com.Voix.Service.MemberService;
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- 컨텐츠 끝 -->
 
-@Controller
-public class MemberController {
+	</div>
 
-	@Autowired
-	private MemberService msvc;
 
-	@RequestMapping(value = "/LoginPage")
-	public ModelAndView LoginPage() {
-		System.out.println("/LoginPage 요청");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Member/LoginPage");
-		return mav;
+
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+		</div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="/resources/js/scripts.js"></script>
+	<!-- JQUERY -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<!-- 카카오 로그인 JS -->
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js" integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh" crossorigin="anonymous"></script>
+	<!-- 네이버 로그인 JS -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="/resources/js/naveridlogin_js_sdk_2.0.2.js"></script>
+	<script type="text/javascript">
+	function memberLogin_naver(){
+	window.open("/naverPopup");
+	window.addEventListener('load',function(){
+        location.href('/');
+    });
 	}
 
-	@RequestMapping(value = "/IdFindPage")
-	public ModelAndView IdFindPage() {
-		System.out.println("/IdFindPage 요청");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Member/IdFindPage");
-		return mav;
-	}
+</script>
 
-	@RequestMapping(value = "/PwFindPage")
-	public ModelAndView PwFindPage() {
-		System.out.println("/PwFindPage 요청");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Member/PwFindPage");
-		return mav;
-	}
-
-	@RequestMapping(value = "/JoinPage")
-	public ModelAndView JoinPage() {
-		System.out.println("/JoinPage 요청");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Member/JoinPage");
-		return mav;
-	}
-
-	@RequestMapping(value = "/memberIdCheck")
-	public @ResponseBody String memberIdcheck(String inputId) {
-		System.out.println("아이디 중복 확인 요청");
-		System.out.println("중복 확인 아이디" + inputId);
-		String checkResult = msvc.idCheck(inputId);
-
-		return checkResult;
-	}
-
-	@RequestMapping(value = "/Join")
-	public ModelAndView Login(String Id, String RePw, String Name, String Address, String DetailAddress, String memailId, String memailDomain, MultipartFile mfile, HttpSession session) {
-		System.out.println("회원가입처리");
-		ModelAndView mav = new ModelAndView();
-		Member mem = new Member();
-		mem.setMid(Id);
-		mem.setMpw(RePw);
-		mem.setMname(Name);
-		mem.setMaddr(Address + " " + DetailAddress);
-		mem.setMemail(memailId + "@" + memailDomain);
-		mem.setMfile(mfile);
-		System.out.println(mem);
-		int Join = 0;
-		try {
-			Join = msvc.getinsertMemberJoin_comm(mem, session);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (Join > 0) {
-			System.out.println("성공");
-			mav.setViewName("/Member/LoginPage");
-		} else {
-			System.out.println("실패");
-			mav.setViewName("/Member/JoinPage");
-		}
-		return mav;
-	}
-
-	@RequestMapping(value = "/emailIdCheck")
-	public @ResponseBody String emailIdCheck(String inputId, String memailId, String memailDomain) {
-		String CheckResult = msvc.emailIdCheck(inputId, memailId, memailDomain);
-		System.out.println(CheckResult);
-
-		if (CheckResult == null) {
-			System.out.println("아이디 이메일이 맞지않음");
-			return null;
-		} else {
-			return CheckResult;
-		}
-
-	}
-
-	@RequestMapping(value = "/updatePw")
-	public ModelAndView updatePw(String mid, String mpw, RedirectAttributes ra) {
-		ModelAndView mav = new ModelAndView();
-
-		System.out.println(mpw);
-		System.out.println(mid);
-		int upadateResult = msvc.upadtePw(mpw, mid);
-		if (upadateResult > 0) {
-			mav.setViewName("redirect:/LoginPage");
-			ra.addFlashAttribute("msg", "비밀번호가 변경 되었습니다.");
-		} else {
-			mav.setViewName("redirect:/");
-			ra.addFlashAttribute("msg", "비밀번호 변경에 실패했습니다.");
-		}
-		return mav;
-	}
-
-	@RequestMapping("/mailCheck")
-	public @ResponseBody String mailCheck(String email) {
-		System.out.println("이메일 인증 요청");
-		System.out.println(email);
-		return msvc.mailCheck(email);
-	}
-
-	@RequestMapping("/FindId")
-	public @ResponseBody String FindId(String email) {
-		System.out.println("id 찾기");
-		System.out.println(email);
-
-		return msvc.FindId(email);
-	}
-
-	@RequestMapping(value = "/MyInfoPage")
-	public ModelAndView MyInfoPage(HttpSession session, RedirectAttributes ra) {
-		System.out.println("/MyInfoPage 요청");
-		ModelAndView mav = new ModelAndView();
-		String loginId = (String) session.getAttribute("loginId");
-
-		Member memberInfo = msvc.memberInfo(loginId);
-		mav.addObject("mInfo", memberInfo);
-
-		ArrayList<HashMap<String, String>> newsLike = msvc.newsLike(loginId);
-		mav.addObject("newsLikeList", newsLike);
-
-		ArrayList<HashMap<String, String>> albumsLike = msvc.albumsLike(loginId);
-		mav.addObject("albumsLikeList", albumsLike);
-
-		ArrayList<HashMap<String, String>> ticketsLike = msvc.ticketsLike(loginId);
-		mav.addObject("ticketsLikeList", ticketsLike);
-
-		ArrayList<HashMap<String, String>> songsLike = msvc.songsLike(loginId);
-		mav.addObject("songsLikeList", songsLike);
-
-		ArrayList<HashMap<String, String>> blogLike = msvc.blogLike(loginId);
-		mav.addObject("blogLikeList", blogLike);
-
-		ArrayList<HashMap<String, String>> newsReview = msvc.newsReview(loginId);
-		mav.addObject("newsReviewList", newsReview);
+	<script type="text/javascript">
+        Kakao.init('d4cb31bb87534a761936eb7f0916ec2f');
+		Kakao.isInitialized();
 		
-		ArrayList<HashMap<String, String>> blogReview = msvc.blogReview(loginId);
-		mav.addObject("blogReviewList", blogReview);
-		
-		ArrayList<HashMap<String, String>> albumsReview = msvc.albumsReview(loginId);
-		mav.addObject("albumsReviewList", albumsReview);
-		
-		ArrayList<HashMap<String, String>> ticketReview = msvc.ticketReview(loginId);
-		mav.addObject("ticketReviewList", ticketReview);
-		
-		ArrayList<HashMap<String, String>> songsReview = msvc.songsReview(loginId);
-		mav.addObject("songsReviewList", songsReview);
-
-		ArrayList<HashMap<String, String>> AlbumOrderList = msvc.AlbumOrderList(loginId);
-		mav.addObject("AlbumOrderList", AlbumOrderList);
-
-		mav.setViewName("/Member/MyInfoPage");
-		return mav;
-
-	}
-
-	// 로그인
-	@RequestMapping(value = "/memberLogin")
-	public ModelAndView memberLogin(String mid, String mpw, HttpSession session, RedirectAttributes ra) {
-		System.out.println("로그인 처리 요청-/memberLogin");
-		ModelAndView mav = new ModelAndView();
-
-		// 1.로그인할 아이디, 비밀번호 파라메터 확인
-		System.out.println(mid);
-		System.out.println(mpw);
-
-		// 2.SERVICE = 로그인 회원정보 조회 호출
-		Member loginMember = msvc.getLoginMemberInfo(mid, mpw);
-
-		if (loginMember == null) {
-			System.out.println("로그인 실패");
-			ra.addFlashAttribute("msg", "아이디 또는 비밀번호 일치하지 않습니다.");
-			mav.setViewName("redirect:/LoginPage");
-
-		} else {
-			System.out.println("로그인 성공");
-			session.setAttribute("loginId", loginMember.getMid());
-			session.setAttribute("loginPw", loginMember.getMpw());
-			session.setAttribute("loginProfile", loginMember.getMimg());
-			session.setAttribute("loginState", loginMember.getMstate());
-			session.setAttribute("loginName", loginMember.getMname());
-
-			ra.addFlashAttribute("msg", "로그인 성공.");
-			mav.setViewName("redirect:/");
+		function memberLogin_kakao(){
+			console.log('카카오 로그인 호출()');
+			 Kakao.Auth.authorize({
+		      redirectUri: 'http://localhost:8080/LoginPage',
+		    });
 		}
-		return mav;
-	}
+			let authCode = '${param.code}';	
+			console.log("authCode: " + authCode);
+			if(authCode.length > 0){
+				console.log("카카오 인가코드 있음");
+				console.log("인증토큰 요청");
+				$.ajax({
+					type : 'post',
+					url : 'https://kauth.kakao.com/oauth/token',
+					contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+					data : {'grant_type' : 'authorization_code', 
+							'client_id' : 'db72247804d6b569e5f4b3aab6bcaa83',
+							'redirect_uri' : 'http://localhost:8080/LoginPage',
+							'code' : authCode
+							},
+					success : function(response){
+						console.log("인증토큰" + response.access_token);
+						Kakao.Auth.setAccessToken(response.access_token);
+						
+						Kakao.API.request({
+							  url: '/v2/user/me',
+							})
+							  .then(function(response) {
+								console.log("카카오 계정 정보")
+							    console.log("id : " + response.id);
+								console.log("email : " + response.kakao_account.email);
+								console.log("nickname : " + response.properties.nickname);
+								console.log("profile_image : " + response.properties.profile_image);
+								/*ajax 카카오계정 정보가 members 테이블에서 조회(select)*/
+								$.ajax({
+									type : 'get',
+									url : 'memberLogin_kakao',
+									data : {'id' : response.id},
+									success : function(checkMember_kakao){
+										if(checkMember_kakao == 'Y'){
+											//alert('로그인 되었습니다');
+											location.href="/";
+										}else{
+											let check = confirm('가입된 정보가 없습니다 \n 카카오 계정으로 가입하시겠습니까?')
+											if(check){
+												console.log('카카오 회원가입 기능 호출');
+												memberJoin_kakao(response);
+											}
+										}
+									}							
+								});							
+								
+							  })
+							  .catch(function(error) {
+							    console.log(error);
+							  });
 
-	// 카카오로그인
-	@RequestMapping(value = "/memberLogin_kakao")
-	// ajax = ReponseBody
-	public @ResponseBody String memberLogin_kakao(String id, HttpSession session) {
-		System.out.println("카카오 로그인 요청");
-		System.out.println("카카오 id: " + id);
-		// Member, MemberService, MemberDao
-		Member loginMember = msvc.getLoginMemberInfo(id);
-		if (loginMember == null) {
-			System.out.println("카카오 계정 정보 없음");
-			return "N";
-		} else {
-			System.out.println("카카오 계정 정보 있음");
-			System.out.println("로그인 처리");
-			session.setAttribute("loginId", loginMember.getMid());
-			session.setAttribute("loginName", loginMember.getMname());
-			session.setAttribute("loginProfile", loginMember.getMimg());
-			session.setAttribute("loginState", loginMember.getMstate());
-			return "Y";
-		}
-
-	}
-
-	@RequestMapping(value = "/memberJoin_kakao")
-	public @ResponseBody String memberJoin_kakao(Member member) {
-		System.out.println("카카오 계정 - 회원가입요청 - memberJoin_kakao");
-		System.out.println(member);
-		int result = msvc.registMember_kakao(member);
-		return result + "";
-
-	}
-
-	@RequestMapping(value = "/memberLogout")
-	public String memberLogout(HttpSession session, RedirectAttributes ra) {
-		session.invalidate();
-		ra.addFlashAttribute("msg", "로그아웃 되었습니다.");
-		return "redirect:/";
-	}
-
-	// 회원정보 수정
-	@RequestMapping(value = "/MyInfoUpdate")
-	public ModelAndView MyInfoUpdate(HttpSession session, RedirectAttributes ra) {
-		System.out.println("/MyInfoUpdate 요청");
-		ModelAndView mav = new ModelAndView();
-		String loginId = (String) session.getAttribute("loginId");
-
-		Member memberInfo = msvc.memberInfo(loginId);
-		mav.addObject("mInfo", memberInfo);
-
-		mav.setViewName("/Member/MyInfoUpdate");
-		return mav;
-	}
-
-	@RequestMapping(value = "/memberModify")
-	public ModelAndView memberModify(Member member, String mid, String mpw, String mname, String address, String detailAddress, String memail, MultipartFile mfile, String mstate, RedirectAttributes ra, HttpSession session) throws IllegalStateException, IOException {
-		System.out.println("회원정보수정요청");
-		ModelAndView mav = new ModelAndView();
-		Member mem = new Member();
-		mem.setMid(mid);
-		mem.setMpw(mpw);
-		mem.setMname(mname);
-		mem.setMaddr(address + " " + detailAddress);
-		mem.setMemail(memail);
-		mem.setMfile(mfile);
-		mem.setMstate(mstate);
-		int updateResult = msvc.modifyMemberInfo(mem, session);
-		if (updateResult > 0) {
-			System.out.println("회원정보 수정 성공");
-			session.setAttribute("loginProfile", mem.getMimg());
-			ra.addFlashAttribute("msg", "회원정보가 수정 되었습니다");
-		} else {
-			System.out.println("회원정보 수정 실패");
-			ra.addFlashAttribute("msg", "회원정보가 수정을 실패했습니다");
-		}
-		mav.setViewName("redirect:/MyInfoPage");
-		return mav;
-	}
-
-	@RequestMapping(value = "/PwUpdatePage")
-	public ModelAndView PwUpdatePage(HttpSession session) {
-		System.out.println("/PwUpdatePage 요청");
-		ModelAndView mav = new ModelAndView();
-		String loginId = (String) session.getAttribute("loginId");
-		Member memberInfo = msvc.memberInfo(loginId);
-		mav.addObject("mInfo", memberInfo);
-		mav.setViewName("/Member/PwUpdatePage");
-		return mav;
-	}
-	Member mem = null;
-	@RequestMapping(value = "/naverResult")
-	public ModelAndView naverResult(String code, String state, HttpSession session) throws IOException {
-		ModelAndView mav = new ModelAndView();
-		String getToken = msvc.getToken(code, state);
-		System.out.println("getToken : " + getToken);
-		Member navergetInfo = msvc.memberlogin_naver(getToken);
-		Member loginInfo = null;
-		try {
-			loginInfo = msvc.getLoginMemberInfo(navergetInfo.getMid());
-		} catch (Exception e) {
-		}
-
-		if (loginInfo != null) {
-			session.setAttribute("loginId", navergetInfo.getMid());
-			session.setAttribute("loginProfile", navergetInfo.getMimg());
-			session.setAttribute("loginState", navergetInfo.getMstate());
-			session.setAttribute("loginName", navergetInfo.getMname());
-		} else {
-			loginInfo = null;
-			mem = navergetInfo;
-		}
-		mav.addObject("N", loginInfo);
-		mav.setViewName("/Member/naverLoginResult");
-		return mav;
-	}
-	
-	@RequestMapping(value="/memberJoin_naver")
-	public @ResponseBody int memberJoin_naver() {
-		System.out.println(mem);
-		int insertResult = msvc.insertNaverLogin(mem);
-		return insertResult;
-	}
-
-	@RequestMapping(value = "/naverPopup")
-	public String naverPopup() throws UnsupportedEncodingException {
-		String clientId = "uqIAhwBYmZxJrA3aR_ze";// 애플리케이션 클라이언트 아이디값";
-		String redirectURI = URLEncoder.encode("http://121.65.47.74:5571/naverResult", "UTF-8");
-		SecureRandom random = new SecureRandom();
-		String state = new BigInteger(130, random).toString();
-		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-		apiURL += "&client_id=" + clientId;
-		apiURL += "&redirect_uri=" + redirectURI;
-		apiURL += "&state=" + state;
-
-		return "redirect:" + apiURL;
-	}	
-	@RequestMapping(value="/PayHistory")
-	public ModelAndView PayHistory(HttpSession session){
-		ModelAndView mav = new ModelAndView();
+					}
+				});
+			}
+			
 		
-		String mid = session.getAttribute("loginId").toString();
-		ArrayList<HashMap<String, String>> OrderInfo = msvc.getOrderInfo(mid);
-		mav.addObject("OrderInfo",OrderInfo);
-		mav.setViewName("/Member/PayHistoryPage");
-				
-		return mav;
-		
-	}
+		</script>
 
-}
+	<script type="text/javascript">
+			function memberJoin_kakao(res){
+				console.log('memberJoin_kakao 호출');
+				$.ajax({
+					type : 'get',
+					url : 'memberJoin_kakao',
+					data : {'mid' : res.id,
+							'mname' : res.properties.nickname,
+							'memail' : res.kakao_account.email,
+							'mimg' : res.properties.profile_image},
+					success : function(joinResult){
+						alert('카카오 계정으로 회원가입 되었습니다. \다시 로그인 해주세요');
+						location.href="/LoginPage";
+					}
+				});
+			}
+		</script>
+
+	<script type="text/javascript">
+		function formCheck(formObj) {
+			console.log('formCheck() 호출');
+
+			// 아이디가 입력되지 않았으면 false
+			let inputId = formObj.userId; // 아이디 입력 input 태그
+			if (inputId.value.length == 0) {
+				alert('아이디를 입력 해주세여');
+				inputId.focus();
+				return false;
+			}
+
+			// 비밀번호가 입력되지 않았으면 false
+			let inputPw = formObj.userPw; // 비밀번호 입력 input 태그
+			if (inputPw.value.length == 0) {
+				alert('비밀번호를 입력 해주세여');
+				inputPw.focus();
+				return false;
+			}
+		}
+	</script>
+</body>
+</html>
