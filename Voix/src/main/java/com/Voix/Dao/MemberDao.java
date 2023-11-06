@@ -52,4 +52,16 @@ public interface MemberDao {
 	ArrayList<HashMap<String, String>> songsReviewList(String loginId);
 
 	ArrayList<HashMap<String, String>> AlbumOrderList(String loginId);
+
+	/*내 정보 찜 기능 시작*/
+	int removeLikeNews(@Param("newsCode") String newsCode,@Param("ID") String ID);
+
+	int removeLikeBlog(@Param("blogCode") String blogCode, @Param("ID")String ID);
+
+	int removeLikeAlbum(@Param("albumCode")String albumCode, @Param("ID")String ID);
+
+	int removeLikeSongs(@Param("songsCode")String albumCode, @Param("ID")String ID);
+
+	int removeLikeTicket(@Param("ticketCode")String albumCode, @Param("ID")String ID);
+	/*내 정보 찜 기능 종료*/
 }
