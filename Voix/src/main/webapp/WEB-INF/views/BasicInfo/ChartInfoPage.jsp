@@ -57,14 +57,14 @@
 }
 
 .scroll::-webkit-scrollbar-thumb {
-	background-color: #5e504e;
+	background-color: #ede9e7;
 	border-radius: 10px;
 	background-clip: padding-box;
 	border: 2px solid transparent;
 }
 
 .scroll::-webkit-scrollbar-track {
-	background-color: #ede9e7;
+	background-color: whitesmoke;
 	border-radius: 10px;
 	box-shadow: inset 0px 0px 5px white;
 }
@@ -121,9 +121,9 @@
 					<div id="player"></div>
 				</div>
 
-				<div class="card col mb-4 VOIXBODERLINE " style="height: 515px; border-radius: 10px;">
-					<div style="text-align: center; background-color: #5e504e; color: #ede9e7; border: 1px solid #5e504e; border-radius: 10px;">가사</div>
-					<div class="scroll" style="height: 515px; overflow: scroll; margin-left: 10px;">${ChartInfoList.sglyric}</div>
+				<div class="card col mb-4 VOIXBODERLINE " style="height: 515px; border-radius: 10px; background-color: whitesmoke;">
+					<div style="text-align: center; background-color: #5e504e; color: #ede9e7; border: 1px solid #5e504e; border-radius: 10px; margin-top: 4px; margin-bottom: 7px;">가사</div>
+					<div class="scroll" style="height: 515px; overflow: scroll; overflow-x: hidden; overflow-y: auto; margin-left: 10px;">${ChartInfoList.sglyric}</div>
 				</div>
 
 			</div>
