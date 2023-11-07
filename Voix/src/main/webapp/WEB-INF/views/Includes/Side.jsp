@@ -20,7 +20,22 @@
   right: 100px;
   top: 300px;
 }
-
+.Blog-hit-item{
+height: 25px;
+overflow: hidden;
+}
+.Blog-hit-Content{
+    color: black;
+    text-decoration: none;
+}
+.News-hit-item{
+height: 25px;
+overflow: hidden;
+}
+.News-hit-Content{
+    color: black;
+    text-decoration: none;
+}
 
 </style>
 
@@ -327,6 +342,7 @@ if (${sessionScope.rankState == 'NW'}) {
 
                 // Create a new anchor link
                 var newsHitItem = document.createElement("a");
+		newsHitItem.className = "news-hit-content";
                 newsHitItem.href = "javascript:void(0);"; // Set a dummy href
 
                 // Set data-nwcode as a custom data attribute
@@ -366,6 +382,7 @@ if (${sessionScope.rankState == 'BL'}) {
 
                 // Create a new anchor link
                 var BlogHitItem = document.createElement("a");
+		BlogHitItem.className = "Blog-hit-Content"
                 BlogHitItem.href = "javascript:void(0);"; // Set a dummy href
 
                 // Set data-nwcode as a custom data attribute
