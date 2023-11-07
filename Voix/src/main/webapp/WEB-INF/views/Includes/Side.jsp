@@ -342,7 +342,7 @@ if (${sessionScope.rankState == 'NW'}) {
 
                 // Create a new anchor link
                 var newsHitItem = document.createElement("a");
-		newsHitItem.className = "News-hit-content";
+		newsHitItem.className = "News-hit-Content";
 		newsHitItem.title = hitNews.NWTITLE;
                 newsHitItem.href = "javascript:void(0);"; // Set a dummy href
 
