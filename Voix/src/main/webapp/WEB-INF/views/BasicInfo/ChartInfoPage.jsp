@@ -90,7 +90,7 @@
 					<img alt="랭킹 포스터" class="VOIXBODERLINE" src="${ChartInfoList.sgimg}" style="border-radius: 7px;">
 				</div>
 
-				<div class="card col-md-8 mb-4 VOIXBODERLINE" style="border-radius: 10px;">
+				<div class="card col-md-8 mb-4 VOIXBODERLINE" style="border-radius: 10px; background-color: whitesmoke;">
 					<p>${ChartInfoList.sgartitle}</p>
 					<p id="sgtitle">${ChartInfoList.sgtitle}</p>
 					<p>${ChartInfoList.sginfo}</p>
