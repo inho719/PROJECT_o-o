@@ -86,8 +86,8 @@
 
 		<c:forEach items="${ChartInfoList}" var="ChartInfoList">
 			<div class="row">
-				<div class="card col-md-4 mb-4 ">
-					<img alt="랭킹 포스터" class="VOIXBODERLINE" src="${ChartInfoList.sgimg}">
+				<div class="card col-md-4 mb-4" style="background-color: #ede9e7; border: none;">
+					<img alt="랭킹 포스터" class="VOIXBODERLINE" src="${ChartInfoList.sgimg}" style="border-radius: 7px;">
 				</div>
 
 				<div class="card col-md-8 mb-4 VOIXBODERLINE" style="border-radius: 10px;">
@@ -99,13 +99,15 @@
 					<c:choose>
 						<c:when test="${sessionScope.SGLIKED eq 'true'}">
 							<div class="like_article" style="position: absolute; right: 20px; bottom: 20px;" onclick="like('${ChartInfoList.sgcode}', this)">
-								<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
+								<a class="prdLike" style="cursor: pointer;">
+									<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
 								</a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="like_article" style="position: absolute; right: 20px; bottom: 20px;" onclick="like('${ChartInfoList.sgcode}', this)">
-								<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
+								<a class="prdLike" style="cursor: pointer;">
+									<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
 								</a>
 							</div>
 
@@ -246,7 +248,7 @@
 					console.log(result);
 					console.log(result.items[0].id.videoId);
 					videoId = result.items[0].id.videoId;
-					
+
 					return videoId;
 				}
 			});
@@ -268,8 +270,7 @@
 				}
 			});
 			console.log(player);
-		}, 1500 );
-		
+		}, 1500);
 
 		function onPlayerReady(event) {
 			event.target.setVolume(100);
