@@ -90,7 +90,8 @@
 						console.log("확인결과 : " + result);
 						if (result != null) {
 							alert('비밀번호가 변경 되었습니다.!');
-							location.href = "/MyInfoPage";
+							sessionStorage.clear();
+							location.href = "/LoginPage";
 						}
 					}
 				});
