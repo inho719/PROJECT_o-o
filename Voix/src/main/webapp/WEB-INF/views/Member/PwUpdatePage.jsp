@@ -23,14 +23,11 @@
 			<div class="card-body">
 						<div id="div2">
 							<input type="text" id="mid" name="mid" value="${mInfo.mid}" disabled="disabled" style="display:none">							
-							<p>변경할 비밀번호</p>
-							<input placeholder="변경할 비밀번호" class="formInput p-1"
-								type="text" name="RePw" id="password1" onkeyup="checkPassword()">
-							<input
-								placeholder="변경할 비밀번호 확인" class="formInput p-1" type="password"
-								name="CkPw" id="password2" onkeyup="checkPassword()">
+							<p style="font-size: 24px; font-weight: bold; color: #5e504e; justify-content: center; text-align: center; margin-bottom: 30px;">변경할 비밀번호</p>
+							<input placeholder="변경할 비밀번호" class="formInput p-1 m-1" style="width: 100%; margin-bottom: 10px;" type="text" name="RePw" id="password1" onkeyup="checkPassword()">
+							<input placeholder="변경할 비밀번호 확인" style="margin-bottom: 10px; width: 100%;" class="formInput p-1 m-1" type="password"	name="CkPw" id="password2" onkeyup="checkPassword()">
 							<div id="passwordMessage"></div>
-							<button class="btn" onclick="updatePw()" style="background-color:#5e504e; color: white">변경하기</button>
+							<button class="btn" onclick="updatePw()" style="background-color:#5e504e; color: #ede9e7; width: 100%; margin-left: 4px;">변경하기</button>
 						</div>
 			</div>
 		</div>
