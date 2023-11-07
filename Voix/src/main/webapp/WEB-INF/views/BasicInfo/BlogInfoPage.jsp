@@ -98,7 +98,7 @@
 						<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 							<c:forEach items="${reviewList}" var="re">
 								<div class="meminfo">
-									<span>작성자: ${re.REWRITER} </span>
+									<span style="font-style: italic;">작성자: ${re.REWRITER} </span>
 									<div style="margin-top: 5px; margin-bottom: 5px;">
 										<!--
 									<textarea rows="" cols="" class="rvcomm scroll" disabled="disabled">${re.RECONTENT}</textarea>
