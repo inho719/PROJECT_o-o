@@ -208,7 +208,8 @@ overflow: hidden;
 								<div class="carousel-inner" style="height: 200px;">
 								<div class="carousel-item active" data-bs-interval="2000">
 									<a href="https://pay.genie.co.kr/buy/geniePack" target="_blank">
-										<img src="https://corp.kt.com/images/kt/kt-ci.png?ver=2022120801" class="d-block w-70" alt="...">
+										<img src="https://corp.kt.com/images/kt/kt-ci.png?ver=2022120801" class="d-block w-70" alt="..."
+											style ="position: absolute; left: 50px; top: 21px">
 									</a>
 									</div>
 									<div class="carousel-item" data-bs-interval="2000">
