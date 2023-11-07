@@ -72,7 +72,7 @@
 									
 
 								</div>
-								<div class="BlogContents p-2" style="height: 150px; overflow: hidden;">
+								<div class="BlogContents p-2" style="height: 340px; overflow: hidden;">
 									<p class="card-text">${BlogListMap.BGCONTENT}</p>
 								</div>
 								<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
