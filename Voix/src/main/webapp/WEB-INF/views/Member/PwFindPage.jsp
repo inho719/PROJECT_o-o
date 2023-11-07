@@ -11,51 +11,58 @@
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="resources/css/styles.css" rel="stylesheet" />
+<style type="text/css">
+.inputTag {
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/Includes/Menu.jsp"%>
 	<div class="container">
 
 		<!-- 컨텐츠 시작 -->
-		<div class="card mb-4 mx-auto" style="width: 700px; border-radius: 10px; background-color: whitesmoke;">
+		<div class="card mb-4 mx-auto" style="width: 450px; border-radius: 10px; background-color: whitesmoke;">
 			<div class="card-body VOIXBODERLINE" style="border-radius: 7px;">
 
 				<!-- 이메일이랑 아이디 맞는지 체크하는폼 -->
 				<div id="div1">
-					<div>비밀번호 찾기</div>
+					<div style="font-size: 24px; font-weight: bold; color: #5e504e; justify-content: center; text-align: center; margin-bottom: 30px;">비밀번호 찾기</div>
 					<form onsubmit="return emailIdCheck(this)">
 						<!-- onsubmit="return formCheck(this);" -->
-						<input placeholder="아이디" class="formInput p-1" type="text" name="inputId" style="margin-left: 4px;">
+						<input placeholder="아이디" class="formInput p-1 inputTag" type="text" name="inputId" style="margin-left: 4px; height: 30px; width: 96%;">
 						<div class="row m-1">
-							<input type="text" name="memailId" id="inputEmailId" placeholder="이메일아이디" style="width: 240px; margin-right: 4px;">
+							<input type="text" class="inputTag" name="memailId" id="inputEmailId" placeholder="이메일아이디" style="width: 46%; margin-right: 4px; margin-bottom: 10px; height: 30px;" >
 							@
-							<input type="text" name="memailDomain" id="inputDomain" placeholder="이메일도메인" style="width: 170px; margin-left: 4px;">
-							<select onchange="domainSelect(this)" style="width: 122px; margin-left: 2px; border-radius: 5px;">
+							<input type="text" name="memailDomain" class="inputTag" id="inputDomain" placeholder="이메일도메인" style="width: 46%; margin-left: 4px; margin-bottom: 10px;">
+							<select onchange="domainSelect(this)" class="inputTag" style="width: 75%; border-radius: 5px;">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="daum.net">daum.net</option>
 							</select>
-							<button type="submit" class="btn" style="background-color: #5e504e; color: #ede9e7; width: 80px; margin-left: 7px; border-radius: 7px;">보내기</button>
+							<button type="submit"  class="btn" style="background-color: #5e504e; color: #ede9e7; width: 80px; margin-left: 7px; border-radius: 7px; margin-bottom: 10px;">보내기</button>
 						</div>
 					</form>
 					<div>
-						<input type="text" name="Code" id="mail-check-input" placeholder="인증번호" style="margin-left: 4px;">
-						<button class="btn" onclick="mailCheck_t()" style="background-color: #5e504e; color: #ede9e7;">확인</button>
+						<input type="text" name="Code" id="mail-check-input" class="inputTag" placeholder="인증번호" style="margin-left: 4px; width: 74%; padding: 6px;">
+						<button class="btn" onclick="mailCheck_t()" style="background-color: #5e504e; color: #ede9e7; width: 80px; margin-left: 1px; border-radius: 7px; margin-bottom: 5px;">확인</button>
 						<span id="mail-check-warn"></span>
 					</div>
 				</div>
 				<!-- 인증번호가 맞을시 -->
-				<div id="div2" style="display: none;">
-					<p>변경할 비밀번호</p>
-					<input placeholder="변경할 비밀번호" class="formInput p-1" type="text" name="RePw" id="password1" onkeyup="checkPassword()">
-					<input placeholder="변경할 비밀번호 확인" class="formInput p-1" type="password" name="CkPw" id="password2" onkeyup="checkPassword()">
-					<div id="passwordMessage"></div>
-					<button class="btn btn-info" onclick="updatePw()">변경하기</button>
+				<div id="div2" style="display: none;">					
+							<p style="font-size: 24px; font-weight: bold; color: #5e504e; justify-content: center; text-align: center; margin-bottom: 30px;">변경할 비밀번호</p>
+							<input placeholder="변경할 비밀번호" class="formInput p-1 m-1" style="width: 100%; margin-bottom: 10px;" type="text" name="RePw" id="password1" onkeyup="checkPassword()">
+							<input placeholder="변경할 비밀번호 확인" style="margin-bottom: 10px; width: 100%;" class="formInput p-1 m-1" type="password"	name="CkPw" id="password2" onkeyup="checkPassword()">
+							<div id="passwordMessage"></div>
+							<button class="btn" onclick="updatePw()" style="background-color:#5e504e; color: #ede9e7; width: 100%; margin-left: 4px;">변경하기</button>
 				</div>
 
-				<div>
-					<a type="button" href="LoginPage">로그인하기</a>
+				<div style="margin-left: 4px;">
+					<a type="button" href="LoginPage">로그인하기</a> /
 					<a type="button" href="IdFindPage">아이디 찾기</a>
 				</div>
 			</div>
@@ -87,12 +94,13 @@
 			}
 
 		}
-
+		console.log(myCheck);
 		function formCheck(formObj) {
 			console.log('formCheck()호출')
 			console.log(formObj);
 			//아이디가 입력되지 않았을 경우 false
 			let inputId = formObj.userId;
+			
 			if (inputId.value.length == 0) {
 				alert('아이디를 입력 해주세요!');
 				inputId.focus();
@@ -110,6 +118,10 @@
 				memailDomain.focus();
 				return false;
 			}
+			if (!myCheck) {
+				alert('이메일을 인증해주세요');
+				return false;
+			}
 		}
 		function domainSelect(selObj) {
 			document.querySelector('#inputDomain').value = selObj.value;
@@ -125,11 +137,16 @@
 					"memailId" : formObj.memailId.value,
 					"memailDomain" : formObj.memailDomain.value
 				},/*전송 파라메터*/
-				success : function(CheckResult) {/* 전송에 성공 했을 경우 */
-					console.log("확인결과 : " + CheckResult);
-					gomailCheck();
+				success : function(result) {/* 전송에 성공 했을 경우 */
+					console.log(result.length);
+					if(result.length != 0){
+					gomailCheck();						
+					}else{
+						alert('등록되어있는 회원이 아닙니다. \회원가입을 진행해주세요');
+					}
 				}
 			});
+			
 			return false;
 		}
 		let AuthPw = null;
