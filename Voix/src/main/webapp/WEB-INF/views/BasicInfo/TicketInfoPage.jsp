@@ -136,7 +136,7 @@ button {
 				</div>
 				<div class="col-md-2 mb-2 " style="display: inline-block;">
 					<div style="height: 100%; display: grid; place-items: center;">
-						<button class="btn VOIXBODERLINE" style="font-size: x-large; height: 100%; color: #ede9e7;  background-color: #5e504e" onclick="location.href='${tk.tkurl}'">바로가기</button>
+						<button class="btn VOIXBODERLINE" style="font-size: x-large; height: 100%; color: #ede9e7; background-color: #5e504e" onclick="target_blank('${tk.tkurl}')">바로가기</button>
 					</div>
 				</div>
 			</div>
@@ -155,7 +155,7 @@ button {
 							<div class="meminfo">
 								<span style="font-style: italic;">작성자: ${re.REWRITER} </span>
 								<div style="margin-top: 5px; margin-bottom: 5px;">
-									<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc;  padding: 10px; background-color: whitesmoke;">${re.RECONTENT}</div>
+									<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; background-color: whitesmoke; padding: 10px;">${re.RECONTENT}</div>
 								</div>
 								<c:if test="${sessionScope.loginId == re.REWRITER}">
 									<button type="button" onclick="location.href='/deleteReview?recode=${re.RECODE}&tkcode=${tk.tkcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
@@ -196,6 +196,11 @@ button {
 	<script src="/resources/js/scripts.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=18a5f71bbe7bc58965ce6ce689f1e211"></script>
+	<script type="text/javascript">
+	function target_blank(url){
+		window.open(url);
+	}
+	</script>
 	<script type="text/javascript">
 		let tkplace = document.getElementById('tkplace').innerHTML;
 		let xMap = null;
