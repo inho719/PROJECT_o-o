@@ -172,7 +172,7 @@ button {
 					<div class="row my-3 scroll" style="width: 100%; margin-left: 5px; padding: 0px; display: inline-block; height: auto; max-height: 450px;">
 						<c:forEach items="${reviewList}" var="re">
 							<div class="meminfo">
-								<span>작성자: ${re.REWRITER} </span>
+								<span style="font-style: italic;">작성자: ${re.REWRITER} </span>
 								<div style="margin-top: 5px; margin-bottom: 5px;">
 									<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; padding: 10px;">${re.RECONTENT}</div>
 								</div>
