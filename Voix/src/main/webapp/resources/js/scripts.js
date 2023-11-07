@@ -54,6 +54,7 @@
 
 	// ajax 이메일 매개변수를 이용해서 아이디 select 하는 구절추가
 	function selectId(email) {
+	let RMSG = $( '#IdFind' );
 		$.ajax({
 			type : 'get',
 			url : 'FindId', // GET방식이라 Url 뒤에 email을 뭍힐수있다.
@@ -62,10 +63,16 @@
 			},
 			async: false,
 			success : function(data) {
-				console.log("data : " + data);
+				console.log(data.length);
 				mid = data;
-				document.querySelector( '.IdFind' ).innerText = mid;
-				
+				if(data.length != 0){
+				RMSG.html('회원님의 아이디는 '+mid+'입니다.');
+				}else{
+				RMSG.html('찾으시는 아이디가 없습니다.');
 			}
+			}
+			
+				
+			
 		}); // end ajax
 	}
