@@ -10845,6 +10845,7 @@ textarea.form-control-lg {
 }
   .VOIXBODERLINE{
   	border: 3px solid #5e504e !important;
+    box-shadow: 1px 1px 12px 0px #5e504e8a;
   }
   footer{
   	background-color: #5e504e !important;
