@@ -67,7 +67,7 @@
 					</c:choose>
 
 					<c:forEach items="${ChartList}" var="ChartMap" varStatus="status">
-						<div class="card col-md-6 m-2 VOIXBODERLINE" style="height: 220px; width: 48%; padding-left: 0px; overflow: hidden;">
+						<div class="card col-md-6 m-2 VOIXBODERLINE" style="height: 220px; width: 48%; padding-left: 0px; overflow: hidden; background-color: whitesmoke;">
 
 							<div class="rankChart">No.${(pageNumber-1)*10 + status.index + 1}</div>
 							<div style="display: flex;">
