@@ -53,7 +53,7 @@
 				<div class="w-100">
 					<div class="list-group">
 						<ul class="list-group list-group-horizontal mb-3" style="list-style: none;">
-							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;"><a class="list-group-item TicketList" href="/choosSite?siteVal=melon"> <img class=" " style="width: 95%" alt="" src="/resources/assets/m.png">
+							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;"><a class="list-group-item TicketList" href="/choosSite?siteVal=melon"> <img class=" " style="width: 80%; margin: auto;" alt="" src="/resources/assets/m.png">
 							</a></li>
 							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;"><a class="list-group-item TicketList" href="/choosSite?siteVal=interpark"> <img class="w-100" alt="" src="/resources/assets/Inter.png">
 							</a></li>
