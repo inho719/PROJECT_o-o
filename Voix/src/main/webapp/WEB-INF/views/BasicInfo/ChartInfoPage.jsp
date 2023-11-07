@@ -141,7 +141,7 @@
 									<div class="textdiv w-100" style="font-size: large; border: 1px solid #cccc; padding: 10px;">${re.RECONTENT}</div>
 								</div>
 								<c:if test="${sessionScope.loginId == re.REWRITER}">
-<button type="button" onclick="location.href='/deleteChartReview?recode=${re.RECODE}&sgcode=${SgInfo.sgcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
+									<button type="button" onclick="location.href='/deleteChartReview?recode=${re.RECODE}&sgcode=${SgInfo.sgcode}'" class="btn" style="font-size: 14px; margin-bottom: 4px; width: 88px; height: 33px; float: right; color: #ede9e7; background-color: #5e504e">댓글 삭제</button>
 								</c:if>
 								<div class="small text-muted">작성시간: ${re.REDATE}</div>
 							</div>
@@ -218,7 +218,6 @@
 			}
 		}
 	</script>
-	</script>
 	<script src="https://www.youtube.com/iframe_api"></script>
 
 	<script type="text/javascript">
@@ -247,12 +246,14 @@
 					console.log(result);
 					console.log(result.items[0].id.videoId);
 					videoId = result.items[0].id.videoId;
+					
 					return videoId;
 				}
 			});
 		});
-		function onYouTubeIframeAPIReady(result) {
-
+		console.log('시작');
+		setTimeout(function onYouTubeIframeAPIReady(result) {
+			console.log('1.5초경과');
 			player = new YT.Player('player', {
 				height : '100%',
 				width : '1000',
@@ -267,8 +268,27 @@
 				}
 			});
 			console.log(player);
-
+		}, 1500 );
+		
+	/*	function onYouTubeIframeAPIReady(result) {
+			setTimeout(() => , 1500);
+			player = new YT.Player('player', {
+				height : '100%',
+				width : '1000',
+				videoId : videoId,
+				playerVars : {
+					'controls' : 0,
+				},
+				events : {
+					'onReady' : onPlayerReady,
+					'onStateChange' : onPlayerStateChange,
+					'onError' : onPlayerError
+				}
+			});
+			console.log(player);
+			
 		}
+	*/
 
 		function onPlayerReady(event) {
 			event.target.setVolume(100);
