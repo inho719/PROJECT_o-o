@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <link href="resources/css/styles.css" rel="stylesheet" />
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Album Page</title>
@@ -64,46 +66,62 @@
 				<div style="display: flex;">
 
 					<div style="width: 700px;">
-						<c:forEach items="${AlbumListMap}" var="AlbumMap">
-							<c:if test="${AlbumMap.ALGENRE == '가요'}">
-								<table>
-									<tr>
-										<td>
-											<div class="mb-2 " style="height: 173px;">
-												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
-													<div class="AlbumImg">
-														<c:if test="${AlbumMap.ALIMG != null }">
-															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
-																<img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." />
-															</a>
-														</c:if>
-														<c:if test="${AlbumMap.ALIMG == null }">
-															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
-																<img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
-															</a>
-														</c:if>
-													</div>
-													<div class="AlbumContents">
-														<div class="AlbumTitle">
-															<h5 class="card-title m-2">${AlbumMap.ALTITLE}</h5>
-														</div>
-														<div class="AlbumContentsWrapper">
-															<div class="AlbumText px-2 d-flex" style="justify-content: space-between;">
-																<p class="card-text">${AlbumMap.ALARTIST}</p>
+						<c:choose>
+							<c:when test="${AlbumListMap.size() == 0 }">
+								<img alt=""
+									src="https://photosnu.snu.ac.kr/_skin/kor/images/common/quick-result-noresult.png"
+									style="width: 100%;">
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${AlbumListMap}" var="AlbumMap">
+									<c:if test="${AlbumMap.ALGENRE == '가요'}">
+										<table>
+											<tr>
+												<td>
+													<div class="mb-2 " style="height: 173px;">
+														<div class="AlbumDiv VOIXBODERLINE"
+															style="display: flex; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+															<div class="AlbumImg">
+																<c:if test="${AlbumMap.ALIMG != null }">
+																	<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
+																		<img style="height: 170px; width: 170px;"
+																			src="${AlbumMap.ALIMG}" alt="..." />
+																	</a>
+																</c:if>
+																<c:if test="${AlbumMap.ALIMG == null }">
+																	<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
+																		<img class=""
+																			src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
+																			alt="..." />
+																	</a>
+																</c:if>
 															</div>
-															<div class="small m-2 d-flex" style="justify-content: space-between; align-items: flex-end;">
-																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
+															<div class="AlbumContents">
+																<div class="AlbumTitle">
+																	<h5 class="card-title m-2">${AlbumMap.ALTITLE}</h5>
+																</div>
+																<div class="AlbumContentsWrapper">
+																	<div class="AlbumText px-2 d-flex"
+																		style="justify-content: space-between;">
+																		<p class="card-text">${AlbumMap.ALARTIST}</p>
+																	</div>
+																	<div class="small m-2 d-flex"
+																		style="justify-content: space-between; align-items: flex-end;">
+																		<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
+																	</div>
+																</div>
+																<div class="small m-2 d-flex"
+																	style="justify-content: space-between; position: absolute; bottom: 0; right: 0"></div>
 															</div>
 														</div>
-														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0"></div>
 													</div>
-												</div>
-											</div>
-										</td>
-									</tr>
-								</table>
-							</c:if>
-						</c:forEach>
+												</td>
+											</tr>
+										</table>
+									</c:if>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 
 					<div style="width: 700px;">
@@ -113,16 +131,20 @@
 									<tr>
 										<td>
 											<div class="mb-2" style="height: 173px;">
-												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
+												<div class="AlbumDiv VOIXBODERLINE"
+													style="display: flex; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 													<div class="AlbumImg">
 														<c:if test="${AlbumMap.ALIMG != null }">
 															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
-																<img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." />
+																<img style="height: 170px; width: 170px;"
+																	src="${AlbumMap.ALIMG}" alt="..." />
 															</a>
 														</c:if>
 														<c:if test="${AlbumMap.ALIMG == null }">
 															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
-																<img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
+																<img class=""
+																	src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
+																	alt="..." />
 															</a>
 														</c:if>
 													</div>
@@ -131,14 +153,17 @@
 															<h5 class="card-title m-2">${AlbumMap.ALTITLE}</h5>
 														</div>
 														<div class="AlbumContentsWrapper">
-															<div class="AlbumText px-2 d-flex" style="justify-content: space-between;">
+															<div class="AlbumText px-2 d-flex"
+																style="justify-content: space-between;">
 																<p class="card-text">${AlbumMap.ALARTIST}</p>
 															</div>
-															<div class="small m-2 d-flex" style="justify-content: space-between; align-items: flex-end;">
+															<div class="small m-2 d-flex"
+																style="justify-content: space-between; align-items: flex-end;">
 																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
 															</div>
 														</div>
-														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0"></div>
+														<div class="small m-2 d-flex"
+															style="justify-content: space-between; position: absolute; bottom: 0; right: 0"></div>
 													</div>
 												</div>
 											</div>
@@ -162,15 +187,18 @@
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
+				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$("#myButtonPop").click(function() {

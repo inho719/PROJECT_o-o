@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <link href="resources/css/styles.css" rel="stylesheet" />
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>News Page</title>
@@ -50,56 +52,79 @@
 			<!-- Blog entries-->
 			<div class="col-lg-9">
 				<!-- Featured blog post-->
-				<c:forEach items="${list}" var="NewsMap">
-					<div class="mb-4" style="background-color: whitesmoke; border-radius: 10px;">
-						<div class="NewsDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;">
-							<c:if test="${NewsMap.NWIMG != null }">
-								<div class="NewsImg">
-									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
-										<img class="" src="${NewsMap.NWIMG}" alt="..." style="width: 350px; height: 300px; object-fit: cover; border-radius: 7px;" />
-									</a>
-								</div>
-							</c:if>
-							<c:if test="${NewsMap.NWIMG == null }">
-								<div class="NewsImg">
-									<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
-										<img class="" src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg" style="border-radius: 7px; width: 350px; height: 300px; object-fit: cover;" alt="..." />
-									</a>
-								</div>
-							</c:if>
-							<div class="NewsText" style="flex: 1;">
-								<div class="NewsTitle">
-									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${NewsMap.NWTITLE}</h2>
-								</div>
-								<div class="NewsContents p-2" style="height: 150px; overflow: hidden;">
-									<p class="card-text">${NewsMap.NWCONTENT}</p>
-								</div>
-								<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-									<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${NewsMap.NWBIGHIT}</a>
-									<a class="Views" style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
-									<c:choose>
-										<c:when test="${NewsMap.NWLIKED eq 'true'}">
-											<div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
-												<a class="prdLike" style="cursor: pointer;">
-													<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-												</a>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="like_article" onclick="like('${NewsMap.NWCODE}', this)">
-												<a class="prdLike" style="cursor: pointer;">
-													<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
-												</a>
-											</div>
+				<c:choose>
+				<c:when test="${list.size() == 0 }">
+					<img alt=""
+						src="https://photosnu.snu.ac.kr/_skin/kor/images/common/quick-result-noresult.png" style="width: 100%;">
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list}" var="NewsMap">
+						<div class="mb-4"
+							style="background-color: whitesmoke; border-radius: 10px;">
+							<div class="NewsDiv VOIXBODERLINE"
+								style="display: flex; border-radius: 10px;">
+								<c:if test="${NewsMap.NWIMG != null }">
+									<div class="NewsImg">
+										<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
+											<img class="" src="${NewsMap.NWIMG}" alt="..."
+												style="width: 350px; height: 300px; object-fit: cover; border-radius: 7px;" />
+										</a>
+									</div>
+								</c:if>
+								<c:if test="${NewsMap.NWIMG == null }">
+									<div class="NewsImg">
+										<a href="/NewsInfoPage?nwcode=${NewsMap.NWCODE}">
+											<img class=""
+												src="https://dummyimage.com/200x200/c1e3cd/ffffff.jpg"
+												style="border-radius: 7px; width: 350px; height: 300px; object-fit: cover;"
+												alt="..." />
+										</a>
+									</div>
+								</c:if>
+								<div class="NewsText" style="flex: 1;">
+									<div class="NewsTitle">
+										<h2 class="card-title m-2"
+											style="overflow: hidden; height: 75px;">${NewsMap.NWTITLE}</h2>
+									</div>
+									<div class="NewsContents p-2"
+										style="height: 150px; overflow: hidden;">
+										<p class="card-text">${NewsMap.NWCONTENT}</p>
+									</div>
+									<div class="small text-mute m-2"
+										style="display: flex; justify-content: space-between; align-items: flex-end;">
+										<a class="Views"
+											style="text-decoration-line: none; color: gray;">조회수:
+											${NewsMap.NWBIGHIT}</a>
+										<a class="Views"
+											style="text-decoration-line: none; color: gray;">${NewsMap.NWDATE}</a>
+										<c:choose>
+											<c:when test="${NewsMap.NWLIKED eq 'true'}">
+												<div class="like_article"
+													onclick="like('${NewsMap.NWCODE}', this)">
+													<a class="prdLike" style="cursor: pointer;">
+														<img alt="" src="/resources/assets/heart.png"
+															style="width: 30px;">
+													</a>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="like_article"
+													onclick="like('${NewsMap.NWCODE}', this)">
+													<a class="prdLike" style="cursor: pointer;">
+														<img alt="" src="/resources/assets/blankheart.png"
+															style="width: 30px;">
+													</a>
+												</div>
 
-										</c:otherwise>
-									</c:choose>
+											</c:otherwise>
+										</c:choose>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
-
+					</c:forEach>
+				</c:otherwise>
+				</c:choose>
 
 			</div>
 			<!-- end Page content-->
@@ -108,18 +133,23 @@
 	</div>
 	<ul class="pagination" style="place-content: center;">
 		<c:if test="${pageMaker.prev }">
-			<li><a href="/NewsPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
+			<li><a href="/NewsPage?page=${pageMaker.startPage-1}"
+					style="color: #5e504e">
 					<i class="fa fa-chevron-left"></i>◀
 				</a></li>
 			<!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
 		</c:if>
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-			<li><a href='<c:url value="/NewsPage?page=${pageNum }"/>' style="color: #5e504e">
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
+			var="pageNum">
+			<li><a href='<c:url value="/NewsPage?page=${pageNum }"/>'
+					style="color: #5e504e">
 					<i class="fa">${pageNum }</i>
 				</a></li>
 		</c:forEach>
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-			<li><a href='<c:url value="/NewsPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
+			<li><a
+					href='<c:url value="/NewsPage?page=${pageMaker.endPage+1 }"/>'
+					style="color: #5e504e">
 					▶ <i class="fa fa-chevron-right"></i>
 				</a></li>
 		</c:if>
@@ -127,12 +157,15 @@
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
+				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 
 	<!-- if(loginId.length === 0){ -->

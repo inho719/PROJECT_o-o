@@ -46,5 +46,7 @@ public interface BlogDao {
 	ArrayList<HashMap<String, String>> selectSearch_Content(String searchKeyword);
 
 	ArrayList<HashMap<String, String>> selectAllImg();
+
+	ArrayList<HashMap<String, String>> bgdate();
 	
 }

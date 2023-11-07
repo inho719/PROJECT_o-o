@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Blog Page</title>
@@ -49,62 +51,88 @@
 			<!-- Blog entries-->
 			<div class="col-lg-9">
 				<!-- Featured blog post-->
-				<c:forEach items="${BlogList}" var="BlogListMap">
-					<div class="mb-4" style="background-color: whitesmoke; border-radius: 10px;">
-						<div class="BlogDiv VOIXBODERLINE" style="display: flex; border-radius: 10px;">
-							<c:if test="${BlogListMap.BGIMG != null }">
-								<div class="BlogImg">
-									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
-										<img class="" src="${BlogListMap.BGIMG}" alt="..." style="width: 350px; height: 300px object-fit: cover; border-radius: 7px;" />
-									</a>
-								</div>
-							</c:if>
-							<c:if test="${BlogListMap.BGIMG == null }">
-								<div class="BlogImg">
-									<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
-										<img class="" src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg" style="width: 350px; height: 300px object-fit: cover; border-radius: 7px;" alt="..." />
-									</a>
-								</div>
-							</c:if>
-							<div class="BlogText" style="flex: 1;">
-								<div class="BlogTitle">
-									<h2 class="card-title m-2" style="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
-									
+				<c:choose>
 
-								</div>
-								<div class="BlogContents p-2" style="height: 340px; overflow: hidden;">
-									<p class="card-text">${BlogListMap.BGCONTENT}</p>
-								</div>
-								<div class="small text-mute m-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-									<!-- ---------------------------------------------------------------------------- -->
-									<a class="Views" style="text-decoration-line: none; color: gray;">작성자: ${BlogListMap.BGWRITER}</a>
-									<a class="Views" style="text-decoration-line: none; color: gray;">조회수: ${BlogListMap.BGBIGHIT}</a>
-									<a class="Views" style="text-decoration-line: none; color: gray;">${BlogListMap.BGDATE}</a>
+					<c:when test="${BlogList.size() == 0 }">
+						<img alt=""
+							src="https://photosnu.snu.ac.kr/_skin/kor/images/common/quick-result-noresult.png" style="width: 100%;">
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${BlogList}" var="BlogListMap">
+							<div class="mb-4"
+								style="background-color: whitesmoke; border-radius: 10px;">
+								<div class="BlogDiv VOIXBODERLINE"
+									style="display: flex; border-radius: 10px;">
+									<c:if test="${BlogListMap.BGIMG != null }">
+										<div class="BlogImg">
+											<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
+												<img class="" src="${BlogListMap.BGIMG}" alt="..."
+													style="width: 350px; height: 300px object-fit: cover; border-radius: 7px;" />
+											</a>
+										</div>
+									</c:if>
+									<c:if test="${BlogListMap.BGIMG == null }">
+										<div class="BlogImg">
+											<a href="/BlogInfoPage?bgcode=${BlogListMap.BGCODE}">
+												<img class=""
+													src="${pageContext.request.contextPath}/resources/users/blog/blogimg.jpg"
+													style="width: 350px; height: 300px object-fit: cover; border-radius: 7px;"
+													alt="..." />
+											</a>
+										</div>
+									</c:if>
+									<div class="BlogText" style="flex: 1;">
+										<div class="BlogTitle">
+											<h2 class="card-title m-2"
+												style="overflow: hidden; height: 75px;">${BlogListMap.BGTITLE}</h2>
 
-									<c:choose>
-										<c:when test="${BlogListMap.BGLIKED eq 'true'}">
-											<div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
-												<a href="#" class="prdLike">
-													<img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-												</a>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="like_article" onclick="like('${BlogListMap.BGCODE}', this)">
-												<a href="#" class="prdLike">
-													<img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
-												</a>
-											</div>
 
-										</c:otherwise>
-									</c:choose>
+										</div>
+										<div class="BlogContents p-2"
+											style="height: 340px; overflow: hidden;">
+											<p class="card-text">${BlogListMap.BGCONTENT}</p>
+										</div>
+										<div class="small text-mute m-2"
+											style="display: flex; justify-content: space-between; align-items: flex-end;">
+											<!-- ---------------------------------------------------------------------------- -->
+											<a class="Views"
+												style="text-decoration-line: none; color: gray;">작성자:
+												${BlogListMap.BGWRITER}</a>
+											<a class="Views"
+												style="text-decoration-line: none; color: gray;">조회수:
+												${BlogListMap.BGBIGHIT}</a>
+											<a class="Views"
+												style="text-decoration-line: none; color: gray;">${BlogListMap.BGDATE} 일전</a>
 
+											<c:choose>
+												<c:when test="${BlogListMap.BGLIKED eq 'true'}">
+													<div class="like_article"
+														onclick="like('${BlogListMap.BGCODE}', this)">
+														<a href="#" class="prdLike">
+															<img alt="" src="/resources/assets/heart.png"
+																style="width: 30px;">
+														</a>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="like_article"
+														onclick="like('${BlogListMap.BGCODE}', this)">
+														<a href="#" class="prdLike">
+															<img alt="" src="/resources/assets/blankheart.png"
+																style="width: 30px;">
+														</a>
+													</div>
+
+												</c:otherwise>
+											</c:choose>
+
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</c:forEach>
-
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 
 			</div>
 			<!-- end Page content-->
@@ -113,18 +141,23 @@
 	</div>
 	<ul class="pagination" style="place-content: center;">
 		<c:if test="${pageMaker.prev }">
-			<li><a href="/BlogPage?page=${pageMaker.startPage-1}" style="color: #5e504e">
+			<li><a href="/BlogPage?page=${pageMaker.startPage-1}"
+					style="color: #5e504e">
 					<i class="fa fa-chevron-left"></i>◀
 				</a></li>
 			<!-- <a href='<c:url value="/NewsPage?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a> -->
 		</c:if>
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-			<li><a href='<c:url value="/BlogPage?page=${pageNum }"/>' style="color: #5e504e">
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }"
+			var="pageNum">
+			<li><a href='<c:url value="/BlogPage?page=${pageNum }"/>'
+					style="color: #5e504e">
 					<i class="fa">${pageNum }</i>
 				</a></li>
 		</c:forEach>
 		<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-			<li><a href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>' style="color: #5e504e">
+			<li><a
+					href='<c:url value="/BlogPage?page=${pageMaker.endPage+1 }"/>'
+					style="color: #5e504e">
 					▶<i class="fa fa-chevron-right"></i>
 				</a></li>
 		</c:if>
@@ -132,12 +165,15 @@
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
+				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 
 	<!-- if(loginId.length === 0){ -->

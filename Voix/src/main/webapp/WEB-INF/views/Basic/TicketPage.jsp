@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Ticket Page</title>
@@ -52,78 +54,121 @@
 			<div class="col-lg-9">
 				<div class="w-100">
 					<div class="list-group">
-						<ul class="list-group list-group-horizontal mb-3" style="list-style: none;">
-							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;"><a class="list-group-item TicketList" href="/choosSite?siteVal=melon"> <img class=" " style="width: 80%; margin: auto;" alt="" src="/resources/assets/m.png">
-							</a></li>
-							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;"><a class="list-group-item TicketList" href="/choosSite?siteVal=interpark"> <img class="w-100" alt="" src="/resources/assets/Inter.png">
-							</a></li>
-							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;"><a class="list-group-item TicketList" href="/choosSite?siteVal=yes24"> <img class="w-100" alt="" src="/resources/assets/yes.png">
-							</a></li>
-							<li class="w-25 VOIXBODERLINE" style="height: 115px; border-radius: 100px;"><a class="list-group-item TicketList" href="/choosSite?siteVal=11bunga"> <img class="w-100" alt="" src="/resources/assets/11.png">
-							</a></li>
+						<ul class="list-group list-group-horizontal mb-3"
+							style="list-style: none;">
+							<li class="w-25 VOIXBODERLINE"
+								style="height: 115px; border-radius: 100px;"><a
+									class="list-group-item TicketList"
+									href="/choosSite?siteVal=melon">
+									<img class=" " style="width: 80%; margin: auto;" alt=""
+										src="/resources/assets/m.png">
+								</a></li>
+							<li class="w-25 VOIXBODERLINE"
+								style="height: 115px; border-radius: 100px;"><a
+									class="list-group-item TicketList"
+									href="/choosSite?siteVal=interpark">
+									<img class="w-100" alt="" src="/resources/assets/Inter.png">
+								</a></li>
+							<li class="w-25 VOIXBODERLINE"
+								style="height: 115px; border-radius: 100px;"><a
+									class="list-group-item TicketList"
+									href="/choosSite?siteVal=yes24">
+									<img class="w-100" alt="" src="/resources/assets/yes.png">
+								</a></li>
+							<li class="w-25 VOIXBODERLINE"
+								style="height: 115px; border-radius: 100px;"><a
+									class="list-group-item TicketList"
+									href="/choosSite?siteVal=11bunga">
+									<img class="w-100" alt="" src="/resources/assets/11.png">
+								</a></li>
 						</ul>
 					</div>
 				</div>
 
 				<div class="row">
+					<c:choose>
 
-					<c:forEach items="${TkListMap}" var="TkMap">
-						<div class="col-md-6">
-							<div class="card mb-3">
-								<div class="TicketDiv VOIXBODERLINE" style="height: 900px;">
-									<c:if test="${TkMap.TKIMG != null }">
-										<div class="TicketImg">
-											<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}"> <img style="width: 100%; height: auto;" class="" src="${TkMap.TKIMG}" alt="..." />
-											</a>
-										</div>
-									</c:if>
-									<c:if test="${TkMap.TKIMG == null }">
-										<div class="TicketImg">
-											<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}"> <img style="width: 100%; height: auto;" class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
-											</a>
-										</div>
-									</c:if>
-									<div class="TicketContents w-100">
-										<div class="TicketTitle">
-											<h4 class="card-title m-2" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${TkMap.TKTITLE}</h4>
-										</div>
-										<div style="margin: 0px !important; padding: 0px !important;">
-											<div class="TicketText p-2 d-flex" style="justify-content: space-between;">
-												<div>
-													<p class="card-text small">
-														<br>${TkMap.TKDATE}</p>
+						<c:when test="${TkListMap.size() == 0 }">
+							<img alt=""
+								src="https://photosnu.snu.ac.kr/_skin/kor/images/common/quick-result-noresult.png" style="width: 100%;">
+						</c:when>
+						<c:otherwise>
 
-													<p class="card-text small">${TkMap.TKPLACE}</p>
 
-													<p class="card-text small">${TkMap.TKTIME}</p>
 
-													<p class="card-text small">${TkMap.TKARTIST}</p>
+
+							<c:forEach items="${TkListMap}" var="TkMap">
+								<div class="col-md-6">
+									<div class="card mb-3">
+										<div class="TicketDiv VOIXBODERLINE" style="height: 900px;">
+											<c:if test="${TkMap.TKIMG != null }">
+												<div class="TicketImg">
+													<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}">
+														<img style="width: 100%; height: auto;" class=""
+															src="${TkMap.TKIMG}" alt="..." />
+													</a>
+												</div>
+											</c:if>
+											<c:if test="${TkMap.TKIMG == null }">
+												<div class="TicketImg">
+													<a href="/TicketInfoPage?tkcode=${TkMap.TKCODE}">
+														<img style="width: 100%; height: auto;" class=""
+															src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg"
+															alt="..." />
+													</a>
+												</div>
+											</c:if>
+											<div class="TicketContents w-100">
+												<div class="TicketTitle">
+													<h4 class="card-title m-2"
+														style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${TkMap.TKTITLE}</h4>
+												</div>
+												<div
+													style="margin: 0px !important; padding: 0px !important;">
+													<div class="TicketText p-2 d-flex"
+														style="justify-content: space-between;">
+														<div>
+															<p class="card-text small">
+																<br>${TkMap.TKDATE}</p>
+
+															<p class="card-text small">${TkMap.TKPLACE}</p>
+
+															<p class="card-text small">${TkMap.TKTIME}</p>
+
+															<p class="card-text small">${TkMap.TKARTIST}</p>
+														</div>
+													</div>
+												</div>
+												<div class="small text-mute" style="text-align: end; margin-right: 10px;">
+													<c:choose>
+														<c:when test="${TkMap.TKLIKED eq 'true'}">
+															<div class="like_article"
+																onclick="like('${TkMap.TKCODE}', this)">
+																<a class="prdLike" style="cursor: pointer;">
+																	<img alt="" src="/resources/assets/heart.png"
+																		style="width: 30px;">
+																</a>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="like_article"
+																onclick="like('${TkMap.TKCODE}', this)">
+																<a class="prdLike" style="cursor: pointer;">
+																	<img alt="" src="/resources/assets/blankheart.png"
+																		style="width: 30px;">
+																</a>
+															</div>
+
+														</c:otherwise>
+													</c:choose>
 												</div>
 											</div>
 										</div>
-										<div class="small text-mute m-2" style="text-align: end;">
-											<c:choose>
-												<c:when test="${TkMap.TKLIKED eq 'true'}">
-													<div class="like_article" onclick="like('${TkMap.TKCODE}', this)">
-														<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/heart.png" style="width: 30px;">
-														</a>
-													</div>
-												</c:when>
-												<c:otherwise>
-													<div class="like_article" onclick="like('${TkMap.TKCODE}', this)">
-														<a class="prdLike" style="cursor: pointer;"> <img alt="" src="/resources/assets/blankheart.png" style="width: 30px;">
-														</a>
-													</div>
-
-												</c:otherwise>
-											</c:choose>
-										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-					</c:forEach>
-
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 
@@ -136,11 +181,13 @@
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는 데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
+			<p class="m-0 text-center text-white">위 페이지의 출력되는 정보는 우측 상단에 있는
+				데이터 클롤링 및 페이지 양식을 인용하여 제작되었습니다.</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JS-->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
 	<script type="text/javascript">

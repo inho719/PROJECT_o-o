@@ -40,7 +40,7 @@ public class BlogService {
 
 
 	public ArrayList<HashMap<String, String>> getBlogList_map() {
-
+		ArrayList<HashMap<String, String>> bgdList = bdao.bgdate();
 		return bdao.selectBlog_map();
 	}
 
