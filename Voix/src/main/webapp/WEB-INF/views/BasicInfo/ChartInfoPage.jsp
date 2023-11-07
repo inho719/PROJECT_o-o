@@ -270,25 +270,6 @@
 			console.log(player);
 		}, 1500 );
 		
-	/*	function onYouTubeIframeAPIReady(result) {
-			setTimeout(() => , 1500);
-			player = new YT.Player('player', {
-				height : '100%',
-				width : '1000',
-				videoId : videoId,
-				playerVars : {
-					'controls' : 0,
-				},
-				events : {
-					'onReady' : onPlayerReady,
-					'onStateChange' : onPlayerStateChange,
-					'onError' : onPlayerError
-				}
-			});
-			console.log(player);
-			
-		}
-	*/
 
 		function onPlayerReady(event) {
 			event.target.setVolume(100);
