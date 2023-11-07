@@ -69,17 +69,21 @@
 								<table>
 									<tr>
 										<td>
-											<div class="card mb-2 " style="height: 173px;">
-												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden;">
+											<div class="mb-2 " style="height: 173px;">
+												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 													<div class="AlbumImg">
 														<c:if test="${AlbumMap.ALIMG != null }">
-															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
+																<img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." />
+															</a>
 														</c:if>
 														<c:if test="${AlbumMap.ALIMG == null }">
-															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
+																<img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
+															</a>
 														</c:if>
 													</div>
-													<div class="AlbumContents" >
+													<div class="AlbumContents">
 														<div class="AlbumTitle">
 															<h5 class="card-title m-2">${AlbumMap.ALTITLE}</h5>
 														</div>
@@ -91,9 +95,7 @@
 																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
 															</div>
 														</div>
-														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0">
-															
-														</div>
+														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0"></div>
 													</div>
 												</div>
 											</div>
@@ -110,14 +112,18 @@
 								<table>
 									<tr>
 										<td>
-											<div class="card mb-2" style="height: 173px;">
-												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden;">
+											<div class="mb-2" style="height: 173px;">
+												<div class="AlbumDiv VOIXBODERLINE" style="display: flex; overflow: hidden; border-radius: 7px; background-color: whitesmoke;">
 													<div class="AlbumImg">
 														<c:if test="${AlbumMap.ALIMG != null }">
-															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
+																<img style="height: 170px; width: 170px;" src="${AlbumMap.ALIMG}" alt="..." />
+															</a>
 														</c:if>
 														<c:if test="${AlbumMap.ALIMG == null }">
-															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}"><img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." /></a>
+															<a href="/AlbumInfoPage?alcode=${AlbumMap.ALCODE}">
+																<img class="" src="https://dummyimage.com/150x150/c1e3cd/ffffff.jpg" alt="..." />
+															</a>
 														</c:if>
 													</div>
 													<div class="AlbumContents">
@@ -132,9 +138,7 @@
 																<p class="card-text" style="font-size: 12px;">${AlbumMap.ALDATE}</p>
 															</div>
 														</div>
-														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0">
-															
-														</div>
+														<div class="small m-2 d-flex" style="justify-content: space-between; position: absolute; bottom: 0; right: 0"></div>
 													</div>
 												</div>
 											</div>
