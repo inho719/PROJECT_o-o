@@ -338,11 +338,12 @@ if (${sessionScope.rankState == 'NW'}) {
 
                 // Create a new div element
                 var newsHitItemDiv = document.createElement("div");
-                newsHitItemDiv.className = "news-hit-item";
+                newsHitItemDiv.className = "News-hit-item";
 
                 // Create a new anchor link
                 var newsHitItem = document.createElement("a");
-		newsHitItem.className = "news-hit-content";
+		newsHitItem.className = "News-hit-content";
+		newsHitItem.title = hitNews.NWTITLE;
                 newsHitItem.href = "javascript:void(0);"; // Set a dummy href
 
                 // Set data-nwcode as a custom data attribute
@@ -382,7 +383,8 @@ if (${sessionScope.rankState == 'BL'}) {
 
                 // Create a new anchor link
                 var BlogHitItem = document.createElement("a");
-		BlogHitItem.className = "Blog-hit-Content"
+		BlogHitItem.className = "Blog-hit-Content";
+		BlogHitItem.title = hitBlog.BGTITLE;
                 BlogHitItem.href = "javascript:void(0);"; // Set a dummy href
 
                 // Set data-nwcode as a custom data attribute
