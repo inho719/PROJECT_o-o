@@ -62,7 +62,7 @@ overflow: hidden;
 		<c:otherwise>
 			<!-- Search widget-->
 			<div class="card mb-4">
-				<div class="card-header fontcolor" style="text-align: center;">${sessionScope.loginId} ${sessionScope.loginName }</div>
+				<div class="card-header fontcolor" style="text-align: center;">${sessionScope.loginName }</div>
 				<div class="card-body">
 					<div class="loginInfo">
 						<div class="d-flex justify-content-between">
