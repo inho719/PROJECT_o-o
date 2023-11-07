@@ -30,14 +30,14 @@
 }
 
 .scroll::-webkit-scrollbar-thumb {
-	background-color: #5e504e;
+	background-color: #ede9e7;
 	border-radius: 10px;
 	background-clip: padding-box;
 	border: 2px solid transparent;
 }
 
 .scroll::-webkit-scrollbar-track {
-	background-color: #ede9e7;
+	background-color: whitesmoke;
 	border-radius: 10px;
 	box-shadow: inset 0px 0px 5px white;
 }
