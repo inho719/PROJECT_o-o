@@ -71,7 +71,7 @@
 			<!-- Blog entries-->
 			<div class="col-lg-9">
 				<!-- 슬라이더 부분 -->
-				<div id="carouselExampleInterval" class="carousel slide VOIXBODERLINE" data-bs-ride="carousel" style="margin-bottom: 30px;">
+				<div id="carouselExampleInterval" class="carousel slide VOIXBODERLINE" data-bs-ride="carousel" style="margin-bottom: 30px; box-shadow: 1px 1px 12px 0px #5e504e8a;">
 					<div class="carousel-inner">
 						<div class="carousel-item active" data-bs-interval="2000" >
 							<a href="#" id="slide1">
