@@ -226,7 +226,7 @@
 			let chatId = '${sessionScope.loginId}';
 			console.log(chatId);
 			window.open("/chatPage?chatId=" + chatId, "chatbot",
-					"width=400, height=600");
+					"width=416, height=634");
 			if (chatId == null) {
 				window.close();
 			}
