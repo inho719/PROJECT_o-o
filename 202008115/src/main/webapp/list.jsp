@@ -7,6 +7,8 @@
 
 <html>
 <head>
+<style>
+</style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
@@ -17,20 +19,20 @@
 
 <body>
     <BR>
-    <H2 align=center>
-        Product List
+    <H2 align=center style="margin-top:10px;">
+        Mac쇼핑하기
     </H2>
    <table width="80%" align="center">
         <thead>
-            <tr align=center  bgcolor=#AAAAAA>
+            <tr align=center  bgcolor=black style="color: white;">
             	<th><a href="?order=num"> Num</a> </th>
                 <th></th>
                 <th><a href="?order=name">이름</a></th>
-                <th><A href="?order=SizeCm">Display</A></th>
-                <th><A href="?order=Maker">Maker</A></th>
-                <th><A href="?order=HDMI">HDMI</A></th>
-                <th><A href="?order=USB">USB</A></th>
-                <th><A href="?order=Weight">Weight</A></th>
+                <th><A href="?order=DisplayInch">Display Inch</A></th>
+                <th><A href="?order=Maker">CPU Maker</A></th>
+                <th><A href="?order=cpuCore">CPU Core</A></th>
+                <th><A href="?order=Graphic">Graphic Card</A></th>
+                <th><A href="?order=RAM">RAM</A></th>
                 <th><A href="?order=PriceLow">가격</A></th>
             </tr>
         </thead>
@@ -42,7 +44,7 @@
             ResultSet rs = null;
 
             int intPage = 0, totalPages =1;
-            int TOTAL = 10;
+            int TOTAL = 9;
             /* parameter get */
             request.setCharacterEncoding("utf-8");
 	        String order = request.getParameter("order");
@@ -56,7 +58,7 @@
             try{
                 String jdbcDriver = "jdbc:mysql://localhost:3306/products?useUnicode=true&characterEncoding=utf8";
                 String dbWhere = ""; //" where PriceLow > 1000000";
-                String dbUser = "inhatc";
+                String dbUser = "root";
                 String dbPwd = "inhatech";
                 String requestSelect = "*, format(priceLow, 0) as price";//"num, cpuCore, Maker, Graphic, Ram, PriceLow";
 
@@ -68,7 +70,7 @@
                 /* MySQL Connection */
                 conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPwd);
               
-                String allRequest = "select count(num) as cnt from tv"+dbWhere+dbOrder;
+                String allRequest = "select count(num) as cnt from notebook"+dbWhere+dbOrder;
                 pstmt = conn.prepareStatement(allRequest);
                 rs = pstmt.executeQuery();
                 rs.next();
@@ -79,7 +81,7 @@
                 rs.close();
                               
                 //out.println(totalPages + ":" + intPage);
-                allRequest = "select "+requestSelect+" from tv"+dbWhere+dbOrder;
+                allRequest = "select "+requestSelect+" from notebook"+dbWhere+dbOrder;
                 pstmt = conn.prepareStatement(allRequest);
                 //out.print(allRequest);
                 rs = pstmt.executeQuery();
@@ -95,19 +97,70 @@
                 	if( (number-1)/TOTAL - intPage < 0){
                 	}
                 	else{
+                            
         %>
-                    <tr>
-                        <td align=center> <%=rs.getString("num")%></td>
-                        <td align=center><img src=image/Image<%=rs.getString("num") %>.png width=72 height=48></td>
-                        <td><A href=mysql_part.jsp?num=<%=rs.getString("num") %>><%= rs.getString("name") %></A></td>
-                        <td align="center"><%= rs.getInt("SizeCm") %>-<%= rs.getInt("SizeIn") %></td>
-                        <td align="center"><%= rs.getString("Maker") %></td>
-                        <td align="center"><%= rs.getInt("HDMI") %></td>
-                        <td align="center"><%= rs.getInt("USB") %></td>
-                        <td align="center"><%= rs.getFloat("Weight") %> Kg</td>
-                                          
-                        <td align="right"><B><%= rs.getString("Price") %> 원</B></td>
-                    </tr>
+                    <%
+int itemsPerPage = 9; // 한 페이지에 표시할 항목 수
+int currentPage = intPage + 1; // 현재 페이지
+int startIndex = currentPage * itemsPerPage - itemsPerPage; // 시작 인덱스
+
+
+pstmt = conn.prepareStatement(allRequest);
+rs = pstmt.executeQuery();
+
+int count = 0; // 현재 페이지에서 표시한 항목 수를 계산하기 위한 변수
+
+while (rs.next()) {
+    // 리스트 아이템 내용을 표시
+%>
+<!-- 리스트 아이템 내용 -->
+<td>
+    <table>
+         <tr>
+            <td align="center"><%= rs.getString("num") %></td>
+        </tr>
+        <tr>
+            <td align="center"><img src="image/Image<%= rs.getString("num") %>.png" width="72" height="48"></td>
+        </tr>
+        <tr>
+            <td><a href="mysql_part.jsp?num=<%= rs.getString("num") %>"><%= rs.getString("name") %></a></td>
+        </tr>
+        <tr>
+            <td align="center">인치:<%= rs.getFloat("DisplayInch") %></td>
+        </tr>
+        <tr>
+            <td align="center">코어:<%= rs.getInt("cpuCore") %></td>
+        </tr>
+        <tr>
+            <td align="center">그래픽:<%= rs.getString("Graphic") %></td>
+        </tr>
+        <tr>
+            <td align="center">램:<%= rs.getString("RAM") %> GB</td>
+        </tr>
+        <tr>
+            <td align="right"><b>가격:<%= rs.getString("Price") %> 원</b></td>
+        </tr>
+    </table>
+</td>
+<%
+    count++;
+
+    if (count % 3 == 0) { // 한 행에 3개의 열을 표시하도록 수정
+%>
+</tr>
+<tr>
+<%
+    }
+}
+%>
+
+<%
+if (count % 3 != 0) { // 마지막 행이 완전하지 않은 경우 닫아줍니다.
+%>
+</tr>
+<%
+}
+%>
         <%
                 	}
                 	number++;
