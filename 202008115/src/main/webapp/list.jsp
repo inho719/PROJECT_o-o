@@ -7,33 +7,83 @@
 
 <html>
 <head>
-<style>
-</style>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
-<title>Notebook</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {           
+            border: 1px solid #343a40;          
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .pagination {
+            margin: 20px 0;
+        }
+
+        .pagination a {
+            color: #007bff;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #dee2e6;
+            margin: 0 4px;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Notebook</title>
 </head>
     
 <jsp:include page="menu.jsp" />
 
 <body>
-    <BR>
-    <H2 align=center style="margin-top:10px;">
-        Mac쇼핑하기
-    </H2>
-   <table width="80%" align="center">
+    <br>
+    <h2 align="center" style="margin-top:10px;">
+        Think different
+    </h2>
+   <table>
         <thead>
             <tr align=center  bgcolor=black style="color: white;">
-            	<th><a href="?order=num"> Num</a> </th>
-                <th></th>
-                <th><a href="?order=name">이름</a></th>
-                <th><A href="?order=DisplayInch">Display Inch</A></th>
-                <th><A href="?order=Maker">CPU Maker</A></th>
-                <th><A href="?order=cpuCore">CPU Core</A></th>
-                <th><A href="?order=Graphic">Graphic Card</A></th>
-                <th><A href="?order=RAM">RAM</A></th>
-                <th><A href="?order=PriceLow">가격</A></th>
+                <th><a href="?order=num">Mac</a></th>
+                <th><a href="?order=iphone">i-phone</a></th>
+              	<th><a href="?order=airpods">Airpods</a></th>
             </tr>
         </thead>
         <tbody>
@@ -175,34 +225,7 @@ if (count % 3 != 0) { // 마지막 행이 완전하지 않은 경우 닫아줍�
                 if(pstmt != null) pstmt.close();
                 if(conn != null) conn.close();
             }
-            if(totalPages > 1){
-            	%>
-            	<tr>
-            		<td colspan=9 align=center> Pages : 
-            			<%
-            				String linkPoint = "<A href=?";
-            				if(order != null) linkPoint=linkPoint+"order="+order+"&";
-            				int i;
-            				for(i=0; i< totalPages/TOTAL; i++){
-            					if(i==intPage) out.print(" "+i+" ");
-            					else {
-            					    out.println(linkPoint+"page="+i+">"+i+"</A>");
-            					}
-            				}
-            				if(totalPages%TOTAL != 0){
-            					if(i==intPage) out.print(" "+i+" ");
-            					else {
-            						out.println(linkPoint+"page="+ i+">"+i+"</A>");
-            					}
-            					
-            				}
-            			%>
-            			
-            		</td>
-            	<%
-            	
-            	
-            }
+            
         %>
 
        </tbody>
