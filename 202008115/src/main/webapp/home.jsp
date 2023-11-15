@@ -19,7 +19,15 @@ border-bottom: 2px solid lightgray;
 
 
 }
+.hover:hover{
 
+box-shadow: 7px 7px 20px 3px lightgray;
+}
+.shadow{
+border-style: hidden;
+border-radius: 10px;
+border: 2px solid white;
+}
 
 </style>
 
@@ -38,7 +46,7 @@ border-bottom: 2px solid lightgray;
 
 	int intPage = 0, totalPages = 1;
 	int TOTAL = 6;
-	/* parameter get */
+	
 	request.setCharacterEncoding("utf-8");
 	String order = request.getParameter("order");
 	String pages = request.getParameter("page");
@@ -50,10 +58,10 @@ border-bottom: 2px solid lightgray;
 
 	try {
 		String jdbcDriver = "jdbc:mysql://localhost:3306/products?useUnicode=true&characterEncoding=utf8";
-		String dbWhere = ""; //" where PriceLow > 1000000";
-		String dbUser = "inhatc";
+		String dbWhere = "";
+		String dbUser = "inhatech";
 		String dbPwd = "inhatech";
-		String requestSelect = "*, format(priceLow, 0) as price";//"num, cpuCore, Maker, Graphic, Ram, PriceLow";
+		String requestSelect = "*, format(priceLow, 0) as price";
 
 		conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPwd);
 		requestSelect = "select " + requestSelect + " from tv" + dbWhere;
@@ -64,11 +72,13 @@ border-bottom: 2px solid lightgray;
 	%>
 	<BR>
 	<BR>
+	<div>
+	
+	</div>
+	<div class="row" style="margin-left: 12%; margin-top: 30px;">
 
-	<div class="row" style="margin-left: 12%;">
-
-		<div class="col-md-6">
-			<table>
+		<div class="col-md-6" style="border-left: 4px solid black; background-color: ">
+			<table class="hover shadow">
 				<tr>
 					<td colspan="2" align=center><img
 						src="image/Image<%=rs.getString("num")%>.png"
@@ -118,10 +128,10 @@ border-bottom: 2px solid lightgray;
 
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-md-6" style="border-left: 4px solid black;">
 			<div>
 
-				<table>
+				<table class="hover shadow">
 
 
 					<tr>
@@ -143,7 +153,7 @@ border-bottom: 2px solid lightgray;
 				%>
 				</table>
 			</div>
-			<table>
+			<table class="hover shadow">
 
 
 				<tr>
@@ -171,10 +181,10 @@ border-bottom: 2px solid lightgray;
 	</div>
 	<br>
 
-	<div class="row" style="margin-left: 12%;">
+	<div class="row" style="margin-left: 12%;  margin-top: 30px;" >
 
-		<div class="col-md-6">
-			<table>
+		<div class="col-md-6" style="border-left: 4px solid black;">
+			<table class="hover shadow">
 				<tr>
 					<td colspan="2" align=center><img
 						src="image/Image<%=rs.getString("num")%>.png"
@@ -224,10 +234,10 @@ border-bottom: 2px solid lightgray;
 
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-md-6" style=" border-left: 4px solid black;">
 			<div>
 
-				<table>
+				<table class="hover shadow">
 
 
 					<tr>
@@ -249,7 +259,7 @@ border-bottom: 2px solid lightgray;
 
 				</table>
 			</div>
-			<table>
+			<table class="hover shadow">
 
 
 				<tr>
@@ -288,7 +298,7 @@ border-bottom: 2px solid lightgray;
 
 	</div>
 
-
+	<br><br>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
