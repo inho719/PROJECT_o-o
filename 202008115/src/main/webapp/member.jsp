@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <td>전준모</td>
-                <td>학번 입력</td>
+                <td>202008108</td>
                 <td>기능, CSS, DB</td>                                       
             </tr>
         </tbody>
