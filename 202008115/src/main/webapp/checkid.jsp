@@ -87,7 +87,7 @@
 			else {
 				%>
 				<H3>사용자 암호가 틀립니다.</H3>
-				<a href="addUser.jsp">가입하기</a>
+				<a href="SignUp.jsp">가입하기</a>
 				<%
 				//response.sendRedirect("join_fail.jsp");
 			}			
@@ -95,7 +95,7 @@
 		else{
 			%>
 			<H3>ID를 찾을 수 없습니다.</H3>
-			<a href="addUser.jsp">가입하기</a>
+			<a href="SignUp.jsp">가입하기</a>
 			<%
 			//response.sendRedirect("join_fail.jsp");
 		}
