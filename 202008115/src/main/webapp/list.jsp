@@ -81,9 +81,9 @@
    <table>
         <thead>
             <tr align=center  bgcolor=black style="color: white;">
-                <th><a href="?order=num">Mac</a></th>
-                <th><a href="?order=iphone">i-phone</a></th>
-              	<th><a href="?order=airpods">Airpods</a></th>
+                <th><a href="?./list.jsp">Mac</a></th>
+                <th><a href="./iphone.jsp">i-phone</a></th>
+              	<th><a href="./airpods.jsp">Airpods</a></th>
             </tr>
         </thead>
         <tbody>
