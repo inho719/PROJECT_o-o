@@ -66,6 +66,11 @@
                     <td align="center"><%= rs.getString("cpuCore") %></td>
                     <td align="center"><%= rs.getString("Graphic") %></td>
                     <td align="center"><%= rs.getString("RAM") %> GB</td>
+                    <td align="center"><%= rs.getString("MaxUseTime") %> 시간</td>
+                    <td align="center"><%= rs.getString("CPUName") %> </td>
+                    <td align="center"><%= rs.getString("Weight") %> </td>
+                    <td align="center"><%= rs.getString("Chip") %> </td>
+                    <td align="center"><%= rs.getString("Bluetooth") %> </td>                    
                     <td align="right"><%= rs.getString("PriceLow") %></td>
                 </tr>
         <%
