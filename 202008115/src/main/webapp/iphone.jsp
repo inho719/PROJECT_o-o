@@ -170,7 +170,7 @@ while (rs.next()) {
             <td align="center"><%= rs.getString("num") %></td>
         </tr>
         <tr>
-            <td align="center"><img src="image/Image<%= rs.getString("num") %>.png" width="72" height="48"></td>
+            <td align="center"><img src="image/iphone<%= rs.getString("num") %>.jpg" width="72" height="48"></td>
         </tr>
         <tr>
             <td><a href="mysql_part.jsp?num=<%= rs.getString("num") %>"><%= rs.getString("name") %></a></td>
