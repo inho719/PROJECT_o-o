@@ -166,14 +166,14 @@ while (rs.next()) {
 <!-- 리스트 아이템 내용 -->
 <td>
     <table>
-         <tr>
+        <tr>
             <td align="center"><%= rs.getString("num") %></td>
         </tr>
         <tr>
             <td align="center"><img src="image/Image<%= rs.getString("num") %>.png" width="72" height="48"></td>
         </tr>
-        <tr>
-            <td><a href="mysql_part.jsp?num=<%= rs.getString("num") %>"><%= rs.getString("name") %></a></td>
+        <tr>            
+            <td><a href="detail.jsp?num=<%= rs.getString("num") %>&name=<%= rs.getString("name") %>&DisplayInch=<%= rs.getFloat("DisplayInch") %>&cpuCore=<%= rs.getInt("cpuCore") %>&CPUMaker=<%= rs.getString("CPUMaker") %>&CPUName=<%= rs.getString("CPUName") %>&Price=<%= rs.getString("Price") %>"><%= rs.getString("name") %></a></td>
         </tr>
         <tr>
             <td align="center">인치:<%= rs.getFloat("DisplayInch") %></td>
