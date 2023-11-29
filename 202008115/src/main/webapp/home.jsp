@@ -136,8 +136,7 @@ border: 2px solid white;
 							style="width: 100%; height: 150px;"></td>
 					</tr>
 					<tr>
-						<td>Display Size</td>
-						<td><%=rs.getInt("SizeCm")%>-<%=rs.getInt("SizeIn")%></td>
+						<td><%=rs.getString("name")%></td>
 					</tr>
 					<tr>
 						<td>가격</td>
@@ -158,8 +157,7 @@ border: 2px solid white;
 						style="width: 100%; height: 150px;"></td>
 				</tr>
 				<tr>
-					<td>Display Size</td>
-					<td><%=rs.getInt("SizeCm")%>-<%=rs.getInt("SizeIn")%></td>
+					<td><%=rs.getString("name")%></td>
 				</tr>
 				<tr>
 					<td>가격</td>
@@ -237,9 +235,8 @@ border: 2px solid white;
 							src="image/airpods<%=rs.getString("num")%>.jpg"
 							style="width: 100%; height: 150px;"></td>
 					</tr>
-					<tr>
-						<td>Display Size</td>
-						<td><%=rs.getInt("SizeCm")%>-<%=rs.getInt("SizeIn")%></td>
+					<tr>						
+						<td><%=rs.getString("name")%></td>
 					</tr>
 					<tr>
 						<td>가격</td>
@@ -259,9 +256,8 @@ border: 2px solid white;
 						src="image/airpods<%=rs.getString("num")%>.jpg"
 						style="width: 100%; height: 150px;"></td>
 				</tr>
-				<tr>
-					<td>Display Size</td>
-					<td><%=rs.getInt("SizeCm")%>-<%=rs.getInt("SizeIn")%></td>
+				<tr>					
+					<td><%=rs.getString("name")%></td>
 				</tr>
 				<tr>
 					<td>가격</td>
