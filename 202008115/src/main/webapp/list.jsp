@@ -173,7 +173,7 @@ while (rs.next()) {
             <td align="center"><img src="image/Image<%= rs.getString("num") %>.png" width="72" height="48"></td>
         </tr>
         <tr>            
-            <td><a href="detail.jsp?num=<%= rs.getString("num") %>&name=<%= rs.getString("name") %>&DisplayInch=<%= rs.getFloat("DisplayInch") %>&cpuCore=<%= rs.getInt("cpuCore") %>&CPUMaker=<%= rs.getString("CPUMaker") %>&CPUName=<%= rs.getString("CPUName") %>&Price=<%= rs.getString("Price") %>"><%= rs.getString("name") %></a></td>
+            <td><a href="detail.jsp?num=<%= rs.getString("num") %>&name=<%= rs.getString("name") %>&DisplayInch=<%= rs.getFloat("DisplayInch") %>&cpuCore=<%= rs.getInt("cpuCore") %>&CPUMaker=<%= rs.getString("CPUMaker") %>&CPUName=<%= rs.getString("CPUName") %>&Price=<%= rs.getString("Price") %>&Maker=<%= rs.getString("Maker") %>&DisplayCm=<%= rs.getString("DisplayCm") %>&DisplayRes=<%= rs.getString("DisplayRes") %>"><%= rs.getString("name") %></a></td>
         </tr>
         <tr>
             <td align="center">인치:<%= rs.getFloat("DisplayInch") %></td>
@@ -189,7 +189,7 @@ while (rs.next()) {
         </tr>
         <tr>
             <td align="right"><b>가격:<%= rs.getString("Price") %> 원</b></td>
-        </tr>
+        </tr>        
     </table>
 </td>
 <%
