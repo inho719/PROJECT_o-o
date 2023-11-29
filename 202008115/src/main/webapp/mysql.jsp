@@ -70,7 +70,12 @@
                     <td align="center"><%= rs.getString("CPUName") %> </td>
                     <td align="center"><%= rs.getString("Weight") %> </td>
                     <td align="center"><%= rs.getString("Chip") %> </td>
-                    <td align="center"><%= rs.getString("Bluetooth") %> </td>                    
+                    <td align="center"><%= rs.getString("Bluetooth") %> </td>
+                    <td align="center"><%= rs.getString("SSD") %> </td>     
+                    <td align="center"><%= rs.getString("RAM") %> </td>
+                    <td align="center"><%= rs.getString("Height") %> </td>
+                    <td align="center"><%= rs.getString("Width") %> </td>
+                    <td align="center"><%= rs.getString("Weight") %> </td>                                       
                     <td align="right"><%= rs.getString("PriceLow") %></td>
                 </tr>
         <%
