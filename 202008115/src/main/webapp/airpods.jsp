@@ -173,7 +173,7 @@ while (rs.next()) {
             <td align="center"><img src="image/airpods<%= rs.getString("num") %>.jpg" width="72" height="48"></td>
         </tr>
         <tr>
-            <td><a href="airpodsdetail.jsp?num=<%= rs.getString("num") %>"><%= rs.getString("name") %></a></td>
+            <td><a href="airpodsdetail.jsp?num=<%= rs.getString("num") %>&name=<%= rs.getString("name") %>&MaxUseTime=<%= rs.getString("MaxUseTime") %>&Maker=<%= rs.getString("Maker") %>&Height=<%= rs.getString("Height") %>&Width=<%= rs.getString("Width") %>&Weight=<%= rs.getString("Weight") %>&Chip=<%= rs.getString("Chip") %>&Price=<%= rs.getString("Price") %>"><%= rs.getString("name") %></a></td>
         </tr>
        
         <tr>
