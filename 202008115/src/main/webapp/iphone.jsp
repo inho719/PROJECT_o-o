@@ -9,62 +9,69 @@
 <head>
     <style>
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	background-color: #f8f9fa;
+}
 
-        table {
-            width: 80%;
-            margin: auto;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+table {
+	border-collapse: collapse;
+	width: 80%;
+	margin: auto;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-top: 10px;
+	border-style: hidden;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+}
 
-        th, td {           
-            border: 1px solid #343a40;          
-            padding: 8px;
-            text-align: center;
-        }
+th, td {
+	border: none;
+	padding: 8px;
+	text-align: center;
+}
+tr{
+border-bottom: 0 !important;
+}
 
-        th {
-            background-color: #343a40;
-            color: white;
-        }
+th {
+	background-color: #343a40;
+	color: white;
+}
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+a {
+	color: #007bff;
+	text-decoration: none;
+	font-weight: bold;
+}
 
-        a:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
+a:hover {
+	color: #0056b3;
+	text-decoration: underline;
+}
 
-        .pagination {
-            margin: 20px 0;
-        }
+.pagination {
+	margin: 20px 0;
+}
 
-        .pagination a {
-            color: #007bff;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-            transition: background-color .3s;
-            border: 1px solid #dee2e6;
-            margin: 0 4px;
-        }
+.pagination a {
+	color: #007bff;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #dee2e6;
+	margin: 0 4px;
+}
 
-        .pagination a.active {
-            background-color: #007bff;
-            color: white;
-            border: 1px solid #007bff;
-        }
+.pagination a.active {
+	background-color: #007bff;
+	color: white;
+	border: 1px solid #007bff;
+}
 
-        .pagination a:hover:not(.active) {
-            background-color: #ddd;
-        }
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -173,7 +180,7 @@ while (rs.next()) {
             <td align="center"><img src="image/iphone<%= rs.getString("num") %>.jpg" width="72" height="48"></td>
         </tr>
         <tr>
-            <td><a href="iphonedetail.jsp?num=<%= rs.getString("num") %>&name=<%= rs.getString("name") %>&Maker=<%= rs.getString("Maker") %>&DisplayCm=<%= rs.getString("DisplayCm") %>&DisplayRes=<%= rs.getString("DisplayRes") %>&Price=<%= rs.getString("Price") %>&MaxUseTime=<%= rs.getString("MaxUseTime") %>&SSD=<%= rs.getString("SSD") %>&RAM=<%= rs.getString("RAM") %>"><%= rs.getString("name") %></a></td>
+            <td><a href="mysql_part.jsp?num=<%= rs.getString("num") %>"><%= rs.getString("name") %></a></td>
         </tr>
         <tr>
             <td align="center">CPU:<%= rs.getString("CPUName") %> </td>
