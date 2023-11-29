@@ -62,8 +62,8 @@ input[type="text"]:hover {
 				<h3><%=request.getParameter("name")%></h3>
 			</div>
 			<hr style="background-color: gray;">
-			<div>
-				<img src="image/Image<%=request.getParameter("num")%>.png"
+			<div style="text-align: center;">
+				<img  src="image/Image<%=request.getParameter("num")%>.png"
 					class="img-fluid" alt="Product Image">
 			</div>
 			<hr style="background-color: gray;">
