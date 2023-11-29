@@ -167,6 +167,36 @@ REPLACE INTO `airpods` (`num`, `name`, `Maker`, `Height`, `Width`, `Thickness`, 
 (30, 'Apple Beats EP 2세대 헤드셋', 'Apple', 174, 171, 81.2, 392.6, 'H1', 'Bluetooth 5.0', 20, 339000);
 
 
+CREATE TABLE IF NOT EXISTS `home` (
+  `Num` int NOT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `SizeCm` smallint DEFAULT NULL,
+  `SizeIn` tinyint DEFAULT NULL,
+  `Tech` varchar(20) DEFAULT NULL,
+  `Resolution` varchar(20) DEFAULT NULL,
+  `Refresh` smallint DEFAULT NULL,
+  `Maker` varchar(20) DEFAULT NULL,
+  `SubPixel` varchar(10) DEFAULT NULL,
+  `Response` varchar(10) DEFAULT NULL,
+  `SpeakerPower` smallint DEFAULT NULL,
+  `HDMI` tinyint DEFAULT NULL,
+  `USB` tinyint DEFAULT NULL,
+  `Weight` float DEFAULT NULL,
+  `Power` int DEFAULT NULL,
+  `PriceLow` int DEFAULT NULL,
+  PRIMARY KEY (`Num`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 테이블 데이터 products.tv:~11 rows (대략적) 내보내기
+INSERT INTO `home` (`Num`, `Name`, `SizeCm`, `SizeIn`, `Tech`, `Resolution`, `Refresh`, `Maker`, `SubPixel`, `Response`, `SpeakerPower`, `HDMI`, `USB`, `Weight`, `Power`, `PriceLow`) VALUES
+	(1, 'Apple 2020 맥북 Air 13 M1', 138, 55, 'QLED', '4K', NULL, 'Apple', NULL, NULL, 20, 1, 2, 12.1, 140, 1390000),
+	(2, 'Apple 2020 맥북 Air 13 M2', 163, 65, 'QLED', '4K', NULL, 'Apple', NULL, NULL, 20, 1, 3, 20.9, 170, 1092200),
+	(3, 'Apple iPhone 7', 68, 27, 'LED', 'FHD', 60, 'Apple', NULL, NULL, 20, 2, 1, 12.7, 85, 958040),
+	(4, 'Apple iPhone 7 Plus', 214, 85, 'QLED', '4K', 120, 'Apple', NULL, NULL, 20, 4, 1, 355, 44, 2390350),
+	(5, 'Apple 에어팟 1세대', 189, 75, 'IPS', '4K', 60, 'Apple', NULL, NULL, 20, 3, 1, 31.4, 250, 1484180),
+	(6, 'Apple 에어팟 2세대 유선 충전', 217, 86, 'QNED', '4K', 120, 'LG', NULL, NULL, 40, 4, 1, NULL, 370, 3374140);
+
+
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
